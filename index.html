@@ -303,9 +303,12 @@
       box-shadow:var(--sombra);
     }
 
+    /* CAMBIO SOLICITADO: Imagen más pequeña para la sección "Nuestra historia" */
     .historia-imagen{
       position:relative;
-      min-height:330px;
+      height:210px;
+      min-height:180px;
+      max-height:230px;
       overflow:hidden;
       background:linear-gradient(135deg,#8D4A30,#C18456);
     }
@@ -313,7 +316,6 @@
     .historia-imagen img{
       width:100%;
       height:100%;
-      min-height:330px;
       object-fit:cover;
       display:block;
     }
@@ -324,15 +326,15 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:30px;
+      padding:20px;
       text-align:center;
       color:rgba(255,255,255,.9);
       font-family:Georgia,"Times New Roman",serif;
-      font-size:28px;
+      font-size:22px;
     }
 
     .historia-contenido{
-      padding:30px;
+      padding:26px 30px 30px;
     }
 
     .historia-contenido h2,
@@ -509,7 +511,7 @@
     }
 
     /* ===================================================== */
-    /* MENÚ                                                   */
+    /* MENÚ Y BUSCADOR DE PLATILLOS                           */
     /* ===================================================== */
 
     .intro{
@@ -517,7 +519,7 @@
       justify-content:space-between;
       align-items:flex-end;
       gap:30px;
-      margin-bottom:22px;
+      margin-bottom:18px;
     }
 
     .intro h2{
@@ -533,6 +535,30 @@
       color:var(--texto-suave);
       font-size:14px;
       line-height:1.7;
+    }
+
+    /* CAMBIO SOLICITADO: Barra de búsqueda de platillos */
+    .buscador-menu-wrap{
+      margin-bottom:16px;
+    }
+
+    .buscador-menu{
+      width:100%;
+      min-height:48px;
+      padding:12px 18px;
+      border:1px solid var(--linea);
+      border-radius:var(--radio-md);
+      background:var(--tarjeta);
+      color:var(--texto);
+      font-size:14px;
+      box-shadow:var(--sombra-suave);
+      transition:border-color var(--transicion), box-shadow var(--transicion);
+    }
+
+    .buscador-menu:focus-visible{
+      outline:3px solid rgba(166,79,49,.28);
+      outline-offset:2px;
+      border-color:var(--acento);
     }
 
     .leyenda-ar{
@@ -1737,6 +1763,11 @@
 
     </section>
 
+    <!-- Barra de búsqueda añadida -->
+    <div class="buscador-menu-wrap">
+      <input type="search" id="inputBuscador" class="buscador-menu" placeholder="Buscar platillos..." data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
+    </div>
+
     <nav
       class="categorias"
       id="categorias"
@@ -1868,12 +1899,11 @@
 
   const CONFIG = {
     restaurante: {
-      // EDITA NOMBRE, PORTADA, FOTO DEL LOCAL Y LOS ENLACES AQUÍ.
       nombre: "Comedor Lucy",
       subtitulo: "Sabores para compartir. Explora nuestro menú y elige tus favoritos.",
       subtituloEn: "Flavors to share. Explore our menu and choose your favorites.",
-      heroImagen: "images/Restaurante/portada.jpg", // Fotografía ya subida: carpeta Restaurante (R mayúscula)
-      imagenRestaurante: "images/Restaurante/portada.jpg", // Sustituye aquí por una foto del local cuando la subas
+      heroImagen: "images/Restaurante/portada.jpg",
+      imagenRestaurante: "images/Restaurante/portada.jpg",
       tituloHistoria: "Bienvenidos a Comedor Lucy",
       tituloHistoriaEn: "Welcome to Comedor Lucy",
       historia: "Escribe aquí la historia y descripción oficial del restaurante.",
@@ -1882,13 +1912,13 @@
       contactoTextoEn: "Find our location and place your order via WhatsApp.",
       ubicacionTexto: "José María Morelos y Pavón 6, Mercado Hidalgo, Centro Historico, S.L.P.",
       ubicacionTextoEn: "Add the restaurant address here",
-      horario: "Lun–Sáb · 8:00–18:00 · Dom · 8:00–17:00", // Ejemplo: "Lun–Sáb · 8:00–18:00"
-      mapsUrl: "https://maps.app.goo.gl/b5eKnTrMZ1TXsTLu8", // URL COMPLETA de Google Maps
-      whatsappNumero: "524445848009", // EDITABLE: con código de país, sin + ni espacios.
-      instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==", // Instagram: pega aquí el enlace completo
-      facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/", // Facebook: pega aquí el enlace completo
-      tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q", // TikTok: pega aquí el enlace completo
-      origenEnvio: null, // Opcional: {lat: 22.15, lng: -100.98}
+      horario: "Lun–Sáb · 8:00–18:00 · Dom · 8:00–17:00",
+      mapsUrl: "https://maps.app.goo.gl/b5eKnTrMZ1TXsTLu8",
+      whatsappNumero: "524445848009",
+      instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==",
+      facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/",
+      tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q",
+      origenEnvio: null,
       ciudadEnvio: "",
       envioBase: null,
       envioKmIncluidos: null,
@@ -1903,12 +1933,7 @@
       }
     },
 
-    /* =======================================================
-       IDIOMAS: editar aquí los textos de interfaz y categorías.
-       Las traducciones de cada platillo están junto a su producto
-       en los campos nombreEn y descripcionEn.
-       ======================================================= */
-    idiomaInicial: "es", // "es" o "en"
+    idiomaInicial: "es",
     categoriasEn: {
       "Antojitos pal corazón ❤️": "Comfort-food favorites ❤️",
       "Desayunos de campeón 🏆": "Champion breakfasts 🏆",
@@ -1917,7 +1942,7 @@
       "Sazón de la Abuela 👵🏻🫶": "Grandma’s home cooking 👵🏻🫶",
       "Aventura marina 🌊🌴": "Seafood adventure 🌊🌴",
       "Souvenirs de La Monita 🛍️🎀": "La Monita souvenirs 🛍️🎀"
-},
+    },
     textos: {
       es: {
         "kicker": "MENÚ DIGITAL · COMEDOR LUCY",
@@ -1928,6 +1953,7 @@
         "discover": "DESCUBRE",
         "menuTitle": "Nuestro menú",
         "menuIntro": "Explora nuestros platillos con fotografías, elige tus favoritos y prepara tu pedido.",
+        "searchPlaceholder": "Buscar platillos por nombre o descripción...",
         "ourStory": "NUESTRA HISTORIA",
         "visitUs": "VISÍTANOS",
         "nextTable": "Tu próxima mesa empieza aquí",
@@ -2026,7 +2052,7 @@
         "orderTab": "Pedidos a domicilio",
         "orderNumber": "productos",
         "photoLocal": "Fotografía del restaurante"
-},
+      },
       en: {
         "kicker": "DIGITAL MENU · COMEDOR LUCY",
         "navVisitanos": "VISIT US",
@@ -2036,6 +2062,7 @@
         "discover": "DISCOVER",
         "menuTitle": "Our menu",
         "menuIntro": "Explore our dishes with photos, choose your favorites and prepare your order.",
+        "searchPlaceholder": "Search dishes by name or description...",
         "ourStory": "OUR STORY",
         "visitUs": "VISIT US",
         "nextTable": "Your next table starts here",
@@ -2134,10 +2161,9 @@
         "orderTab": "Delivery orders",
         "orderNumber": "items",
         "photoLocal": "Restaurant photo"
-}
+      }
     },
 
-    // SON SIETE CATEGORÍAS, TAL COMO LAS ENUMERASTE.
     categorias: [
       "Todos",
       "Antojitos pal corazón ❤️",
@@ -2149,23 +2175,6 @@
       "Souvenirs de La Monita 🛍️🎀"
     ],
 
-    /* =======================================================
-       PLATILLOS Y SOUVENIRS · EDITAR AQUÍ
-       Productos transcritos de las capturas del catálogo de
-       WhatsApp Business aportadas el 16 de octubre de 2026.
-       Descripciones proporcionadas por el restaurante.
-
-       FOTOGRAFÍAS:
-       - Respeta la carpeta: images/Menu/ (M mayúscula).
-       - Los nombres de los 6 archivos ya subidos coinciden con GitHub.
-       - Sube después las fotos faltantes usando los nombres indicados.
-       - Cada foto se muestra directamente en su tarjeta.
-       - Para editar precios, cambia el campo "precio": "$95".
-       - Los artículos con precio definido pueden añadirse al carrito.
-       - Souvenirs también funcionan como artículos del pedido.
-       - Edita los campos "descripcion" dentro de cada producto.
-       - "Vuelve a la vida" tiene precio pendiente por indicar.
-       ======================================================= */
     platillos: [
       {
         "id": "machete",
@@ -2427,6 +2436,7 @@
 
 
   let categoriaActual = "Todos";
+  let terminoBusqueda = "";
   let toastTimer = null;
 
   /* ===================================================== */
@@ -2464,6 +2474,7 @@
 
   const categoriasHTML = document.getElementById("categorias");
   const listaHTML = document.getElementById("listaPlatillos");
+  const inputBuscador = document.getElementById("inputBuscador");
 
   const toast = document.getElementById("toast");
   const footerTexto = document.getElementById("footerTexto");
@@ -2742,7 +2753,6 @@
     }
   }
 
-  /* Solo búsquedas expresas del usuario; sin autocompletado (política Nominatim). */
   buscarDireccionMapa.addEventListener("click", async () => {
     if(!envioConfigurado()) return;
     const calle=pedidoCalle.value.trim(), numero=pedidoNumeroExterior.value.trim(), colonia=pedidoColonia.value.trim();
@@ -2860,7 +2870,6 @@
   botonPedidoInicio.addEventListener("click", abrirWhatsApp);
   navPedido.addEventListener("click", abrirWhatsApp);
 
-  // CONTACTO DIRECTO: independiente del carrito, también con cero productos.
   function abrirChatDirectoWhatsApp(){
     const numero=normalizarNumeroWhatsApp();
     if(!/^[1-9][0-9]{10,14}$/.test(numero)){
@@ -2872,7 +2881,6 @@
   }
   document.getElementById("socialWhatsApp").addEventListener("click", abrirChatDirectoWhatsApp);
   document.getElementById("whatsappFlotante").addEventListener("click", abrirChatDirectoWhatsApp);
-  // Las cuentas son editables exclusivamente en CONFIG.restaurante.
   function abrirEnlaceSocial(campo,dominios,nombre){
     const valor=String(restaurante[campo]||'').trim();
     if(!valor){mostrarToast(t('socialMissing').replace('{name}',nombre).replace('{field}',campo));return;}
@@ -2902,7 +2910,6 @@
     movilInicio.classList.toggle("activo", esInicio);
     movilMenu.classList.toggle("activo", !esInicio);
 
-
     if(actualizarHash){
       history.replaceState(null,"",esInicio ? "#inicio" : "#menu");
     }
@@ -2918,21 +2925,26 @@
 
 
   /* ===================================================== */
-  /* DESTACADO                                              */
-  /* ===================================================== */
-
-  /* ===================================================== */
-  /* CATEGORÍAS                                             */
+  /* CATEGORÍAS Y BUSCADOR                                  */
   /* ===================================================== */
 
   function obtenerPlatillos(){
-    if(categoriaActual === "Todos"){
-      return platillos;
+    let filtrados = platillos;
+    
+    if(categoriaActual !== "Todos"){
+      filtrados = filtrados.filter(item => item.categoria === categoriaActual);
     }
 
-    return platillos.filter(
-      item => item.categoria === categoriaActual
-    );
+    if(terminoBusqueda.trim() !== ""){
+      const q = terminoBusqueda.toLowerCase().trim();
+      filtrados = filtrados.filter(item => {
+        const nombre = textoProducto(item, 'nombre').toLowerCase();
+        const desc = textoProducto(item, 'descripcion').toLowerCase();
+        return nombre.includes(q) || desc.includes(q);
+      });
+    }
+
+    return filtrados;
   }
 
   function crearCategorias(){
@@ -2950,7 +2962,6 @@
 
       boton.addEventListener("click", () => {
         categoriaActual = categoria;
-
         crearCategorias();
         crearLista();
       });
@@ -2959,12 +2970,15 @@
     });
   }
 
+  inputBuscador.addEventListener("input", (e) => {
+    terminoBusqueda = e.target.value;
+    crearLista();
+  });
+
   /* ===================================================== */
   /* TARJETAS                                               */
   /* ===================================================== */
 
-
-  // Fotografías ampliadas sin recorte, dentro de la ventana actual.
   const fotoAmpliadaOverlay=document.getElementById('fotoAmpliadaOverlay');
   const fotoAmpliadaImagen=document.getElementById('fotoAmpliadaImagen');
   const cerrarFotoAmpliadaBoton=document.getElementById('cerrarFotoAmpliada');
@@ -3019,7 +3033,6 @@
       visual.append(fallback, imagen);
       visual.addEventListener('click',()=>ampliarFoto(imagen,textoProducto(item,'nombre')));
 
-      // Nombre y precio PERMANENTES: bajo la foto, sin clic ni visor.
       const info = document.createElement("div");
       info.className = "platillo-info";
       const encabezado = document.createElement("div");
@@ -3063,11 +3076,9 @@
   window.addEventListener("hashchange",iniciarRuta);
 
 
-  /* =====================================================
-     SELECTOR DE IDIOMA ES/EN
-     - No altera IDs, precios, pedidos ni configuración del envío.
-     - Todo texto y traducción editable está en CONFIG, arriba.
-     ===================================================== */
+  /* ===================================================== */
+  /* SELECTOR DE IDIOMA ES/EN                              */
+  /* ===================================================== */
   function aplicarIdioma(){
     document.documentElement.lang=idioma;
     document.getElementById('botonIdioma').textContent=idioma==='es'?'English · EN':'Español · ES';
@@ -3104,13 +3115,9 @@
   /* ===================================================== */
 
   aplicarIdioma();
-
   iniciarRuta();
 
 </script>
 
 </body>
 </html>
-
-
-
