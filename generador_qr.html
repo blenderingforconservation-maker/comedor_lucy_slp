@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador QR - Comedor Lucy</title>
+    <!-- Librería EasyQRCodeJS para soportar logos en el centro -->
+    <script src="https://unpkg.com/easyqrcodejs@4.6.1/dist/easy.qrcode.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #F5F0E8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .contenedor {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(166,79,49,0.15);
+            text-align: center;
+        }
+        h2 { color: #A64F31; margin-top: 0; }
+        p { color: #756A60; font-size: 14px; margin-bottom: 20px; }
+        #qrcode {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h2>QR Comedor Lucy</h2>
+        <p>Haz clic derecho en el QR y selecciona "Guardar imagen como..."</p>
+        
+        <!-- Contenedor donde se dibujará el QR -->
+        <div id="qrcode"></div>
+    </div>
+
+    <script>
+        // Configuración del Código QR
+        var opciones = {
+            // El enlace de tu menú
+            text: "https://blenderingforconservation-maker.github.io/comedor_lucy_slp/",
+            
+            // Dimensiones del QR (puedes aumentarlo si necesitas más resolución)
+            width: 400,
+            height: 400,
+            
+            // Colores basados en tu menú
+            colorDark: "#6C2F1C", // Tono oscuro del acento
+            colorLight: "#ffffff",
+            
+            // Nivel de corrección Alto (H) obligatorio cuando se usan logos
+            correctLevel: QRCode.CorrectLevel.H,
+            
+            // Configuración del Logo
+            logo: "monita.jpeg", // El nombre de tu archivo
+            logoWidth: 110,      // Ancho del logo en el centro
+            logoHeight: 110,     // Alto del logo en el centro
+            logoBackgroundColor: '#ffffff', // Fondo blanco detrás de la muñequita
+            logoBackgroundTransparent: false
+        };
+
+        // Generar el QR
+        new QRCode(document.getElementById("qrcode"), opciones);
+    </script>
+
+</body>
+</html>
