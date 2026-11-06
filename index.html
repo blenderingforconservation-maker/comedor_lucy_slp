@@ -232,6 +232,9 @@
     .nav-principal button{
       min-height:42px;
       padding:9px 17px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
       border:1px solid transparent;
       border-radius:999px;
       background:transparent;
@@ -303,7 +306,6 @@
       box-shadow:var(--sombra);
     }
 
-    /* CAMBIO SOLICITADO: Imagen más pequeña para la sección "Nuestra historia" */
     .historia-imagen{
       position:relative;
       height:210px;
@@ -417,99 +419,6 @@
       color:#fff;
     }
 
-    /* RECOMENDADO */
-    .destacado{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
-      min-height:300px;
-      overflow:hidden;
-      border:1px solid var(--linea);
-      border-radius:var(--radio-xl);
-      background:var(--tarjeta);
-      box-shadow:var(--sombra-suave);
-    }
-
-    .destacado-foto{
-      position:relative;
-      min-height:300px;
-      overflow:hidden;
-      background:linear-gradient(135deg,#D9CABB,#EFE5DA);
-    }
-
-    .destacado-foto img{
-      width:100%;
-      height:100%;
-      min-height:300px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .destacado-fallback{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      text-align:center;
-      color:#786C62;
-      font-size:13px;
-    }
-
-    .destacado-texto{
-      padding:34px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-    .destacado-meta{
-      margin:13px 0 0;
-      display:flex;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .destacado-precio{
-      color:var(--acento);
-      font-size:22px;
-      font-weight:bold;
-    }
-
-    .destacado-descripcion{
-      margin:14px 0 0;
-      color:var(--texto-suave);
-      font-size:14px;
-      line-height:1.75;
-    }
-
-    .destacado-acciones{
-      display:flex;
-      flex-wrap:wrap;
-      gap:9px;
-      margin-top:20px;
-    }
-
-    .mini-btn{
-      min-height:44px;
-      padding:11px 15px;
-      border:1px solid var(--linea);
-      border-radius:999px;
-      background:#fff;
-      color:var(--texto);
-      font-size:11px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .mini-btn.primario{
-      border-color:var(--acento);
-      background:var(--acento);
-      color:#fff;
-    }
-
     /* ===================================================== */
     /* MENÚ Y BUSCADOR DE PLATILLOS                          */
     /* ===================================================== */
@@ -537,7 +446,6 @@
       line-height:1.7;
     }
 
-    /* CAMBIO SOLICITADO: Barra de búsqueda de platillos */
     .buscador-menu-wrap{
       margin-bottom:16px;
     }
@@ -559,18 +467,6 @@
       outline:3px solid rgba(166,79,49,.28);
       outline-offset:2px;
       border-color:var(--acento);
-    }
-
-    .leyenda-ar{
-      flex-shrink:0;
-      padding:10px 14px;
-      border:1px solid #DDD6C7;
-      border-radius:999px;
-      background:#EEE9DD;
-      color:var(--olivo);
-      font-size:10px;
-      font-weight:bold;
-      letter-spacing:.8px;
     }
 
     .categorias{
@@ -678,24 +574,6 @@
       font-size:12px;
     }
 
-    .distintivo{
-      position:absolute;
-      top:12px;
-      right:12px;
-      z-index:4;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.92);
-      color:var(--acento-oscuro);
-      font-size:10px;
-      font-weight:bold;
-      letter-spacing:.7px;
-      box-shadow:0 5px 16px rgba(0,0,0,.08);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-    }
-
-    /* NOMBRE Y PRECIO SIEMPRE VISIBLES DEBAJO DE CADA FOTO */
     .platillo-info{
       padding:15px 16px 16px;
       background:var(--tarjeta);
@@ -734,388 +612,6 @@
       color:var(--texto-suave);
       font-size:13px;
       line-height:1.58;
-    }
-
-    /* ===================================================== */
-    /* DETALLE FOTOGRÁFICO                                   */
-    /* ===================================================== */
-
-    .detalle{
-      position:sticky;
-      top:74px;
-      overflow:hidden;
-      border:1px solid var(--linea);
-      border-radius:var(--radio-xl);
-      background:var(--tarjeta);
-      box-shadow:var(--sombra);
-    }
-
-    .detalle-cabecera{
-      padding:27px 27px 19px;
-    }
-
-    .detalle-titulo-precio{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:24px;
-    }
-
-    #detalleNombre{
-      margin:0;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(32px,4vw,48px);
-      font-weight:normal;
-      line-height:1.02;
-    }
-
-    #detallePrecio{
-      color:var(--acento);
-      font-size:27px;
-      font-weight:bold;
-      white-space:nowrap;
-    }
-
-    #detalleDescripcion{
-      max-width:720px;
-      margin:13px 0 0;
-      color:var(--texto-suave);
-      font-size:14px;
-      line-height:1.72;
-    }
-
-    .badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px;
-      margin-top:15px;
-    }
-
-    .badge{
-      padding:7px 10px;
-      border-radius:999px;
-      background:#F0E8DE;
-      color:#65594F;
-      font-size:10px;
-      font-weight:bold;
-      letter-spacing:.3px;
-    }
-
-    .visor-contenedor{
-      padding:0 27px;
-    }
-
-    .visor{
-      position:relative;
-      min-height:500px;
-      overflow:hidden;
-      border:1px solid var(--linea);
-      border-radius:22px;
-      background:
-        radial-gradient(circle at 50% 10%,#FFF,#EEE5DA 72%);
-    }
-
-    #viewerHost{
-      width:100%;
-      min-height:500px;
-    }
-
-    .unused-legacy-model-viewer{
-      display:block;
-      width:100%;
-      height:500px;
-      background:transparent;
-    }
-
-    .estado-modelo{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      z-index:10;
-      width:80%;
-      padding:12px;
-      text-align:center;
-      color:var(--texto-suave);
-      font-size:13px;
-      pointer-events:none;
-    }
-
-    .estado-modelo.error{
-      border-radius:12px;
-      background:rgba(255,255,255,.93);
-      color:#912F25;
-    }
-
-    .loader{
-      width:34px;
-      height:34px;
-      margin:0 auto 10px;
-      border:3px solid rgba(166,79,49,.18);
-      border-top-color:var(--acento);
-      border-radius:50%;
-      animation:giro 1s linear infinite;
-    }
-
-    @keyframes giro{
-      to{transform:rotate(360deg)}
-    }
-
-    .instruccion{
-      margin:11px 0 0;
-      text-align:center;
-      color:var(--texto-suave);
-      font-size:12px;
-      line-height:1.5;
-    }
-
-    .instruccion strong{
-      color:#4D443D;
-    }
-
-    .acciones-ar{
-      display:flex;
-      justify-content:center;
-      margin:14px 0 0;
-    }
-
-    .boton-ar-principal{
-      width:min(100%,390px);
-      min-height:52px;
-      padding:14px 20px;
-      border:0;
-      border-radius:15px;
-      background:var(--acento);
-      color:#fff;
-      font-size:13px;
-      font-weight:bold;
-      letter-spacing:.45px;
-      cursor:pointer;
-      box-shadow:0 12px 25px rgba(166,79,49,.22);
-      transition:transform var(--transicion),box-shadow var(--transicion);
-    }
-
-    .boton-ar-principal:hover{
-      transform:translateY(-1px);
-      box-shadow:0 15px 30px rgba(166,79,49,.27);
-    }
-
-    .boton-ar-principal:disabled{
-      opacity:.45;
-      cursor:not-allowed;
-      box-shadow:none;
-    }
-
-    /* INFORMACIÓN */
-    .informacion{
-      padding:8px 27px 28px;
-    }
-
-    .bloque-info{
-      padding-top:17px;
-      margin-top:17px;
-      border-top:1px solid #E9E0D6;
-    }
-
-    .bloque-info h3{
-      margin:0 0 8px;
-      color:#817369;
-      font-size:10px;
-      letter-spacing:1.3px;
-    }
-
-    .bloque-info p{
-      margin:0;
-      color:#473E37;
-      font-size:14px;
-      line-height:1.65;
-    }
-
-    .datos-secundarios{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:0 28px;
-    }
-
-    /* ===================================================== */
-    /* BARRA MÓVIL DE ACCIÓN                                 */
-    /* ===================================================== */
-
-    .barra-movil{
-      display:none;
-      position:fixed;
-      left:10px;
-      right:10px;
-      bottom:82px;
-      z-index:450;
-      min-height:62px;
-      padding:9px 10px 9px 14px;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border:1px solid rgba(222,210,196,.95);
-      border-radius:20px;
-      background:rgba(255,253,249,.94);
-      box-shadow:0 16px 38px rgba(38,28,20,.18);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-    }
-
-    .barra-movil-info{
-      min-width:0;
-    }
-
-    .barra-movil-info strong{
-      display:block;
-      max-width:180px;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:15px;
-    }
-
-    .barra-movil-info span{
-      color:var(--acento);
-      font-size:13px;
-      font-weight:bold;
-    }
-
-    .barra-movil button{
-      min-height:44px;
-      padding:10px 14px;
-      border:0;
-      border-radius:14px;
-      background:var(--acento);
-      color:#fff;
-      font-size:11px;
-      font-weight:bold;
-      white-space:nowrap;
-      cursor:pointer;
-    }
-
-    /* ===================================================== */
-    /* MODAL AR                                              */
-    /* ===================================================== */
-
-    .modal-ar{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      padding:18px;
-      align-items:center;
-      justify-content:center;
-      background:rgba(22,18,15,.66);
-      backdrop-filter:blur(7px);
-      -webkit-backdrop-filter:blur(7px);
-    }
-
-    .modal-ar.abierto{
-      display:flex;
-    }
-
-    .modal-ar-card{
-      width:min(100%,470px);
-      max-height:90vh;
-      overflow:auto;
-      padding:26px 20px 20px;
-      border-radius:26px;
-      background:#FFFDF9;
-      color:var(--texto);
-      box-shadow:0 25px 80px rgba(0,0,0,.30);
-      text-align:center;
-    }
-
-    .modal-ar-etiqueta{
-      margin:0 0 7px;
-      color:var(--acento);
-      font-size:10px;
-      font-weight:bold;
-      letter-spacing:1.4px;
-    }
-
-    .modal-ar-card h3{
-      margin:0;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:31px;
-      font-weight:normal;
-      line-height:1.08;
-    }
-
-    .modal-ar-intro{
-      margin:9px auto 17px;
-      max-width:370px;
-      color:var(--texto-suave);
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .gestos-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:12px;
-    }
-
-    .gesto{
-      padding:17px 10px 14px;
-      border:1px solid var(--linea);
-      border-radius:17px;
-      background:#F8F3EC;
-    }
-
-    .gesto-icono{
-      display:block;
-      margin-bottom:7px;
-      font-size:32px;
-      line-height:1;
-    }
-
-    .gesto strong{
-      display:block;
-      margin-bottom:4px;
-      font-size:12px;
-    }
-
-    .gesto span{
-      display:block;
-      color:var(--texto-suave);
-      font-size:11px;
-      line-height:1.4;
-    }
-
-    .nota-gestos{
-      margin:10px auto 16px;
-      color:#8B7E73;
-      font-size:10px;
-      line-height:1.45;
-    }
-
-    .modal-ar-acciones{
-      display:grid;
-      gap:9px;
-    }
-
-    .modal-ar-abrir,
-    .modal-ar-cancelar{
-      min-height:48px;
-      border-radius:14px;
-      font-size:12px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .modal-ar-abrir{
-      border:0;
-      background:var(--acento);
-      color:#fff;
-    }
-
-    .modal-ar-cancelar{
-      border:1px solid var(--linea);
-      background:transparent;
-      color:var(--texto-suave);
     }
 
     /* ===================================================== */
@@ -1248,10 +744,6 @@
         grid-template-columns:1fr;
       }
 
-      .detalle{
-        position:static;
-      }
-
       .lista{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
@@ -1282,67 +774,12 @@
         display:block;
       }
 
-      .leyenda-ar{
-        display:inline-block;
-        margin-top:14px;
-      }
-
       .lista{
         grid-template-columns:1fr;
       }
 
       .platillo-visual{
         height:235px;
-      }
-
-      .detalle-cabecera{
-        padding:23px 18px 16px;
-      }
-
-      .detalle-titulo-precio{
-        display:block;
-      }
-
-      #detallePrecio{
-        margin-top:7px;
-      }
-
-      .visor-contenedor{
-        padding:0 10px;
-      }
-
-      .visor,
-      #viewerHost{
-        min-height:405px;
-      }
-
-      .unused-legacy-model-viewer{
-        height:405px;
-      }
-
-      .informacion{
-        padding:8px 19px 26px;
-      }
-
-      .datos-secundarios{
-        grid-template-columns:1fr;
-      }
-
-      .destacado{
-        grid-template-columns:1fr;
-      }
-
-      .destacado-foto,
-      .destacado-foto img{
-        min-height:250px;
-      }
-
-      .destacado-texto{
-        padding:25px 20px;
-      }
-
-      .gestos-grid{
-        grid-template-columns:1fr 1fr;
       }
 
       .nav-movil{
@@ -1354,10 +791,6 @@
         bottom:84px;
         width:46px;
         height:46px;
-      }
-
-      .barra-movil.visible{
-        display:flex;
       }
 
       footer{
@@ -1399,14 +832,13 @@
 
   
     /* BARRA Y REDES: margen calculado sobre las barras fijas visibles. */
-    .contador-pedido{background:var(--acento);color:white;border-radius:99px;padding:2px 5px;font-size:10px}
+    .contador-pedido{background:var(--acento);color:white;border-radius:99px;padding:2px 6px;font-size:10px;line-height:1.2}
     .contador-pedido[hidden]{display:none}
     .control-carrito{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;margin-top:8px;font-size:13px}
     .cantidad-control{display:flex;align-items:center;gap:10px;flex-shrink:0}
     .cantidad-control button{width:44px;height:44px;border:1px solid var(--linea);border-radius:12px;background:var(--tarjeta);color:var(--acento);font-size:23px;cursor:pointer}
     .cantidad-control button:disabled{opacity:.35;cursor:default}
     .cantidad-control output{min-width:20px;text-align:center;font-weight:bold}
-    #detallePedidoControles{margin-top:15px}
     .pedido-resumen-fila{padding:12px 0;border-bottom:1px solid var(--linea)}
     .pedido-resumen-fila strong{font-size:14px}
     .pedido-resumen-fila .control-carrito{border:0;padding:4px 0;margin:0}
@@ -1424,20 +856,8 @@
     #resultadoEnvio{display:block;font-size:14px;margin-top:10px}
     @media(max-width:720px){
       :root{--redes-bottom:164px}
-      .instagram-flotante{right:14px;width:46px;height:46px;bottom:calc(var(--redes-bottom) + 56px)}
       .pedido-form-grid{grid-template-columns:1fr}
     }
-
-
-    /* Comedor Lucy: fotografía fija en lugar de 3D/AR */
-    .visor-foto,.foto-grande-host{min-height:450px;}
-    .foto-grande-host{position:relative;width:100%;display:grid;place-items:center;overflow:hidden;background:#eee6db;}
-    .foto-grande{width:100%;height:100%;min-height:450px;max-height:650px;object-fit:cover;display:block;}
-    .foto-grande-fallback{padding:35px;text-align:center;color:var(--texto-suave);font-size:15px;}
-    #estadoModelo{position:static;transform:none;display:block;width:auto;}
-    .distintivo{font-size:9px;}
-    @media(max-width:720px){.visor-foto,.foto-grande-host,.foto-grande{min-height:300px;}}
-
 
     /* =====================================================
        CAMBIOS SOLICITADOS: TÍTULO, MOSAICO Y FOTOS COMPLETAS
@@ -1491,7 +911,7 @@
     @media(max-width:600px){.lista{grid-template-columns:1fr;}}
 
 
-    /* Comedor Lucy: una sola tarjeta para fotografía, descripción y cantidad. */
+    /* Comedor Lucy: una sola tarjeta para fotografía, descripción y acción de compra. */
     .platillo-tarjeta{
       min-width:0;overflow:hidden;border:1px solid var(--linea);
       border-radius:var(--radio-lg);background:var(--tarjeta);
@@ -1504,10 +924,7 @@
     }
     .platillo-tarjeta .platillo:hover{transform:none;box-shadow:none;}
     .platillo-tarjeta .platillo-info{flex:1 1 auto;}
-    .platillo-tarjeta .control-carrito{
-      margin:0 16px 16px;padding:12px 0 0;border:0;border-top:1px solid var(--linea);
-      border-radius:0;background:transparent;flex-shrink:0;
-    }
+
     /* Etiqueta superior izquierda, alternar idioma a la derecha. */
     .hero-kicker{
       position:absolute;top:19px;left:max(18px,calc((100vw - 1280px)/2 + 22px));
@@ -1529,14 +946,14 @@
     }
 
     /* =====================================================
-       SELECTOR INTELIGENTE DE TAMAÑOS PARA CALDOS
-       Cada tamaño se agrega como una variante independiente.
+       CAJA DE COMPRA Y BOTONES DE AÑADIR PARA CADA PLATILLO
        ===================================================== */
-    .caldo-compra{
+    .caldo-compra,
+    .platillo-compra{
       display:grid;
       gap:11px;
       margin:0 16px 16px;
-      padding:14px;
+      padding:13px 14px;
       border:1px solid #E8DCCE;
       border-radius:17px;
       background:linear-gradient(145deg,#FBF7F1,#F5EDE3);
@@ -1598,10 +1015,38 @@
     .caldo-en-pedido{
       min-width:0;
       color:#7C6D61;
-      font-size:10px;
-      line-height:1.4;
+      font-size:11px;
+      line-height:1.35;
     }
-    .caldo-en-pedido strong{display:block;color:#5A6B45;font-size:11px;}
+    .caldo-en-pedido strong{display:block;color:#5A6B45;font-size:12px;}
+    .compra-acciones{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      flex-shrink:0;
+    }
+    .platillo-restar-btn{
+      width:43px;
+      height:43px;
+      border:1px solid #DED0C1;
+      border-radius:12px;
+      background:#fff;
+      color:var(--acento);
+      font-size:22px;
+      font-weight:bold;
+      line-height:1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion);
+    }
+    .platillo-restar-btn:hover:not(:disabled){
+      border-color:var(--acento);
+      background:#FAF3EC;
+      transform:translateY(-1px);
+    }
+    .platillo-restar-btn[hidden]{display:none;}
     .caldo-agregar-btn{
       flex:0 0 auto;
       min-height:43px;
@@ -1623,17 +1068,18 @@
     .caldo-agregar-btn:hover:not(:disabled){background:var(--acento-oscuro);transform:translateY(-1px);box-shadow:0 8px 17px rgba(166,79,49,.22);}
     .caldo-agregar-btn:active:not(:disabled){transform:scale(.98);}
     .caldo-agregar-btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none;}
-    .caldo-tamano-btn:focus-visible,.caldo-agregar-btn:focus-visible{
+    .caldo-tamano-btn:focus-visible,.caldo-agregar-btn:focus-visible,.platillo-restar-btn:focus-visible{
       outline:3px solid rgba(166,79,49,.28);
       outline-offset:3px;
     }
     @media(max-width:420px){
-      .caldo-compra{margin:0 12px 13px;padding:12px;gap:9px;}
+      .caldo-compra,.platillo-compra{margin:0 12px 13px;padding:12px;gap:9px;}
       .caldo-tamanos{gap:6px;}
       .caldo-tamano-btn{min-height:54px;}
       .caldo-compra-pie{align-items:stretch;}
       .caldo-en-pedido{align-self:center;}
       .caldo-agregar-btn{padding:10px 11px;font-size:10px;}
+      .platillo-restar-btn{width:40px;height:40px;}
     }
 
     /* Acceso flotante semitransparente al encabezado del menú. */
@@ -1717,7 +1163,6 @@
       id="heroSubtitulo">
     </p>
 
-
   </div>
 
 </header>
@@ -1752,8 +1197,9 @@
 
       <button
         type="button"
-        id="navPedido" data-i18n="navPedido">
-        PEDIR
+        id="navPedido">
+        <span data-i18n="navPedido">PEDIR</span>
+        <span id="contadorPedidoDesktop" class="contador-pedido" hidden>0</span>
       </button>
 
     </div>
@@ -1883,8 +1329,6 @@
 
     </div>
 
-
-
   </section>
 
   <!-- =================================================== -->
@@ -1913,11 +1357,9 @@
 
       </div>
 
-      
-
     </section>
 
-    <!-- Barra de búsqueda añadida -->
+    <!-- Barra de búsqueda -->
     <div class="buscador-menu-wrap">
       <input type="search" id="inputBuscador" class="buscador-menu" placeholder="Buscar platillos..." data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
     </div>
@@ -1935,8 +1377,6 @@
         id="listaPlatillos"
         aria-label="Platillos">
       </section>
-
-
 
     </div>
 
@@ -2008,21 +1448,23 @@
   aria-live="polite">
 </div>
 
-
-
 <!-- Ampliación sobre la página actual. No desplaza hacia otra sección. -->
 <div id="fotoAmpliadaOverlay" class="foto-ampliada-overlay" role="dialog" aria-modal="true" aria-label="Fotografía del platillo" data-i18n-aria="photoAlt" hidden>
   <button type="button" class="foto-ampliada-cerrar" id="cerrarFotoAmpliada" aria-label="Cerrar fotografía ampliada" data-i18n-aria="closePhoto">×</button>
   <img id="fotoAmpliadaImagen" alt="" />
 </div>
 
-<!-- PEDIDOS: carrito y entrega basados en la referencia adjunta. -->
+<!-- PEDIDOS: carrito y entrega (el costo de envío se oculta si mostrarCostoEnvio es false, pero se conserva para la plantilla). -->
 <div id="pedidoOverlay" class="pedido-overlay" hidden>
 <section class="pedido-panel" role="dialog" aria-modal="true" aria-labelledby="pedidoTitulo" tabindex="-1">
 <div class="pedido-cabecera"><h2 id="pedidoTitulo" data-i18n="orderTitle">Mi pedido</h2><button type="button" id="cerrarPedido" class="pedido-cerrar" aria-label="Cerrar pedido">×</button></div>
 <p id="pedidoDescripcion" data-i18n="review">Revisa los productos y las cantidades antes de continuar.</p>
 <div id="resumenPedido"></div>
-<div class="pedido-totales" aria-live="polite"><div><span data-i18n="subtotal">Productos</span><strong id="subtotalPedido"></strong></div><div><span data-i18n="shipping">Envío estimado</span><strong id="envioPedido">Por confirmar</strong></div><div class="pedido-total-final"><span data-i18n="total">Total</span><strong id="totalPedido">Por confirmar</strong></div></div>
+<div class="pedido-totales" aria-live="polite">
+  <div id="filaSubtotalPedido"><span data-i18n="subtotal">Productos</span><strong id="subtotalPedido"></strong></div>
+  <div id="filaEnvioPedido" hidden><span data-i18n="shipping">Envío estimado</span><strong id="envioPedido">Por confirmar</strong></div>
+  <div class="pedido-total-final"><span data-i18n="total">Total</span><strong id="totalPedido">Por confirmar</strong></div>
+</div>
 <div id="pasoCarrito"><button type="button" id="continuarPedido" class="pedido-enviar" data-i18n="continueDelivery" disabled>CONTINUAR CON DATOS DE ENTREGA</button><button type="button" id="agregarProductos" class="pedido-secundario" data-i18n="addMore">AGREGAR PLATILLOS</button></div>
 <form id="pedidoFormulario" hidden>
 <fieldset><legend data-i18n="deliveryData">Datos de entrega</legend><div class="pedido-form-grid"><label class="pedido-campo"><span data-i18n="fieldName">Nombre *</span><input id="pedidoNombre" name="pedidoNombre" autocomplete="name" required maxlength="150"></label>
@@ -2037,7 +1479,7 @@
 <label class="pedido-campo pedido-campo-ancho"><span data-i18n="locationOptional">Ubicación (opcional)</span><input id="pedidoUbicacion" maxlength="500" placeholder="Enlace de Maps o coordenadas" data-i18n-placeholder="locationPlaceholder"></label>
 </div><button type="button" id="usarUbicacionActual" class="pedido-secundario" data-i18n="useLocation">USAR MI UBICACIÓN</button><p data-i18n="geolocationNote">Tu ubicación se consulta únicamente al pulsar el botón.</p>
 <section id="calculadoraEnvio" class="calculadora-envio" hidden><h3 data-i18n="calculateShipping">Calcula tu envío</h3><p id="tarifasEnvio"></p><button type="button" id="buscarDireccionMapa" class="pedido-secundario" data-i18n="searchMap">BUSCAR DIRECCIÓN EN EL MAPA</button><div id="mapaEntrega" aria-label="Mapa de entrega"></div><button type="button" id="confirmarDireccionMapa" class="pedido-secundario" data-i18n="confirmMap" disabled>CONFIRMAR PUNTO DE ENTREGA</button><strong id="resultadoEnvio" role="status">Confirma el punto para calcular la ruta.</strong><small data-i18n="mapCredits">Mapa © OpenStreetMap. Rutas OSRM/FOSSGIS. Costo estimado sujeto a confirmación del restaurante.</small></section>
-<p id="envioPorConfirmar" data-i18n="shippingConfirm">El restaurante confirmará el costo de envío y el tiempo de entrega por WhatsApp.</p>
+<p id="envioPorConfirmar" data-i18n="shippingConfirm" hidden>El restaurante confirmará el costo de envío y el tiempo de entrega por WhatsApp.</p>
 <label class="pedido-campo"><span data-i18n="notes">Indicaciones para los platillos (opcional)</span><textarea id="pedidoNotas" maxlength="500" rows="2" placeholder="Sin cebolla, salsa aparte…" data-i18n-placeholder="notesPlaceholder"></textarea></label>
 <label class="pedido-campo"><span data-i18n="payment">Forma de pago solicitada</span><select id="pedidoPago"><option value="EFECTIVO" data-i18n="cash">Efectivo al recibir</option><option value="TRANSFERENCIA" data-i18n="transfer">Transferencia</option></select></label><p id="notaTransferencia" data-i18n="bankInfo" hidden>Solicita los datos de transferencia al restaurante por WhatsApp.</p>
 </fieldset>
@@ -2083,6 +1525,9 @@
       instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==",
       facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/",
       tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q",
+      // Interruptor maestro de envío: en false oculta el costo de envío en la interfaz y en WhatsApp,
+      // pero conserva toda la lógica lista para activarse (true) en otros menús de la plantilla.
+      mostrarCostoEnvio: false,
       origenEnvio: null,
       ciudadEnvio: "",
       envioBase: null,
@@ -2144,6 +1589,7 @@
         "addAnother": "Añadir otro",
         "notInOrder": "Aún no agregado",
         "inOrder": "En tu pedido",
+        "addedToast": "Agregado al pedido",
         "backToMenu": "↑ Volver al menú",
         "remove": "Quitar",
         "add": "Agregar",
@@ -2261,6 +1707,7 @@
         "addAnother": "Add another",
         "notInOrder": "Not added yet",
         "inOrder": "In your order",
+        "addedToast": "Added to order",
         "backToMenu": "↑ Back to menu",
         "remove": "Remove",
         "add": "Add",
@@ -2365,7 +1812,6 @@
     ],
 
     // Los precios por tamaño heredan el precio que ya tenía cada platillo.
-    // Así no se inventan importes que no aparecen en el menú original.
     tamanosCaldos: [
       { id: "chico", nombre: "Chico", nombreEn: "Small" },
       { id: "mediano", nombre: "Mediano", nombreEn: "Medium" },
@@ -3213,7 +2659,6 @@
   const categorias = CONFIG.categorias;
 
   // Añade tres presentaciones a los caldos indicados en CONFIG.
-  // Si el precio original estaba pendiente, las tres opciones también quedan pendientes.
   const idsCaldosConTamano = new Set(CONFIG.caldosConTamano || []);
   platillos.forEach(item => {
     if (!idsCaldosConTamano.has(item.id)) return;
@@ -3350,7 +2795,7 @@
 
     toastTimer = setTimeout(() => {
       toast.classList.remove("visible");
-    }, 3300);
+    }, 2600);
   }
 
   /* ===================================================== */
@@ -3400,15 +2845,22 @@
     };
   }
   function normalizarNumeroWhatsApp(){let n=String(restaurante.whatsappNumero||'').replace(/\D/g,'');return n.length===10?'52'+n:n;}
-  function envioConfigurado(){const r=restaurante,o=r.origenEnvio;return !!o&&Number.isFinite(o.lat)&&Math.abs(o.lat)<=90&&Number.isFinite(o.lng)&&Math.abs(o.lng)<=180&&[r.envioBase,r.envioKmIncluidos,r.envioKmExtra].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0);}
-  function cambiarCantidad(item,cambio){
-    const cantidad=Math.max(0,Math.min(99,(carrito.get(item.id)?.cantidad||0)+cambio));
+  function mostrarEnvioActivo(){return Boolean(restaurante.mostrarCostoEnvio);}
+  function envioConfigurado(){const r=restaurante,o=r.origenEnvio;return mostrarEnvioActivo()&&!!o&&Number.isFinite(o.lat)&&Math.abs(o.lat)<=90&&Number.isFinite(o.lng)&&Math.abs(o.lng)<=180&&[r.envioBase,r.envioKmIncluidos,r.envioKmExtra].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0);}
+  function cambiarCantidad(item,cambio,notificar=false){
+    const anterior=carrito.get(item.id)?.cantidad||0;
+    const cantidad=Math.max(0,Math.min(99,anterior+cambio));
     if(precioANumero(item.precio)===null)return;
     if(cantidad)carrito.set(item.id,{item,cantidad});else carrito.delete(item.id);
     if(!pedidoId&&carrito.size)pedidoId='CL-'+Date.now().toString(36).toUpperCase();
     if(!carrito.size)pedidoId=null;
     actualizarPedidoUI();
+    if(notificar && cantidad>anterior){
+      mostrarToast(t('addedToast')+': '+textoProducto(item,'nombre'));
+    }
   }
+
+  // Controles compactos dentro del modal de resumen del pedido
   function crearControlesPedido(item){
     const fila=document.createElement('div');fila.className='control-carrito';fila.dataset.producto=item.id;fila.dataset.precio=item.precio??'';
     const etiqueta=document.createElement('span');etiqueta.textContent=t('quantity');
@@ -3422,6 +2874,71 @@
     mas.addEventListener('click',e=>{e.stopPropagation();cambiarCantidad(item,1);});
     control.append(menos,numero,mas);fila.append(etiqueta,control);return fila;
   }
+
+  // Controles con botón "Añadir al pedido +" para cada platillo individual en la tarjeta del menú
+  function actualizarControlCompraPlatillo(caja,item){
+    const cantidad=carrito.get(item.id)?.cantidad||0;
+    const estado=caja.querySelector('.caldo-en-pedido');
+    const botonRestar=caja.querySelector('.platillo-restar-btn');
+    const botonAgregar=caja.querySelector('.caldo-agregar-btn');
+    estado.replaceChildren();
+    if(cantidad){
+      const fuerte=document.createElement('strong');
+      fuerte.textContent=t('inOrder')+': '+cantidad;
+      estado.appendChild(fuerte);
+    }else{
+      estado.textContent=t('notInOrder');
+    }
+    if(botonRestar){
+      botonRestar.hidden=!cantidad;
+      botonRestar.disabled=!cantidad;
+      botonRestar.setAttribute('aria-label',t('remove')+' '+textoProducto(item,'nombre'));
+    }
+    botonAgregar.textContent=cantidad?t('addAnother')+'  +':t('addToOrder')+'  +';
+    botonAgregar.disabled=precioANumero(item.precio)===null || cantidad>=99;
+    botonAgregar.setAttribute('aria-label',t(cantidad?'addAnother':'addToOrder')+' '+textoProducto(item,'nombre')+' '+precioVisible(item.precio));
+  }
+
+  function crearControlCompraPlatillo(item){
+    const caja=document.createElement('section');
+    caja.className='platillo-compra';
+    caja.dataset.producto=item.id;
+
+    const pie=document.createElement('div');
+    pie.className='caldo-compra-pie';
+
+    const estado=document.createElement('div');
+    estado.className='caldo-en-pedido';
+    estado.setAttribute('aria-live','polite');
+
+    const acciones=document.createElement('div');
+    acciones.className='compra-acciones';
+
+    const restar=document.createElement('button');
+    restar.type='button';
+    restar.className='platillo-restar-btn';
+    restar.textContent='−';
+    restar.hidden=true;
+    restar.addEventListener('click',e=>{
+      e.stopPropagation();
+      cambiarCantidad(item,-1);
+    });
+
+    const agregar=document.createElement('button');
+    agregar.type='button';
+    agregar.className='caldo-agregar-btn';
+    agregar.addEventListener('click',e=>{
+      e.stopPropagation();
+      cambiarCantidad(item,1,true);
+    });
+
+    acciones.append(restar,agregar);
+    pie.append(estado,acciones);
+    caja.appendChild(pie);
+    actualizarControlCompraPlatillo(caja,item);
+    return caja;
+  }
+
   function actualizarControlPresentacion(caja,item){
     const tamanoId=caja.dataset.tamanoSeleccionado || item.presentacionSeleccionada;
     const presentacion=item.presentaciones.find(p=>p.id===tamanoId);
@@ -3429,6 +2946,7 @@
     const varianteId=item.id+"__"+presentacion.id;
     const cantidad=carrito.get(varianteId)?.cantidad||0;
     const estado=caja.querySelector('.caldo-en-pedido');
+    const botonRestar=caja.querySelector('.platillo-restar-btn');
     const boton=caja.querySelector('.caldo-agregar-btn');
     const nombreTamano=idioma==='en'?presentacion.nombreEn:presentacion.nombre;
     estado.replaceChildren();
@@ -3438,6 +2956,11 @@
       estado.appendChild(fuerte);
     }else{
       estado.textContent=t('notInOrder');
+    }
+    if(botonRestar){
+      botonRestar.hidden=!cantidad;
+      botonRestar.disabled=!cantidad;
+      botonRestar.setAttribute('aria-label',t('remove')+' '+textoProducto(item,'nombre')+' '+nombreTamano);
     }
     boton.textContent=cantidad?t('addAnother')+'  +':t('addToOrder')+'  +';
     boton.disabled=precioANumero(presentacion.precio)===null || cantidad>=99;
@@ -3493,14 +3016,30 @@
     const estado=document.createElement('div');
     estado.className='caldo-en-pedido';
     estado.setAttribute('aria-live','polite');
+
+    const acciones=document.createElement('div');
+    acciones.className='compra-acciones';
+
+    const restar=document.createElement('button');
+    restar.type='button';
+    restar.className='platillo-restar-btn';
+    restar.textContent='−';
+    restar.hidden=true;
+    restar.addEventListener('click',()=>{
+      const variante=crearVariantePedido(item,caja.dataset.tamanoSeleccionado);
+      cambiarCantidad(variante,-1);
+    });
+
     const agregar=document.createElement('button');
     agregar.type='button';
     agregar.className='caldo-agregar-btn';
     agregar.addEventListener('click',()=>{
       const variante=crearVariantePedido(item,caja.dataset.tamanoSeleccionado);
-      cambiarCantidad(variante,1);
+      cambiarCantidad(variante,1,true);
     });
-    pie.append(estado,agregar);
+
+    acciones.append(restar,agregar);
+    pie.append(estado,acciones);
     caja.append(encabezado,opciones,pie);
     actualizarControlPresentacion(caja,item);
     return caja;
@@ -3508,6 +3047,9 @@
 
   function calcularPedido(){
     const subtotal=[...carrito.values()].reduce((n,r)=>n+precioANumero(r.item.precio)*r.cantidad,0);
+    if(!mostrarEnvioActivo()){
+      return {subtotal,envio:null,total:subtotal};
+    }
     const envio=envioConfigurado()?calcularCostoEnvio():null;
     return {subtotal,envio,total:envio===null?null:subtotal+envio};
   }
@@ -3522,6 +3064,10 @@
       fila.append(titulo,crearControlesPedido(item));resumen.appendChild(fila);
     });
     const c=calcularPedido();
+    const filaEnvio=document.getElementById('filaEnvioPedido');
+    const filaSubtotal=document.getElementById('filaSubtotalPedido');
+    if(filaEnvio) filaEnvio.hidden=!mostrarEnvioActivo();
+    if(filaSubtotal) filaSubtotal.hidden=!mostrarEnvioActivo();
     document.getElementById('subtotalPedido').textContent=moneda(c.subtotal)+' MXN';
     document.getElementById('envioPedido').textContent=c.envio===null?t('toConfirm'):moneda(c.envio);
     document.getElementById('totalPedido').textContent=c.total===null?t('toConfirm'):moneda(c.total)+' MXN';
@@ -3537,12 +3083,19 @@
       botones[0].disabled=n===0;
       botones[1].disabled=n===99||precioANumero(control.dataset.precio)===null;
     });
-    const unidades=[...carrito.values()].reduce((n,r)=>n+r.cantidad,0),contador=document.getElementById('contadorPedido');
+    const unidades=[...carrito.values()].reduce((n,r)=>n+r.cantidad,0);
+    const contador=document.getElementById('contadorPedido');
+    const contadorDesktop=document.getElementById('contadorPedidoDesktop');
     contador.textContent=unidades;contador.hidden=!unidades;
+    if(contadorDesktop){contadorDesktop.textContent=unidades;contadorDesktop.hidden=!unidades;}
     document.getElementById('movilMaps').setAttribute('aria-label',t('orderTab')+', '+unidades+' '+t('orderNumber'));
     document.querySelectorAll('.caldo-compra').forEach(caja=>{
       const item=platillos.find(p=>p.id===caja.dataset.producto);
       if(item)actualizarControlPresentacion(caja,item);
+    });
+    document.querySelectorAll('.platillo-compra').forEach(caja=>{
+      const item=platillos.find(p=>p.id===caja.dataset.producto);
+      if(item)actualizarControlCompraPlatillo(caja,item);
     });
     renderResumenPedido();
   }
@@ -3575,12 +3128,14 @@
   document.getElementById('pedidoPago').addEventListener('change',e=>{document.getElementById('notaTransferencia').hidden=e.target.value!=='TRANSFERENCIA';});
   function construirMensajePedido(){
     const valor=id=>document.getElementById(id).value.trim()||'No indicado',c=calcularPedido();
+    const lineasTotales = mostrarEnvioActivo()
+      ? ['Productos: '+moneda(c.subtotal)+' MXN','Envío estimado: '+(c.envio===null?'Por confirmar':moneda(c.envio)),'Total: '+(c.total===null?'Por confirmar con envío':moneda(c.total)+' MXN')]
+      : ['Total: '+moneda(c.total)+' MXN'];
     return ['*'+restaurante.nombre+'*','Pedido: '+pedidoId,'',...([...carrito.values()].map(r=>r.cantidad+' × '+r.item.nombre+' — '+moneda(precioANumero(r.item.precio)*r.cantidad))),
-      '','Productos: '+moneda(c.subtotal)+' MXN','Envío estimado: '+(c.envio===null?'Por confirmar':moneda(c.envio)),
-      'Total: '+(c.total===null?'Por confirmar con envío':moneda(c.total)+' MXN'),'','Nombre: '+valor('pedidoNombre'),'Celular: '+valor('pedidoTelefono'),
+      '',...lineasTotales,'','Nombre: '+valor('pedidoNombre'),'Celular: '+valor('pedidoTelefono'),
       'Dirección: '+[valor('pedidoCalle'),valor('pedidoExterior'),valor('pedidoColonia'),valor('pedidoCiudad'),'CP '+valor('pedidoCP')].join(', '),
       'Referencias: '+valor('pedidoReferencias'),'Ubicación: '+valor('pedidoUbicacion'),'Indicaciones: '+valor('pedidoNotas'),'Pago solicitado: '+valor('pedidoPago'),
-      '','Por favor confirma disponibilidad, costo final y tiempo de entrega.'].join('\n');
+      '','Por favor confirma disponibilidad y tiempo de entrega.'].join('\n');
   }
   pedidoFormulario.querySelectorAll('input[required]').forEach(el=>el.addEventListener('input',()=>el.setCustomValidity('')));
   pedidoFormulario.addEventListener('submit',e=>{
@@ -3762,7 +3317,7 @@
     },()=>{usarUbicacionActual.disabled=false;mostrarToast(t('locationUnavailable'));},{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
   });
   document.getElementById('calculadoraEnvio').hidden=!envioConfigurado();
-  document.getElementById('envioPorConfirmar').hidden=envioConfigurado();
+  document.getElementById('envioPorConfirmar').hidden=!mostrarEnvioActivo() || envioConfigurado();
   if(envioConfigurado())document.getElementById('tarifasEnvio').textContent=moneda(restaurante.envioBase)+t('mapRateUntil')+restaurante.envioKmIncluidos+t('mapRateBeyond')+moneda(restaurante.envioKmExtra)+t('mapRatePerKm');
   actualizarPedidoUI();
 
@@ -3976,7 +3531,7 @@
         const controlPresentacion=crearControlPresentacion(item);
         bloque.append(visual,info,controlPresentacion);
       }else{
-        bloque.append(visual,info,crearControlesPedido(item));
+        bloque.append(visual,info,crearControlCompraPlatillo(item));
       }
       tarjeta.append(bloque);
       listaHTML.appendChild(tarjeta);
