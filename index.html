@@ -48,12 +48,14 @@
     }
 
     button,
-    a{
+    a,
+    select{
       -webkit-tap-highlight-color:transparent;
     }
 
     button:focus-visible,
-    a:focus-visible{
+    a:focus-visible,
+    select:focus-visible{
       outline:3px solid rgba(166,79,49,.28);
       outline-offset:3px;
     }
@@ -114,13 +116,18 @@
       width:min(1280px,100%);
       margin:0 auto;
       padding:54px 22px 50px;
+      text-align:center;
     }
 
     .hero-kicker{
+      position:absolute;
+      top:19px;
+      left:max(18px,calc((100vw - 1280px)/2 + 22px));
+      margin:0;
+      z-index:2;
       display:inline-flex;
       align-items:center;
       gap:8px;
-      margin-bottom:18px;
       padding:8px 12px;
       border:1px solid rgba(255,255,255,.35);
       border-radius:999px;
@@ -132,9 +139,30 @@
       letter-spacing:1.2px;
     }
 
+    .boton-idioma{
+      position:absolute;
+      right:max(18px,calc((100vw - 1280px)/2 + 22px));
+      top:19px;
+      z-index:3;
+      min-height:38px;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,.52);
+      border-radius:99px;
+      background:rgba(28,22,19,.42);
+      backdrop-filter:blur(6px);
+      color:white;
+      font-size:12px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .boton-idioma:hover{
+      background:rgba(28,22,19,.7);
+    }
+
     .hero h1{
       max-width:830px;
-      margin:0;
+      margin:0 auto;
       font-family:Georgia,"Times New Roman",serif;
       font-size:clamp(52px,9vw,100px);
       font-weight:normal;
@@ -144,51 +172,10 @@
 
     .hero-subtitulo{
       max-width:650px;
-      margin:19px 0 0;
+      margin:19px auto 0;
       font-size:16px;
       line-height:1.75;
       color:rgba(255,255,255,.92);
-    }
-
-    .hero-acciones{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:26px;
-    }
-
-    .cta{
-      min-height:48px;
-      padding:13px 18px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      border:0;
-      border-radius:999px;
-      text-decoration:none;
-      font-size:12px;
-      font-weight:bold;
-      letter-spacing:.45px;
-      cursor:pointer;
-      transition:transform var(--transicion),background var(--transicion);
-    }
-
-    .cta:hover{
-      transform:translateY(-1px);
-    }
-
-    .cta-primario{
-      background:#fff;
-      color:var(--texto);
-    }
-
-    .cta-secundario{
-      border:1px solid rgba(255,255,255,.38);
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      backdrop-filter:blur(7px);
-      -webkit-backdrop-filter:blur(7px);
     }
 
     /* ===================================================== */
@@ -340,8 +327,7 @@
     }
 
     .historia-contenido h2,
-    .contacto-panel h2,
-    .destacado-texto h2{
+    .contacto-panel h2{
       margin:0;
       font-family:Georgia,"Times New Roman",serif;
       font-weight:normal;
@@ -417,6 +403,52 @@
     .boton-pedido{
       background:var(--acento);
       color:#fff;
+    }
+
+    .redes-restaurante{
+      padding-top:8px;
+      border-top:1px solid var(--linea);
+    }
+
+    .redes-restaurante-titulo{
+      margin:8px 0 11px;
+      color:var(--texto-suave);
+      font-size:11px;
+      font-weight:bold;
+      letter-spacing:.9px;
+    }
+
+    .redes-restaurante-botones{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+    }
+
+    .red-social{
+      min-height:49px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:10px 12px;
+      border:1px solid var(--linea);
+      border-radius:14px;
+      background:var(--tarjeta);
+      color:var(--texto);
+      font-size:13px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .red-social:hover{
+      border-color:var(--acento);
+      background:#FAF6F0;
+    }
+
+    .red-social-icono{
+      font-size:19px;
+      font-weight:bold;
+      line-height:1;
     }
 
     /* ===================================================== */
@@ -510,55 +542,92 @@
       align-items:start;
     }
 
+    /* Estandarte de aviso de categoría (Barbacoa fines de semana) */
+    .alerta-categoria{
+      grid-column:1 / -1;
+      padding:14px 18px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#F6E6DC,#F0D8C8);
+      color:var(--acento-oscuro);
+      font-size:14px;
+      font-weight:bold;
+      text-align:center;
+      border:1px solid rgba(166,79,49,.28);
+      box-shadow:var(--sombra-suave);
+    }
+
     /* ===================================================== */
-    /* TARJETAS                                              */
+    /* TARJETAS DE PLATILLOS Y CONTROLES DE COMPRA           */
     /* ===================================================== */
 
     .lista{
       display:grid;
-      gap:14px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
     }
 
-    .platillo{
-      width:100%;
-      padding:0;
+    .platillo-tarjeta{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
       overflow:hidden;
-      text-align:left;
       border:1px solid var(--linea);
       border-radius:var(--radio-lg);
       background:var(--tarjeta);
       box-shadow:var(--sombra-suave);
-      cursor:default;
-      transition:transform var(--transicion),box-shadow var(--transicion),border-color var(--transicion);
+      transition:transform var(--transicion),box-shadow var(--transicion);
     }
 
-    .platillo:hover{
+    .platillo-tarjeta:hover{
       transform:translateY(-3px);
       box-shadow:var(--sombra);
     }
 
-    .platillo.activo{
-      border-color:rgba(166,79,49,.78);
-      box-shadow:0 18px 40px rgba(166,79,49,.14);
+    .platillo{
+      width:100%;
+      height:100%;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      text-align:left;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      overflow:hidden;
     }
 
     .platillo-visual{
+      width:100%;
+      height:auto;
+      aspect-ratio:4/3;
+      display:block;
+      padding:0;
+      border:0;
+      border-radius:0;
+      cursor:zoom-in;
       position:relative;
-      height:210px;
-      overflow:hidden;
       background:#E9E0D5;
+      overflow:hidden;
     }
 
     .platillo-visual img{
+      position:absolute;
+      inset:0;
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;
+      object-position:center;
       display:block;
-      transition:transform .32s ease;
     }
 
-    .platillo:hover .platillo-visual img{
-      transform:scale(1.035);
+    .platillo-visual:disabled{
+      cursor:default;
+    }
+
+    .platillo-visual:focus-visible{
+      outline:3px solid var(--acento);
+      outline-offset:-4px;
     }
 
     .foto-fallback{
@@ -574,8 +643,24 @@
       font-size:12px;
     }
 
+    .distintivo-fin-semana{
+      position:absolute;
+      top:10px;
+      right:10px;
+      z-index:3;
+      padding:5px 10px;
+      border-radius:999px;
+      background:rgba(108,47,28,.9);
+      color:#fff;
+      font-size:10px;
+      font-weight:bold;
+      letter-spacing:.3px;
+      box-shadow:0 4px 12px rgba(0,0,0,.18);
+    }
+
     .platillo-info{
-      padding:15px 16px 16px;
+      flex:1 1 auto;
+      padding:15px 16px 14px;
       background:var(--tarjeta);
     }
 
@@ -615,13 +700,213 @@
     }
 
     /* ===================================================== */
-    /* WHATSAPP MINI                                         */
+    /* CAJA DE COMPRA Y BOTONES DE AÑADIR (CALDOS Y GUISADOS)*/
+    /* ===================================================== */
+
+    .caldo-compra,
+    .platillo-compra{
+      display:grid;
+      gap:10px;
+      margin:0 16px 16px;
+      padding:13px 14px;
+      border:1px solid #E8DCCE;
+      border-radius:17px;
+      background:linear-gradient(145deg,#FBF7F1,#F5EDE3);
+    }
+
+    .caldo-compra-etiqueta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      color:#68594D;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.45px;
+      text-transform:uppercase;
+    }
+
+    .caldo-compra-etiqueta small{
+      color:#968579;
+      font-size:10px;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
+    }
+
+    .guisados-contenedor{
+      display:grid;
+      gap:7px;
+    }
+
+    .guisado-select{
+      width:100%;
+      min-height:40px;
+      padding:8px 11px;
+      border:1px solid #DED0C1;
+      border-radius:10px;
+      background:#FFF;
+      color:var(--texto);
+      font-size:13px;
+      font-family:inherit;
+      cursor:pointer;
+      transition:border-color var(--transicion), box-shadow var(--transicion);
+    }
+
+    .guisado-select:hover{
+      border-color:#B9795E;
+    }
+
+    .guisado-select.requerido-alerta{
+      border-color:#C93B2B;
+      box-shadow:0 0 0 3px rgba(201,59,43,.18);
+    }
+
+    .caldo-tamanos{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:7px;
+    }
+
+    .caldo-tamano-btn{
+      min-width:0;
+      min-height:57px;
+      padding:8px 4px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      border:1px solid #DED0C1;
+      border-radius:12px;
+      background:rgba(255,255,255,.84);
+      color:#53463C;
+      cursor:pointer;
+      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion),box-shadow var(--transicion);
+    }
+
+    .caldo-tamano-btn:hover{
+      border-color:#B9795E;
+      transform:translateY(-1px);
+    }
+
+    .caldo-tamano-btn[aria-pressed="true"]{
+      border-color:var(--acento);
+      background:#F4E4D9;
+      color:var(--acento-oscuro);
+      box-shadow:inset 0 0 0 1px rgba(166,79,49,.18),0 4px 10px rgba(100,54,34,.07);
+    }
+
+    .caldo-tamano-nombre{
+      font-size:12px;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .caldo-tamano-precio{
+      font-size:11px;
+      font-weight:700;
+      color:var(--acento);
+      white-space:nowrap;
+    }
+
+    .caldo-compra-pie{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .caldo-en-pedido{
+      min-width:0;
+      color:#7C6D61;
+      font-size:11px;
+      line-height:1.35;
+    }
+
+    .caldo-en-pedido strong{
+      display:block;
+      color:#5A6B45;
+      font-size:12px;
+    }
+
+    .compra-acciones{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      flex-shrink:0;
+    }
+
+    .platillo-restar-btn{
+      width:43px;
+      height:43px;
+      border:1px solid #DED0C1;
+      border-radius:12px;
+      background:#fff;
+      color:var(--acento);
+      font-size:22px;
+      font-weight:bold;
+      line-height:1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion);
+    }
+
+    .platillo-restar-btn:hover:not(:disabled){
+      border-color:var(--acento);
+      background:#FAF3EC;
+      transform:translateY(-1px);
+    }
+
+    .platillo-restar-btn[hidden]{
+      display:none;
+    }
+
+    .caldo-agregar-btn{
+      flex:0 0 auto;
+      min-height:43px;
+      padding:10px 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      border:0;
+      border-radius:12px;
+      background:var(--acento);
+      color:#fff;
+      font-size:11px;
+      font-weight:800;
+      box-shadow:0 6px 14px rgba(166,79,49,.16);
+      cursor:pointer;
+      transition:transform var(--transicion),background var(--transicion),box-shadow var(--transicion);
+    }
+
+    .caldo-agregar-btn:hover:not(:disabled){
+      background:var(--acento-oscuro);
+      transform:translateY(-1px);
+      box-shadow:0 8px 17px rgba(166,79,49,.22);
+    }
+
+    .caldo-agregar-btn:active:not(:disabled){
+      transform:scale(.98);
+    }
+
+    .caldo-agregar-btn:disabled{
+      opacity:.42;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    /* ===================================================== */
+    /* WHATSAPP MINI Y BOTÓN VOLVER AL MENÚ                  */
     /* ===================================================== */
 
     .whatsapp-flotante{
       position:fixed;
       right:16px;
-      bottom:16px;
+      bottom:100px;
       z-index:500;
       width:50px;
       height:50px;
@@ -649,6 +934,46 @@
       stroke-width:2.2;
       stroke-linecap:round;
       stroke-linejoin:round;
+    }
+
+    .boton-volver-menu{
+      position:fixed;
+      left:18px;
+      bottom:22px;
+      z-index:480;
+      min-height:45px;
+      padding:11px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      border:1px solid rgba(255,255,255,.34);
+      border-radius:999px;
+      background:rgba(36,31,26,.58);
+      color:#fff;
+      font-size:12px;
+      font-weight:bold;
+      letter-spacing:.2px;
+      box-shadow:0 9px 25px rgba(0,0,0,.16);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:translateY(9px);
+      transition:opacity var(--transicion),transform var(--transicion),visibility var(--transicion),background var(--transicion);
+      cursor:pointer;
+    }
+
+    .boton-volver-menu.visible{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .boton-volver-menu:hover{
+      background:rgba(36,31,26,.82);
     }
 
     /* ===================================================== */
@@ -706,7 +1031,7 @@
       position:fixed;
       left:50%;
       bottom:86px;
-      z-index:10000;
+      z-index:13000;
       width:min(calc(100% - 32px),430px);
       padding:12px 15px;
       transform:translate(-50%,14px);
@@ -719,7 +1044,7 @@
       line-height:1.5;
       text-align:center;
       transition:opacity .2s ease,transform .2s ease;
-      box-shadow:0 12px 28px rgba(0,0,0,.2);
+      box-shadow:0 12px 28px rgba(0,0,0,.25);
     }
 
     .toast.visible{
@@ -735,103 +1060,28 @@
       line-height:1.7;
     }
 
-    @media (max-width:1000px){
-      .inicio-grid{
-        grid-template-columns:1fr;
-      }
+    /* ===================================================== */
+    /* MODAL DE PEDIDO Y CARRITO                             */
+    /* ===================================================== */
 
-      .layout{
-        grid-template-columns:1fr;
-      }
-
-      .lista{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media (max-width:720px){
-      .hero{
-        min-height:430px;
-      }
-
-      .hero-inner{
-        padding:48px 18px 38px;
-      }
-
-      .hero h1{
-        font-size:clamp(48px,16vw,76px);
-      }
-
-      .nav-principal-wrap{
-        display:none;
-      }
-
-      .contenedor{
-        padding:24px 11px 118px;
-      }
-
-      .intro{
-        display:block;
-      }
-
-      .lista{
-        grid-template-columns:1fr;
-      }
-
-      .platillo-visual{
-        height:235px;
-      }
-
-      .nav-movil{
-        display:grid;
-      }
-
-      .whatsapp-flotante{
-        right:14px;
-        bottom:84px;
-        width:46px;
-        height:46px;
-      }
-
-      footer{
-        padding-bottom:105px;
-      }
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      *{
-        scroll-behavior:auto !important;
-        animation-duration:.01ms !important;
-        transition-duration:.01ms !important;
-      }
-    }
-  
-    /* PEDIDOS A DOMICILIO */
     .icono-motoneta{width:29px;height:23px;display:block}
-    .pedido-overlay[hidden]{display:none}
+    .pedido-overlay[hidden]{display:none!important}
     .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(25,17,12,.6);display:flex;align-items:center;justify-content:center;padding:16px}
     .pedido-panel{width:min(620px,100%);max-height:90vh;max-height:90dvh;overflow:auto;overscroll-behavior:contain;background:var(--tarjeta);color:var(--texto);border-radius:22px;padding:24px;box-shadow:var(--sombra)}
     .pedido-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .pedido-cabecera h2{margin:0;font-family:Georgia,serif;font-size:28px;font-weight:normal}
     .pedido-cerrar{min-width:44px;min-height:44px;border:1px solid var(--linea);border-radius:50%;background:transparent;font-size:25px;cursor:pointer;color:var(--texto)}
     .pedido-panel p{font-size:14px;line-height:1.5;color:var(--texto-suave)}
-    .pedido-producto{display:grid;grid-template-columns:minmax(0,1fr) 82px;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--linea)}
-    .pedido-producto label{font-size:14px;line-height:1.5}
-    .pedido-producto label span{display:block;color:var(--acento);font-weight:bold}
     .pedido-panel input,.pedido-panel textarea{box-sizing:border-box;width:100%;min-height:44px;border:1px solid var(--linea);border-radius:10px;background:#fff;color:var(--texto);padding:10px;font:16px Arial,sans-serif}
     .pedido-panel input:focus-visible,.pedido-panel textarea:focus-visible{outline:3px solid rgba(166,79,49,.4);outline-offset:2px}
     .pedido-panel fieldset{min-width:0;margin:20px 0;padding:0;border:0}
     .pedido-panel legend{font-weight:bold;margin-bottom:10px}
     .pedido-campo{display:block;margin:12px 0;font-size:14px}
     .pedido-campo input,.pedido-campo textarea{margin-top:6px}
-    .pedido-total{padding:14px 0;font-weight:bold;font-size:18px}
     .pedido-enviar{width:100%;min-height:48px;border:0;border-radius:12px;padding:12px;background:var(--acento);color:#fff;font-weight:bold;font-size:15px;cursor:pointer}
     .pedido-enviar:disabled{opacity:.6;cursor:not-allowed}
     #pedidoAviso{padding:10px;border-radius:10px;background:#F0E8DE}
-    @media(max-width:480px){.pedido-overlay{padding:10px}.pedido-panel{padding:18px}}
 
-  
-    /* BARRA Y REDES: margen calculado sobre las barras fijas visibles. */
     .contador-pedido{background:var(--acento);color:white;border-radius:99px;padding:2px 6px;font-size:10px;line-height:1.2}
     .contador-pedido[hidden]{display:none}
     .control-carrito{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;margin-top:8px;font-size:13px}
@@ -840,8 +1090,8 @@
     .cantidad-control button:disabled{opacity:.35;cursor:default}
     .cantidad-control output{min-width:20px;text-align:center;font-weight:bold}
     .pedido-resumen-fila{padding:12px 0;border-bottom:1px solid var(--linea)}
-    .pedido-resumen-fila strong{font-size:14px}
-    .pedido-resumen-fila .control-carrito{border:0;padding:4px 0;margin:0}
+    .pedido-resumen-fila strong{font-size:14px;display:block;margin-bottom:4px}
+    .pedido-resumen-fila .control-carrito{border:0;padding:4px 0;margin:0;background:transparent}
     .pedido-totales{margin:18px 0;border-top:1px solid var(--linea);padding-top:12px}
     .pedido-totales div{display:flex;justify-content:space-between;gap:12px;margin:8px 0;font-size:14px}
     .pedido-totales .pedido-total-final{font-size:18px;font-weight:bold}
@@ -854,35 +1104,8 @@
     #mapaEntrega{height:220px;border-radius:12px;margin:10px 0;background:#eee7db}
     .calculadora-envio small{display:block;margin-top:8px;line-height:1.5}
     #resultadoEnvio{display:block;font-size:14px;margin-top:10px}
-    @media(max-width:720px){
-      :root{--redes-bottom:164px}
-      .pedido-form-grid{grid-template-columns:1fr}
-    }
 
-    /* =====================================================
-       CAMBIOS SOLICITADOS: TÍTULO, MOSAICO Y FOTOS COMPLETAS
-       ===================================================== */
-    .hero-inner{text-align:center;}
-    .hero h1,.hero-subtitulo{margin-left:auto;margin-right:auto;}
-    .hero-acciones{justify-content:center;}
-
-    .lista{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
-    .platillo-tarjeta{min-width:0;display:flex;flex-direction:column;}
-    .platillo{height:100%;display:flex;flex-direction:column;}
-    .platillo-visual{
-      width:100%;height:auto;aspect-ratio:4/3;display:block;padding:0;
-      border:0;border-radius:0;cursor:zoom-in;position:relative;
-      background:#E9E0D5;overflow:hidden;
-    }
-    .platillo-visual img{
-      position:absolute;inset:0;width:100%;height:100%;
-      object-fit:contain;object-position:center;transition:none;
-    }
-    .platillo:hover .platillo-visual img{transform:none;}
-    .platillo-visual:disabled{cursor:default;}
-    .platillo-visual:focus-visible{outline:3px solid var(--acento);outline-offset:-4px;}
-    .platillo-info{flex:1 1 auto;}
-
+    /* MODAL FOTO AMPLIADA */
     .foto-ampliada-overlay[hidden]{display:none!important;}
     .foto-ampliada-overlay{
       position:fixed;inset:0;z-index:12000;display:flex;
@@ -900,178 +1123,44 @@
       cursor:pointer;
     }
 
-    /* Redes sociales en Conocer el restaurante, ya no flotantes. */
-    .redes-restaurante{padding-top:8px;border-top:1px solid var(--linea);}
-    .redes-restaurante-titulo{margin:8px 0 11px;color:var(--texto-suave);font-size:11px;font-weight:bold;letter-spacing:.9px;}
-    .redes-restaurante-botones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
-    .red-social{min-height:49px;display:flex;align-items:center;justify-content:center;gap:9px;padding:10px 12px;border:1px solid var(--linea);border-radius:14px;background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:bold;cursor:pointer;}
-    .red-social:hover{border-color:var(--acento);background:#FAF6F0;}
-    .red-social-icono{font-size:19px;font-weight:bold;line-height:1;}
-    @media(max-width:1100px){.lista{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:600px){.lista{grid-template-columns:1fr;}}
+    /* ===================================================== */
+    /* RESPONSIVE                                            */
+    /* ===================================================== */
 
+    @media(max-width:1100px){
+      .lista{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
 
-    /* Comedor Lucy: una sola tarjeta para fotografía, descripción y acción de compra. */
-    .platillo-tarjeta{
-      min-width:0;overflow:hidden;border:1px solid var(--linea);
-      border-radius:var(--radio-lg);background:var(--tarjeta);
-      box-shadow:var(--sombra-suave);transition:transform var(--transicion),box-shadow var(--transicion);
+    @media(max-width:1000px){
+      .inicio-grid{grid-template-columns:1fr;}
+      .layout{grid-template-columns:1fr;}
     }
-    .platillo-tarjeta:hover{transform:translateY(-3px);box-shadow:var(--sombra);}
-    .platillo-tarjeta .platillo{
-      border:0;border-radius:0;box-shadow:none;overflow:hidden;
-      background:transparent;height:100%;
-    }
-    .platillo-tarjeta .platillo:hover{transform:none;box-shadow:none;}
-    .platillo-tarjeta .platillo-info{flex:1 1 auto;}
 
-    /* Etiqueta superior izquierda, alternar idioma a la derecha. */
-    .hero-kicker{
-      position:absolute;top:19px;left:max(18px,calc((100vw - 1280px)/2 + 22px));
-      margin:0;z-index:2;
-    }
-    .boton-idioma{
-      position:absolute;right:max(18px,calc((100vw - 1280px)/2 + 22px));top:19px;
-      z-index:3;min-height:38px;padding:8px 14px;
-      border:1px solid rgba(255,255,255,.52);border-radius:99px;
-      background:rgba(28,22,19,.42);backdrop-filter:blur(6px);color:white;
-      font-size:12px;font-weight:bold;cursor:pointer;
-    }
-    .boton-idioma:hover{background:rgba(28,22,19,.7);}
-    .whatsapp-flotante{bottom:100px;right:16px;z-index:500;}
     @media(max-width:720px){
-      .whatsapp-flotante{right:14px;bottom:85px;width:46px;height:46px;}
+      .hero{min-height:430px;}
+      .hero-inner{padding:48px 18px 38px;}
+      .hero h1{font-size:clamp(48px,16vw,76px);}
       .hero-kicker{left:15px;top:15px;font-size:9px;letter-spacing:.2px;max-width:63%;}
       .boton-idioma{right:14px;top:15px;font-size:11px;min-height:35px;padding:7px 11px;}
+      .nav-principal-wrap{display:none;}
+      .contenedor{padding:24px 11px 118px;}
+      .intro{display:block;}
+      .nav-movil{display:grid;}
+      .whatsapp-flotante{right:14px;bottom:85px;width:46px;height:46px;}
+      .boton-volver-menu{left:14px;bottom:88px;min-height:43px;padding:10px 14px;font-size:11px;}
+      .pedido-form-grid{grid-template-columns:1fr;}
+      footer{padding-bottom:105px;}
     }
 
-    /* =====================================================
-       CAJA DE COMPRA Y BOTONES DE AÑADIR PARA CADA PLATILLO
-       ===================================================== */
-    .caldo-compra,
-    .platillo-compra{
-      display:grid;
-      gap:11px;
-      margin:0 16px 16px;
-      padding:13px 14px;
-      border:1px solid #E8DCCE;
-      border-radius:17px;
-      background:linear-gradient(145deg,#FBF7F1,#F5EDE3);
+    @media(max-width:600px){
+      .lista{grid-template-columns:1fr;}
     }
-    .caldo-compra-etiqueta{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      color:#68594D;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.45px;
-      text-transform:uppercase;
+
+    @media(max-width:480px){
+      .pedido-overlay{padding:10px;}
+      .pedido-panel{padding:18px;}
     }
-    .caldo-compra-etiqueta small{
-      color:#968579;
-      font-size:10px;
-      font-weight:600;
-      letter-spacing:0;
-      text-transform:none;
-    }
-    .caldo-tamanos{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:7px;
-    }
-    .caldo-tamano-btn{
-      min-width:0;
-      min-height:57px;
-      padding:8px 4px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:4px;
-      border:1px solid #DED0C1;
-      border-radius:12px;
-      background:rgba(255,255,255,.84);
-      color:#53463C;
-      cursor:pointer;
-      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion),box-shadow var(--transicion);
-    }
-    .caldo-tamano-btn:hover{border-color:#B9795E;transform:translateY(-1px);}
-    .caldo-tamano-btn[aria-pressed="true"]{
-      border-color:var(--acento);
-      background:#F4E4D9;
-      color:var(--acento-oscuro);
-      box-shadow:inset 0 0 0 1px rgba(166,79,49,.18),0 4px 10px rgba(100,54,34,.07);
-    }
-    .caldo-tamano-nombre{font-size:12px;font-weight:800;line-height:1.1;}
-    .caldo-tamano-precio{font-size:11px;font-weight:700;color:var(--acento);white-space:nowrap;}
-    .caldo-compra-pie{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .caldo-en-pedido{
-      min-width:0;
-      color:#7C6D61;
-      font-size:11px;
-      line-height:1.35;
-    }
-    .caldo-en-pedido strong{display:block;color:#5A6B45;font-size:12px;}
-    .compra-acciones{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      flex-shrink:0;
-    }
-    .platillo-restar-btn{
-      width:43px;
-      height:43px;
-      border:1px solid #DED0C1;
-      border-radius:12px;
-      background:#fff;
-      color:var(--acento);
-      font-size:22px;
-      font-weight:bold;
-      line-height:1;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion);
-    }
-    .platillo-restar-btn:hover:not(:disabled){
-      border-color:var(--acento);
-      background:#FAF3EC;
-      transform:translateY(-1px);
-    }
-    .platillo-restar-btn[hidden]{display:none;}
-    .caldo-agregar-btn{
-      flex:0 0 auto;
-      min-height:43px;
-      padding:10px 14px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      border:0;
-      border-radius:12px;
-      background:var(--acento);
-      color:#fff;
-      font-size:11px;
-      font-weight:800;
-      box-shadow:0 6px 14px rgba(166,79,49,.16);
-      cursor:pointer;
-      transition:transform var(--transicion),background var(--transicion),box-shadow var(--transicion);
-    }
-    .caldo-agregar-btn:hover:not(:disabled){background:var(--acento-oscuro);transform:translateY(-1px);box-shadow:0 8px 17px rgba(166,79,49,.22);}
-    .caldo-agregar-btn:active:not(:disabled){transform:scale(.98);}
-    .caldo-agregar-btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none;}
-    .caldo-tamano-btn:focus-visible,.caldo-agregar-btn:focus-visible,.platillo-restar-btn:focus-visible{
-      outline:3px solid rgba(166,79,49,.28);
-      outline-offset:3px;
-    }
+
     @media(max-width:420px){
       .caldo-compra,.platillo-compra{margin:0 12px 13px;padding:12px;gap:9px;}
       .caldo-tamanos{gap:6px;}
@@ -1082,52 +1171,13 @@
       .platillo-restar-btn{width:40px;height:40px;}
     }
 
-    /* Acceso flotante semitransparente al encabezado del menú. */
-    .boton-volver-menu{
-      position:fixed;
-      left:18px;
-      bottom:22px;
-      z-index:480;
-      min-height:45px;
-      padding:11px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      border:1px solid rgba(255,255,255,.34);
-      border-radius:999px;
-      background:rgba(36,31,26,.58);
-      color:#fff;
-      font-size:12px;
-      font-weight:bold;
-      letter-spacing:.2px;
-      box-shadow:0 9px 25px rgba(0,0,0,.16);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transform:translateY(9px);
-      transition:opacity var(--transicion),transform var(--transicion),visibility var(--transicion),background var(--transicion);
-      cursor:pointer;
-    }
-    .boton-volver-menu.visible{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-      transform:translateY(0);
-    }
-    .boton-volver-menu:hover{background:rgba(36,31,26,.82);}
-    @media(max-width:720px){
-      .boton-volver-menu{
-        left:14px;
-        bottom:88px;
-        min-height:43px;
-        padding:10px 14px;
-        font-size:11px;
+    @media (prefers-reduced-motion:reduce){
+      *{
+        scroll-behavior:auto !important;
+        animation-duration:.01ms !important;
+        transition-duration:.01ms !important;
       }
     }
-
   </style>
 </head>
 
@@ -1138,33 +1188,17 @@
 <!-- ===================================================== -->
 
 <header class="hero" id="portada">
-
   <div class="hero-fallback"></div>
-
   <div class="hero-media">
-    <img
-      id="heroImagen"
-      alt="Ambiente del restaurante">
+    <img id="heroImagen" alt="Ambiente del restaurante">
   </div>
-
   <div class="hero-overlay"></div>
-
   <div class="hero-inner">
-
     <div class="hero-kicker" data-i18n="kicker">MENÚ DIGITAL · COMEDOR LUCY</div>
     <button type="button" class="boton-idioma" id="botonIdioma" aria-label="Switch to English" aria-pressed="false">English · EN</button>
-
-    <h1 id="heroNombre">
-      Restaurante
-    </h1>
-
-    <p
-      class="hero-subtitulo"
-      id="heroSubtitulo">
-    </p>
-
+    <h1 id="heroNombre">Restaurante</h1>
+    <p class="hero-subtitulo" id="heroSubtitulo"></p>
   </div>
-
 </header>
 
 <!-- ===================================================== -->
@@ -1173,37 +1207,15 @@
 
 <div class="nav-principal-wrap">
   <nav class="nav-principal">
-
-    <div
-      class="nav-marca"
-      id="navMarca">
-      Restaurante
-    </div>
-
+    <div class="nav-marca" id="navMarca">Restaurante</div>
     <div class="nav-acciones">
-
-      <button
-        type="button"
-        id="navInicio" data-i18n="navVisitanos">
-        VISÍTANOS
-      </button>
-
-      <button
-        type="button"
-        id="navMenu" data-i18n="navMenu"
-        class="activo">
-        MENÚ
-      </button>
-
-      <button
-        type="button"
-        id="navPedido">
+      <button type="button" id="navInicio" data-i18n="navVisitanos">VISÍTANOS</button>
+      <button type="button" id="navMenu" data-i18n="navMenu" class="activo">MENÚ</button>
+      <button type="button" id="navPedido">
         <span data-i18n="navPedido">PEDIR</span>
         <span id="contadorPedidoDesktop" class="contador-pedido" hidden>0</span>
       </button>
-
     </div>
-
   </nav>
 </div>
 
@@ -1213,106 +1225,41 @@
   <!-- INICIO                                              -->
   <!-- =================================================== -->
 
-  <section
-    class="vista"
-    id="vistaInicio">
-
+  <section class="vista" id="vistaInicio">
     <div class="inicio-grid">
-
       <article class="panel">
-
         <div class="historia-imagen">
-
-          <div
-            class="historia-fallback"
-            id="historiaFallback">
-            Fotografía del restaurante
-          </div>
-
-          <img
-            id="imagenRestaurante"
-            alt="Fotografía del restaurante"
-            loading="lazy">
-
+          <div class="historia-fallback" id="historiaFallback">Fotografía del restaurante</div>
+          <img id="imagenRestaurante" alt="Fotografía del restaurante" loading="lazy">
         </div>
-
         <div class="historia-contenido">
-
-          <p class="section-kicker" data-i18n="ourStory">
-            NUESTRA HISTORIA
-          </p>
-
-          <h2 id="inicioTitulo">
-          </h2>
-
-          <p id="inicioHistoria">
-          </p>
-
+          <p class="section-kicker" data-i18n="ourStory">NUESTRA HISTORIA</p>
+          <h2 id="inicioTitulo"></h2>
+          <p id="inicioHistoria"></p>
         </div>
-
       </article>
 
       <aside class="panel contacto-panel">
-
         <div>
-
-          <p class="section-kicker" data-i18n="visitUs">
-            VISÍTANOS
-          </p>
-
-          <h2 data-i18n="nextTable">
-            Tu próxima mesa empieza aquí
-          </h2>
-
-          <p id="inicioContactoTexto">
-          </p>
-
+          <p class="section-kicker" data-i18n="visitUs">VISÍTANOS</p>
+          <h2 data-i18n="nextTable">Tu próxima mesa empieza aquí</h2>
+          <p id="inicioContactoTexto"></p>
         </div>
 
         <div class="contacto-lista">
-
           <div class="contacto-item">
-
-            <strong data-i18n="location">
-              UBICACIÓN
-            </strong>
-
-            <span id="textoUbicacion">
-            </span>
-
+            <strong data-i18n="location">UBICACIÓN</strong>
+            <span id="textoUbicacion"></span>
           </div>
-
-          <div
-            class="contacto-item"
-            id="contactoHorario">
-
-            <strong data-i18n="hours">
-              HORARIO
-            </strong>
-
-            <span id="textoHorario">
-            </span>
-
+          <div class="contacto-item" id="contactoHorario">
+            <strong data-i18n="hours">HORARIO</strong>
+            <span id="textoHorario"></span>
           </div>
-
         </div>
 
         <div class="contacto-botones">
-
-          <button
-            type="button"
-            class="boton-ancho boton-maps"
-            id="botonMaps" data-i18n="maps">
-            📍 VER EN GOOGLE MAPS
-          </button>
-
-          <button
-            type="button"
-            class="boton-ancho boton-pedido"
-            id="botonPedidoInicio" data-i18n="takeout">
-            PEDIR PARA LLEVAR
-          </button>
-
+          <button type="button" class="boton-ancho boton-maps" id="botonMaps" data-i18n="maps">📍 VER EN GOOGLE MAPS</button>
+          <button type="button" class="boton-ancho boton-pedido" id="botonPedidoInicio" data-i18n="takeout">PEDIR PARA LLEVAR</button>
         </div>
 
         <section class="redes-restaurante" aria-label="Redes sociales de Comedor Lucy">
@@ -1324,82 +1271,45 @@
             <button type="button" class="red-social" id="socialTikTok" data-i18n-aria="openTikTok" aria-label="Abrir TikTok"><span class="red-social-icono" aria-hidden="true">♪</span>TikTok</button>
           </div>
         </section>
-
       </aside>
-
     </div>
-
   </section>
 
   <!-- =================================================== -->
   <!-- MENÚ                                                -->
   <!-- =================================================== -->
 
-  <section
-    class="vista activa"
-    id="vistaMenu">
-
+  <section class="vista activa" id="vistaMenu">
     <section class="intro">
-
       <div>
-
-        <p class="section-kicker" data-i18n="discover">
-          DESCUBRE
-        </p>
-
-        <h2 data-i18n="menuTitle">
-          Nuestro menú
-        </h2>
-
-        <p data-i18n="menuIntro">
-          Explora nuestros platillos, elige tus favoritos y prepara tu pedido.
-        </p>
-
+        <p class="section-kicker" data-i18n="discover">DESCUBRE</p>
+        <h2 data-i18n="menuTitle">Nuestro menú</h2>
+        <p data-i18n="menuIntro">Explora nuestros platillos, elige tus favoritos y prepara tu pedido.</p>
       </div>
-
     </section>
 
-    <!-- Barra de búsqueda -->
     <div class="buscador-menu-wrap">
       <input type="search" id="inputBuscador" class="buscador-menu" placeholder="Buscar platillos..." data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
     </div>
 
-    <nav
-      class="categorias"
-      id="categorias"
-      aria-label="Categorías del menú">
-    </nav>
+    <nav class="categorias" id="categorias" aria-label="Categorías del menú"></nav>
 
     <div class="layout">
-
-      <section
-        class="lista"
-        id="listaPlatillos"
-        aria-label="Platillos">
-      </section>
-
+      <section class="lista" id="listaPlatillos" aria-label="Platillos"></section>
     </div>
-
   </section>
 
 </main>
 
-
-<!-- WhatsApp para consultas directas, independiente del carrito. -->
-<button type="button" class="whatsapp-flotante" id="whatsappFlotante" data-i18n-aria="chatWAFloat"
-        aria-label="Contactar a Comedor Lucy por WhatsApp" title="WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.3-4A8 8 0 1 1 20 11.7Z"></path>
-  <path d="M9.2 8.1c.4-.3.8-.1 1 .3l.7 1.5c.1.3.1.6-.1.8l-.6.7c.7 1.4 1.8 2.4 3.2 3l.7-.8c.2-.2.5-.3.8-.1l1.5.7c.4.2.5.6.3 1-.4.8-1.2 1.3-2.1 1.2-3.6-.5-6.5-3.3-7-6.9-.1-.7.5-1.2 1.6-1.4Z"></path></svg>
+<!-- WhatsApp para consultas directas, independiente del carrito -->
+<button type="button" class="whatsapp-flotante" id="whatsappFlotante" data-i18n-aria="chatWAFloat" aria-label="Contactar a Comedor Lucy por WhatsApp" title="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.3-4A8 8 0 1 1 20 11.7Z"></path>
+    <path d="M9.2 8.1c.4-.3.8-.1 1 .3l.7 1.5c.1.3.1.6-.1.8l-.6.7c.7 1.4 1.8 2.4 3.2 3l.7-.8c.2-.2.5-.3.8-.1l1.5.7c.4.2.5.6.3 1-.4.8-1.2 1.3-2.1 1.2-3.6-.5-6.5-3.3-7-6.9-.1-.7.5-1.2 1.6-1.4Z"></path>
+  </svg>
 </button>
 
-<button
-  type="button"
-  class="boton-volver-menu"
-  id="botonVolverMenu"
-  aria-label="Volver al inicio del menú"
-  title="Volver al inicio del menú"
-  data-i18n="backToMenu"
-  aria-hidden="true">
+<button type="button" class="boton-volver-menu" id="botonVolverMenu" aria-label="Volver al inicio del menú" title="Volver al inicio del menú" data-i18n="backToMenu" aria-hidden="true">
   ↑ Volver al menú
 </button>
 
@@ -1407,101 +1317,101 @@
 <!-- NAVEGACIÓN MÓVIL                                      -->
 <!-- ===================================================== -->
 
-<nav
-  class="nav-movil"
-  aria-label="Navegación móvil">
-
-  <button
-    type="button"
-    id="movilInicio">
-
+<nav class="nav-movil" aria-label="Navegación móvil">
+  <button type="button" id="movilInicio">
     <span class="nav-icono">⌂</span>
     <span data-i18n="navVisitanos">VISÍTANOS</span>
-
   </button>
-
-  <button
-    type="button"
-    id="movilMenu"
-    class="activo">
-
+  <button type="button" id="movilMenu" class="activo">
     <span class="nav-icono">☰</span>
     <span data-i18n="navMenu">MENÚ</span>
-
   </button>
-
-  <button
-    type="button"
-    id="movilMaps" aria-label="Pedidos a domicilio" data-i18n-aria="orderTab" aria-haspopup="dialog">
-
+  <button type="button" id="movilMaps" aria-label="Pedidos a domicilio" data-i18n-aria="orderTab" aria-haspopup="dialog">
     <svg class="icono-motoneta" viewBox="0 0 40 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="23" r="5"/><circle cx="32" cy="23" r="5"/><path d="M3 20c0-6 4-9 10-9h6v8h7l-4-14h-4m4 0h6m-5 3h5M9 23h15c0-5 3-9 8-9M7 10h10M5 8h11"/></svg>
     <span><span data-i18n="navPedidos">PEDIDOS</span> <span id="contadorPedido" class="contador-pedido" hidden>0</span></span>
-
   </button>
-
 </nav>
 
-<div
-  class="toast"
-  id="toast"
-  role="status"
-  aria-live="polite">
-</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- Ampliación sobre la página actual. No desplaza hacia otra sección. -->
+<!-- Ampliación de fotografía -->
 <div id="fotoAmpliadaOverlay" class="foto-ampliada-overlay" role="dialog" aria-modal="true" aria-label="Fotografía del platillo" data-i18n-aria="photoAlt" hidden>
   <button type="button" class="foto-ampliada-cerrar" id="cerrarFotoAmpliada" aria-label="Cerrar fotografía ampliada" data-i18n-aria="closePhoto">×</button>
   <img id="fotoAmpliadaImagen" alt="" />
 </div>
 
-<!-- PEDIDOS: carrito y entrega (el costo de envío se oculta si mostrarCostoEnvio es false, pero se conserva para la plantilla). -->
+<!-- MODAL DE PEDIDOS: conserva toda la estructura de envío en el código, oculta si mostrarCostoEnvio es false -->
 <div id="pedidoOverlay" class="pedido-overlay" hidden>
-<section class="pedido-panel" role="dialog" aria-modal="true" aria-labelledby="pedidoTitulo" tabindex="-1">
-<div class="pedido-cabecera"><h2 id="pedidoTitulo" data-i18n="orderTitle">Mi pedido</h2><button type="button" id="cerrarPedido" class="pedido-cerrar" aria-label="Cerrar pedido">×</button></div>
-<p id="pedidoDescripcion" data-i18n="review">Revisa los productos y las cantidades antes de continuar.</p>
-<div id="resumenPedido"></div>
-<div class="pedido-totales" aria-live="polite">
-  <div id="filaSubtotalPedido"><span data-i18n="subtotal">Productos</span><strong id="subtotalPedido"></strong></div>
-  <div id="filaEnvioPedido" hidden><span data-i18n="shipping">Envío estimado</span><strong id="envioPedido">Por confirmar</strong></div>
-  <div class="pedido-total-final"><span data-i18n="total">Total</span><strong id="totalPedido">Por confirmar</strong></div>
-</div>
-<div id="pasoCarrito"><button type="button" id="continuarPedido" class="pedido-enviar" data-i18n="continueDelivery" disabled>CONTINUAR CON DATOS DE ENTREGA</button><button type="button" id="agregarProductos" class="pedido-secundario" data-i18n="addMore">AGREGAR PLATILLOS</button></div>
-<form id="pedidoFormulario" hidden>
-<fieldset><legend data-i18n="deliveryData">Datos de entrega</legend><div class="pedido-form-grid"><label class="pedido-campo"><span data-i18n="fieldName">Nombre *</span><input id="pedidoNombre" name="pedidoNombre" autocomplete="name" required maxlength="150"></label>
-<label class="pedido-campo"><span data-i18n="phone">Celular *</span><input id="pedidoTelefono" name="pedidoTelefono" autocomplete="tel" required maxlength="150" type="tel" inputmode="tel"></label>
-<label class="pedido-campo"><span data-i18n="street">Calle / entre calles *</span><input id="pedidoCalle" name="pedidoCalle" autocomplete="street-address" required maxlength="150"></label>
-<label class="pedido-campo"><span data-i18n="number">Número exterior *</span><input id="pedidoExterior" name="pedidoExterior" autocomplete="off" required maxlength="150"></label>
-<label class="pedido-campo"><span data-i18n="neighborhood">Colonia *</span><input id="pedidoColonia" name="pedidoColonia" autocomplete="address-level3" required maxlength="150"></label>
-<label class="pedido-campo"><span data-i18n="city">Municipio o ciudad *</span><input id="pedidoCiudad" name="pedidoCiudad" autocomplete="address-level2" required maxlength="150"></label>
-<label class="pedido-campo"><span data-i18n="zip">Código postal *</span><input id="pedidoCP" name="pedidoCP" autocomplete="postal-code" required maxlength="150"></label>
+  <section class="pedido-panel" role="dialog" aria-modal="true" aria-labelledby="pedidoTitulo" tabindex="-1">
+    <div class="pedido-cabecera">
+      <h2 id="pedidoTitulo" data-i18n="orderTitle">Mi pedido</h2>
+      <button type="button" id="cerrarPedido" class="pedido-cerrar" aria-label="Cerrar pedido">×</button>
+    </div>
+    <p id="pedidoDescripcion" data-i18n="review">Revisa los productos y las cantidades antes de continuar.</p>
+    <div id="resumenPedido"></div>
+    <div class="pedido-totales" aria-live="polite">
+      <div id="filaSubtotalPedido"><span data-i18n="subtotal">Productos</span><strong id="subtotalPedido"></strong></div>
+      <div id="filaEnvioPedido" hidden><span data-i18n="shipping">Envío estimado</span><strong id="envioPedido">Por confirmar</strong></div>
+      <div class="pedido-total-final"><span data-i18n="total">Total</span><strong id="totalPedido">Por confirmar</strong></div>
+    </div>
+    <div id="pasoCarrito">
+      <button type="button" id="continuarPedido" class="pedido-enviar" data-i18n="continueDelivery" disabled>CONTINUAR CON DATOS DE ENTREGA</button>
+      <button type="button" id="agregarProductos" class="pedido-secundario" data-i18n="addMore">AGREGAR MÁS PLATILLOS</button>
+    </div>
 
-<label class="pedido-campo pedido-campo-ancho"><span data-i18n="references">Referencias (opcional)</span><textarea id="pedidoReferencias" maxlength="500" rows="2"></textarea></label>
-<label class="pedido-campo pedido-campo-ancho"><span data-i18n="locationOptional">Ubicación (opcional)</span><input id="pedidoUbicacion" maxlength="500" placeholder="Enlace de Maps o coordenadas" data-i18n-placeholder="locationPlaceholder"></label>
-</div><button type="button" id="usarUbicacionActual" class="pedido-secundario" data-i18n="useLocation">USAR MI UBICACIÓN</button><p data-i18n="geolocationNote">Tu ubicación se consulta únicamente al pulsar el botón.</p>
-<section id="calculadoraEnvio" class="calculadora-envio" hidden><h3 data-i18n="calculateShipping">Calcula tu envío</h3><p id="tarifasEnvio"></p><button type="button" id="buscarDireccionMapa" class="pedido-secundario" data-i18n="searchMap">BUSCAR DIRECCIÓN EN EL MAPA</button><div id="mapaEntrega" aria-label="Mapa de entrega"></div><button type="button" id="confirmarDireccionMapa" class="pedido-secundario" data-i18n="confirmMap" disabled>CONFIRMAR PUNTO DE ENTREGA</button><strong id="resultadoEnvio" role="status">Confirma el punto para calcular la ruta.</strong><small data-i18n="mapCredits">Mapa © OpenStreetMap. Rutas OSRM/FOSSGIS. Costo estimado sujeto a confirmación del restaurante.</small></section>
-<p id="envioPorConfirmar" data-i18n="shippingConfirm" hidden>El restaurante confirmará el costo de envío y el tiempo de entrega por WhatsApp.</p>
-<label class="pedido-campo"><span data-i18n="notes">Indicaciones para los platillos (opcional)</span><textarea id="pedidoNotas" maxlength="500" rows="2" placeholder="Sin cebolla, salsa aparte…" data-i18n-placeholder="notesPlaceholder"></textarea></label>
-<label class="pedido-campo"><span data-i18n="payment">Forma de pago solicitada</span><select id="pedidoPago"><option value="EFECTIVO" data-i18n="cash">Efectivo al recibir</option><option value="TRANSFERENCIA" data-i18n="transfer">Transferencia</option></select></label><p id="notaTransferencia" data-i18n="bankInfo" hidden>Solicita los datos de transferencia al restaurante por WhatsApp.</p>
-</fieldset>
-<p id="pedidoAviso" role="status" hidden></p>
-<button type="submit" id="pedidoEnviar" class="pedido-enviar" data-i18n="continueWA">CONTINUAR EN WHATSAPP</button>
-<button type="button" id="volverCarrito" class="pedido-secundario" data-i18n="backCart">VOLVER A MI PEDIDO</button>
-<p data-i18n="waExplanation">WhatsApp se abrirá con el pedido preparado. Pulsa Enviar allí; el restaurante confirmará disponibilidad, pago y entrega.</p>
-</form></section></div>
-<footer id="footerTexto">
-</footer>
+    <form id="pedidoFormulario" hidden>
+      <fieldset>
+        <legend data-i18n="deliveryData">Datos de entrega</legend>
+        <div class="pedido-form-grid">
+          <label class="pedido-campo"><span data-i18n="fieldName">Nombre *</span><input id="pedidoNombre" name="pedidoNombre" autocomplete="name" required maxlength="150"></label>
+          <label class="pedido-campo"><span data-i18n="phone">Celular *</span><input id="pedidoTelefono" name="pedidoTelefono" autocomplete="tel" required maxlength="150" type="tel" inputmode="tel"></label>
+          <label class="pedido-campo"><span data-i18n="street">Calle / entre calles *</span><input id="pedidoCalle" name="pedidoCalle" autocomplete="street-address" required maxlength="150"></label>
+          <label class="pedido-campo"><span data-i18n="number">Número exterior *</span><input id="pedidoExterior" name="pedidoExterior" autocomplete="off" required maxlength="150"></label>
+          <label class="pedido-campo"><span data-i18n="neighborhood">Colonia *</span><input id="pedidoColonia" name="pedidoColonia" autocomplete="address-level3" required maxlength="150"></label>
+          <label class="pedido-campo"><span data-i18n="city">Municipio o ciudad *</span><input id="pedidoCiudad" name="pedidoCiudad" autocomplete="address-level2" required maxlength="150"></label>
+          <label class="pedido-campo"><span data-i18n="zip">Código postal *</span><input id="pedidoCP" name="pedidoCP" autocomplete="postal-code" required maxlength="150"></label>
+          <label class="pedido-campo pedido-campo-ancho"><span data-i18n="references">Referencias (opcional)</span><textarea id="pedidoReferencias" maxlength="500" rows="2"></textarea></label>
+          <label class="pedido-campo pedido-campo-ancho"><span data-i18n="locationOptional">Ubicación (opcional)</span><input id="pedidoUbicacion" maxlength="500" placeholder="Enlace de Maps o coordenadas" data-i18n-placeholder="locationPlaceholder"></label>
+        </div>
+        <button type="button" id="usarUbicacionActual" class="pedido-secundario" data-i18n="useLocation">USAR MI UBICACIÓN</button>
+        <p data-i18n="geolocationNote">Tu ubicación se consulta únicamente al pulsar el botón.</p>
+
+        <!-- Calculadora de envío preservada en el código para reutilizar en otros menús -->
+        <section id="calculadoraEnvio" class="calculadora-envio" hidden>
+          <h3 data-i18n="calculateShipping">Calcula tu envío</h3>
+          <p id="tarifasEnvio"></p>
+          <button type="button" id="buscarDireccionMapa" class="pedido-secundario" data-i18n="searchMap">BUSCAR DIRECCIÓN EN EL MAPA</button>
+          <div id="mapaEntrega" aria-label="Mapa de entrega"></div>
+          <button type="button" id="confirmarDireccionMapa" class="pedido-secundario" data-i18n="confirmMap" disabled>CONFIRMAR PUNTO DE ENTREGA</button>
+          <strong id="resultadoEnvio" role="status">Confirma el punto para calcular la ruta.</strong>
+          <small data-i18n="mapCredits">Mapa © OpenStreetMap. Rutas OSRM/FOSSGIS. Costo estimado sujeto a confirmación del restaurante.</small>
+        </section>
+        <p id="envioPorConfirmar" data-i18n="shippingConfirm" hidden>El restaurante confirmará el costo de envío y el tiempo de entrega por WhatsApp.</p>
+
+        <label class="pedido-campo"><span data-i18n="notes">Indicaciones para los platillos (opcional)</span><textarea id="pedidoNotas" maxlength="500" rows="2" placeholder="Sin cebolla, salsa aparte…" data-i18n-placeholder="notesPlaceholder"></textarea></label>
+        <label class="pedido-campo"><span data-i18n="payment">Forma de pago solicitada</span>
+          <select id="pedidoPago">
+            <option value="EFECTIVO" data-i18n="cash">Efectivo al recibir</option>
+            <option value="TRANSFERENCIA" data-i18n="transfer">Transferencia</option>
+          </select>
+        </label>
+        <p id="notaTransferencia" data-i18n="bankInfo" hidden>Solicita los datos de transferencia al restaurante por WhatsApp.</p>
+      </fieldset>
+      <p id="pedidoAviso" role="status" hidden></p>
+      <button type="submit" id="pedidoEnviar" class="pedido-enviar" data-i18n="continueWA">CONTINUAR EN WHATSAPP</button>
+      <button type="button" id="volverCarrito" class="pedido-secundario" data-i18n="backCart">VOLVER A MI PEDIDO</button>
+      <p data-i18n="waExplanation">WhatsApp se abrirá con el pedido preparado. Pulsa Enviar allí; el restaurante confirmará disponibilidad, pago y entrega.</p>
+    </form>
+  </section>
+</div>
+
+<footer id="footerTexto"></footer>
 
 <script>
 
   /* ===================================================== */
-  /* ===================================================== */
-  /*                                                       */
   /*            ★★★ PLANTILLA MAESTRA V2 ★★★               */
-  /*                                                       */
   /*   PARA OTRO RESTAURANTE EDITA SOLO ESTA SECCIÓN.      */
-  /*   EL RESTO DEL CÓDIGO NO NECESITA MODIFICARSE.        */
-  /*                                                       */
-  /* ===================================================== */
   /* ===================================================== */
 
   const CONFIG = {
@@ -1525,8 +1435,8 @@
       instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==",
       facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/",
       tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q",
-      // Interruptor maestro de envío: en false oculta el costo de envío en la interfaz y en WhatsApp,
-      // pero conserva toda la lógica lista para activarse (true) en otros menús de la plantilla.
+      // Interruptor de costo de envío: false lo oculta en la interfaz de pedido,
+      // pero conserva el código listo para ponerse en true en otros restaurantes.
       mostrarCostoEnvio: false,
       origenEnvio: null,
       ciudadEnvio: "",
@@ -1550,13 +1460,40 @@
       "Crujir de felicidad 😍": "Crispy delights 😍",
       "Panza llena corazón contento 🥰": "Hearty comfort dishes 🥰",
       "Bocado ágil ⚡": "Quick & light bites ⚡",
-      "Barbacuérdate de mí 🔥": "Barbacoa & Birria 🔥",
+      "Barbacuérdate de mí 🔥": "Barbacoa & Birria (Weekends) 🔥",
       "Bocados traviesos 🍟": "Kids' favorites 🍟",
       "Esencia de la casa ⭐": "House specialties ⭐",
       "Sazón de la Abuela 👵🏻🫶": "Grandma’s home cooking 👵🏻🫶",
       "Aventura marina 🌊🌴": "Seafood adventure 🌊🌴",
       "Souvenirs de La Monita 🛍️🎀": "La Monita souvenirs 🛍️🎀"
     },
+
+    // Lista oficial de guisados con soporte bilingüe ES/EN
+    guisados: [
+      { id: "huevo_verde", nombre: "Huevo verde", nombreEn: "Egg in green salsa" },
+      { id: "huevo_rojo", nombre: "Huevo rojo", nombreEn: "Egg in red salsa" },
+      { id: "papas", nombre: "Papas", nombreEn: "Potatoes" },
+      { id: "rajas", nombre: "Rajas", nombreEn: "Poblano pepper strips" },
+      { id: "nopales", nombre: "Nopales", nombreEn: "Cactus (nopales)" },
+      { id: "queso", nombre: "Queso", nombreEn: "Cheese" },
+      { id: "frijoles", nombre: "Frijoles", nombreEn: "Beans" },
+      { id: "mole", nombre: "Mole", nombreEn: "Mole" },
+      { id: "chicharron", nombre: "Chicharrón", nombreEn: "Pork rind in salsa" },
+      { id: "bistec", nombre: "Bistec", nombreEn: "Beef steak" },
+      { id: "chorizo", nombre: "Chorizo", nombreEn: "Chorizo" },
+      { id: "deshebrada", nombre: "Deshebrada", nombreEn: "Shredded beef" },
+      { id: "tinga_pollo", nombre: "Tinga de pollo", nombreEn: "Chicken tinga" }
+    ],
+
+    // Cantidad máxima de guisados por platillo
+    guisadosPorPlatillo: {
+      machete: 3,
+      quesadilla: 1,
+      gordita: 1,
+      sope_sencillo_guiso: 1,
+      tortas: 1
+    },
+
     textos: {
       es: {
         "kicker": "MENÚ DIGITAL · COMEDOR LUCY",
@@ -1585,6 +1522,16 @@
         "size": "Tamaño",
         "chooseSize": "Elige tamaño",
         "chooseYourSize": "ELIGE TU TAMAÑO",
+        "chooseOneGuisado": "ELIGE 1 GUISADO",
+        "chooseUpTo3Guisados": "ELIGE HASTA 3 GUISADOS",
+        "selectGuisadoRequired": "Guisado 1 (obligatorio)...",
+        "selectSingleGuisado": "Selecciona tu guisado...",
+        "selectGuisadoOptional2": "Guisado 2 (opcional)...",
+        "selectGuisadoOptional3": "Guisado 3 (opcional)...",
+        "plainNoGuisado": "Sencillo (sin guisado)",
+        "alertSelectGuisado": "Por favor elige tu guisado antes de añadir al pedido.",
+        "weekendOnlyBanner": "🔥 Nota: La barbacoa y birria están disponibles únicamente los fines de semana.",
+        "weekendBadge": "Solo fines de semana",
         "addToOrder": "Añadir al pedido",
         "addAnother": "Añadir otro",
         "notInOrder": "Aún no agregado",
@@ -1602,6 +1549,7 @@
         "shipping": "Envío estimado",
         "total": "Total",
         "toConfirm": "Por confirmar",
+        "plusToConfirm": " + por confirmar",
         "continueDelivery": "CONTINUAR CON DATOS DE ENTREGA",
         "addMore": "AGREGAR MÁS PLATILLOS",
         "empty": "Tu pedido está vacío. Agrega platillos desde el menú.",
@@ -1703,6 +1651,16 @@
         "size": "Size",
         "chooseSize": "Choose a size",
         "chooseYourSize": "CHOOSE YOUR SIZE",
+        "chooseOneGuisado": "CHOOSE 1 FILLING",
+        "chooseUpTo3Guisados": "CHOOSE UP TO 3 FILLINGS",
+        "selectGuisadoRequired": "Filling 1 (required)...",
+        "selectSingleGuisado": "Choose your filling...",
+        "selectGuisadoOptional2": "Filling 2 (optional)...",
+        "selectGuisadoOptional3": "Filling 3 (optional)...",
+        "plainNoGuisado": "Plain (no filling)",
+        "alertSelectGuisado": "Please choose a filling before adding to your order.",
+        "weekendOnlyBanner": "🔥 Note: Barbacoa and birria dishes are available on weekends only.",
+        "weekendBadge": "Weekends only",
         "addToOrder": "Add to order",
         "addAnother": "Add another",
         "notInOrder": "Not added yet",
@@ -1720,6 +1678,7 @@
         "shipping": "Estimated delivery",
         "total": "Total",
         "toConfirm": "To be confirmed",
+        "plusToConfirm": " + to be confirmed",
         "continueDelivery": "CONTINUE TO DELIVERY DETAILS",
         "addMore": "ADD MORE DISHES",
         "empty": "Your cart is empty. Add dishes from the menu.",
@@ -1811,7 +1770,6 @@
       "Souvenirs de La Monita 🛍️🎀"
     ],
 
-    // Los precios por tamaño heredan el precio que ya tenía cada platillo.
     tamanosCaldos: [
       { id: "chico", nombre: "Chico", nombreEn: "Small" },
       { id: "mediano", nombre: "Mediano", nombreEn: "Medium" },
@@ -1824,7 +1782,6 @@
       "caldo_res",
       "caldo_pollo"
     ],
-    // Cada presentación conserva su precio editable e independiente.
     preciosPorTamano: {
       menudo: { chico: "$110", mediano: "$110", grande: "$110" },
       pozole: { chico: "Por definir", mediano: "Por definir", grande: "Por definir" },
@@ -1843,9 +1800,10 @@
         "nombre": "Machete (45 cm)",
         "nombreEn": "Giant quesadilla (45 cm)",
         "precio": "$110",
-        "descripcion": "quesadilla gigante (45 cm) con queso y hasta 3 guisados, incluye ensalada.",
+        "descripcion": "Quesadilla gigante (45 cm) con queso y hasta 3 guisados, incluye ensalada.",
         "descripcionEn": "Giant 45 cm quesadilla with cheese and up to three fillings; includes salad.",
         "imagen": "images/Menu/machete.jpg",
+        "maxGuisados": 3,
         "badges": []
       },
       {
@@ -1854,9 +1812,10 @@
         "nombre": "Quesadilla",
         "nombreEn": "Quesadilla",
         "precio": "$60",
-        "descripcion": "quesadilla mediana con queso y guisado, incluye ensalada.",
-        "descripcionEn": "Medium-sized quesadilla with cheese and a choice of filling; includes salad.",
+        "descripcion": "Quesadilla mediana con queso y 1 guisado a elegir, incluye ensalada.",
+        "descripcionEn": "Medium-sized quesadilla with cheese and 1 filling of your choice; includes salad.",
         "imagen": "images/Menu/quesadilla.jpg",
+        "maxGuisados": 1,
         "badges": []
       },
       {
@@ -1865,7 +1824,7 @@
         "nombre": "Huarache",
         "nombreEn": "Huarache",
         "precio": "$60",
-        "descripcion": "hecho de tortilla de maíz,frijoles,guisado, ensalada, crema y queso.",
+        "descripcion": "Hecho de tortilla de maíz, frijoles, guisado, ensalada, crema y queso.",
         "descripcionEn": "Made with a corn tortilla, beans, a choice of filling, salad, cream and cheese.",
         "imagen": "images/Menu/huarache.jpg",
         "badges": []
@@ -1876,9 +1835,10 @@
         "nombre": "Gordita",
         "nombreEn": "Gordita",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Gordita tradicional con 1 guisado a elegir.",
+        "descripcionEn": "Traditional stuffed corn masa pocket with 1 filling of your choice.",
         "imagen": "images/Menu/gordita.jpg",
+        "maxGuisados": 1,
         "badges": []
       },
       {
@@ -1887,20 +1847,23 @@
         "nombre": "Sope sencillo o con guiso",
         "nombreEn": "Plain sope or with filling",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Puedes pedirlo sencillo o elegir 1 guisado.",
+        "descripcionEn": "Order it plain or choose 1 filling.",
         "imagen": "images/Menu/sope.jpg",
+        "maxGuisados": 1,
+        "permiteSencillo": true,
         "badges": []
       },
       {
         "id": "tortas",
         "categoria": "Antojitos pal corazón ❤️",
-        "nombre": "Tortas",
-        "nombreEn": "Tortas (Mexican sandwiches)",
+        "nombre": "Torta de guisado",
+        "nombreEn": "Torta with filling (Mexican sandwich)",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Torta preparada con 1 guisado a elegir.",
+        "descripcionEn": "Mexican sandwich prepared with 1 filling of your choice.",
         "imagen": "images/Menu/tortas.jpg",
+        "maxGuisados": 1,
         "badges": []
       },
       {
@@ -1909,9 +1872,10 @@
         "nombre": "Tortas de barbacoa",
         "nombreEn": "Barbacoa tortas",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Disponible únicamente los fines de semana.",
+        "descripcionEn": "Available on weekends only.",
         "imagen": "images/Menu/tortas_barbacoa.jpg",
+        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -1931,9 +1895,10 @@
         "nombre": "Lechuza con barbacoa",
         "nombreEn": "Lechuza with barbacoa",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Disponible únicamente los fines de semana.",
+        "descripcionEn": "Available on weekends only.",
         "imagen": "images/Menu/lechuza_barbacoa.jpg",
+        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -1953,9 +1918,10 @@
         "nombre": "Gringa con barbacoa",
         "nombreEn": "Gringa with barbacoa",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Disponible únicamente los fines de semana.",
+        "descripcionEn": "Available on weekends only.",
         "imagen": "images/Menu/gringa_barbacoa.jpg",
+        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -1990,7 +1956,7 @@
         "nombre": "Chilaquiles con huevo",
         "nombreEn": "Chilaquiles with egg",
         "precio": "$95",
-        "descripcion": "chilaquiles acompañados de huevo, pollo o bisteck de puerco, incluye café y bolillo.",
+        "descripcion": "Chilaquiles acompañados de huevo, pollo o bisteck de puerco, incluye café y bolillo.",
         "descripcionEn": "Chilaquiles served with egg, chicken or pork steak; includes coffee and a bread roll.",
         "imagen": "images/Menu/chilaquiles.jpg",
         "badges": []
@@ -2001,7 +1967,7 @@
         "nombre": "Huevos con chorizo",
         "nombreEn": "Eggs with chorizo",
         "precio": "$95",
-        "descripcion": "huevos revueltos con chorizo, acompañados de frijoles y queso, café, tortillas o bolillo.",
+        "descripcion": "Huevos revueltos con chorizo, acompañados de frijoles y queso, café, tortillas o bolillo.",
         "descripcionEn": "Scrambled eggs with chorizo, served with beans and cheese; includes coffee and your choice of tortillas or a bread roll.",
         "imagen": "images/Menu/huevos_chorizo.jpg",
         "badges": []
@@ -2012,7 +1978,7 @@
         "nombre": "Huevos con jamón",
         "nombreEn": "Eggs with ham",
         "precio": "$95",
-        "descripcion": "huevos revueltos con jamón de pavo, acompañado de frijoles y queso, inluye café, tortillas o bolillo.",
+        "descripcion": "Huevos revueltos con jamón de pavo, acompañado de frijoles y queso, incluye café, tortillas o bolillo.",
         "descripcionEn": "Scrambled eggs with turkey ham, served with beans and cheese; includes coffee and tortillas or a bread roll.",
         "imagen": "images/Menu/huevos_jamon.jpg",
         "badges": []
@@ -2093,7 +2059,7 @@
         "nombre": "Pollo empanizado",
         "nombreEn": "Breaded chicken",
         "precio": "$100",
-        "descripcion": "pieza de pollo empanizado frita, acompañada de ensalada, papas fritas, arroz, frijoles, incluye consomé y agua de frutas.",
+        "descripcion": "Pieza de pollo empanizado frita, acompañada de ensalada, papas fritas, arroz, frijoles, incluye consomé y agua de frutas.",
         "descripcionEn": "A piece of fried breaded chicken with salad, French fries, rice and beans; includes consommé and fruit-flavored water.",
         "imagen": "images/Menu/pollo_empanizado.jpg",
         "badges": []
@@ -2104,7 +2070,7 @@
         "nombre": "Bisteck ranchero",
         "nombreEn": "Ranch-style beef steak",
         "precio": "$100",
-        "descripcion": "bisteck de res encebollado bañado en salsa guisada, acompañado de arroz, papas fritas, frijoles, ensalada, incluye consomé y agua de frutas.",
+        "descripcion": "Bisteck de res encebollado bañado en salsa guisada, acompañado de arroz, papas fritas, frijoles, ensalada, incluye consomé y agua de frutas.",
         "descripcionEn": "Beef steak with onions in a cooked salsa, served with rice, French fries, beans and salad; includes consommé and fruit-flavored water.",
         "imagen": "images/Menu/bisteck_ranchero.jpg",
         "badges": []
@@ -2115,7 +2081,7 @@
         "nombre": "Bisteck a la mexicana",
         "nombreEn": "Mexican-style beef steak",
         "precio": "$100",
-        "descripcion": "bisteck picado a la mexicana, acompañado de arroz, frijoles y ensalada, incluye tortillas, consomé y agua de frutas.",
+        "descripcion": "Bisteck picado a la mexicana, acompañado de arroz, frijoles y ensalada, incluye tortillas, consomé y agua de frutas.",
         "descripcionEn": "Diced beef steak cooked Mexican-style, served with rice, beans and salad; includes tortillas, consommé and fruit-flavored water.",
         "imagen": "images/Menu/bisteck_mexicana.jpg",
         "badges": []
@@ -2218,7 +2184,7 @@
         "nombre": "Pollo en salsa",
         "nombreEn": "Chicken in salsa",
         "precio": "$90",
-        "descripcion": "rico pollo bañado en salsa, acompañado de arroz, frijoles, incluye tortillas, consomé y agua de frutas.",
+        "descripcion": "Rico pollo bañado en salsa, acompañado de arroz, frijoles, incluye tortillas, consomé y agua de frutas.",
         "descripcionEn": "Chicken in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.",
         "imagen": "images/Menu/pollo_salsa.jpg",
         "badges": []
@@ -2229,7 +2195,7 @@
         "nombre": "Mole de pollo",
         "nombreEn": "Chicken in mole sauce",
         "precio": "$90",
-        "descripcion": "mole poblano dulce acompañado de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
+        "descripcion": "Mole poblano dulce acompañado de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
         "descripcionEn": "Sweet Puebla-style mole with chicken, rice and beans; includes tortillas, consommé and fruit-flavored water.",
         "imagen": "images/Menu/mole_pollo.jpg",
         "badges": []
@@ -2240,7 +2206,7 @@
         "nombre": "Costilla de puerco",
         "nombreEn": "Pork ribs in salsa",
         "precio": "$90",
-        "descripcion": "trocitos de puerco bañados en salsa, acompañados de arroz y frijoles, incluye tortillas, consomé y agua de frutas",
+        "descripcion": "Trocitos de puerco bañados en salsa, acompañados de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
         "descripcionEn": "Pieces of pork in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.",
         "imagen": "images/Menu/costilla_puerco.jpg",
         "badges": []
@@ -2358,9 +2324,10 @@
         "nombre": "Orden de barbacoa",
         "nombreEn": "Barbacoa plate",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Disponible únicamente los fines de semana.",
+        "descripcionEn": "Available on weekends only.",
         "imagen": "images/Menu/orden_barbacoa.jpg",
+        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -2369,9 +2336,10 @@
         "nombre": "Orden de birria",
         "nombreEn": "Birria plate",
         "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Disponible únicamente los fines de semana.",
+        "descripcionEn": "Available on weekends only.",
         "imagen": "images/Menu/orden_birria.jpg",
+        "soloFinDeSemana": true,
         "badges": []
       },
 
@@ -2436,7 +2404,7 @@
         "nombre": "Menudo",
         "nombreEn": "Menudo",
         "precio": "$110",
-        "descripcion": "rica pancita de res en caldo rojo (disponible en tamaño chico, mediano y grande), incluye guarniciones, tortillas hechas a mano y agua de frutas.",
+        "descripcion": "Rica pancita de res en caldo rojo (disponible en tamaño chico, mediano y grande), incluye guarniciones, tortillas hechas a mano y agua de frutas.",
         "descripcionEn": "Beef tripe in red broth (available in small, medium and large); includes garnishes, handmade tortillas and fruit-flavored water.",
         "imagen": "images/Menu/menudo.jpg",
         "badges": []
@@ -2458,7 +2426,7 @@
         "nombre": "Espinazo",
         "nombreEn": "Pork backbone soup",
         "precio": "$110",
-        "descripcion": "rico caldo de espinazo de puerco (disponible en tamaño chico, mediano y grande), acompañado de arroz, incluye tortillas y agua de frutas.",
+        "descripcion": "Rico caldo de espinazo de puerco (disponible en tamaño chico, mediano y grande), acompañado de arroz, incluye tortillas y agua de frutas.",
         "descripcionEn": "Pork backbone broth (available in small, medium and large), served with rice; includes tortillas and fruit-flavored water.",
         "imagen": "images/Menu/espinazo_puerco.jpg",
         "badges": []
@@ -2469,7 +2437,7 @@
         "nombre": "Caldo de res",
         "nombreEn": "Beef and vegetable soup",
         "precio": "$100",
-        "descripcion": "cocido de res con verduras y arroz, incluye agua de frutas.",
+        "descripcion": "Cocido de res con verduras y arroz, incluye agua de frutas.",
         "descripcionEn": "Beef stew with vegetables and rice; includes fruit-flavored water.",
         "imagen": "images/Menu/caldo_res.jpg",
         "badges": []
@@ -2517,7 +2485,7 @@
         "nombre": "Camarones empanizados o al coco 🥥🌴",
         "nombreEn": "Breaded or coconut shrimp 🥥🌴",
         "precio": "$220",
-        "descripcion": "ricos camarones empanizados o con coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.",
+        "descripcion": "Ricos camarones empanizados o con coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.",
         "descripcionEn": "Ten breaded or coconut shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.",
         "imagen": "images/Menu/camarones_coco.jpg",
         "badges": []
@@ -2561,7 +2529,7 @@
         "nombre": "Cóctel de camarones",
         "nombreEn": "Shrimp cocktail",
         "precio": "$150",
-        "descripcion": "coctel de camarones con salsas y guarniciones, incluye agua de frutas.",
+        "descripcion": "Coctel de camarones con salsas y guarniciones, incluye agua de frutas.",
         "descripcionEn": "Shrimp cocktail served with sauces and garnishes; includes fruit-flavored water.",
         "imagen": "images/Menu/coctel_camaron.jpg",
         "badges": []
@@ -2572,7 +2540,7 @@
         "nombre": "Vuelve a la vida",
         "nombreEn": "Vuelve a la Vida seafood cocktail",
         "precio": "$150",
-        "descripcion": "coctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.",
+        "descripcion": "Coctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.",
         "descripcionEn": "Shrimp, octopus and oyster cocktail served with sauces and garnishes; includes fruit-flavored water.",
         "imagen": "images/Menu/vuelve_vida.jpg",
         "badges": []
@@ -2583,7 +2551,7 @@
         "nombre": "Caldo de pescado",
         "nombreEn": "Fish soup",
         "precio": "$120",
-        "descripcion": "caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.",
+        "descripcion": "Caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.",
         "descripcionEn": "Fish broth with stingray meat and garnishes; includes fruit-flavored water.",
         "imagen": "images/Menu/caldo_pescado.jpg",
         "badges": []
@@ -2620,7 +2588,7 @@
         "nombre": "Paliacates Los de La Monita",
         "nombreEn": "Los de La Monita bandanas",
         "precio": "$270",
-        "descripcion": "paliacate, variedad de colores.",
+        "descripcion": "Paliacate, variedad de colores.",
         "descripcionEn": "Bandana available in a variety of colors.",
         "imagen": "images/Menu/paliacates.jpg",
         "badges": []
@@ -2631,7 +2599,7 @@
         "nombre": "Libreta grande Los de La Monita",
         "nombreEn": "Los de La Monita large notebook",
         "precio": "$160",
-        "descripcion": "variedad de colores.",
+        "descripcion": "Variedad de colores.",
         "descripcionEn": "Available in a variety of colors.",
         "imagen": "images/Menu/libreta_grande.jpg",
         "badges": []
@@ -2642,7 +2610,7 @@
         "nombre": "Libreta chica Los de La Monita",
         "nombreEn": "Los de La Monita small notebook",
         "precio": "$80",
-        "descripcion": "variedad de colores.",
+        "descripcion": "Variedad de colores.",
         "descripcionEn": "Available in a variety of colors.",
         "imagen": "images/Menu/libreta_chica.jpg",
         "badges": []
@@ -2658,9 +2626,12 @@
   const platillos = CONFIG.platillos;
   const categorias = CONFIG.categorias;
 
-  // Añade tres presentaciones a los caldos indicados en CONFIG.
+  // Configura presentaciones de caldos y límite de guisados por platillo
   const idsCaldosConTamano = new Set(CONFIG.caldosConTamano || []);
   platillos.forEach(item => {
+    if (CONFIG.guisadosPorPlatillo && CONFIG.guisadosPorPlatillo[item.id]) {
+      item.maxGuisados = CONFIG.guisadosPorPlatillo[item.id];
+    }
     if (!idsCaldosConTamano.has(item.id)) return;
     item.presentacionSeleccionada = CONFIG.tamanosCaldos?.[0]?.id || "chico";
     const precios = CONFIG.preciosPorTamano?.[item.id] || {};
@@ -2669,19 +2640,19 @@
       precio: precios[tamano.id] ?? item.precio
     }));
   });
+
   let idioma = CONFIG.idiomaInicial === 'en' ? 'en' : 'es';
   const t = (clave) => CONFIG.textos[idioma]?.[clave] || CONFIG.textos.es[clave] || clave;
-  const textoProducto = (item, campo) => idioma==='en' ? (item[campo+'En'] || item[campo]) : item[campo];
-  const etiquetaCategoria = cat => idioma==='en' ? (cat==='Todos' ? t('all') : CONFIG.categoriasEn[cat] || cat) : cat;
-  const precioVisible = precio => precioANumero(precio)===null ? t('pendingPrice') : precio;
-
+  const textoProducto = (item, campo) => idioma === 'en' ? (item[campo + 'En'] || item[campo]) : item[campo];
+  const etiquetaCategoria = cat => idioma === 'en' ? (cat === 'Todos' ? t('all') : CONFIG.categoriasEn[cat] || cat) : cat;
+  const precioVisible = precio => precioANumero(precio) === null ? t('pendingPrice') : precio;
 
   let categoriaActual = "Todos";
   let terminoBusqueda = "";
   let toastTimer = null;
 
   /* ===================================================== */
-  /* ELEMENTOS                                             */
+  /* ELEMENTOS DEL DOM                                     */
   /* ===================================================== */
 
   const heroNombre = document.getElementById("heroNombre");
@@ -2695,7 +2666,6 @@
 
   const movilInicio = document.getElementById("movilInicio");
   const movilMenu = document.getElementById("movilMenu");
-
   const movilMaps = document.getElementById("movilMaps");
 
   const vistaInicio = document.getElementById("vistaInicio");
@@ -2712,7 +2682,6 @@
   const botonMaps = document.getElementById("botonMaps");
   const botonPedidoInicio = document.getElementById("botonPedidoInicio");
 
-
   const categoriasHTML = document.getElementById("categorias");
   const listaHTML = document.getElementById("listaPlatillos");
   const inputBuscador = document.getElementById("inputBuscador");
@@ -2722,7 +2691,7 @@
   const footerTexto = document.getElementById("footerTexto");
 
   /* ===================================================== */
-  /* IDENTIDAD                                             */
+  /* IDENTIDAD VISUAL                                      */
   /* ===================================================== */
 
   document.documentElement.style.setProperty("--fondo", restaurante.colores.fondo);
@@ -2744,74 +2713,51 @@
 
   document.title = restaurante.nombre + " | Menú Digital";
 
-  /* FOTOS */
   function cargarImagenSegura(img, fallback, ruta, alt){
     if(!ruta){
       img.style.display = "none";
       if(fallback) fallback.style.display = "flex";
       return;
     }
-
     img.src = new URL(ruta, document.baseURI).href;
     img.alt = alt;
-
     img.addEventListener("load", () => {
       if(fallback) fallback.style.display = "none";
     });
-
     img.addEventListener("error", () => {
       img.style.display = "none";
       if(fallback) fallback.style.display = "flex";
     });
   }
 
-  cargarImagenSegura(
-    heroImagen,
-    null,
-    restaurante.heroImagen,
-    "Ambiente de " + restaurante.nombre
-  );
-
-  cargarImagenSegura(
-    imagenRestaurante,
-    historiaFallback,
-    restaurante.imagenRestaurante,
-    "Fotografía de " + restaurante.nombre
-  );
+  cargarImagenSegura(heroImagen, null, restaurante.heroImagen, "Ambiente de " + restaurante.nombre);
+  cargarImagenSegura(imagenRestaurante, historiaFallback, restaurante.imagenRestaurante, "Fotografía de " + restaurante.nombre);
 
   if(!restaurante.horario){
     contactoHorario.style.display = "none";
   }
 
-  /* ===================================================== */
-  /* TOAST                                                 */
-  /* ===================================================== */
-
   function mostrarToast(mensaje){
     if(toastTimer) clearTimeout(toastTimer);
-
     toast.textContent = mensaje;
     toast.classList.add("visible");
-
     toastTimer = setTimeout(() => {
       toast.classList.remove("visible");
-    }, 2600);
+    }, 2800);
   }
-
-  /* ===================================================== */
-  /* CONTACTO                                              */
-  /* ===================================================== */
 
   function abrirMaps(){
     if(!restaurante.mapsUrl){
       mostrarToast(t('demoMaps'));
       return;
     }
-
-    window.open(restaurante.mapsUrl,"_blank","noopener,noreferrer");
+    window.open(restaurante.mapsUrl, "_blank", "noopener,noreferrer");
   }
 
-  // CARRITO: las cantidades se conservan al cambiar de categoría o cerrar el diálogo.
+  /* ===================================================== */
+  /* LÓGICA DE CARRITO, VARIANTES DE GUISADOS Y ENVÍO       */
+  /* ===================================================== */
+
   const carrito = new Map();
   const pedidoOverlay = document.getElementById('pedidoOverlay');
   const pedidoFormulario = document.getElementById('pedidoFormulario');
@@ -2827,16 +2773,25 @@
   const buscarDireccionMapa = document.getElementById('buscarDireccionMapa');
   const confirmarDireccionMapa = document.getElementById('confirmarDireccionMapa');
   let focoAntesPedido = null, pedidoId = null;
-  const moneda = n => new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n);
-  function precioANumero(valor){const n=Number(String(valor).replace(/[$,\s]/g,''));return Number.isFinite(n)&&n>=0&&String(valor).trim()!==''?n:null;}
-  function crearVariantePedido(item,presentacionId=item.presentacionSeleccionada){
-    if(!item.presentaciones) return item;
+
+  const moneda = n => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(n);
+
+  function precioANumero(valor){
+    const limpio = String(valor ?? '').replace(/[$,\s]/g, '');
+    if(!limpio) return null;
+    const n = Number(limpio);
+    return Number.isFinite(n) && n >= 0 ? n : null;
+  }
+
+  function crearVariantePedido(item, presentacionId = item.presentacionSeleccionada){
+    if(!item.presentaciones) return { ...item, originalId: item.id };
     const presentacion = item.presentaciones.find(p => p.id === presentacionId);
     if(!presentacion){
-      return {...item,id:item.id + "__sin_tamano",precio:"Por definir"};
+      return { ...item, originalId: item.id, id: item.id + "__sin_tamano", precio: "Por definir" };
     }
     return {
       ...item,
+      originalId: item.id,
       id: item.id + "__" + presentacion.id,
       nombre: item.nombre + " (" + presentacion.nombre + ")",
       nombreEn: (item.nombreEn || item.nombre) + " (" + presentacion.nombreEn + ")",
@@ -2844,315 +2799,618 @@
       presentacionId: presentacion.id
     };
   }
-  function normalizarNumeroWhatsApp(){let n=String(restaurante.whatsappNumero||'').replace(/\D/g,'');return n.length===10?'52'+n:n;}
-  function mostrarEnvioActivo(){return Boolean(restaurante.mostrarCostoEnvio);}
-  function envioConfigurado(){const r=restaurante,o=r.origenEnvio;return mostrarEnvioActivo()&&!!o&&Number.isFinite(o.lat)&&Math.abs(o.lat)<=90&&Number.isFinite(o.lng)&&Math.abs(o.lng)<=180&&[r.envioBase,r.envioKmIncluidos,r.envioKmExtra].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0);}
-  function cambiarCantidad(item,cambio,notificar=false){
-    const anterior=carrito.get(item.id)?.cantidad||0;
-    const cantidad=Math.max(0,Math.min(99,anterior+cambio));
-    if(precioANumero(item.precio)===null)return;
-    if(cantidad)carrito.set(item.id,{item,cantidad});else carrito.delete(item.id);
-    if(!pedidoId&&carrito.size)pedidoId='CL-'+Date.now().toString(36).toUpperCase();
-    if(!carrito.size)pedidoId=null;
+
+  function normalizarNumeroWhatsApp(){
+    let n = String(restaurante.whatsappNumero || '').replace(/\D/g, '');
+    return n.length === 10 ? '52' + n : n;
+  }
+
+  function mostrarEnvioActivo(){
+    return Boolean(restaurante.mostrarCostoEnvio);
+  }
+
+  function envioConfigurado(){
+    const r = restaurante, o = r.origenEnvio;
+    return mostrarEnvioActivo() && !!o && Number.isFinite(o.lat) && Math.abs(o.lat) <= 90 && Number.isFinite(o.lng) && Math.abs(o.lng) <= 180 && [r.envioBase, r.envioKmIncluidos, r.envioKmExtra].every(n => typeof n === 'number' && Number.isFinite(n) && n >= 0);
+  }
+
+  // Permite añadir platillos tanto con precio numérico como con precio "Por definir"
+  function cambiarCantidad(item, cambio, notificar = false){
+    if(!item.originalId) item.originalId = item.id;
+    const anterior = carrito.get(item.id)?.cantidad || 0;
+    const cantidad = Math.max(0, Math.min(99, anterior + cambio));
+    if(cantidad) carrito.set(item.id, { item, cantidad });
+    else carrito.delete(item.id);
+
+    if(!pedidoId && carrito.size) pedidoId = 'CL-' + Date.now().toString(36).toUpperCase();
+    if(!carrito.size) pedidoId = null;
+
     actualizarPedidoUI();
-    if(notificar && cantidad>anterior){
-      mostrarToast(t('addedToast')+': '+textoProducto(item,'nombre'));
+    if(notificar && cantidad > anterior){
+      mostrarToast(t('addedToast') + ': ' + textoProducto(item, 'nombre'));
     }
   }
 
-  // Controles compactos dentro del modal de resumen del pedido
-  function crearControlesPedido(item){
-    const fila=document.createElement('div');fila.className='control-carrito';fila.dataset.producto=item.id;fila.dataset.precio=item.precio??'';
-    const etiqueta=document.createElement('span');etiqueta.textContent=t('quantity');
-    const control=document.createElement('div');control.className='cantidad-control';
-    const menos=document.createElement('button'), mas=document.createElement('button'),numero=document.createElement('output');
-    menos.type=mas.type='button';menos.textContent='−';mas.textContent='+';
-    menos.setAttribute('aria-label',t('remove')+' '+textoProducto(item,'nombre'));mas.setAttribute('aria-label',t('add')+' '+textoProducto(item,'nombre'));
-    numero.setAttribute('aria-label',t('quantityOf')+' '+textoProducto(item,'nombre'));
-    numero.textContent=String(carrito.get(item.id)?.cantidad||0);menos.disabled=numero.textContent==='0';mas.disabled=precioANumero(item.precio)===null||Number(numero.textContent)>=99;
-    menos.addEventListener('click',e=>{e.stopPropagation();cambiarCantidad(item,-1);});
-    mas.addEventListener('click',e=>{e.stopPropagation();cambiarCantidad(item,1);});
-    control.append(menos,numero,mas);fila.append(etiqueta,control);return fila;
+  // Resta la última variante agregada de un platillo base
+  function restarUltimaVarianteDePlatillo(itemBaseId){
+    const entradas = [...carrito.entries()].filter(([, r]) => r.item.originalId === itemBaseId || r.item.id === itemBaseId);
+    if(!entradas.length) return;
+    const [, ultimaEntrada] = entradas[entradas.length - 1];
+    cambiarCantidad(ultimaEntrada.item, -1);
   }
 
-  // Controles con botón "Añadir al pedido +" para cada platillo individual en la tarjeta del menú
-  function actualizarControlCompraPlatillo(caja,item){
-    const cantidad=carrito.get(item.id)?.cantidad||0;
-    const estado=caja.querySelector('.caldo-en-pedido');
-    const botonRestar=caja.querySelector('.platillo-restar-btn');
-    const botonAgregar=caja.querySelector('.caldo-agregar-btn');
+  function crearControlesPedido(item){
+    const fila = document.createElement('div');
+    fila.className = 'control-carrito';
+    fila.dataset.producto = item.id;
+    fila.dataset.precio = item.precio ?? '';
+
+    const etiqueta = document.createElement('span');
+    etiqueta.textContent = t('quantity');
+
+    const control = document.createElement('div');
+    control.className = 'cantidad-control';
+
+    const menos = document.createElement('button');
+    const mas = document.createElement('button');
+    const numero = document.createElement('output');
+
+    menos.type = mas.type = 'button';
+    menos.textContent = '−';
+    mas.textContent = '+';
+    menos.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre'));
+    mas.setAttribute('aria-label', t('add') + ' ' + textoProducto(item, 'nombre'));
+    numero.setAttribute('aria-label', t('quantityOf') + ' ' + textoProducto(item, 'nombre'));
+
+    const cantActual = carrito.get(item.id)?.cantidad || 0;
+    numero.textContent = String(cantActual);
+    menos.disabled = cantActual === 0;
+    mas.disabled = cantActual >= 99;
+
+    menos.addEventListener('click', e => { e.stopPropagation(); cambiarCantidad(item, -1); });
+    mas.addEventListener('click', e => { e.stopPropagation(); cambiarCantidad(item, 1); });
+
+    control.append(menos, numero, mas);
+    fila.append(etiqueta, control);
+    return fila;
+  }
+
+  function actualizarControlCompraPlatillo(caja, item){
+    const cantidadTotal = [...carrito.values()]
+      .filter(r => r.item.originalId === item.id || r.item.id === item.id)
+      .reduce((sum, r) => sum + r.cantidad, 0);
+
+    const estado = caja.querySelector('.caldo-en-pedido');
+    const botonRestar = caja.querySelector('.platillo-restar-btn');
+    const botonAgregar = caja.querySelector('.caldo-agregar-btn');
+
     estado.replaceChildren();
-    if(cantidad){
-      const fuerte=document.createElement('strong');
-      fuerte.textContent=t('inOrder')+': '+cantidad;
+    if(cantidadTotal){
+      const fuerte = document.createElement('strong');
+      fuerte.textContent = t('inOrder') + ': ' + cantidadTotal;
       estado.appendChild(fuerte);
     }else{
-      estado.textContent=t('notInOrder');
+      estado.textContent = t('notInOrder');
     }
+
     if(botonRestar){
-      botonRestar.hidden=!cantidad;
-      botonRestar.disabled=!cantidad;
-      botonRestar.setAttribute('aria-label',t('remove')+' '+textoProducto(item,'nombre'));
+      botonRestar.hidden = !cantidadTotal;
+      botonRestar.disabled = !cantidadTotal;
+      botonRestar.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre'));
     }
-    botonAgregar.textContent=cantidad?t('addAnother')+'  +':t('addToOrder')+'  +';
-    botonAgregar.disabled=precioANumero(item.precio)===null || cantidad>=99;
-    botonAgregar.setAttribute('aria-label',t(cantidad?'addAnother':'addToOrder')+' '+textoProducto(item,'nombre')+' '+precioVisible(item.precio));
+
+    botonAgregar.textContent = cantidadTotal ? t('addAnother') + '  +' : t('addToOrder') + '  +';
+    botonAgregar.disabled = cantidadTotal >= 99;
+    botonAgregar.setAttribute('aria-label', t(cantidadTotal ? 'addAnother' : 'addToOrder') + ' ' + textoProducto(item, 'nombre') + ' ' + precioVisible(item.precio));
   }
 
   function crearControlCompraPlatillo(item){
-    const caja=document.createElement('section');
-    caja.className='platillo-compra';
-    caja.dataset.producto=item.id;
+    const caja = document.createElement('section');
+    caja.className = 'platillo-compra';
+    caja.dataset.producto = item.id;
 
-    const pie=document.createElement('div');
-    pie.className='caldo-compra-pie';
+    // Si el platillo requiere selección de guisados (1 o hasta 3)
+    if(item.maxGuisados){
+      const encabezado = document.createElement('div');
+      encabezado.className = 'caldo-compra-etiqueta';
+      const titulo = document.createElement('span');
+      titulo.textContent = item.maxGuisados > 1 ? t('chooseUpTo3Guisados') : t('chooseOneGuisado');
+      encabezado.appendChild(titulo);
+      caja.appendChild(encabezado);
 
-    const estado=document.createElement('div');
-    estado.className='caldo-en-pedido';
-    estado.setAttribute('aria-live','polite');
+      const guisadosDiv = document.createElement('div');
+      guisadosDiv.className = 'guisados-contenedor';
+      const selectsArray = [];
 
-    const acciones=document.createElement('div');
-    acciones.className='compra-acciones';
+      for(let i = 0; i < item.maxGuisados; i++){
+        const select = document.createElement('select');
+        select.className = 'guisado-select';
+        const placeholderTexto = item.maxGuisados === 1
+          ? t('selectSingleGuisado')
+          : (i === 0 ? t('selectGuisadoRequired') : (i === 1 ? t('selectGuisadoOptional2') : t('selectGuisadoOptional3')));
 
-    const restar=document.createElement('button');
-    restar.type='button';
-    restar.className='platillo-restar-btn';
-    restar.textContent='−';
-    restar.hidden=true;
-    restar.addEventListener('click',e=>{
+        select.setAttribute('aria-label', placeholderTexto + ' - ' + textoProducto(item, 'nombre'));
+
+        const optDefault = document.createElement('option');
+        optDefault.value = '';
+        optDefault.textContent = placeholderTexto;
+        select.appendChild(optDefault);
+
+        // Si es Sope sencillo o con guiso, permite elegir "Sencillo (sin guisado)"
+        if(item.permiteSencillo && i === 0){
+          const optSencillo = document.createElement('option');
+          optSencillo.value = 'sencillo';
+          optSencillo.dataset.nombreEs = 'Sencillo';
+          optSencillo.dataset.nombreEn = 'Plain';
+          optSencillo.textContent = t('plainNoGuisado');
+          select.appendChild(optSencillo);
+        }
+
+        (CONFIG.guisados || []).forEach(g => {
+          const opt = document.createElement('option');
+          opt.value = g.id;
+          opt.dataset.nombreEs = g.nombre;
+          opt.dataset.nombreEn = g.nombreEn || g.nombre;
+          opt.textContent = idioma === 'en' ? (g.nombreEn || g.nombre) : g.nombre;
+          select.appendChild(opt);
+        });
+
+        select.addEventListener('change', () => {
+          select.classList.remove('requerido-alerta');
+        });
+
+        guisadosDiv.appendChild(select);
+        selectsArray.push(select);
+      }
+
+      caja.appendChild(guisadosDiv);
+      caja.selectsGuisados = selectsArray;
+    }
+
+    const pie = document.createElement('div');
+    pie.className = 'caldo-compra-pie';
+
+    const estado = document.createElement('div');
+    estado.className = 'caldo-en-pedido';
+    estado.setAttribute('aria-live', 'polite');
+
+    const acciones = document.createElement('div');
+    acciones.className = 'compra-acciones';
+
+    const restar = document.createElement('button');
+    restar.type = 'button';
+    restar.className = 'platillo-restar-btn';
+    restar.textContent = '−';
+    restar.hidden = true;
+    restar.addEventListener('click', e => {
       e.stopPropagation();
-      cambiarCantidad(item,-1);
+      restarUltimaVarianteDePlatillo(item.id);
     });
 
-    const agregar=document.createElement('button');
-    agregar.type='button';
-    agregar.className='caldo-agregar-btn';
-    agregar.addEventListener('click',e=>{
+    const agregar = document.createElement('button');
+    agregar.type = 'button';
+    agregar.className = 'caldo-agregar-btn';
+    agregar.addEventListener('click', e => {
       e.stopPropagation();
-      cambiarCantidad(item,1,true);
+
+      if(item.maxGuisados && caja.selectsGuisados){
+        const seleccionados = caja.selectsGuisados.filter(s => s.value !== '');
+        if(!seleccionados.length){
+          const primerSelect = caja.selectsGuisados[0];
+          primerSelect.classList.add('requerido-alerta');
+          primerSelect.focus();
+          mostrarToast(t('alertSelectGuisado'));
+          return;
+        }
+
+        const nombresEs = seleccionados.map(s => s.selectedOptions[0].dataset.nombreEs);
+        const nombresEn = seleccionados.map(s => s.selectedOptions[0].dataset.nombreEn);
+        const ids = seleccionados.map(s => s.value);
+
+        const variante = {
+          ...item,
+          originalId: item.id,
+          id: item.id + '__' + ids.join('_'),
+          nombre: item.nombre + ' [' + nombresEs.join(', ') + ']',
+          nombreEn: (item.nombreEn || item.nombre) + ' [' + nombresEn.join(', ') + ']'
+        };
+
+        cambiarCantidad(variante, 1, true);
+
+        // Limpia los selectores para permitir otra combinación fácilmente
+        caja.selectsGuisados.forEach(s => {
+          s.value = '';
+          s.classList.remove('requerido-alerta');
+        });
+        return;
+      }
+
+      cambiarCantidad({ ...item, originalId: item.id }, 1, true);
     });
 
-    acciones.append(restar,agregar);
-    pie.append(estado,acciones);
+    acciones.append(restar, agregar);
+    pie.append(estado, acciones);
     caja.appendChild(pie);
-    actualizarControlCompraPlatillo(caja,item);
+    actualizarControlCompraPlatillo(caja, item);
     return caja;
   }
 
-  function actualizarControlPresentacion(caja,item){
-    const tamanoId=caja.dataset.tamanoSeleccionado || item.presentacionSeleccionada;
-    const presentacion=item.presentaciones.find(p=>p.id===tamanoId);
-    if(!presentacion)return;
-    const varianteId=item.id+"__"+presentacion.id;
-    const cantidad=carrito.get(varianteId)?.cantidad||0;
-    const estado=caja.querySelector('.caldo-en-pedido');
-    const botonRestar=caja.querySelector('.platillo-restar-btn');
-    const boton=caja.querySelector('.caldo-agregar-btn');
-    const nombreTamano=idioma==='en'?presentacion.nombreEn:presentacion.nombre;
+  function actualizarControlPresentacion(caja, item){
+    const tamanoId = caja.dataset.tamanoSeleccionado || item.presentacionSeleccionada;
+    const presentacion = item.presentaciones.find(p => p.id === tamanoId);
+    if(!presentacion) return;
+    const varianteId = item.id + "__" + presentacion.id;
+    const cantidad = carrito.get(varianteId)?.cantidad || 0;
+    const estado = caja.querySelector('.caldo-en-pedido');
+    const botonRestar = caja.querySelector('.platillo-restar-btn');
+    const boton = caja.querySelector('.caldo-agregar-btn');
+    const nombreTamano = idioma === 'en' ? presentacion.nombreEn : presentacion.nombre;
+
     estado.replaceChildren();
     if(cantidad){
-      const fuerte=document.createElement('strong');
-      fuerte.textContent=t('inOrder')+': '+cantidad+' × '+nombreTamano;
+      const fuerte = document.createElement('strong');
+      fuerte.textContent = t('inOrder') + ': ' + cantidad + ' × ' + nombreTamano;
       estado.appendChild(fuerte);
     }else{
-      estado.textContent=t('notInOrder');
+      estado.textContent = t('notInOrder');
     }
+
     if(botonRestar){
-      botonRestar.hidden=!cantidad;
-      botonRestar.disabled=!cantidad;
-      botonRestar.setAttribute('aria-label',t('remove')+' '+textoProducto(item,'nombre')+' '+nombreTamano);
+      botonRestar.hidden = !cantidad;
+      botonRestar.disabled = !cantidad;
+      botonRestar.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre') + ' ' + nombreTamano);
     }
-    boton.textContent=cantidad?t('addAnother')+'  +':t('addToOrder')+'  +';
-    boton.disabled=precioANumero(presentacion.precio)===null || cantidad>=99;
-    boton.setAttribute('aria-label',t(cantidad?'addAnother':'addToOrder')+' '+textoProducto(item,'nombre')+' '+nombreTamano+' '+precioVisible(presentacion.precio));
+
+    boton.textContent = cantidad ? t('addAnother') + '  +' : t('addToOrder') + '  +';
+    boton.disabled = cantidad >= 99;
+    boton.setAttribute('aria-label', t(cantidad ? 'addAnother' : 'addToOrder') + ' ' + textoProducto(item, 'nombre') + ' ' + nombreTamano + ' ' + precioVisible(presentacion.precio));
   }
 
   function crearControlPresentacion(item){
-    const caja=document.createElement('section');
-    caja.className='caldo-compra';
-    caja.dataset.producto=item.id;
-    caja.dataset.tamanoSeleccionado=item.presentacionSeleccionada || item.presentaciones[0]?.id || '';
+    const caja = document.createElement('section');
+    caja.className = 'caldo-compra';
+    caja.dataset.producto = item.id;
+    caja.dataset.tamanoSeleccionado = item.presentacionSeleccionada || item.presentaciones[0]?.id || '';
 
-    const encabezado=document.createElement('div');
-    encabezado.className='caldo-compra-etiqueta';
-    const titulo=document.createElement('span');
-    titulo.textContent=t('chooseYourSize');
-    const ayuda=document.createElement('small');
-    ayuda.textContent=idioma==='en'?'Select, then add':'Selecciona y después agrega';
-    encabezado.append(titulo,ayuda);
+    const encabezado = document.createElement('div');
+    encabezado.className = 'caldo-compra-etiqueta';
+    const titulo = document.createElement('span');
+    titulo.textContent = t('chooseYourSize');
+    const ayuda = document.createElement('small');
+    ayuda.textContent = idioma === 'en' ? 'Select, then add' : 'Selecciona y después agrega';
+    encabezado.append(titulo, ayuda);
 
-    const opciones=document.createElement('div');
-    opciones.className='caldo-tamanos';
-    opciones.setAttribute('role','group');
-    opciones.setAttribute('aria-label',t('size')+' '+textoProducto(item,'nombre'));
+    const opciones = document.createElement('div');
+    opciones.className = 'caldo-tamanos';
+    opciones.setAttribute('role', 'group');
+    opciones.setAttribute('aria-label', t('size') + ' ' + textoProducto(item, 'nombre'));
 
-    item.presentaciones.forEach(presentacion=>{
-      const boton=document.createElement('button');
-      boton.type='button';
-      boton.className='caldo-tamano-btn';
-      boton.setAttribute('aria-pressed',String(presentacion.id===caja.dataset.tamanoSeleccionado));
-      boton.setAttribute('aria-label',(idioma==='en'?presentacion.nombreEn:presentacion.nombre)+' · '+precioVisible(presentacion.precio));
-      const nombre=document.createElement('span');
-      nombre.className='caldo-tamano-nombre';
-      nombre.textContent=idioma==='en'?presentacion.nombreEn:presentacion.nombre;
-      const importe=document.createElement('span');
-      importe.className='caldo-tamano-precio';
-      importe.textContent=precioVisible(presentacion.precio);
-      boton.append(nombre,importe);
-      boton.addEventListener('click',()=>{
-        item.presentacionSeleccionada=presentacion.id;
-        caja.dataset.tamanoSeleccionado=presentacion.id;
-        opciones.querySelectorAll('.caldo-tamano-btn').forEach(opcion=>opcion.setAttribute('aria-pressed',String(opcion===boton)));
-        const tarjeta=caja.closest('.platillo-tarjeta');
-        const precioTarjeta=tarjeta?.querySelector('.platillo-precio');
-        if(precioTarjeta)precioTarjeta.textContent=precioVisible(presentacion.precio);
-        actualizarControlPresentacion(caja,item);
+    item.presentaciones.forEach(presentacion => {
+      const boton = document.createElement('button');
+      boton.type = 'button';
+      boton.className = 'caldo-tamano-btn';
+      boton.setAttribute('aria-pressed', String(presentacion.id === caja.dataset.tamanoSeleccionado));
+      boton.setAttribute('aria-label', (idioma === 'en' ? presentacion.nombreEn : presentacion.nombre) + ' · ' + precioVisible(presentacion.precio));
+
+      const nombre = document.createElement('span');
+      nombre.className = 'caldo-tamano-nombre';
+      nombre.textContent = idioma === 'en' ? presentacion.nombreEn : presentacion.nombre;
+
+      const importe = document.createElement('span');
+      importe.className = 'caldo-tamano-precio';
+      importe.textContent = precioVisible(presentacion.precio);
+
+      boton.append(nombre, importe);
+      boton.addEventListener('click', () => {
+        item.presentacionSeleccionada = presentacion.id;
+        caja.dataset.tamanoSeleccionado = presentacion.id;
+        opciones.querySelectorAll('.caldo-tamano-btn').forEach(opcion => opcion.setAttribute('aria-pressed', String(opcion === boton)));
+        const tarjeta = caja.closest('.platillo-tarjeta');
+        const precioTarjeta = tarjeta?.querySelector('.platillo-precio');
+        if(precioTarjeta) precioTarjeta.textContent = precioVisible(presentacion.precio);
+        actualizarControlPresentacion(caja, item);
       });
       opciones.appendChild(boton);
     });
 
-    const pie=document.createElement('div');
-    pie.className='caldo-compra-pie';
-    const estado=document.createElement('div');
-    estado.className='caldo-en-pedido';
-    estado.setAttribute('aria-live','polite');
+    const pie = document.createElement('div');
+    pie.className = 'caldo-compra-pie';
 
-    const acciones=document.createElement('div');
-    acciones.className='compra-acciones';
+    const estado = document.createElement('div');
+    estado.className = 'caldo-en-pedido';
+    estado.setAttribute('aria-live', 'polite');
 
-    const restar=document.createElement('button');
-    restar.type='button';
-    restar.className='platillo-restar-btn';
-    restar.textContent='−';
-    restar.hidden=true;
-    restar.addEventListener('click',()=>{
-      const variante=crearVariantePedido(item,caja.dataset.tamanoSeleccionado);
-      cambiarCantidad(variante,-1);
+    const acciones = document.createElement('div');
+    acciones.className = 'compra-acciones';
+
+    const restar = document.createElement('button');
+    restar.type = 'button';
+    restar.className = 'platillo-restar-btn';
+    restar.textContent = '−';
+    restar.hidden = true;
+    restar.addEventListener('click', () => {
+      const variante = crearVariantePedido(item, caja.dataset.tamanoSeleccionado);
+      cambiarCantidad(variante, -1);
     });
 
-    const agregar=document.createElement('button');
-    agregar.type='button';
-    agregar.className='caldo-agregar-btn';
-    agregar.addEventListener('click',()=>{
-      const variante=crearVariantePedido(item,caja.dataset.tamanoSeleccionado);
-      cambiarCantidad(variante,1,true);
+    const agregar = document.createElement('button');
+    agregar.type = 'button';
+    agregar.className = 'caldo-agregar-btn';
+    agregar.addEventListener('click', () => {
+      const variante = crearVariantePedido(item, caja.dataset.tamanoSeleccionado);
+      cambiarCantidad(variante, 1, true);
     });
 
-    acciones.append(restar,agregar);
-    pie.append(estado,acciones);
-    caja.append(encabezado,opciones,pie);
-    actualizarControlPresentacion(caja,item);
+    acciones.append(restar, agregar);
+    pie.append(estado, acciones);
+    caja.append(encabezado, opciones, pie);
+    actualizarControlPresentacion(caja, item);
     return caja;
   }
 
   function calcularPedido(){
-    const subtotal=[...carrito.values()].reduce((n,r)=>n+precioANumero(r.item.precio)*r.cantidad,0);
+    let subtotal = 0;
+    let hayPreciosDefinidos = false;
+    let hayPreciosPendientes = false;
+
+    carrito.forEach(({ item, cantidad }) => {
+      const precioNum = precioANumero(item.precio);
+      if(precioNum === null){
+        hayPreciosPendientes = true;
+      }else{
+        hayPreciosDefinidos = true;
+        subtotal += precioNum * cantidad;
+      }
+    });
+
     if(!mostrarEnvioActivo()){
-      return {subtotal,envio:null,total:subtotal};
+      return { subtotal, envio: null, total: subtotal, hayPreciosDefinidos, hayPreciosPendientes };
     }
-    const envio=envioConfigurado()?calcularCostoEnvio():null;
-    return {subtotal,envio,total:envio===null?null:subtotal+envio};
+    const envio = envioConfigurado() ? calcularCostoEnvio() : null;
+    return {
+      subtotal,
+      envio,
+      total: envio === null ? null : subtotal + envio,
+      hayPreciosDefinidos,
+      hayPreciosPendientes
+    };
   }
+
+  function formatearTotalPedido(c){
+    if(!carrito.size) return moneda(0) + ' MXN';
+    if(!c.hayPreciosDefinidos && c.hayPreciosPendientes) return t('toConfirm');
+    if(c.hayPreciosDefinidos && c.hayPreciosPendientes) return moneda(c.subtotal) + ' MXN' + t('plusToConfirm');
+    if(c.total === null) return t('toConfirm');
+    return moneda(c.total) + ' MXN';
+  }
+
   function renderResumenPedido(){
-    const resumen=document.getElementById('resumenPedido');
-    const foco=document.activeElement,claveFoco=resumen.contains(foco)?foco.getAttribute('aria-label'):null;
+    const resumen = document.getElementById('resumenPedido');
+    const foco = document.activeElement;
+    const claveFoco = resumen.contains(foco) ? foco.getAttribute('aria-label') : null;
     resumen.replaceChildren();
-    if(!carrito.size){const p=document.createElement('p');p.textContent=t('empty');resumen.appendChild(p);}
-    carrito.forEach(({item,cantidad})=>{
-      const fila=document.createElement('div');fila.className='pedido-resumen-fila';
-      const titulo=document.createElement('strong');titulo.textContent=textoProducto(item,'nombre')+' · '+moneda(precioANumero(item.precio)*cantidad);
-      fila.append(titulo,crearControlesPedido(item));resumen.appendChild(fila);
+
+    if(!carrito.size){
+      const p = document.createElement('p');
+      p.textContent = t('empty');
+      resumen.appendChild(p);
+    }
+
+    carrito.forEach(({ item, cantidad }) => {
+      const fila = document.createElement('div');
+      fila.className = 'pedido-resumen-fila';
+      const titulo = document.createElement('strong');
+      const precioNum = precioANumero(item.precio);
+      const textoImporte = precioNum === null ? t('toConfirm') : moneda(precioNum * cantidad);
+      titulo.textContent = textoProducto(item, 'nombre') + ' · ' + textoImporte;
+      fila.append(titulo, crearControlesPedido(item));
+      resumen.appendChild(fila);
     });
-    const c=calcularPedido();
-    const filaEnvio=document.getElementById('filaEnvioPedido');
-    const filaSubtotal=document.getElementById('filaSubtotalPedido');
-    if(filaEnvio) filaEnvio.hidden=!mostrarEnvioActivo();
-    if(filaSubtotal) filaSubtotal.hidden=!mostrarEnvioActivo();
-    document.getElementById('subtotalPedido').textContent=moneda(c.subtotal)+' MXN';
-    document.getElementById('envioPedido').textContent=c.envio===null?t('toConfirm'):moneda(c.envio);
-    document.getElementById('totalPedido').textContent=c.total===null?t('toConfirm'):moneda(c.total)+' MXN';
-    document.getElementById('continuarPedido').disabled=!carrito.size;
-    if(!carrito.size)mostrarPasoCarrito();
-    if(claveFoco){const btn=[...resumen.querySelectorAll('button')].find(b=>b.getAttribute('aria-label')===claveFoco&&!b.disabled);(btn||document.getElementById('agregarProductos')).focus();}
+
+    const c = calcularPedido();
+    const filaEnvio = document.getElementById('filaEnvioPedido');
+    const filaSubtotal = document.getElementById('filaSubtotalPedido');
+    if(filaEnvio) filaEnvio.hidden = !mostrarEnvioActivo();
+    if(filaSubtotal) filaSubtotal.hidden = !mostrarEnvioActivo();
+
+    document.getElementById('subtotalPedido').textContent = formatearTotalPedido({ ...c, total: c.subtotal });
+    document.getElementById('envioPedido').textContent = c.envio === null ? t('toConfirm') : moneda(c.envio);
+    document.getElementById('totalPedido').textContent = formatearTotalPedido(c);
+    document.getElementById('continuarPedido').disabled = !carrito.size;
+
+    if(!carrito.size) mostrarPasoCarrito();
+    if(claveFoco){
+      const btn = [...resumen.querySelectorAll('button')].find(b => b.getAttribute('aria-label') === claveFoco && !b.disabled);
+      (btn || document.getElementById('agregarProductos')).focus();
+    }
   }
+
   function actualizarPedidoUI(){
-    document.querySelectorAll('.control-carrito').forEach(control=>{
-      const n=carrito.get(control.dataset.producto)?.cantidad||0;
-      control.querySelector('output').textContent=n;
-      const botones=control.querySelectorAll('button');
-      botones[0].disabled=n===0;
-      botones[1].disabled=n===99||precioANumero(control.dataset.precio)===null;
+    document.querySelectorAll('.control-carrito').forEach(control => {
+      const n = carrito.get(control.dataset.producto)?.cantidad || 0;
+      control.querySelector('output').textContent = n;
+      const botones = control.querySelectorAll('button');
+      botones[0].disabled = n === 0;
+      botones[1].disabled = n >= 99;
     });
-    const unidades=[...carrito.values()].reduce((n,r)=>n+r.cantidad,0);
-    const contador=document.getElementById('contadorPedido');
-    const contadorDesktop=document.getElementById('contadorPedidoDesktop');
-    contador.textContent=unidades;contador.hidden=!unidades;
-    if(contadorDesktop){contadorDesktop.textContent=unidades;contadorDesktop.hidden=!unidades;}
-    document.getElementById('movilMaps').setAttribute('aria-label',t('orderTab')+', '+unidades+' '+t('orderNumber'));
-    document.querySelectorAll('.caldo-compra').forEach(caja=>{
-      const item=platillos.find(p=>p.id===caja.dataset.producto);
-      if(item)actualizarControlPresentacion(caja,item);
+
+    const unidades = [...carrito.values()].reduce((n, r) => n + r.cantidad, 0);
+    const contador = document.getElementById('contadorPedido');
+    const contadorDesktop = document.getElementById('contadorPedidoDesktop');
+    contador.textContent = unidades;
+    contador.hidden = !unidades;
+    if(contadorDesktop){
+      contadorDesktop.textContent = unidades;
+      contadorDesktop.hidden = !unidades;
+    }
+
+    document.getElementById('movilMaps').setAttribute('aria-label', t('orderTab') + ', ' + unidades + ' ' + t('orderNumber'));
+
+    document.querySelectorAll('.caldo-compra').forEach(caja => {
+      const item = platillos.find(p => p.id === caja.dataset.producto);
+      if(item) actualizarControlPresentacion(caja, item);
     });
-    document.querySelectorAll('.platillo-compra').forEach(caja=>{
-      const item=platillos.find(p=>p.id===caja.dataset.producto);
-      if(item)actualizarControlCompraPlatillo(caja,item);
+
+    document.querySelectorAll('.platillo-compra').forEach(caja => {
+      const item = platillos.find(p => p.id === caja.dataset.producto);
+      if(item) actualizarControlCompraPlatillo(caja, item);
     });
+
     renderResumenPedido();
   }
-  function mostrarPasoCarrito(){document.getElementById('pasoCarrito').hidden=false;pedidoFormulario.hidden=true;document.getElementById('pedidoDescripcion').textContent=t('review');}
+
+  function mostrarPasoCarrito(){
+    document.getElementById('pasoCarrito').hidden = false;
+    pedidoFormulario.hidden = true;
+    document.getElementById('pedidoDescripcion').textContent = t('review');
+  }
+
   async function mostrarPasoEntrega(){
-    if(!carrito.size)return;
-    document.getElementById('pasoCarrito').hidden=true;pedidoFormulario.hidden=false;
-    document.getElementById('pedidoDescripcion').textContent=t('deliveryInfo');
-    const listo=/^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
-    pedidoEnviar.disabled=!listo;pedidoAviso.hidden=listo;
-    pedidoAviso.textContent=listo?'':t('waNotReady');
+    if(!carrito.size) return;
+    document.getElementById('pasoCarrito').hidden = true;
+    pedidoFormulario.hidden = false;
+    document.getElementById('pedidoDescripcion').textContent = t('deliveryInfo');
+    const listo = /^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
+    pedidoEnviar.disabled = !listo;
+    pedidoAviso.hidden = listo;
+    pedidoAviso.textContent = listo ? '' : t('waNotReady');
     document.getElementById('pedidoNombre').focus();
-    if(envioConfigurado()){await cargarMapaBiblioteca();if(!pedidoFormulario.hidden)crearMapaEntrega();}
+    if(envioConfigurado()){
+      await cargarMapaBiblioteca();
+      if(!pedidoFormulario.hidden) crearMapaEntrega();
+    }
   }
-  function abrirWhatsApp(){focoAntesPedido=document.activeElement;mostrarPasoCarrito();renderResumenPedido();pedidoOverlay.hidden=false;document.body.classList.add('modal-abierto');pedidoOverlay.querySelector('.pedido-panel').scrollTop=0;document.getElementById('cerrarPedido').focus();}
-  function cerrarPedido(){pedidoOverlay.hidden=true;document.body.classList.remove('modal-abierto');if(focoAntesPedido?.isConnected)focoAntesPedido.focus();}
-  document.getElementById('cerrarPedido').addEventListener('click',cerrarPedido);
-  document.getElementById('continuarPedido').addEventListener('click',mostrarPasoEntrega);
-  document.getElementById('volverCarrito').addEventListener('click',()=>{mostrarPasoCarrito();document.getElementById('continuarPedido').focus();});
-  document.getElementById('agregarProductos').addEventListener('click',()=>{cerrarPedido();mostrarVista('menu');listaHTML.scrollIntoView({behavior:'smooth',block:'start'});listaHTML.querySelector('button')?.focus({preventScroll:true});});
-  pedidoOverlay.addEventListener('click',e=>{if(e.target===pedidoOverlay)cerrarPedido();});
-  pedidoOverlay.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){e.preventDefault();cerrarPedido();return;}
-    if(e.key!=='Tab')return;
-    const visibles=[...pedidoOverlay.querySelectorAll('button:not(:disabled),input,textarea,select')].filter(el=>el.getClientRects().length);
-    const primero=visibles[0],ultimo=visibles[visibles.length-1];
-    if(e.shiftKey&&document.activeElement===primero){e.preventDefault();ultimo.focus();}
-    else if(!e.shiftKey&&document.activeElement===ultimo){e.preventDefault();primero.focus();}
+
+  function abrirWhatsApp(){
+    focoAntesPedido = document.activeElement;
+    mostrarPasoCarrito();
+    renderResumenPedido();
+    pedidoOverlay.hidden = false;
+    document.body.classList.add('modal-abierto');
+    pedidoOverlay.querySelector('.pedido-panel').scrollTop = 0;
+    document.getElementById('cerrarPedido').focus();
+  }
+
+  function cerrarPedido(){
+    pedidoOverlay.hidden = true;
+    document.body.classList.remove('modal-abierto');
+    if(focoAntesPedido?.isConnected) focoAntesPedido.focus();
+  }
+
+  document.getElementById('cerrarPedido').addEventListener('click', cerrarPedido);
+  document.getElementById('continuarPedido').addEventListener('click', mostrarPasoEntrega);
+  document.getElementById('volverCarrito').addEventListener('click', () => {
+    mostrarPasoCarrito();
+    document.getElementById('continuarPedido').focus();
   });
-  document.getElementById('pedidoPago').addEventListener('change',e=>{document.getElementById('notaTransferencia').hidden=e.target.value!=='TRANSFERENCIA';});
+  document.getElementById('agregarProductos').addEventListener('click', () => {
+    cerrarPedido();
+    mostrarVista('menu');
+    listaHTML.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  pedidoOverlay.addEventListener('click', e => {
+    if(e.target === pedidoOverlay) cerrarPedido();
+  });
+
+  pedidoOverlay.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      cerrarPedido();
+      return;
+    }
+    if(e.key !== 'Tab') return;
+    const visibles = [...pedidoOverlay.querySelectorAll('button:not(:disabled),input,textarea,select')].filter(el => el.getClientRects().length);
+    const primero = visibles[0], ultimo = visibles[visibles.length - 1];
+    if(e.shiftKey && document.activeElement === primero){
+      e.preventDefault();
+      ultimo.focus();
+    }else if(!e.shiftKey && document.activeElement === ultimo){
+      e.preventDefault();
+      primero.focus();
+    }
+  });
+
+  document.getElementById('pedidoPago').addEventListener('change', e => {
+    document.getElementById('notaTransferencia').hidden = e.target.value !== 'TRANSFERENCIA';
+  });
+
   function construirMensajePedido(){
-    const valor=id=>document.getElementById(id).value.trim()||'No indicado',c=calcularPedido();
+    const valor = id => document.getElementById(id).value.trim() || 'No indicado';
+    const c = calcularPedido();
+    const lineasProductos = [...carrito.values()].map(r => {
+      const pNum = precioANumero(r.item.precio);
+      const importeTxt = pNum === null ? 'Precio por confirmar' : moneda(pNum * r.cantidad);
+      return r.cantidad + ' × ' + r.item.nombre + ' — ' + importeTxt;
+    });
+
+    const totalTexto = formatearTotalPedido(c);
     const lineasTotales = mostrarEnvioActivo()
-      ? ['Productos: '+moneda(c.subtotal)+' MXN','Envío estimado: '+(c.envio===null?'Por confirmar':moneda(c.envio)),'Total: '+(c.total===null?'Por confirmar con envío':moneda(c.total)+' MXN')]
-      : ['Total: '+moneda(c.total)+' MXN'];
-    return ['*'+restaurante.nombre+'*','Pedido: '+pedidoId,'',...([...carrito.values()].map(r=>r.cantidad+' × '+r.item.nombre+' — '+moneda(precioANumero(r.item.precio)*r.cantidad))),
-      '',...lineasTotales,'','Nombre: '+valor('pedidoNombre'),'Celular: '+valor('pedidoTelefono'),
-      'Dirección: '+[valor('pedidoCalle'),valor('pedidoExterior'),valor('pedidoColonia'),valor('pedidoCiudad'),'CP '+valor('pedidoCP')].join(', '),
-      'Referencias: '+valor('pedidoReferencias'),'Ubicación: '+valor('pedidoUbicacion'),'Indicaciones: '+valor('pedidoNotas'),'Pago solicitado: '+valor('pedidoPago'),
-      '','Por favor confirma disponibilidad y tiempo de entrega.'].join('\n');
+      ? [
+          'Productos: ' + formatearTotalPedido({ ...c, total: c.subtotal }),
+          'Envío estimado: ' + (c.envio === null ? 'Por confirmar' : moneda(c.envio)),
+          'Total: ' + totalTexto
+        ]
+      : ['Total: ' + totalTexto];
+
+    return [
+      '*' + restaurante.nombre + '*',
+      'Pedido: ' + pedidoId,
+      '',
+      ...lineasProductos,
+      '',
+      ...lineasTotales,
+      '',
+      'Nombre: ' + valor('pedidoNombre'),
+      'Celular: ' + valor('pedidoTelefono'),
+      'Dirección: ' + [valor('pedidoCalle'), valor('pedidoExterior'), valor('pedidoColonia'), valor('pedidoCiudad'), 'CP ' + valor('pedidoCP')].join(', '),
+      'Referencias: ' + valor('pedidoReferencias'),
+      'Ubicación: ' + valor('pedidoUbicacion'),
+      'Indicaciones: ' + valor('pedidoNotas'),
+      'Pago solicitado: ' + valor('pedidoPago'),
+      '',
+      'Por favor confirma disponibilidad y tiempo de entrega.'
+    ].join('\n');
   }
-  pedidoFormulario.querySelectorAll('input[required]').forEach(el=>el.addEventListener('input',()=>el.setCustomValidity('')));
-  pedidoFormulario.addEventListener('submit',e=>{
-    e.preventDefault();if(!carrito.size){mostrarPasoCarrito();return;}
-    pedidoFormulario.querySelectorAll('input[required]').forEach(el=>el.setCustomValidity(el.value.trim()?'':t('fillField')));
-    const tel=document.getElementById('pedidoTelefono'),cp=document.getElementById('pedidoCP');
-    if(!/^\d{10,15}$/.test(tel.value.replace(/\D/g,'')))tel.setCustomValidity(t('phoneInvalid'));
-    if(!/^\d{5}$/.test(cp.value.trim()))cp.setCustomValidity(t('zipInvalid'));
-    if(!pedidoFormulario.reportValidity())return;
-    if(!/^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp()))return;
-    window.location.assign('https://wa.me/'+normalizarNumeroWhatsApp()+'?text='+encodeURIComponent(construirMensajePedido()));
+
+  pedidoFormulario.querySelectorAll('input[required]').forEach(el => el.addEventListener('input', () => el.setCustomValidity('')));
+  pedidoFormulario.addEventListener('submit', e => {
+    e.preventDefault();
+    if(!carrito.size){
+      mostrarPasoCarrito();
+      return;
+    }
+    pedidoFormulario.querySelectorAll('input[required]').forEach(el => el.setCustomValidity(el.value.trim() ? '' : t('fillField')));
+    const tel = document.getElementById('pedidoTelefono'), cp = document.getElementById('pedidoCP');
+    if(!/^\d{10,15}$/.test(tel.value.replace(/\D/g, ''))) tel.setCustomValidity(t('phoneInvalid'));
+    if(!/^\d{5}$/.test(cp.value.trim())) cp.setCustomValidity(t('zipInvalid'));
+    if(!pedidoFormulario.reportValidity()) return;
+    if(!/^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp())) return;
+    window.location.assign('https://wa.me/' + normalizarNumeroWhatsApp() + '?text=' + encodeURIComponent(construirMensajePedido()));
   });
+
+  /* ===================================================== */
+  /* LÓGICA DE MAPA Y ENVÍO (PRESERVADA PARA LA PLANTILLA) */
+  /* ===================================================== */
+
   let promesaMapa;
   function cargarMapaBiblioteca(){
-    if(window.L)return Promise.resolve();if(promesaMapa)return promesaMapa;
-    promesaMapa=new Promise(resolve=>{const css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(css);const js=document.createElement('script');js.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';js.onload=resolve;js.onerror=()=>{promesaMapa=null;resolve();};document.head.appendChild(js);});return promesaMapa;
+    if(window.L) return Promise.resolve();
+    if(promesaMapa) return promesaMapa;
+    promesaMapa = new Promise(resolve => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(css);
+      const js = document.createElement('script');
+      js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      js.onload = resolve;
+      js.onerror = () => { promesaMapa = null; resolve(); };
+      document.head.appendChild(js);
+    });
+    return promesaMapa;
   }
+
   let mapa = null;
   let marcadorEntrega = null;
   let lineaRuta = null;
@@ -3165,13 +3423,13 @@
 
   function calcularCostoEnvio(){
     if(!envioConfigurado() || distanciaRutaKm === null) return null;
-    return restaurante.envioBase + Math.max(0,distanciaRutaKm - restaurante.envioKmIncluidos) * restaurante.envioKmExtra;
+    return restaurante.envioBase + Math.max(0, distanciaRutaKm - restaurante.envioKmIncluidos) * restaurante.envioKmExtra;
   }
 
   function invalidarRuta(){
     calculoRutaToken++;
     distanciaRutaKm = null;
-    if(lineaRuta && mapa){mapa.removeLayer(lineaRuta);lineaRuta = null;}
+    if(lineaRuta && mapa){ mapa.removeLayer(lineaRuta); lineaRuta = null; }
     confirmarDireccionMapa.disabled = !destinoPendiente;
     resultadoEnvio.textContent = t('mapPointNeeded');
     renderResumenPedido();
@@ -3179,427 +3437,210 @@
 
   function crearMapaEntrega(){
     if(!envioConfigurado()) return;
-    if(mapa) {mapa.invalidateSize();return;}
+    if(mapa){ mapa.invalidateSize(); return; }
     if(!window.L){
       mapaEntrega.textContent = t('mapLibraryFailed');
       return;
     }
-    mapa = L.map(mapaEntrega).setView([restaurante.origenEnvio.lat,restaurante.origenEnvio.lng],13);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
-      maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+    mapa = L.map(mapaEntrega).setView([restaurante.origenEnvio.lat, restaurante.origenEnvio.lng], 13);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
     }).addTo(mapa);
-    L.marker([restaurante.origenEnvio.lat,restaurante.origenEnvio.lng]).addTo(mapa).bindPopup(restaurante.nombre + " · punto de salida");
-    mapa.on("click",evento => ponerDestino(evento.latlng));
+    L.marker([restaurante.origenEnvio.lat, restaurante.origenEnvio.lng]).addTo(mapa).bindPopup(restaurante.nombre + " · punto de salida");
+    mapa.on("click", evento => ponerDestino(evento.latlng));
     if(destinoPendiente) ponerDestino(destinoPendiente);
-    setTimeout(() => mapa.invalidateSize(),100);
+    setTimeout(() => mapa.invalidateSize(), 100);
   }
 
   function ponerDestino(punto){
     const lat = Number(punto.lat), lng = Number(punto.lng);
-    if(!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat)>90 || Math.abs(lng)>180) return;
-    destinoPendiente = {lat,lng};
-    pedidoUbicacion.value="https://www.google.com/maps?q="+lat.toFixed(6)+","+lng.toFixed(6);
+    if(!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return;
+    destinoPendiente = { lat, lng };
+    pedidoUbicacion.value = "https://www.google.com/maps?q=" + lat.toFixed(6) + "," + lng.toFixed(6);
     invalidarRuta();
     confirmarDireccionMapa.disabled = false;
     if(mapa){
       if(!marcadorEntrega){
-        marcadorEntrega = L.marker([lat,lng],{draggable:true}).addTo(mapa);
-        marcadorEntrega.on("dragend",() => ponerDestino(marcadorEntrega.getLatLng()));
-      }else marcadorEntrega.setLatLng([lat,lng]);
-      mapa.setView([lat,lng],16);
+        marcadorEntrega = L.marker([lat, lng], { draggable: true }).addTo(mapa);
+        marcadorEntrega.on("dragend", () => ponerDestino(marcadorEntrega.getLatLng()));
+      }else marcadorEntrega.setLatLng([lat, lng]);
+      mapa.setView([lat, lng], 16);
     }
   }
 
   buscarDireccionMapa.addEventListener("click", async () => {
     if(!envioConfigurado()) return;
-    const calle=pedidoCalle.value.trim(), numero=pedidoNumeroExterior.value.trim(), colonia=pedidoColonia.value.trim();
+    const calle = pedidoCalle.value.trim(), numero = pedidoNumeroExterior.value.trim(), colonia = pedidoColonia.value.trim();
     if(!calle || !numero || !colonia){
-      mostrarToast(t('mapFields'));return;
+      mostrarToast(t('mapFields')); return;
     }
-    if(Date.now()-ultimaBusqueda<1100){mostrarToast(t('mapWaitBeforeSearch'));return;}
-    ultimaBusqueda=Date.now();
-    const token=++busquedaToken;
-    buscarDireccionMapa.disabled=true;
-    resultadoEnvio.textContent=t('mapSearching');
+    if(Date.now() - ultimaBusqueda < 1100){ mostrarToast(t('mapWaitBeforeSearch')); return; }
+    ultimaBusqueda = Date.now();
+    const token = ++busquedaToken;
+    buscarDireccionMapa.disabled = true;
+    resultadoEnvio.textContent = t('mapSearching');
     try{
-      const url=new URL("https://nominatim.openstreetmap.org/search");
-      url.search=new URLSearchParams({q:[calle,numero,colonia,pedidoCiudad.value.trim() || restaurante.ciudadEnvio,"México"].join(", "),format:"jsonv2",limit:"3",countrycodes:"mx"}).toString();
-      const respuesta=await fetch(url.toString(),{headers:{Accept:"application/json"},signal:AbortSignal.timeout(12000)});
+      const url = new URL("https://nominatim.openstreetmap.org/search");
+      url.search = new URLSearchParams({ q: [calle, numero, colonia, pedidoCiudad.value.trim() || restaurante.ciudadEnvio, "México"].join(", "), format: "jsonv2", limit: "3", countrycodes: "mx" }).toString();
+      const respuesta = await fetch(url.toString(), { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) });
       if(!respuesta.ok) throw new Error("Geocodificación no disponible");
-      const resultados=await respuesta.json();
-      if(token!==busquedaToken) return;
+      const resultados = await respuesta.json();
+      if(token !== busquedaToken) return;
       if(!Array.isArray(resultados) || !resultados.length){
-        resultadoEnvio.textContent=t('mapNotFound');return;
+        resultadoEnvio.textContent = t('mapNotFound'); return;
       }
-      ponerDestino({lat:Number(resultados[0].lat),lng:Number(resultados[0].lon)});
-      resultadoEnvio.textContent=t('mapVerify');
+      ponerDestino({ lat: Number(resultados[0].lat), lng: Number(resultados[0].lon) });
+      resultadoEnvio.textContent = t('mapVerify');
     }catch(error){
-      if(token===busquedaToken) resultadoEnvio.textContent=t('mapSearchFailed');
-    }finally{if(token===busquedaToken) buscarDireccionMapa.disabled=false;}
+      if(token === busquedaToken) resultadoEnvio.textContent = t('mapSearchFailed');
+    }finally{ if(token === busquedaToken) buscarDireccionMapa.disabled = false; }
   });
 
   async function calcularRutaConfirmada(){
     if(!envioConfigurado()) return;
-    if(!destinoPendiente) {resultadoEnvio.textContent=t('mapSelectFirst');return;}
-    if(Date.now()-ultimaRuta<1100){resultadoEnvio.textContent=t('mapWait');return;}
-    ultimaRuta=Date.now();
-    const destino={...destinoPendiente};
-    const token=++calculoRutaToken;
-    distanciaRutaKm=null;
-    if(lineaRuta && mapa){mapa.removeLayer(lineaRuta);lineaRuta=null;}
+    if(!destinoPendiente){ resultadoEnvio.textContent = t('mapSelectFirst'); return; }
+    if(Date.now() - ultimaRuta < 1100){ resultadoEnvio.textContent = t('mapWait'); return; }
+    ultimaRuta = Date.now();
+    const destino = { ...destinoPendiente };
+    const token = ++calculoRutaToken;
+    distanciaRutaKm = null;
+    if(lineaRuta && mapa){ mapa.removeLayer(lineaRuta); lineaRuta = null; }
     renderResumenPedido();
-    confirmarDireccionMapa.disabled=true;
-    resultadoEnvio.textContent=t('mapRouteCalc');
+    confirmarDireccionMapa.disabled = true;
+    resultadoEnvio.textContent = t('mapRouteCalc');
     try{
-      const origen=restaurante.origenEnvio;
-      const url=restaurante.servicioRutasUrl +
-        origen.lng+","+origen.lat+";"+destino.lng+","+destino.lat+
-        "?overview=full&geometries=geojson";
-      const respuesta=await fetch(url,{headers:{Accept:"application/json"},signal:AbortSignal.timeout(12000)});
+      const origen = restaurante.origenEnvio;
+      const url = restaurante.servicioRutasUrl + origen.lng + "," + origen.lat + ";" + destino.lng + "," + destino.lat + "?overview=full&geometries=geojson";
+      const respuesta = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) });
       if(!respuesta.ok) throw new Error("Ruta no disponible");
-      const datos=await respuesta.json();
-      if(token!==calculoRutaToken) return;
-      const ruta=datos.routes?.[0];
-      if(datos.code!=="Ok" || !Number.isFinite(ruta?.distance) || !ruta?.geometry?.coordinates) throw new Error("Sin ruta");
-      distanciaRutaKm=ruta.distance/1000;
+      const datos = await respuesta.json();
+      if(token !== calculoRutaToken) return;
+      const ruta = datos.routes?.[0];
+      if(datos.code !== "Ok" || !Number.isFinite(ruta?.distance) || !ruta?.geometry?.coordinates) throw new Error("Sin ruta");
+      distanciaRutaKm = ruta.distance / 1000;
       if(mapa){
         if(lineaRuta) mapa.removeLayer(lineaRuta);
-        lineaRuta=L.geoJSON(ruta.geometry,{style:{color:"#b53a26",weight:5}}).addTo(mapa);
-        mapa.fitBounds(lineaRuta.getBounds().extend(L.latLng(origen.lat,origen.lng)),{padding:[22,22]});
+        lineaRuta = L.geoJSON(ruta.geometry, { style: { color: "#b53a26", weight: 5 } }).addTo(mapa);
+        mapa.fitBounds(lineaRuta.getBounds().extend(L.latLng(origen.lat, origen.lng)), { padding: [22, 22] });
       }
-      pedidoUbicacion.value="https://www.google.com/maps?q="+destino.lat.toFixed(6)+","+destino.lng.toFixed(6);
-      resultadoEnvio.textContent=t('routePrefix')+distanciaRutaKm.toFixed(2)+t('routeShipping')+moneda(calcularCostoEnvio());
+      pedidoUbicacion.value = "https://www.google.com/maps?q=" + destino.lat.toFixed(6) + "," + destino.lng.toFixed(6);
+      resultadoEnvio.textContent = t('routePrefix') + distanciaRutaKm.toFixed(2) + t('routeShipping') + moneda(calcularCostoEnvio());
       renderResumenPedido();
     }catch(error){
-      if(token===calculoRutaToken){
-        resultadoEnvio.textContent=t('mapRouteFailed');
+      if(token === calculoRutaToken){
+        resultadoEnvio.textContent = t('mapRouteFailed');
         renderResumenPedido();
       }
-    }finally{if(token===calculoRutaToken) confirmarDireccionMapa.disabled=false;}
+    }finally{ if(token === calculoRutaToken) confirmarDireccionMapa.disabled = false; }
   }
-  confirmarDireccionMapa.addEventListener("click",calcularRutaConfirmada);
+  confirmarDireccionMapa.addEventListener("click", calcularRutaConfirmada);
 
-  [pedidoCalle,pedidoNumeroExterior,pedidoColonia,pedidoCiudad,document.getElementById("pedidoCP")].forEach(campo => {
-    campo.addEventListener("input", () => {busquedaToken++;buscarDireccionMapa.disabled=false;destinoPendiente=null;pedidoUbicacion.value="";invalidarRuta();});
+  [pedidoCalle, pedidoNumeroExterior, pedidoColonia, pedidoCiudad, document.getElementById("pedidoCP")].forEach(campo => {
+    campo.addEventListener("input", () => {
+      busquedaToken++;
+      buscarDireccionMapa.disabled = false;
+      destinoPendiente = null;
+      pedidoUbicacion.value = "";
+      invalidarRuta();
+    });
   });
 
   function coordenadasDeTexto(texto){
-    const patrones=[
+    const patrones = [
       /(?:[?&]q=|[?&]query=|[?&]ll=)(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)/i,
       /\/@(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)/,
       /!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/,
       /^\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)\s*$/
     ];
     for(const patron of patrones){
-      const partes=texto.match(patron);
+      const partes = texto.match(patron);
       if(partes){
-        const lat=Number(partes[1]),lng=Number(partes[2]);
-        if(Math.abs(lat)<=90 && Math.abs(lng)<=180) return {lat,lng};
+        const lat = Number(partes[1]), lng = Number(partes[2]);
+        if(Math.abs(lat) <= 90 && Math.abs(lng) <= 180) return { lat, lng };
       }
     }
     return null;
   }
-  pedidoUbicacion.addEventListener("input",() => {
-    const punto=coordenadasDeTexto(pedidoUbicacion.value);
-    if(punto){ponerDestino(punto);resultadoEnvio.textContent=t('mapCoordsDetected');}
-    else {destinoPendiente=null;invalidarRuta();if(pedidoUbicacion.value.trim()) resultadoEnvio.textContent=t('mapNoCoords');}
+
+  pedidoUbicacion.addEventListener("input", () => {
+    const punto = coordenadasDeTexto(pedidoUbicacion.value);
+    if(punto){
+      ponerDestino(punto);
+      resultadoEnvio.textContent = t('mapCoordsDetected');
+    }else{
+      destinoPendiente = null;
+      invalidarRuta();
+      if(pedidoUbicacion.value.trim()) resultadoEnvio.textContent = t('mapNoCoords');
+    }
   });
 
-
-  const usarUbicacionActual=document.getElementById('usarUbicacionActual');
-  usarUbicacionActual.addEventListener('click',()=>{
-    if(!navigator.geolocation){mostrarToast(t('locationRequest'));return;}
-    usarUbicacionActual.disabled=true;
-    navigator.geolocation.getCurrentPosition(pos=>{
-      usarUbicacionActual.disabled=false;
-      ponerDestino({lat:pos.coords.latitude,lng:pos.coords.longitude});
+  const usarUbicacionActual = document.getElementById('usarUbicacionActual');
+  usarUbicacionActual.addEventListener('click', () => {
+    if(!navigator.geolocation){ mostrarToast(t('locationRequest')); return; }
+    usarUbicacionActual.disabled = true;
+    navigator.geolocation.getCurrentPosition(pos => {
+      usarUbicacionActual.disabled = false;
+      ponerDestino({ lat: pos.coords.latitude, lng: pos.coords.longitude });
       mostrarToast(t('locationAdded'));
-    },()=>{usarUbicacionActual.disabled=false;mostrarToast(t('locationUnavailable'));},{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
+    }, () => {
+      usarUbicacionActual.disabled = false;
+      mostrarToast(t('locationUnavailable'));
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
   });
-  document.getElementById('calculadoraEnvio').hidden=!envioConfigurado();
-  document.getElementById('envioPorConfirmar').hidden=!mostrarEnvioActivo() || envioConfigurado();
-  if(envioConfigurado())document.getElementById('tarifasEnvio').textContent=moneda(restaurante.envioBase)+t('mapRateUntil')+restaurante.envioKmIncluidos+t('mapRateBeyond')+moneda(restaurante.envioKmExtra)+t('mapRatePerKm');
-  actualizarPedidoUI();
+
+  document.getElementById('calculadoraEnvio').hidden = !envioConfigurado();
+  document.getElementById('envioPorConfirmar').hidden = !mostrarEnvioActivo() || envioConfigurado();
+  if(envioConfigurado()){
+    document.getElementById('tarifasEnvio').textContent = moneda(restaurante.envioBase) + t('mapRateUntil') + restaurante.envioKmIncluidos + t('mapRateBeyond') + moneda(restaurante.envioKmExtra) + t('mapRatePerKm');
+  }
 
   botonMaps.addEventListener("click", abrirMaps);
   movilMaps.addEventListener("click", abrirWhatsApp);
-
   botonPedidoInicio.addEventListener("click", abrirWhatsApp);
   navPedido.addEventListener("click", abrirWhatsApp);
 
   function abrirChatDirectoWhatsApp(){
-    const numero=normalizarNumeroWhatsApp();
+    const numero = normalizarNumeroWhatsApp();
     if(!/^[1-9][0-9]{10,14}$/.test(numero)){
       mostrarToast(t('waConfig'));
       return;
     }
-    const saludo=t('directHello');
-    window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(saludo),"_blank","noopener,noreferrer");
+    const saludo = t('directHello');
+    window.open("https://wa.me/" + numero + "?text=" + encodeURIComponent(saludo), "_blank", "noopener,noreferrer");
   }
   document.getElementById("socialWhatsApp").addEventListener("click", abrirChatDirectoWhatsApp);
   document.getElementById("whatsappFlotante").addEventListener("click", abrirChatDirectoWhatsApp);
-  function abrirEnlaceSocial(campo,dominios,nombre){
-    const valor=String(restaurante[campo]||'').trim();
-    if(!valor){mostrarToast(t('socialMissing').replace('{name}',nombre).replace('{field}',campo));return;}
+
+  function abrirEnlaceSocial(campo, dominios, nombre){
+    const valor = String(restaurante[campo] || '').trim();
+    if(!valor){ mostrarToast(t('socialMissing').replace('{name}', nombre).replace('{field}', campo)); return; }
     try{
-      const url=new URL(valor);
-      if(url.protocol!=='https:'||!dominios.includes(url.hostname.toLowerCase()))throw new Error('Enlace inválido');
-      window.open(url.href,'_blank','noopener,noreferrer');
-    }catch{mostrarToast(t('socialInvalid').replace('{name}',nombre).replace('{field}',campo));}
+      const url = new URL(valor);
+      if(url.protocol !== 'https:' || !dominios.includes(url.hostname.toLowerCase())) throw new Error('Enlace inválido');
+      window.open(url.href, '_blank', 'noopener,noreferrer');
+    }catch{
+      mostrarToast(t('socialInvalid').replace('{name}', nombre).replace('{field}', campo));
+    }
   }
-  document.getElementById('socialInstagram').addEventListener('click',()=>abrirEnlaceSocial('instagramUrl',['instagram.com','www.instagram.com'],'Instagram'));
-  document.getElementById('socialFacebook').addEventListener('click',()=>abrirEnlaceSocial('facebookUrl',['facebook.com','www.facebook.com','m.facebook.com','fb.com','www.fb.com'],'Facebook'));
-  document.getElementById('socialTikTok').addEventListener('click',()=>abrirEnlaceSocial('tiktokUrl',['tiktok.com','www.tiktok.com'],'TikTok'));
+  document.getElementById('socialInstagram').addEventListener('click', () => abrirEnlaceSocial('instagramUrl', ['instagram.com', 'www.instagram.com'], 'Instagram'));
+  document.getElementById('socialFacebook').addEventListener('click', () => abrirEnlaceSocial('facebookUrl', ['facebook.com', 'www.facebook.com', 'm.facebook.com', 'fb.com', 'www.fb.com'], 'Facebook'));
+  document.getElementById('socialTikTok').addEventListener('click', () => abrirEnlaceSocial('tiktokUrl', ['tiktok.com', 'www.tiktok.com'], 'TikTok'));
 
   /* ===================================================== */
-  /* NAVEGACIÓN                                            */
+  /* NAVEGACIÓN ENTRE VISTAS                               */
   /* ===================================================== */
 
   function mostrarVista(nombre, actualizarHash = true){
     const esInicio = nombre === "inicio";
-
     vistaInicio.classList.toggle("activa", esInicio);
     vistaMenu.classList.toggle("activa", !esInicio);
-
     navInicio.classList.toggle("activo", esInicio);
     navMenu.classList.toggle("activo", !esInicio);
-
     movilInicio.classList.toggle("activo", esInicio);
     movilMenu.classList.toggle("activo", !esInicio);
 
     if(actualizarHash){
-      history.replaceState(null,"",esInicio ? "#inicio" : "#menu");
+      history.replaceState(null, "", esInicio ? "#inicio" : "#menu");
     }
-
-    window.scrollTo({top:0,behavior:"smooth"});
-    actualizarBotonVolverMenu();
-  }
-
-  navInicio.addEventListener("click", () => mostrarVista("inicio"));
-  navMenu.addEventListener("click", () => mostrarVista("menu"));
-
-  movilInicio.addEventListener("click", () => mostrarVista("inicio"));
-  movilMenu.addEventListener("click", () => mostrarVista("menu"));
-
-  function actualizarBotonVolverMenu(){
-    const menuVisible = vistaMenu.classList.contains("activa");
-    const debeMostrarse = menuVisible && window.scrollY > 580;
-    botonVolverMenu.classList.toggle("visible", debeMostrarse);
-    botonVolverMenu.setAttribute("aria-hidden", String(!debeMostrarse));
-    botonVolverMenu.tabIndex = debeMostrarse ? 0 : -1;
-  }
-
-  window.addEventListener("scroll", actualizarBotonVolverMenu, {passive:true});
-  botonVolverMenu.addEventListener("click", () => {
-    const encabezadoMenu = vistaMenu.querySelector(".intro");
-    if(encabezadoMenu) encabezadoMenu.scrollIntoView({behavior:"smooth",block:"start"});
-  });
-
-
-  /* ===================================================== */
-  /* CATEGORÍAS Y BUSCADOR                                 */
-  /* ===================================================== */
-
-  function obtenerPlatillos(){
-    let filtrados = platillos;
-    
-    if(categoriaActual !== "Todos"){
-      filtrados = filtrados.filter(item => item.categoria === categoriaActual);
-    }
-
-    if(terminoBusqueda.trim() !== ""){
-      const q = terminoBusqueda.toLowerCase().trim();
-      filtrados = filtrados.filter(item => {
-        const nombre = textoProducto(item, 'nombre').toLowerCase();
-        const desc = textoProducto(item, 'descripcion').toLowerCase();
-        return nombre.includes(q) || desc.includes(q);
-      });
-    }
-
-    return filtrados;
-  }
-
-  function crearCategorias(){
-    categoriasHTML.innerHTML = "";
-
-    categorias.forEach(categoria => {
-      const boton = document.createElement("button");
-      boton.type = "button";
-      boton.className = "categoria";
-      boton.textContent = etiquetaCategoria(categoria);
-
-      if(categoria === categoriaActual){
-        boton.classList.add("activa");
-      }
-
-      boton.addEventListener("click", () => {
-        categoriaActual = categoria;
-        crearCategorias();
-        crearLista();
-      });
-
-      categoriasHTML.appendChild(boton);
-    });
-  }
-
-  inputBuscador.addEventListener("input", (e) => {
-    terminoBusqueda = e.target.value;
-    crearLista();
-  });
-
-  /* ===================================================== */
-  /* TARJETAS                                              */
-  /* ===================================================== */
-
-  const fotoAmpliadaOverlay=document.getElementById('fotoAmpliadaOverlay');
-  const fotoAmpliadaImagen=document.getElementById('fotoAmpliadaImagen');
-  const cerrarFotoAmpliadaBoton=document.getElementById('cerrarFotoAmpliada');
-  let focoAntesFoto=null;
-  function ampliarFoto(imagen,nombre){
-    if(!imagen.complete||!imagen.naturalWidth)return;
-    focoAntesFoto=document.activeElement;
-    fotoAmpliadaImagen.src=imagen.currentSrc||imagen.src;
-    fotoAmpliadaImagen.alt=nombre;
-    fotoAmpliadaOverlay.hidden=false;
-    document.body.classList.add('modal-abierto');
-    cerrarFotoAmpliadaBoton.focus();
-  }
-  function cerrarFotoAmpliada(){
-    fotoAmpliadaOverlay.hidden=true;
-    fotoAmpliadaImagen.removeAttribute('src');
-    document.body.classList.remove('modal-abierto');
-    if(focoAntesFoto?.isConnected)focoAntesFoto.focus();
-  }
-  cerrarFotoAmpliadaBoton.addEventListener('click',cerrarFotoAmpliada);
-  fotoAmpliadaOverlay.addEventListener('click',e=>{if(e.target===fotoAmpliadaOverlay)cerrarFotoAmpliada();});
-  document.addEventListener('keydown',e=>{
-    if(!fotoAmpliadaOverlay.hidden && e.key==='Escape'){
-      e.preventDefault();cerrarFotoAmpliada();
-    }
-  });
-
-  function crearLista(){
-    const visibles = obtenerPlatillos();
-    listaHTML.replaceChildren();
-
-    visibles.forEach(item => {
-      const tarjeta = document.createElement("article");
-      tarjeta.className = "platillo-tarjeta";
-      const bloque = document.createElement("div");
-      bloque.className = "platillo";
-
-      const visual = document.createElement("button");
-      visual.type = "button";
-      visual.className = "platillo-visual";
-      visual.setAttribute('aria-label',t('enlargePhoto')+' '+textoProducto(item,'nombre'));
-      visual.title=t('enlargePhoto');
-      visual.disabled=true;
-      const fallback = document.createElement("div");
-      fallback.className = "foto-fallback";
-      fallback.textContent = t('photoPending');
-      const imagen = document.createElement("img");
-      imagen.loading = "lazy";
-      imagen.addEventListener('load',()=>{visual.disabled=false;});
-      imagen.addEventListener('error',()=>{visual.disabled=true;});
-      cargarImagenSegura(imagen, fallback, item.imagen, textoProducto(item,'nombre'));
-      visual.append(fallback, imagen);
-      visual.addEventListener('click',()=>ampliarFoto(imagen,textoProducto(item,'nombre')));
-
-      const info = document.createElement("div");
-      info.className = "platillo-info";
-      const encabezado = document.createElement("div");
-      encabezado.className = "platillo-encabezado";
-      const nombre = document.createElement("h3");
-      nombre.className = "platillo-nombre";
-      nombre.textContent = textoProducto(item,'nombre');
-      const precio = document.createElement("span");
-      precio.className = "platillo-precio";
-      precio.textContent = precioVisible(item.precio);
-      encabezado.append(nombre, precio);
-      info.appendChild(encabezado);
-      if((item.descripcion || "").trim()){
-        const desc = document.createElement("p");
-        desc.className = "platillo-descripcion";
-        desc.textContent = textoProducto(item,'descripcion');
-        info.appendChild(desc);
-      }
-
-      if(item.presentaciones){
-        const tamanoInicial=item.presentaciones.find(p=>p.id===item.presentacionSeleccionada);
-        precio.textContent=tamanoInicial?precioVisible(tamanoInicial.precio):t('chooseSize');
-        precio.dataset.precioCal=item.id;
-        const controlPresentacion=crearControlPresentacion(item);
-        bloque.append(visual,info,controlPresentacion);
-      }else{
-        bloque.append(visual,info,crearControlCompraPlatillo(item));
-      }
-      tarjeta.append(bloque);
-      listaHTML.appendChild(tarjeta);
-    });
-    document.title = restaurante.nombre + ' | '+t('menuTab');
-  }
-
-  /* ===================================================== */
-  /* RUTA INICIAL                                          */
-  /* ===================================================== */
-
-  function iniciarRuta(){
-    const hash = window.location.hash.toLowerCase();
-
-    if(hash === "#inicio"){
-      mostrarVista("inicio",false);
-    }
-    else{
-      mostrarVista("menu",false);
-    }
-  }
-
-  window.addEventListener("hashchange",iniciarRuta);
-
-
-  /* ===================================================== */
-  /* SELECTOR DE IDIOMA ES/EN                              */
-  /* ===================================================== */
-  function aplicarIdioma(){
-    document.documentElement.lang=idioma;
-    document.getElementById('botonIdioma').textContent=idioma==='es'?'English · EN':'Español · ES';
-    document.getElementById('botonIdioma').setAttribute('aria-label',idioma==='es'?'Switch to English':'Cambiar a español');
-    document.getElementById('botonIdioma').setAttribute('aria-pressed',String(idioma==='en'));
-    for(const el of document.querySelectorAll('[data-i18n]')) el.textContent=t(el.dataset.i18n);
-    for(const el of document.querySelectorAll('[data-i18n-placeholder]')) el.placeholder=t(el.dataset.i18nPlaceholder);
-    for(const el of document.querySelectorAll('[data-i18n-aria]')) el.setAttribute('aria-label',t(el.dataset.i18nAria));
-    heroSubtitulo.textContent=idioma==='en'?restaurante.subtituloEn||restaurante.subtitulo:restaurante.subtitulo;
-    inicioTitulo.textContent=idioma==='en'?restaurante.tituloHistoriaEn||restaurante.tituloHistoria:restaurante.tituloHistoria;
-    inicioHistoria.textContent=idioma==='en'?restaurante.historiaEn||restaurante.historia:restaurante.historia;
-    inicioContactoTexto.textContent=idioma==='en'?restaurante.contactoTextoEn||restaurante.contactoTexto:restaurante.contactoTexto;
-    textoUbicacion.textContent=idioma==='en'?restaurante.ubicacionTextoEn||restaurante.ubicacionTexto:restaurante.ubicacionTexto;
-    footerTexto.textContent=idioma==='en'?restaurante.footerEn||restaurante.footer:restaurante.footer;
-    if(pedidoOverlay.hidden===false){
-      document.getElementById('pedidoDescripcion').textContent=t(pedidoFormulario.hidden?'review':'deliveryInfo');
-      if(!pedidoFormulario.hidden){
-        const listo=/^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
-        pedidoAviso.textContent=listo?'':t('waNotReady');
-      }
-    }
-    if(envioConfigurado()) document.getElementById('tarifasEnvio').textContent=moneda(restaurante.envioBase)+t('mapRateUntil')+restaurante.envioKmIncluidos+t('mapRateBeyond')+moneda(restaurante.envioKmExtra)+t('mapRatePerKm');
-    if(distanciaRutaKm===null) resultadoEnvio.textContent=t('mapWaiting');
-    else resultadoEnvio.textContent=t('routePrefix')+distanciaRutaKm.toFixed(2)+t('routeShipping')+moneda(calcularCostoEnvio());
-    crearCategorias();crearLista();actualizarPedidoUI();
-  }
-  document.getElementById('botonIdioma').addEventListener('click',()=>{
-    idioma=idioma==='es'?'en':'es';
-    aplicarIdioma();
-  });
-
-  /* ===================================================== */
-  /* INICIAR                                               */
-  /* ===================================================== */
-
-  aplicarIdioma();
-  iniciarRuta();
-  actualizarBotonVolverMenu();
-
-</script>
-
-</body>
-</html>
+    window.scrollTo({ top: 0,
