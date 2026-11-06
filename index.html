@@ -557,7 +557,7 @@
 
     .platillo-info {
       flex: 1 1 auto;
-      padding: 15px 16px 16px;
+      padding: 15px 16px 8px; /* Reducido abajo para acomodar los controles */
     }
 
     .platillo-encabezado {
@@ -573,7 +573,7 @@
       margin: 0;
       color: var(--texto);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(20px, 2vw, 24px);
+      font-size: clamp(19px, 2vw, 22px);
       font-weight: 600;
       line-height: 1.25;
       overflow-wrap: anywhere;
@@ -583,7 +583,7 @@
       flex: 0 0 auto;
       padding-top: 3px;
       color: var(--acento);
-      font-size: 19px;
+      font-size: 18px;
       font-weight: bold;
       white-space: nowrap;
     }
@@ -592,48 +592,160 @@
       margin: 10px 0 0;
       color: var(--texto-suave);
       font-size: 13px;
-      line-height: 1.58;
+      line-height: 1.5;
     }
+
+    /* ===================================================== */
+    /* VARIANTES Y CONTROLES (ESTILO DELIVERY APP)           */
+    /* ===================================================== */
+    
+    .variantes-wrap {
+      margin: 10px 16px 0;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    
+    .variantes-wrap::-webkit-scrollbar { display: none; }
+    
+    .variante-btn {
+      flex: 0 0 auto;
+      padding: 6px 12px;
+      border: 1px solid var(--linea);
+      border-radius: 12px;
+      background: var(--tarjeta);
+      color: var(--texto-suave);
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    
+    .variante-btn.activa {
+      border-color: var(--acento);
+      background: rgba(166,79,49,.06);
+      color: var(--acento-oscuro);
+      font-weight: bold;
+    }
+    
+    .variante-precio {
+      display: block;
+      font-size: 11px;
+      margin-top: 2px;
+      font-weight: normal;
+    }
+    .variante-btn.activa .variante-precio { font-weight: bold; }
+
+    .zona-controles {
+      margin: 12px 16px 16px;
+    }
+
+    .btn-agregar-inicial {
+      width: 100%;
+      height: 44px;
+      border: none;
+      border-radius: 14px;
+      background: var(--acento);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.1s, background 0.2s;
+    }
+    
+    .btn-agregar-inicial:active { transform: scale(0.97); }
 
     .control-carrito {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin: 0 16px 16px;
-      padding: 12px 0 0;
-      border-top: 1px solid var(--linea);
       font-size: 13px;
-      flex-shrink: 0;
+    }
+    
+    /* En la lista del carrito queremos un diseño ligeramente diferente al de la tarjeta */
+    .pedido-resumen-fila .control-carrito {
+      padding: 4px 0; margin: 0; border: 0;
     }
 
     .cantidad-control {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
+      gap: 12px;
+      width: 100%;
+      justify-content: space-between;
+      background: #F9F6F1;
+      border-radius: 14px;
+      padding: 4px;
+    }
+    
+    .pedido-resumen-fila .cantidad-control {
+      width: auto; background: transparent; padding: 0;
     }
 
     .cantidad-control button {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       border: 1px solid var(--linea);
-      border-radius: 12px;
-      background: var(--tarjeta);
+      border-radius: 10px;
+      background: #fff;
       color: var(--acento);
-      font-size: 23px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
-
-    .cantidad-control button:disabled {
-      opacity: .35;
-      cursor: default;
-    }
+    
+    .cantidad-control button:active { transform: scale(0.92); }
+    .cantidad-control button:disabled { opacity: 0.4; cursor: default; transform: none; }
 
     .cantidad-control output {
-      min-width: 20px;
+      min-width: 24px;
       text-align: center;
       font-weight: bold;
+      font-size: 15px;
+    }
+
+    /* ===================================================== */
+    /* BOTÓN VOLVER ARRIBA                                   */
+    /* ===================================================== */
+    .btn-subir {
+      position: fixed;
+      left: 16px;
+      bottom: 100px;
+      z-index: 490;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(36, 31, 26, 0.4);
+      color: white;
+      font-size: 20px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-subir.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .btn-subir:hover {
+      transform: translateY(-3px);
+      background: rgba(36, 31, 26, 0.65);
     }
 
     /* ===================================================== */
@@ -741,13 +853,8 @@
       border-bottom: 1px solid var(--linea);
     }
 
-    .pedido-resumen-fila strong { font-size: 14px; }
-
-    .pedido-resumen-fila .control-carrito {
-      border: 0;
-      padding: 4px 0;
-      margin: 0;
-    }
+    .pedido-resumen-fila strong { display: block; font-size: 14px; margin-bottom: 6px; }
+    .pedido-resumen-fila small { display: block; color: var(--texto-suave); margin-bottom: 8px; }
 
     .pedido-totales {
       margin: 18px 0;
@@ -1021,30 +1128,18 @@
       .hero-inner { padding: 48px 18px 38px; }
       .hero h1 { font-size: clamp(48px, 16vw, 76px); }
       .hero-kicker {
-        left: 15px;
-        top: 15px;
-        font-size: 9px;
-        letter-spacing: .2px;
-        max-width: 63%;
+        left: 15px; top: 15px; font-size: 9px; letter-spacing: .2px; max-width: 63%;
       }
       .boton-idioma {
-        right: 14px;
-        top: 15px;
-        font-size: 11px;
-        min-height: 35px;
-        padding: 7px 11px;
+        right: 14px; top: 15px; font-size: 11px; min-height: 35px; padding: 7px 11px;
       }
       .nav-principal-wrap { display: none; }
       .contenedor { padding: 24px 11px 118px; }
       .intro { display: block; }
       .pedido-form-grid { grid-template-columns: 1fr; }
       .nav-movil { display: grid; }
-      .whatsapp-flotante {
-        right: 14px;
-        bottom: 85px;
-        width: 46px;
-        height: 46px;
-      }
+      .whatsapp-flotante { right: 14px; bottom: 85px; width: 46px; height: 46px; }
+      .btn-subir { bottom: 85px; left: 14px; }
       footer { padding-bottom: 105px; }
     }
 
@@ -1102,8 +1197,7 @@
       instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==",
       facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/",
       tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q",
-      // Envío con cálculo en mapa (dejar origenEnvio en null para confirmar por WhatsApp)
-      origenEnvio: null, // Ejemplo: { lat: 22.1565, lng: -100.9855 }
+      origenEnvio: null, 
       ciudadEnvio: "San Luis Potosí",
       envioBase: null,
       envioKmIncluidos: null,
@@ -1112,11 +1206,8 @@
       footer: "Comedor Lucy · Menú digital 2026",
       footerEn: "Comedor Lucy · Digital menu 2026",
       colores: {
-        fondo: "#F5F0E8",
-        tarjeta: "#FFFDF9",
-        texto: "#241F1A",
-        acento: "#A64F31",
-        acentoOscuro: "#6C2F1C"
+        fondo: "#F5F0E8", tarjeta: "#FFFDF9", texto: "#241F1A",
+        acento: "#A64F31", acentoOscuro: "#6C2F1C"
       }
     },
 
@@ -1138,725 +1229,209 @@
     platillos: [
       /* --- ANTOJITOS PAL CORAZÓN ❤️ --- */
       {
-        id: "machete",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Machete (45 cm)",
-        nombreEn: "Giant quesadilla (45 cm)",
-        precio: "$110",
-        descripcion: "quesadilla gigante (45 cm) con queso y hasta 3 guisados, incluye ensalada.",
+        id: "machete", categoria: "Antojitos pal corazón ❤️",
+        nombre: "Machete (45 cm)", nombreEn: "Giant quesadilla (45 cm)",
+        precio: "$110", descripcion: "quesadilla gigante (45 cm) con queso y hasta 3 guisados, incluye ensalada.",
         descripcionEn: "Giant 45 cm quesadilla with cheese and up to three fillings; includes salad.",
         imagen: "images/Menu/machete.jpg"
       },
       {
-        id: "quesadilla",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Quesadilla",
-        nombreEn: "Quesadilla",
-        precio: "$60",
-        descripcion: "quesadilla mediana con queso y guisado, incluye ensalada.",
+        id: "quesadilla", categoria: "Antojitos pal corazón ❤️",
+        nombre: "Quesadilla", nombreEn: "Quesadilla",
+        precio: "$60", descripcion: "quesadilla mediana con queso y guisado, incluye ensalada.",
         descripcionEn: "Medium-sized quesadilla with cheese and a choice of filling; includes salad.",
         imagen: "images/Menu/quesadilla.jpg"
       },
       {
-        id: "huarache",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Huarache",
-        nombreEn: "Huarache",
-        precio: "$60",
-        descripcion: "hecho de tortilla de maíz,frijoles,guisado, ensalada, crema y queso.",
+        id: "huarache", categoria: "Antojitos pal corazón ❤️",
+        nombre: "Huarache", nombreEn: "Huarache",
+        precio: "$60", descripcion: "hecho de tortilla de maíz,frijoles,guisado, ensalada, crema y queso.",
         descripcionEn: "Made with a corn tortilla, beans, a choice of filling, salad, cream and cheese.",
         imagen: "images/Menu/huarache.jpg"
       },
       {
-        id: "gordita",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Gordita",
-        nombreEn: "Gordita",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/gordita.jpg"
+        id: "gordita", categoria: "Antojitos pal corazón ❤️", nombre: "Gordita", nombreEn: "Gordita", precio: "Por definir", imagen: "images/Menu/gordita.jpg"
       },
       {
-        id: "sope_sencillo_guiso",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Sope sencillo o con guiso",
-        nombreEn: "Plain sope or with filling",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/sope.jpg"
+        id: "sope_sencillo_guiso", categoria: "Antojitos pal corazón ❤️", nombre: "Sope sencillo o con guiso", nombreEn: "Plain sope or with filling", precio: "Por definir", imagen: "images/Menu/sope.jpg"
       },
       {
-        id: "tortas",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Tortas",
-        nombreEn: "Tortas (Mexican sandwiches)",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/tortas.jpg"
+        id: "tortas", categoria: "Antojitos pal corazón ❤️", nombre: "Tortas", nombreEn: "Tortas (Mexican sandwiches)", precio: "Por definir", imagen: "images/Menu/tortas.jpg"
       },
       {
-        id: "tortas_barbacoa",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Tortas de barbacoa",
-        nombreEn: "Barbacoa tortas",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/tortas_barbacoa.jpg"
+        id: "tortas_barbacoa", categoria: "Antojitos pal corazón ❤️", nombre: "Tortas de barbacoa", nombreEn: "Barbacoa tortas", precio: "Por definir", imagen: "images/Menu/tortas_barbacoa.jpg"
       },
       {
-        id: "lechuza",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Lechuza",
-        nombreEn: "Lechuza",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/lechuza.jpg"
+        id: "lechuza", categoria: "Antojitos pal corazón ❤️", nombre: "Lechuza", nombreEn: "Lechuza", precio: "Por definir", imagen: "images/Menu/lechuza.jpg"
       },
       {
-        id: "lechuza_barbacoa",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Lechuza con barbacoa",
-        nombreEn: "Lechuza with barbacoa",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/lechuza_barbacoa.jpg"
+        id: "lechuza_barbacoa", categoria: "Antojitos pal corazón ❤️", nombre: "Lechuza con barbacoa", nombreEn: "Lechuza with barbacoa", precio: "Por definir", imagen: "images/Menu/lechuza_barbacoa.jpg"
       },
       {
-        id: "gringa",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Gringa",
-        nombreEn: "Gringa",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/gringa.jpg"
+        id: "gringa", categoria: "Antojitos pal corazón ❤️", nombre: "Gringa", nombreEn: "Gringa", precio: "Por definir", imagen: "images/Menu/gringa.jpg"
       },
       {
-        id: "gringa_barbacoa",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Gringa con barbacoa",
-        nombreEn: "Gringa with barbacoa",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/gringa_barbacoa.jpg"
+        id: "gringa_barbacoa", categoria: "Antojitos pal corazón ❤️", nombre: "Gringa con barbacoa", nombreEn: "Gringa with barbacoa", precio: "Por definir", imagen: "images/Menu/gringa_barbacoa.jpg"
       },
       {
-        id: "tacos",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Tacos",
-        nombreEn: "Tacos",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/tacos.jpg"
+        id: "tacos", categoria: "Antojitos pal corazón ❤️", nombre: "Tacos", nombreEn: "Tacos", precio: "Por definir", imagen: "images/Menu/tacos.jpg"
       },
       {
-        id: "nopal_azteca",
-        categoria: "Antojitos pal corazón ❤️",
-        nombre: "Nopal Azteca",
-        nombreEn: "Aztec Nopal (grilled cactus)",
-        precio: "Por definir",
-        descripcion: "Nopal asado con 1 guisado y queso fundido.",
-        descripcionEn: "Grilled cactus paddle topped with 1 filling and melted cheese.",
-        imagen: "images/Menu/nopal_azteca.jpg"
+        id: "nopal_azteca", categoria: "Antojitos pal corazón ❤️", nombre: "Nopal Azteca", nombreEn: "Aztec Nopal (grilled cactus)", precio: "Por definir",
+        descripcion: "Nopal asado con 1 guisado y queso fundido.", descripcionEn: "Grilled cactus paddle topped with 1 filling and melted cheese.", imagen: "images/Menu/nopal_azteca.jpg"
       },
 
       /* --- DESAYUNOS DE CAMPEÓN 🏆 --- */
       {
-        id: "chilaquiles",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Chilaquiles con huevo",
-        nombreEn: "Chilaquiles with egg",
-        precio: "$95",
-        descripcion: "chilaquiles acompañados de huevo, pollo o bisteck de puerco, incluye café y bolillo.",
-        descripcionEn: "Chilaquiles served with egg, chicken or pork steak; includes coffee and a bread roll.",
-        imagen: "images/Menu/chilaquiles.jpg"
+        id: "chilaquiles", categoria: "Desayunos de campeón 🏆", nombre: "Chilaquiles con huevo", nombreEn: "Chilaquiles with egg", precio: "$95",
+        descripcion: "chilaquiles acompañados de huevo, pollo o bisteck de puerco, incluye café y bolillo.", descripcionEn: "Chilaquiles served with egg, chicken or pork steak; includes coffee and a bread roll.", imagen: "images/Menu/chilaquiles.jpg"
       },
       {
-        id: "huevos_chorizo",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Huevos con chorizo",
-        nombreEn: "Eggs with chorizo",
-        precio: "$95",
-        descripcion: "huevos revueltos con chorizo, acompañados de frijoles y queso, café, tortillas o bolillo.",
-        descripcionEn: "Scrambled eggs with chorizo, served with beans and cheese; includes coffee and your choice of tortillas or a bread roll.",
-        imagen: "images/Menu/huevos_chorizo.jpg"
+        id: "huevos_chorizo", categoria: "Desayunos de campeón 🏆", nombre: "Huevos con chorizo", nombreEn: "Eggs with chorizo", precio: "$95",
+        descripcion: "huevos revueltos con chorizo, acompañados de frijoles y queso, café, tortillas o bolillo.", descripcionEn: "Scrambled eggs with chorizo, served with beans and cheese; includes coffee and your choice of tortillas or a bread roll.", imagen: "images/Menu/huevos_chorizo.jpg"
       },
       {
-        id: "huevos_jamon",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Huevos con jamón",
-        nombreEn: "Eggs with ham",
-        precio: "$95",
-        descripcion: "huevos revueltos con jamón de pavo, acompañado de frijoles y queso, inluye café, tortillas o bolillo.",
-        descripcionEn: "Scrambled eggs with turkey ham, served with beans and cheese; includes coffee and tortillas or a bread roll.",
-        imagen: "images/Menu/huevos_jamon.jpg"
+        id: "huevos_jamon", categoria: "Desayunos de campeón 🏆", nombre: "Huevos con jamón", nombreEn: "Eggs with ham", precio: "$95",
+        descripcion: "huevos revueltos con jamón de pavo, acompañado de frijoles y queso, inluye café, tortillas o bolillo.", descripcionEn: "Scrambled eggs with turkey ham, served with beans and cheese; includes coffee and tortillas or a bread roll.", imagen: "images/Menu/huevos_jamon.jpg"
       },
-      {
-        id: "chilaquiles_campeon",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Chilaquiles de Campeón",
-        nombreEn: "Champion Chilaquiles",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/chilaquiles_campeon.jpg"
-      },
-      {
-        id: "desayuno_campeon",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Desayuno de Campeón",
-        nombreEn: "Champion Breakfast",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/desayuno_campeon.jpg"
-      },
-      {
-        id: "sope_renido_lucy",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Sope reñido de Lucy",
-        nombreEn: "Lucy's special sope",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/sope_renido_lucy.jpg"
-      },
-      {
-        id: "chilaquiles_compadre",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Chilaquiles del compadre",
-        nombreEn: "Compadre's Chilaquiles",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/chilaquiles_compadre.jpg"
-      },
-      {
-        id: "apapachilaquiles",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "Los ApapaChilaquiles",
-        nombreEn: "Los ApapaChilaquiles",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/apapachilaquiles.jpg"
-      },
-      {
-        id: "pecadora_lucy",
-        categoria: "Desayunos de campeón 🏆",
-        nombre: "La pecadora de Lucy",
-        nombreEn: "La pecadora de Lucy",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/pecadora_lucy.jpg"
-      },
+      { id: "chilaquiles_campeon", categoria: "Desayunos de campeón 🏆", nombre: "Chilaquiles de Campeón", nombreEn: "Champion Chilaquiles", precio: "Por definir", imagen: "images/Menu/chilaquiles_campeon.jpg" },
+      { id: "desayuno_campeon", categoria: "Desayunos de campeón 🏆", nombre: "Desayuno de Campeón", nombreEn: "Champion Breakfast", precio: "Por definir", imagen: "images/Menu/desayuno_campeon.jpg" },
+      { id: "sope_renido_lucy", categoria: "Desayunos de campeón 🏆", nombre: "Sope reñido de Lucy", nombreEn: "Lucy's special sope", precio: "Por definir", imagen: "images/Menu/sope_renido_lucy.jpg" },
+      { id: "chilaquiles_compadre", categoria: "Desayunos de campeón 🏆", nombre: "Chilaquiles del compadre", nombreEn: "Compadre's Chilaquiles", precio: "Por definir", imagen: "images/Menu/chilaquiles_compadre.jpg" },
+      { id: "apapachilaquiles", categoria: "Desayunos de campeón 🏆", nombre: "Los ApapaChilaquiles", nombreEn: "Los ApapaChilaquiles", precio: "Por definir", imagen: "images/Menu/apapachilaquiles.jpg" },
+      { id: "pecadora_lucy", categoria: "Desayunos de campeón 🏆", nombre: "La pecadora de Lucy", nombreEn: "La pecadora de Lucy", precio: "Por definir", imagen: "images/Menu/pecadora_lucy.jpg" },
 
       /* --- CRUJIR DE FELICIDAD 😍 --- */
       {
-        id: "pollo_empanizado",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Pollo empanizado",
-        nombreEn: "Breaded chicken",
-        precio: "$100",
-        descripcion: "pieza de pollo empanizado frita, acompañada de ensalada, papas fritas, arroz, frijoles, incluye consomé y agua de frutas.",
-        descripcionEn: "A piece of fried breaded chicken with salad, French fries, rice and beans; includes consommé and fruit-flavored water.",
-        imagen: "images/Menu/pollo_empanizado.jpg"
+        id: "pollo_empanizado", categoria: "Crujir de felicidad 😍", nombre: "Pollo empanizado", nombreEn: "Breaded chicken", precio: "$100",
+        descripcion: "pieza de pollo empanizado frita, acompañada de ensalada, papas fritas, arroz, frijoles, incluye consomé y agua de frutas.", descripcionEn: "A piece of fried breaded chicken with salad, French fries, rice and beans; includes consommé and fruit-flavored water.", imagen: "images/Menu/pollo_empanizado.jpg"
       },
       {
-        id: "bisteck_ranchero",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Bisteck ranchero",
-        nombreEn: "Ranch-style beef steak",
-        precio: "$100",
-        descripcion: "bisteck de res encebollado bañado en salsa guisada, acompañado de arroz, papas fritas, frijoles, ensalada, incluye consomé y agua de frutas.",
-        descripcionEn: "Beef steak with onions in a cooked salsa, served with rice, French fries, beans and salad; includes consommé and fruit-flavored water.",
-        imagen: "images/Menu/bisteck_ranchero.jpg"
+        id: "bisteck_ranchero", categoria: "Crujir de felicidad 😍", nombre: "Bisteck ranchero", nombreEn: "Ranch-style beef steak", precio: "$100",
+        descripcion: "bisteck de res encebollado bañado en salsa guisada, acompañado de arroz, papas fritas, frijoles, ensalada, incluye consomé y agua de frutas.", descripcionEn: "Beef steak with onions in a cooked salsa, served with rice, French fries, beans and salad; includes consommé and fruit-flavored water.", imagen: "images/Menu/bisteck_ranchero.jpg"
       },
       {
-        id: "bisteck_mexicana",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Bisteck a la mexicana",
-        nombreEn: "Mexican-style beef steak",
-        precio: "$100",
-        descripcion: "bisteck picado a la mexicana, acompañado de arroz, frijoles y ensalada, incluye tortillas, consomé y agua de frutas.",
-        descripcionEn: "Diced beef steak cooked Mexican-style, served with rice, beans and salad; includes tortillas, consommé and fruit-flavored water.",
-        imagen: "images/Menu/bisteck_mexicana.jpg"
+        id: "bisteck_mexicana", categoria: "Crujir de felicidad 😍", nombre: "Bisteck a la mexicana", nombreEn: "Mexican-style beef steak", precio: "$100",
+        descripcion: "bisteck picado a la mexicana, acompañado de arroz, frijoles y ensalada, incluye tortillas, consomé y agua de frutas.", descripcionEn: "Diced beef steak cooked Mexican-style, served with rice, beans and salad; includes tortillas, consommé and fruit-flavored water.", imagen: "images/Menu/bisteck_mexicana.jpg"
       },
-      {
-        id: "enmoladas",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Enmoladas",
-        nombreEn: "Enmoladas (mole enchiladas)",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/enmoladas.jpg"
-      },
-      {
-        id: "enchiladas_lucy",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Enchiladas estilo Comedor Lucy",
-        nombreEn: "Comedor Lucy style enchiladas",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/enchiladas_lucy.jpg"
-      },
-      {
-        id: "flautas_lucy",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Flautas estilo Comedor Lucy",
-        nombreEn: "Comedor Lucy style flautas",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/flautas_lucy.jpg"
-      },
-      {
-        id: "milanesa_res_pollo",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Milanesa de res o de pollo",
-        nombreEn: "Breaded beef or chicken milanesa",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/milanesa.jpg"
-      },
-      {
-        id: "chile_relleno",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Chile relleno",
-        nombreEn: "Stuffed poblano pepper",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/chile_relleno.jpg"
-      },
-      {
-        id: "higado_encebollado",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Hígado encebollado",
-        nombreEn: "Liver and onions",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/higado_encebollado.jpg"
-      },
-      {
-        id: "carne_asada",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Carne asada",
-        nombreEn: "Grilled beef steak",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/carne_asada.jpg"
-      },
-      {
-        id: "pollo_frito",
-        categoria: "Crujir de felicidad 😍",
-        nombre: "Pollo frito",
-        nombreEn: "Fried chicken",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/pollo_frito.jpg"
-      },
+      { id: "enmoladas", categoria: "Crujir de felicidad 😍", nombre: "Enmoladas", nombreEn: "Enmoladas (mole enchiladas)", precio: "Por definir", imagen: "images/Menu/enmoladas.jpg" },
+      { id: "enchiladas_lucy", categoria: "Crujir de felicidad 😍", nombre: "Enchiladas estilo Comedor Lucy", nombreEn: "Comedor Lucy style enchiladas", precio: "Por definir", imagen: "images/Menu/enchiladas_lucy.jpg" },
+      { id: "flautas_lucy", categoria: "Crujir de felicidad 😍", nombre: "Flautas estilo Comedor Lucy", nombreEn: "Comedor Lucy style flautas", precio: "Por definir", imagen: "images/Menu/flautas_lucy.jpg" },
+      { id: "milanesa_res_pollo", categoria: "Crujir de felicidad 😍", nombre: "Milanesa de res o de pollo", nombreEn: "Breaded beef or chicken milanesa", precio: "Por definir", imagen: "images/Menu/milanesa.jpg" },
+      { id: "chile_relleno", categoria: "Crujir de felicidad 😍", nombre: "Chile relleno", nombreEn: "Stuffed poblano pepper", precio: "Por definir", imagen: "images/Menu/chile_relleno.jpg" },
+      { id: "higado_encebollado", categoria: "Crujir de felicidad 😍", nombre: "Hígado encebollado", nombreEn: "Liver and onions", precio: "Por definir", imagen: "images/Menu/higado_encebollado.jpg" },
+      { id: "carne_asada", categoria: "Crujir de felicidad 😍", nombre: "Carne asada", nombreEn: "Grilled beef steak", precio: "Por definir", imagen: "images/Menu/carne_asada.jpg" },
+      { id: "pollo_frito", categoria: "Crujir de felicidad 😍", nombre: "Pollo frito", nombreEn: "Fried chicken", precio: "Por definir", imagen: "images/Menu/pollo_frito.jpg" },
 
       /* --- PANZA LLENA CORAZÓN CONTENTO 🥰 --- */
       {
-        id: "pollo_salsa",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Pollo en salsa",
-        nombreEn: "Chicken in salsa",
-        precio: "$90",
-        descripcion: "rico pollo bañado en salsa, acompañado de arroz, frijoles, incluye tortillas, consomé y agua de frutas.",
-        descripcionEn: "Chicken in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.",
-        imagen: "images/Menu/pollo_salsa.jpg"
+        id: "pollo_salsa", categoria: "Panza llena corazón contento 🥰", nombre: "Pollo en salsa", nombreEn: "Chicken in salsa", precio: "$90",
+        descripcion: "rico pollo bañado en salsa, acompañado de arroz, frijoles, incluye tortillas, consomé y agua de frutas.", descripcionEn: "Chicken in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.", imagen: "images/Menu/pollo_salsa.jpg"
       },
       {
-        id: "mole_pollo",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Mole de pollo",
-        nombreEn: "Chicken in mole sauce",
-        precio: "$90",
-        descripcion: "mole poblano dulce acompañado de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
-        descripcionEn: "Sweet Puebla-style mole with chicken, rice and beans; includes tortillas, consommé and fruit-flavored water.",
-        imagen: "images/Menu/mole_pollo.jpg"
+        id: "mole_pollo", categoria: "Panza llena corazón contento 🥰", nombre: "Mole de pollo", nombreEn: "Chicken in mole sauce", precio: "$90",
+        descripcion: "mole poblano dulce acompañado de arroz y frijoles, incluye tortillas, consomé y agua de frutas.", descripcionEn: "Sweet Puebla-style mole with chicken, rice and beans; includes tortillas, consommé and fruit-flavored water.", imagen: "images/Menu/mole_pollo.jpg"
       },
       {
-        id: "costilla_puerco",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Costilla de puerco",
-        nombreEn: "Pork ribs in salsa",
-        precio: "$90",
-        descripcion: "trocitos de puerco bañados en salsa, acompañados de arroz y frijoles, incluye tortillas, consomé y agua de frutas",
-        descripcionEn: "Pieces of pork in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.",
-        imagen: "images/Menu/costilla_puerco.jpg"
+        id: "costilla_puerco", categoria: "Panza llena corazón contento 🥰", nombre: "Costilla de puerco", nombreEn: "Pork ribs in salsa", precio: "$90",
+        descripcion: "trocitos de puerco bañados en salsa, acompañados de arroz y frijoles, incluye tortillas, consomé y agua de frutas", descripcionEn: "Pieces of pork in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.", imagen: "images/Menu/costilla_puerco.jpg"
       },
-      {
-        id: "mole_puerco",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Mole de puerco",
-        nombreEn: "Pork in mole sauce",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/mole_puerco.jpg"
-      },
-      {
-        id: "enchiladas_potosinas",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Enchiladas potosinas",
-        nombreEn: "Potosina enchiladas",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/enchiladas_potosinas.jpg"
-      },
-      {
-        id: "picadillo",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Picadillo",
-        nombreEn: "Picadillo (ground beef hash)",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/picadillo.jpg"
-      },
-      {
-        id: "chuleta_ahumada_res",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Chuleta ahumada o de res",
-        nombreEn: "Smoked pork chop or beef chop",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/chuleta.jpg"
-      },
-      {
-        id: "enchiladas_potosinas_cecina",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Enchiladas potosinas con cecina o carne asada",
-        nombreEn: "Potosina enchiladas with cecina or grilled beef",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/enchiladas_cecina.jpg"
-      },
-      {
-        id: "placer_culposo",
-        categoria: "Panza llena corazón contento 🥰",
-        nombre: "Placer culposo",
-        nombreEn: "Placer culposo (Guilty pleasure)",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/placer_culposo.jpg"
-      },
+      { id: "mole_puerco", categoria: "Panza llena corazón contento 🥰", nombre: "Mole de puerco", nombreEn: "Pork in mole sauce", precio: "Por definir", imagen: "images/Menu/mole_puerco.jpg" },
+      { id: "enchiladas_potosinas", categoria: "Panza llena corazón contento 🥰", nombre: "Enchiladas potosinas", nombreEn: "Potosina enchiladas", precio: "Por definir", imagen: "images/Menu/enchiladas_potosinas.jpg" },
+      { id: "picadillo", categoria: "Panza llena corazón contento 🥰", nombre: "Picadillo", nombreEn: "Picadillo (ground beef hash)", precio: "Por definir", imagen: "images/Menu/picadillo.jpg" },
+      { id: "chuleta_ahumada_res", categoria: "Panza llena corazón contento 🥰", nombre: "Chuleta ahumada o de res", nombreEn: "Smoked pork chop or beef chop", precio: "Por definir", imagen: "images/Menu/chuleta.jpg" },
+      { id: "enchiladas_potosinas_cecina", categoria: "Panza llena corazón contento 🥰", nombre: "Enchiladas potosinas con cecina o carne asada", nombreEn: "Potosina enchiladas with cecina or grilled beef", precio: "Por definir", imagen: "images/Menu/enchiladas_cecina.jpg" },
+      { id: "placer_culposo", categoria: "Panza llena corazón contento 🥰", nombre: "Placer culposo", nombreEn: "Placer culposo (Guilty pleasure)", precio: "Por definir", imagen: "images/Menu/placer_culposo.jpg" },
 
       /* --- BOCADO ÁGIL ⚡ --- */
-      {
-        id: "filete_pescado_plancha",
-        categoria: "Bocado ágil ⚡",
-        nombre: "Filete de pescado a la plancha",
-        nombreEn: "Grilled fish fillet",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/filete_pescado_plancha.jpg"
-      },
-      {
-        id: "pollo_plancha",
-        categoria: "Bocado ágil ⚡",
-        nombre: "Pollo a la plancha",
-        nombreEn: "Grilled chicken breast",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/pollo_plancha.jpg"
-      },
-      {
-        id: "fajitas_pimenteras",
-        categoria: "Bocado ágil ⚡",
-        nombre: "Fajitas pimenteras",
-        nombreEn: "Bell pepper fajitas",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/fajitas_pimenteras.jpg"
-      },
+      { id: "filete_pescado_plancha", categoria: "Bocado ágil ⚡", nombre: "Filete de pescado a la plancha", nombreEn: "Grilled fish fillet", precio: "Por definir", imagen: "images/Menu/filete_pescado_plancha.jpg" },
+      { id: "pollo_plancha", categoria: "Bocado ágil ⚡", nombre: "Pollo a la plancha", nombreEn: "Grilled chicken breast", precio: "Por definir", imagen: "images/Menu/pollo_plancha.jpg" },
+      { id: "fajitas_pimenteras", categoria: "Bocado ágil ⚡", nombre: "Fajitas pimenteras", nombreEn: "Bell pepper fajitas", precio: "Por definir", imagen: "images/Menu/fajitas_pimenteras.jpg" },
 
       /* --- BARBACUÉRDATE DE MÍ 🔥 --- */
-      {
-        id: "orden_barbacoa",
-        categoria: "Barbacuérdate de mí 🔥",
-        nombre: "Orden de barbacoa",
-        nombreEn: "Barbacoa plate",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/orden_barbacoa.jpg"
-      },
-      {
-        id: "orden_birria",
-        categoria: "Barbacuérdate de mí 🔥",
-        nombre: "Orden de birria",
-        nombreEn: "Birria plate",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/orden_birria.jpg"
-      },
+      { id: "orden_barbacoa", categoria: "Barbacuérdate de mí 🔥", nombre: "Orden de barbacoa", nombreEn: "Barbacoa plate", precio: "Por definir", imagen: "images/Menu/orden_barbacoa.jpg" },
+      { id: "orden_birria", categoria: "Barbacuérdate de mí 🔥", nombre: "Orden de birria", nombreEn: "Birria plate", precio: "Por definir", imagen: "images/Menu/orden_birria.jpg" },
 
       /* --- BOCADOS TRAVIESOS 🍟 --- */
-      {
-        id: "milanesa_kids",
-        categoria: "Bocados traviesos 🍟",
-        nombre: "Milanesa Kids",
-        nombreEn: "Kids' Milanesa",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/milanesa_kids.jpg"
-      },
-      {
-        id: "orden_nuggets",
-        categoria: "Bocados traviesos 🍟",
-        nombre: "Orden de nuggets",
-        nombreEn: "Chicken nuggets order",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/orden_nuggets.jpg"
-      },
+      { id: "milanesa_kids", categoria: "Bocados traviesos 🍟", nombre: "Milanesa Kids", nombreEn: "Kids' Milanesa", precio: "Por definir", imagen: "images/Menu/milanesa_kids.jpg" },
+      { id: "orden_nuggets", categoria: "Bocados traviesos 🍟", nombre: "Orden de nuggets", nombreEn: "Chicken nuggets order", precio: "Por definir", imagen: "images/Menu/orden_nuggets.jpg" },
 
       /* --- ESENCIA DE LA CASA ⭐ --- */
-      {
-        id: "tampiquena_sencilla",
-        categoria: "Esencia de la casa ⭐",
-        nombre: "Tampiqueña sencilla",
-        nombreEn: "Classic Carne a la Tampiqueña",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/tampiquena_sencilla.jpg"
-      },
-      {
-        id: "tampiquena_especial",
-        categoria: "Esencia de la casa ⭐",
-        nombre: "Tampiqueña especial",
-        nombreEn: "Special Carne a la Tampiqueña",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/tampiquena_especial.jpg"
-      },
+      { id: "tampiquena_sencilla", categoria: "Esencia de la casa ⭐", nombre: "Tampiqueña sencilla", nombreEn: "Classic Carne a la Tampiqueña", precio: "Por definir", imagen: "images/Menu/tampiquena_sencilla.jpg" },
+      { id: "tampiquena_especial", categoria: "Esencia de la casa ⭐", nombre: "Tampiqueña especial", nombreEn: "Special Carne a la Tampiqueña", precio: "Por definir", imagen: "images/Menu/tampiquena_especial.jpg" },
 
-      /* --- SAZÓN DE LA ABUELA 👵🏻🫶 --- */
+      /* --- SAZÓN DE LA ABUELA 👵🏻🫶 (CON VARIANTES) --- */
       {
-        id: "menudo",
-        categoria: "Sazón de la Abuela 👵🏻🫶",
-        nombre: "Menudo (Chico, Mediano y Grande)",
-        nombreEn: "Menudo (Small, Medium & Large)",
-        precio: "$110",
-        descripcion: "rica pancita de res en caldo rojo (disponible en tamaño chico, mediano y grande), incluye guarniciones, tortillas hechas a mano y agua de frutas.",
-        descripcionEn: "Beef tripe in red broth (available in small, medium and large); includes garnishes, handmade tortillas and fruit-flavored water.",
-        imagen: "images/Menu/menudo.jpg"
+        id: "menudo", categoria: "Sazón de la Abuela 👵🏻🫶",
+        nombre: "Menudo", nombreEn: "Menudo (Beef tripe soup)",
+        precio: "Desde $90", 
+        descripcion: "rica pancita de res en caldo rojo, incluye guarniciones, tortillas hechas a mano y agua de frutas.",
+        descripcionEn: "Beef tripe in red broth; includes garnishes, handmade tortillas and fruit-flavored water.",
+        imagen: "images/Menu/menudo.jpg",
+        variantes: [
+          { id: "chico", es: "Chico", en: "Small", precio: "$90" },
+          { id: "mediano", es: "Mediano", en: "Medium", precio: "$110" },
+          { id: "grande", es: "Grande", en: "Large", precio: "$130" }
+        ]
       },
       {
-        id: "pozole",
-        categoria: "Sazón de la Abuela 👵🏻🫶",
-        nombre: "Pozole (Chico, Mediano y Grande)",
-        nombreEn: "Pozole (Small, Medium & Large)",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/pozole.jpg"
+        id: "pozole", categoria: "Sazón de la Abuela 👵🏻🫶",
+        nombre: "Pozole", nombreEn: "Pozole",
+        precio: "Desde $90", imagen: "images/Menu/pozole.jpg",
+        variantes: [
+          { id: "chico", es: "Chico", en: "Small", precio: "$90" },
+          { id: "mediano", es: "Mediano", en: "Medium", precio: "$110" },
+          { id: "grande", es: "Grande", en: "Large", precio: "$130" }
+        ]
       },
       {
-        id: "espinazo_puerco",
-        categoria: "Sazón de la Abuela 👵🏻🫶",
-        nombre: "Espinazo (Chico, Mediano y Grande)",
-        nombreEn: "Pork backbone soup (Small, Medium & Large)",
-        precio: "$110",
-        descripcion: "rico caldo de espinazo de puerco (disponible en tamaño chico, mediano y grande), acompañado de arroz, incluye tortillas y agua de frutas.",
-        descripcionEn: "Pork backbone broth (available in small, medium and large), served with rice; includes tortillas and fruit-flavored water.",
-        imagen: "images/Menu/espinazo_puerco.jpg"
+        id: "espinazo_puerco", categoria: "Sazón de la Abuela 👵🏻🫶",
+        nombre: "Espinazo de Puerco", nombreEn: "Pork backbone soup",
+        precio: "Desde $90", 
+        descripcion: "rico caldo de espinazo de puerco acompañado de arroz, incluye tortillas y agua de frutas.",
+        descripcionEn: "Pork backbone broth served with rice; includes tortillas and fruit-flavored water.",
+        imagen: "images/Menu/espinazo_puerco.jpg",
+        variantes: [
+          { id: "chico", es: "Chico", en: "Small", precio: "$90" },
+          { id: "mediano", es: "Mediano", en: "Medium", precio: "$110" },
+          { id: "grande", es: "Grande", en: "Large", precio: "$130" }
+        ]
       },
       {
-        id: "caldo_res",
-        categoria: "Sazón de la Abuela 👵🏻🫶",
-        nombre: "Caldo de res",
-        nombreEn: "Beef and vegetable soup",
-        precio: "$100",
-        descripcion: "cocido de res con verduras y arroz, incluye agua de frutas.",
-        descripcionEn: "Beef stew with vegetables and rice; includes fruit-flavored water.",
-        imagen: "images/Menu/caldo_res.jpg"
+        id: "caldo_res", categoria: "Sazón de la Abuela 👵🏻🫶", nombre: "Caldo de res", nombreEn: "Beef and vegetable soup", precio: "$100",
+        descripcion: "cocido de res con verduras y arroz, incluye agua de frutas.", descripcionEn: "Beef stew with vegetables and rice; includes fruit-flavored water.", imagen: "images/Menu/caldo_res.jpg"
       },
-      {
-        id: "caldo_pollo",
-        categoria: "Sazón de la Abuela 👵🏻🫶",
-        nombre: "Caldo de pollo",
-        nombreEn: "Chicken soup",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/caldo_pollo.jpg"
-      },
+      { id: "caldo_pollo", categoria: "Sazón de la Abuela 👵🏻🫶", nombre: "Caldo de pollo", nombreEn: "Chicken soup", precio: "Por definir", imagen: "images/Menu/caldo_pollo.jpg" },
 
       /* --- AVENTURA MARINA 🌊🌴 --- */
+      { id: "camarones_momia", categoria: "Aventura marina 🌊🌴", nombre: "Camarones a la momia", nombreEn: "Bacon-wrapped stuffed shrimp", precio: "Por definir", imagen: "images/Menu/camarones_momia.jpg" },
+      { id: "camarones_mexicana", categoria: "Aventura marina 🌊🌴", nombre: "Camarones a la Mexicana", nombreEn: "Mexican-style shrimp", precio: "Por definir", imagen: "images/Menu/camarones_mexicana.jpg" },
       {
-        id: "camarones_momia",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Camarones a la momia",
-        nombreEn: "Bacon-wrapped stuffed shrimp",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/camarones_momia.jpg"
+        id: "camarones_coco", categoria: "Aventura marina 🌊🌴", nombre: "Camarones empanizados o al coco 🥥🌴", nombreEn: "Breaded or coconut shrimp 🥥🌴", precio: "$220",
+        descripcion: "ricos camarones empanizados o con coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.", descripcionEn: "Ten breaded or coconut shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.", imagen: "images/Menu/camarones_coco.jpg"
+      },
+      { id: "filete_pescado", categoria: "Aventura marina 🌊🌴", nombre: "Filete de pescado", nombreEn: "Fish fillet", precio: "Por definir", imagen: "images/Menu/filete_pescado.jpg" },
+      { id: "mojarra_frita", categoria: "Aventura marina 🌊🌴", nombre: "Mojarra frita", nombreEn: "Whole fried tilapia", precio: "Por definir", imagen: "images/Menu/mojarra_frita.jpg" },
+      { id: "huachinango", categoria: "Aventura marina 🌊🌴", nombre: "Huachinango", nombreEn: "Red snapper", precio: "Por definir", imagen: "images/Menu/huachinango.jpg" },
+      {
+        id: "coctel_camaron", categoria: "Aventura marina 🌊🌴", nombre: "Cóctel de camarones", nombreEn: "Shrimp cocktail", precio: "$150",
+        descripcion: "coctel de camarones con salsas y guarniciones, incluye agua de frutas.", descripcionEn: "Shrimp cocktail served with sauces and garnishes; includes fruit-flavored water.", imagen: "images/Menu/coctel_camaron.jpg"
       },
       {
-        id: "camarones_mexicana",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Camarones a la Mexicana",
-        nombreEn: "Mexican-style shrimp",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/camarones_mexicana.jpg"
+        id: "vuelve_vida", categoria: "Aventura marina 🌊🌴", nombre: "Vuelve a la vida", nombreEn: "Vuelve a la Vida seafood cocktail", precio: "$150",
+        descripcion: "coctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.", descripcionEn: "Shrimp, octopus and oyster cocktail served with sauces and garnishes; includes fruit-flavored water.", imagen: "images/Menu/vuelve_vida.jpg"
       },
       {
-        id: "camarones_coco",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Camarones empanizados o al coco 🥥🌴",
-        nombreEn: "Breaded or coconut shrimp 🥥🌴",
-        precio: "$220",
-        descripcion: "ricos camarones empanizados o con coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.",
-        descripcionEn: "Ten breaded or coconut shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.",
-        imagen: "images/Menu/camarones_coco.jpg"
+        id: "caldo_pescado", categoria: "Aventura marina 🌊🌴", nombre: "Caldo de pescado", nombreEn: "Fish soup", precio: "$110",
+        descripcion: "caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.", descripcionEn: "Fish broth with stingray meat and garnishes; includes fruit-flavored water.", imagen: "images/Menu/caldo_pescado.jpg"
       },
-      {
-        id: "filete_pescado",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Filete de pescado",
-        nombreEn: "Fish fillet",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/filete_pescado.jpg"
-      },
-      {
-        id: "mojarra_frita",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Mojarra frita",
-        nombreEn: "Whole fried tilapia",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/mojarra_frita.jpg"
-      },
-      {
-        id: "huachinango",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Huachinango",
-        nombreEn: "Red snapper",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/huachinango.jpg"
-      },
-      {
-        id: "coctel_camaron",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Cóctel de camarones",
-        nombreEn: "Shrimp cocktail",
-        precio: "$150",
-        descripcion: "coctel de camarones con salsas y guarniciones, incluye agua de frutas.",
-        descripcionEn: "Shrimp cocktail served with sauces and garnishes; includes fruit-flavored water.",
-        imagen: "images/Menu/coctel_camaron.jpg"
-      },
-      {
-        id: "vuelve_vida",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Vuelve a la vida",
-        nombreEn: "Vuelve a la Vida seafood cocktail",
-        precio: "$150",
-        descripcion: "coctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.",
-        descripcionEn: "Shrimp, octopus and oyster cocktail served with sauces and garnishes; includes fruit-flavored water.",
-        imagen: "images/Menu/vuelve_vida.jpg"
-      },
-      {
-        id: "caldo_pescado",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Caldo de pescado",
-        nombreEn: "Fish soup",
-        precio: "$110",
-        descripcion: "caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.",
-        descripcionEn: "Fish broth with stingray meat and garnishes; includes fruit-flavored water.",
-        imagen: "images/Menu/caldo_pescado.jpg"
-      },
-      {
-        id: "caldo_camaron",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Caldo de camarón",
-        nombreEn: "Shrimp soup",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/caldo_camaron.jpg"
-      },
-      {
-        id: "sopa_mariscos",
-        categoria: "Aventura marina 🌊🌴",
-        nombre: "Sopa de mariscos",
-        nombreEn: "Seafood soup",
-        precio: "Por definir",
-        descripcion: "",
-        descripcionEn: "",
-        imagen: "images/Menu/sopa_mariscos.jpg"
-      },
+      { id: "caldo_camaron", categoria: "Aventura marina 🌊🌴", nombre: "Caldo de camarón", nombreEn: "Shrimp soup", precio: "Por definir", imagen: "images/Menu/caldo_camaron.jpg" },
+      { id: "sopa_mariscos", categoria: "Aventura marina 🌊🌴", nombre: "Sopa de mariscos", nombreEn: "Seafood soup", precio: "Por definir", imagen: "images/Menu/sopa_mariscos.jpg" },
 
       /* --- SOUVENIRS DE LA MONITA 🛍️🎀 --- */
-      {
-        id: "paliacates",
-        categoria: "Souvenirs de La Monita 🛍️🎀",
-        nombre: "Paliacates Los de La Monita",
-        nombreEn: "Los de La Monita bandanas",
-        precio: "$270",
-        descripcion: "paliacate, variedad de colores.",
-        descripcionEn: "Bandana available in a variety of colors.",
-        imagen: "images/Menu/paliacates.jpg"
-      },
-      {
-        id: "libreta_grande",
-        categoria: "Souvenirs de La Monita 🛍️🎀",
-        nombre: "Libreta grande Los de La Monita",
-        nombreEn: "Los de La Monita large notebook",
-        precio: "$160",
-        descripcion: "variedad de colores.",
-        descripcionEn: "Available in a variety of colors.",
-        imagen: "images/Menu/libreta_grande.jpg"
-      },
-      {
-        id: "libreta_chica",
-        categoria: "Souvenirs de La Monita 🛍️🎀",
-        nombre: "Libreta chica Los de La Monita",
-        nombreEn: "Los de La Monita small notebook",
-        precio: "$80",
-        descripcion: "variedad de colores.",
-        descripcionEn: "Available in a variety of colors.",
-        imagen: "images/Menu/libreta_chica.jpg"
-      }
+      { id: "paliacates", categoria: "Souvenirs de La Monita 🛍️🎀", nombre: "Paliacates Los de La Monita", nombreEn: "Los de La Monita bandanas", precio: "$270", descripcion: "paliacate, variedad de colores.", descripcionEn: "Bandana available in a variety of colors.", imagen: "images/Menu/paliacates.jpg" },
+      { id: "libreta_grande", categoria: "Souvenirs de La Monita 🛍️🎀", nombre: "Libreta grande Los de La Monita", nombreEn: "Los de La Monita large notebook", precio: "$160", descripcion: "variedad de colores.", descripcionEn: "Available in a variety of colors.", imagen: "images/Menu/libreta_grande.jpg" },
+      { id: "libreta_chica", categoria: "Souvenirs de La Monita 🛍️🎀", nombre: "Libreta chica Los de La Monita", nombreEn: "Los de La Monita small notebook", precio: "$80", descripcion: "variedad de colores.", descripcionEn: "Available in a variety of colors.", imagen: "images/Menu/libreta_chica.jpg" }
     ]
   };
   /* ===================================================================== */
@@ -1962,7 +1537,9 @@
   </section>
 </main>
 
-<!-- WHATSAPP FLOTANTE -->
+<!-- BOTONES FLOTANTES -->
+<button type="button" id="btnSubir" class="btn-subir" aria-label="Volver arriba">↑</button>
+
 <button type="button" class="whatsapp-flotante" id="whatsappFlotante" data-i18n-aria="chatWAFloat" title="WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.3-4A8 8 0 1 1 20 11.7Z"></path>
@@ -2125,7 +1702,8 @@
       routePrefix: "Ruta: ", routeShipping: " km · Envío estimado: ",
       chatWA: "Contactar por WhatsApp", openFacebook: "Abrir Facebook", openInstagram: "Abrir Instagram", openTikTok: "Abrir TikTok",
       chatWAFloat: "Contactar por WhatsApp", menuTab: "Menú", orderTab: "Pedidos a domicilio",
-      orderNumber: "productos", photoLocal: "Fotografía del restaurante"
+      orderNumber: "productos", photoLocal: "Fotografía del restaurante",
+      btnAdd: "Agregar"
     },
     en: {
       navVisitanos: "VISIT US", navMenu: "MENU", navPedido: "ORDER", navPedidos: "ORDERS",
@@ -2183,7 +1761,8 @@
       routePrefix: "Route: ", routeShipping: " km · Estimated delivery: ",
       chatWA: "Contact via WhatsApp", openFacebook: "Open Facebook", openInstagram: "Open Instagram", openTikTok: "Open TikTok",
       chatWAFloat: "Chat on WhatsApp", menuTab: "Menu", orderTab: "Delivery orders",
-      orderNumber: "items", photoLocal: "Restaurant photo"
+      orderNumber: "items", photoLocal: "Restaurant photo",
+      btnAdd: "Add"
     }
   };
 
@@ -2247,6 +1826,19 @@
     toastTimer = setTimeout(() => toast.classList.remove("visible"), 3300);
   }
 
+  /* BOTÓN SUBIR AL SCROLL */
+  const btnSubir = $("btnSubir");
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btnSubir.classList.add('visible');
+    } else {
+      btnSubir.classList.remove('visible');
+    }
+  });
+  btnSubir.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   /* CARRITO Y PEDIDOS */
   const carrito = new Map();
   const pedidoOverlay = $("pedidoOverlay");
@@ -2276,641 +1868,20 @@
            [r.envioBase, r.envioKmIncluidos, r.envioKmExtra].every(n => typeof n === "number" && Number.isFinite(n) && n >= 0);
   }
 
-  function cambiarCantidad(item, cambio) {
-    if (precioANumero(item.precio) === null) return;
-    const cantidad = Math.max(0, Math.min(99, (carrito.get(item.id)?.cantidad || 0) + cambio));
-    if (cantidad) carrito.set(item.id, { item, cantidad });
-    else carrito.delete(item.id);
-    if (!pedidoId && carrito.size) pedidoId = "CL-" + Date.now().toString(36).toUpperCase();
-    if (!carrito.size) pedidoId = null;
-    actualizarPedidoUI();
-  }
+  const generarClave = (id, varId) => varId ? `${id}|${varId}` : id;
 
-  function crearControlesPedido(item) {
-    const fila = document.createElement("div");
-    fila.className = "control-carrito";
-    fila.dataset.producto = item.id;
-
-    const etiqueta = document.createElement("span");
-    etiqueta.textContent = t("quantity");
-
-    const control = document.createElement("div");
-    control.className = "cantidad-control";
-
-    const menos = document.createElement("button");
-    const mas = document.createElement("button");
-    const numero = document.createElement("output");
-
-    menos.type = mas.type = "button";
-    menos.textContent = "−";
-    mas.textContent = "+";
-    menos.setAttribute("aria-label", t("remove") + " " + textoProducto(item, "nombre"));
-    mas.setAttribute("aria-label", t("add") + " " + textoProducto(item, "nombre"));
-    numero.setAttribute("aria-label", t("quantityOf") + " " + textoProducto(item, "nombre"));
-
-    const cantActual = carrito.get(item.id)?.cantidad || 0;
-    numero.textContent = String(cantActual);
-    menos.disabled = cantActual === 0;
-    mas.disabled = precioANumero(item.precio) === null || cantActual >= 99;
-
-    menos.addEventListener("click", e => { e.stopPropagation(); cambiarCantidad(item, -1); });
-    mas.addEventListener("click", e => { e.stopPropagation(); cambiarCantidad(item, 1); });
-
-    control.append(menos, numero, mas);
-    fila.append(etiqueta, control);
-    return fila;
-  }
-
-  function calcularPedido() {
-    const subtotal = [...carrito.values()].reduce((n, r) => n + precioANumero(r.item.precio) * r.cantidad, 0);
-    const envio = envioConfigurado() ? calcularCostoEnvio() : null;
-    return { subtotal, envio, total: envio === null ? null : subtotal + envio };
-  }
-
-  function renderResumenPedido() {
-    const resumen = $("resumenPedido");
-    const foco = document.activeElement;
-    const claveFoco = resumen.contains(foco) ? foco.getAttribute("aria-label") : null;
-    resumen.replaceChildren();
-
-    if (!carrito.size) {
-      const p = document.createElement("p");
-      p.textContent = t("empty");
-      resumen.appendChild(p);
-    }
-
-    carrito.forEach(({ item, cantidad }) => {
-      const fila = document.createElement("div");
-      fila.className = "pedido-resumen-fila";
-      const titulo = document.createElement("strong");
-      titulo.textContent = textoProducto(item, "nombre") + " · " + moneda(precioANumero(item.precio) * cantidad);
-      fila.append(titulo, crearControlesPedido(item));
-      resumen.appendChild(fila);
-    });
-
-    const c = calcularPedido();
-    $("subtotalPedido").textContent = moneda(c.subtotal) + " MXN";
-    $("envioPedido").textContent = c.envio === null ? t("toConfirm") : moneda(c.envio);
-    $("totalPedido").textContent = c.total === null ? t("toConfirm") : moneda(c.total) + " MXN";
-    $("continuarPedido").disabled = !carrito.size;
-
-    if (!carrito.size) mostrarPasoCarrito();
-    if (claveFoco) {
-      const btn = [...resumen.querySelectorAll("button")].find(b => b.getAttribute("aria-label") === claveFoco && !b.disabled);
-      (btn || $("agregarProductos")).focus();
-    }
-  }
-
-  function actualizarPedidoUI() {
-    document.querySelectorAll(".control-carrito").forEach(control => {
-      const prod = platillos.find(p => p.id === control.dataset.producto);
-      const n = carrito.get(control.dataset.producto)?.cantidad || 0;
-      control.querySelector("output").textContent = n;
-      const botones = control.querySelectorAll("button");
-      botones[0].disabled = n === 0;
-      botones[1].disabled = n === 99 || precioANumero(prod?.precio) === null;
-    });
-
-    const unidades = [...carrito.values()].reduce((n, r) => n + r.cantidad, 0);
-    const contador = $("contadorPedido");
-    contador.textContent = unidades;
-    contador.hidden = !unidades;
-    $("movilMaps").setAttribute("aria-label", t("orderTab") + ", " + unidades + " " + t("orderNumber"));
-    renderResumenPedido();
-  }
-
-  function mostrarPasoCarrito() {
-    $("pasoCarrito").hidden = false;
-    pedidoFormulario.hidden = true;
-    $("pedidoDescripcion").textContent = t("review");
-  }
-
-  async function mostrarPasoEntrega() {
-    if (!carrito.size) return;
-    $("pasoCarrito").hidden = true;
-    pedidoFormulario.hidden = false;
-    $("pedidoDescripcion").textContent = t("deliveryInfo");
-    const listo = /^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
-    pedidoEnviar.disabled = !listo;
-    pedidoAviso.hidden = listo;
-    pedidoAviso.textContent = listo ? "" : t("waNotReady");
-    $("pedidoNombre").focus();
-    if (envioConfigurado()) {
-      await cargarMapaBiblioteca();
-      if (!pedidoFormulario.hidden) crearMapaEntrega();
-    }
-  }
-
-  function abrirModalPedido() {
-    focoAntesPedido = document.activeElement;
-    mostrarPasoCarrito();
-    renderResumenPedido();
-    pedidoOverlay.hidden = false;
-    document.body.classList.add("modal-abierto");
-    pedidoOverlay.querySelector(".pedido-panel").scrollTop = 0;
-    $("cerrarPedido").focus();
-  }
-
-  function cerrarPedido() {
-    pedidoOverlay.hidden = true;
-    document.body.classList.remove("modal-abierto");
-    if (focoAntesPedido?.isConnected) focoAntesPedido.focus();
-  }
-
-  $("cerrarPedido").addEventListener("click", cerrarPedido);
-  $("continuarPedido").addEventListener("click", mostrarPasoEntrega);
-  $("volverCarrito").addEventListener("click", () => { mostrarPasoCarrito(); $("continuarPedido").focus(); });
-  $("agregarProductos").addEventListener("click", () => {
-    cerrarPedido();
-    mostrarVista("menu");
-    $("listaPlatillos").scrollIntoView({ behavior: "smooth", block: "start" });
-    $("listaPlatillos").querySelector("button")?.focus({ preventScroll: true });
-  });
-
-  pedidoOverlay.addEventListener("click", e => { if (e.target === pedidoOverlay) cerrarPedido(); });
-  pedidoOverlay.addEventListener("keydown", e => {
-    if (e.key === "Escape") { e.preventDefault(); cerrarPedido(); return; }
-    if (e.key !== "Tab") return;
-    const visibles = [...pedidoOverlay.querySelectorAll("button:not(:disabled),input,textarea,select")].filter(el => el.getClientRects().length);
-    const primero = visibles[0], ultimo = visibles[visibles.length - 1];
-    if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
-    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
-  });
-
-  $("pedidoPago").addEventListener("change", e => {
-    $("notaTransferencia").hidden = e.target.value !== "TRANSFERENCIA";
-  });
-
-  function construirMensajePedido() {
-    const valor = id => $(id).value.trim() || "No indicado";
-    const c = calcularPedido();
-    return [
-      "*" + restaurante.nombre + "*",
-      "Pedido: " + pedidoId,
-      "",
-      ...[...carrito.values()].map(r => r.cantidad + " × " + r.item.nombre + " — " + moneda(precioANumero(r.item.precio) * r.cantidad)),
-      "",
-      "Productos: " + moneda(c.subtotal) + " MXN",
-      "Envío estimado: " + (c.envio === null ? "Por confirmar" : moneda(c.envio)),
-      "Total: " + (c.total === null ? "Por confirmar con envío" : moneda(c.total) + " MXN"),
-      "",
-      "Nombre: " + valor("pedidoNombre"),
-      "Celular: " + valor("pedidoTelefono"),
-      "Dirección: " + [valor("pedidoCalle"), valor("pedidoExterior"), valor("pedidoColonia"), valor("pedidoCiudad"), "CP " + valor("pedidoCP")].join(", "),
-      "Referencias: " + valor("pedidoReferencias"),
-      "Ubicación: " + valor("pedidoUbicacion"),
-      "Indicaciones: " + valor("pedidoNotas"),
-      "Pago solicitado: " + valor("pedidoPago"),
-      "",
-      "Por favor confirma disponibilidad, costo final y tiempo de entrega."
-    ].join("\n");
-  }
-
-  pedidoFormulario.querySelectorAll("input[required]").forEach(el => el.addEventListener("input", () => el.setCustomValidity("")));
-  pedidoFormulario.addEventListener("submit", e => {
-    e.preventDefault();
-    if (!carrito.size) { mostrarPasoCarrito(); return; }
-    pedidoFormulario.querySelectorAll("input[required]").forEach(el => el.setCustomValidity(el.value.trim() ? "" : t("fillField")));
-    const tel = $("pedidoTelefono"), cp = $("pedidoCP");
-    if (!/^\d{10,15}$/.test(tel.value.replace(/\D/g, ""))) tel.setCustomValidity(t("phoneInvalid"));
-    if (!/^\d{5}$/.test(cp.value.trim())) cp.setCustomValidity(t("zipInvalid"));
-    if (!pedidoFormulario.reportValidity()) return;
-    const num = normalizarNumeroWhatsApp();
-    if (!/^[1-9][0-9]{10,14}$/.test(num)) return;
-    window.location.assign("https://wa.me/" + num + "?text=" + encodeURIComponent(construirMensajePedido()));
-  });
-
-  /* MAPA Y CÁLCULO DE ENVÍO (OPCIONAL SEGÚN CONFIG) */
-  let promesaMapa, mapa = null, marcadorEntrega = null, lineaRuta = null, destinoPendiente = null;
-  let distanciaRutaKm = null, calculoRutaToken = 0, busquedaToken = 0, ultimaBusqueda = 0, ultimaRuta = 0;
-
-  function cargarMapaBiblioteca() {
-    if (window.L) return Promise.resolve();
-    if (promesaMapa) return promesaMapa;
-    promesaMapa = new Promise(resolve => {
-      const css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-      document.head.appendChild(css);
-      const js = document.createElement("script");
-      js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-      js.onload = resolve;
-      js.onerror = () => { promesaMapa = null; resolve(); };
-      document.head.appendChild(js);
-    });
-    return promesaMapa;
-  }
-
-  function calcularCostoEnvio() {
-    if (!envioConfigurado() || distanciaRutaKm === null) return null;
-    return restaurante.envioBase + Math.max(0, distanciaRutaKm - restaurante.envioKmIncluidos) * restaurante.envioKmExtra;
-  }
-
-  function invalidarRuta() {
-    calculoRutaToken++;
-    distanciaRutaKm = null;
-    if (lineaRuta && mapa) { mapa.removeLayer(lineaRuta); lineaRuta = null; }
-    confirmarDireccionMapa.disabled = !destinoPendiente;
-    resultadoEnvio.textContent = t("mapPointNeeded");
-    renderResumenPedido();
-  }
-
-  function crearMapaEntrega() {
-    if (!envioConfigurado()) return;
-    if (mapa) { mapa.invalidateSize(); return; }
-    if (!window.L) { mapaEntrega.textContent = t("mapLibraryFailed"); return; }
-    mapa = L.map(mapaEntrega).setView([restaurante.origenEnvio.lat, restaurante.origenEnvio.lng], 13);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
-    }).addTo(mapa);
-    L.marker([restaurante.origenEnvio.lat, restaurante.origenEnvio.lng]).addTo(mapa).bindPopup(restaurante.nombre);
-    mapa.on("click", evento => ponerDestino(evento.latlng));
-    if (destinoPendiente) ponerDestino(destinoPendiente);
-    setTimeout(() => mapa.invalidateSize(), 100);
-  }
-
-  function ponerDestino(punto) {
-    const lat = Number(punto.lat), lng = Number(punto.lng);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return;
-    destinoPendiente = { lat, lng };
-    pedidoUbicacion.value = "https://www.google.com/maps?q=" + lat.toFixed(6) + "," + lng.toFixed(6);
-    invalidarRuta();
-    confirmarDireccionMapa.disabled = false;
-    if (mapa) {
-      if (!marcadorEntrega) {
-        marcadorEntrega = L.marker([lat, lng], { draggable: true }).addTo(mapa);
-        marcadorEntrega.on("dragend", () => ponerDestino(marcadorEntrega.getLatLng()));
-      } else marcadorEntrega.setLatLng([lat, lng]);
-      mapa.setView([lat, lng], 16);
-    }
-  }
-
-  buscarDireccionMapa.addEventListener("click", async () => {
-    if (!envioConfigurado()) return;
-    const calle = pedidoCalle.value.trim(), numero = pedidoNumeroExterior.value.trim(), colonia = pedidoColonia.value.trim();
-    if (!calle || !numero || !colonia) { mostrarToast(t("mapFields")); return; }
-    if (Date.now() - ultimaBusqueda < 1100) { mostrarToast(t("mapWaitBeforeSearch")); return; }
-    ultimaBusqueda = Date.now();
-    const token = ++busquedaToken;
-    buscarDireccionMapa.disabled = true;
-    resultadoEnvio.textContent = t("mapSearching");
-    try {
-      const url = new URL("https://nominatim.openstreetmap.org/search");
-      url.search = new URLSearchParams({
-        q: [calle, numero, colonia, pedidoCiudad.value.trim() || restaurante.ciudadEnvio, "México"].join(", "),
-        format: "jsonv2", limit: "3", countrycodes: "mx"
-      }).toString();
-      const respuesta = await fetch(url.toString(), { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) });
-      if (!respuesta.ok) throw new Error();
-      const resultados = await respuesta.json();
-      if (token !== busquedaToken) return;
-      if (!Array.isArray(resultados) || !resultados.length) { resultadoEnvio.textContent = t("mapNotFound"); return; }
-      ponerDestino({ lat: Number(resultados[0].lat), lng: Number(resultados[0].lon) });
-      resultadoEnvio.textContent = t("mapVerify");
-    } catch {
-      if (token === busquedaToken) resultadoEnvio.textContent = t("mapSearchFailed");
-    } finally {
-      if (token === busquedaToken) buscarDireccionMapa.disabled = false;
-    }
-  });
-
-  confirmarDireccionMapa.addEventListener("click", async () => {
-    if (!envioConfigurado()) return;
-    if (!destinoPendiente) { resultadoEnvio.textContent = t("mapSelectFirst"); return; }
-    if (Date.now() - ultimaRuta < 1100) { resultadoEnvio.textContent = t("mapWait"); return; }
-    ultimaRuta = Date.now();
-    const destino = { ...destinoPendiente };
-    const token = ++calculoRutaToken;
-    distanciaRutaKm = null;
-    if (lineaRuta && mapa) { mapa.removeLayer(lineaRuta); lineaRuta = null; }
-    renderResumenPedido();
-    confirmarDireccionMapa.disabled = true;
-    resultadoEnvio.textContent = t("mapRouteCalc");
-    try {
-      const origen = restaurante.origenEnvio;
-      const url = restaurante.servicioRutasUrl + origen.lng + "," + origen.lat + ";" + destino.lng + "," + destino.lat + "?overview=full&geometries=geojson";
-      const respuesta = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) });
-      if (!respuesta.ok) throw new Error();
-      const datos = await respuesta.json();
-      if (token !== calculoRutaToken) return;
-      const ruta = datos.routes?.[0];
-      if (datos.code !== "Ok" || !Number.isFinite(ruta?.distance) || !ruta?.geometry?.coordinates) throw new Error();
-      distanciaRutaKm = ruta.distance / 1000;
-      if (mapa) {
-        if (lineaRuta) mapa.removeLayer(lineaRuta);
-        lineaRuta = L.geoJSON(ruta.geometry, { style: { color: "#b53a26", weight: 5 } }).addTo(mapa);
-        mapa.fitBounds(lineaRuta.getBounds().extend(L.latLng(origen.lat, origen.lng)), { padding: [22, 22] });
-      }
-      pedidoUbicacion.value = "https://www.google.com/maps?q=" + destino.lat.toFixed(6) + "," + destino.lng.toFixed(6);
-      resultadoEnvio.textContent = t("routePrefix") + distanciaRutaKm.toFixed(2) + t("routeShipping") + moneda(calcularCostoEnvio());
-      renderResumenPedido();
-    } catch {
-      if (token === calculoRutaToken) {
-        resultadoEnvio.textContent = t("mapRouteFailed");
-        renderResumenPedido();
-      }
-    } finally {
-      if (token === calculoRutaToken) confirmarDireccionMapa.disabled = false;
-    }
-  });
-
-  [pedidoCalle, pedidoNumeroExterior, pedidoColonia, pedidoCiudad, $("pedidoCP")].forEach(campo => {
-    campo.addEventListener("input", () => {
-      busquedaToken++;
-      buscarDireccionMapa.disabled = false;
-      destinoPendiente = null;
-      pedidoUbicacion.value = "";
-      invalidarRuta();
-    });
-  });
-
-  function coordenadasDeTexto(texto) {
-    const patrones = [
-      /(?:[?&]q=|[?&]query=|[?&]ll=)(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)/i,
-      /\/@(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)/,
-      /!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/,
-      /^\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)\s*$/
-    ];
-    for (const patron of patrones) {
-      const partes = texto.match(patron);
-      if (partes) {
-        const lat = Number(partes[1]), lng = Number(partes[2]);
-        if (Math.abs(lat) <= 90 && Math.abs(lng) <= 180) return { lat, lng };
-      }
-    }
-    return null;
-  }
-
-  pedidoUbicacion.addEventListener("input", () => {
-    const punto = coordenadasDeTexto(pedidoUbicacion.value);
-    if (punto) {
-      ponerDestino(punto);
-      resultadoEnvio.textContent = t("mapCoordsDetected");
+  function cambiarCantidad(item, variante, cambio) {
+    const clave = generarClave(item.id, variante?.id);
+    const precioReferencia = variante ? variante.precio : item.precio;
+    if (precioANumero(precioReferencia) === null) return;
+    
+    const cantidadActual = carrito.get(clave)?.cantidad || 0;
+    const nuevaCantidad = Math.max(0, Math.min(99, cantidadActual + cambio));
+    
+    if (nuevaCantidad > 0) {
+      carrito.set(clave, { item, variante, cantidad: nuevaCantidad, precioMonto: precioANumero(precioReferencia) });
     } else {
-      destinoPendiente = null;
-      invalidarRuta();
-      if (pedidoUbicacion.value.trim()) resultadoEnvio.textContent = t("mapNoCoords");
+      carrito.delete(clave);
     }
-  });
-
-  const usarUbicacionActual = $("usarUbicacionActual");
-  usarUbicacionActual.addEventListener("click", () => {
-    if (!navigator.geolocation) { mostrarToast(t("locationRequest")); return; }
-    usarUbicacionActual.disabled = true;
-    navigator.geolocation.getCurrentPosition(
-      pos => {
-        usarUbicacionActual.disabled = false;
-        ponerDestino({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-        mostrarToast(t("locationAdded"));
-      },
-      () => {
-        usarUbicacionActual.disabled = false;
-        mostrarToast(t("locationUnavailable"));
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-    );
-  });
-
-  $("calculadoraEnvio").hidden = !envioConfigurado();
-  $("envioPorConfirmar").hidden = envioConfigurado();
-
-  /* ENLACES EXTERNOS Y REDES */
-  $("botonMaps").addEventListener("click", () => {
-    if (!restaurante.mapsUrl) { mostrarToast(t("demoMaps")); return; }
-    window.open(restaurante.mapsUrl, "_blank", "noopener,noreferrer");
-  });
-
-  [$("movilMaps"), $("botonPedidoInicio"), $("navPedido")].forEach(btn => btn.addEventListener("click", abrirModalPedido));
-
-  function abrirChatDirectoWhatsApp() {
-    const numero = normalizarNumeroWhatsApp();
-    if (!/^[1-9][0-9]{10,14}$/.test(numero)) { mostrarToast(t("waConfig")); return; }
-    const saludo = idioma === "en"
-      ? (restaurante.saludoWhatsAppEn || `Hello, I would like information about ${restaurante.nombre}.`)
-      : (restaurante.saludoWhatsAppEs || `Hola, quisiera información de ${restaurante.nombre}.`);
-    window.open("https://wa.me/" + numero + "?text=" + encodeURIComponent(saludo), "_blank", "noopener,noreferrer");
-  }
-
-  $("socialWhatsApp").addEventListener("click", abrirChatDirectoWhatsApp);
-  $("whatsappFlotante").addEventListener("click", abrirChatDirectoWhatsApp);
-
-  function abrirEnlaceSocial(campo, dominios, nombre) {
-    const valor = String(restaurante[campo] || "").trim();
-    if (!valor) { mostrarToast(t("socialMissing").replace("{name}", nombre).replace("{field}", campo)); return; }
-    try {
-      const url = new URL(valor);
-      if (url.protocol !== "https:" || !dominios.includes(url.hostname.toLowerCase())) throw new Error();
-      window.open(url.href, "_blank", "noopener,noreferrer");
-    } catch {
-      mostrarToast(t("socialInvalid").replace("{name}", nombre).replace("{field}", campo));
-    }
-  }
-
-  $("socialInstagram").addEventListener("click", () => abrirEnlaceSocial("instagramUrl", ["instagram.com", "www.instagram.com"], "Instagram"));
-  $("socialFacebook").addEventListener("click", () => abrirEnlaceSocial("facebookUrl", ["facebook.com", "www.facebook.com", "m.facebook.com", "fb.com", "www.fb.com"], "Facebook"));
-  $("socialTikTok").addEventListener("click", () => abrirEnlaceSocial("tiktokUrl", ["tiktok.com", "www.tiktok.com"], "TikTok"));
-
-  /* NAVEGACIÓN ENTRE VISTAS */
-  function mostrarVista(nombre, actualizarHash = true) {
-    const esInicio = nombre === "inicio";
-    $("vistaInicio").classList.toggle("activa", esInicio);
-    $("vistaMenu").classList.toggle("activa", !esInicio);
-    $("navInicio").classList.toggle("activo", esInicio);
-    $("navMenu").classList.toggle("activo", !esInicio);
-    $("movilInicio").classList.toggle("activo", esInicio);
-    $("movilMenu").classList.toggle("activo", !esInicio);
-    if (actualizarHash) history.replaceState(null, "", esInicio ? "#inicio" : "#menu");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  $("navInicio").addEventListener("click", () => mostrarVista("inicio"));
-  $("navMenu").addEventListener("click", () => mostrarVista("menu"));
-  $("movilInicio").addEventListener("click", () => mostrarVista("inicio"));
-  $("movilMenu").addEventListener("click", () => mostrarVista("menu"));
-
-  /* FILTROS, CATEGORÍAS Y TARJETAS */
-  function obtenerPlatillos() {
-    let filtrados = categoriaActual === "Todos" ? platillos : platillos.filter(item => item.categoria === categoriaActual);
-    if (terminoBusqueda.trim() !== "") {
-      const q = terminoBusqueda.toLowerCase().trim();
-      filtrados = filtrados.filter(item =>
-        textoProducto(item, "nombre").toLowerCase().includes(q) ||
-        textoProducto(item, "descripcion").toLowerCase().includes(q)
-      );
-    }
-    return filtrados;
-  }
-
-  function crearCategorias() {
-    const contenedor = $("categorias");
-    contenedor.replaceChildren();
-    categorias.forEach(catObj => {
-      const boton = document.createElement("button");
-      boton.type = "button";
-      boton.className = "categoria" + (catObj.id === categoriaActual ? " activa" : "");
-      boton.textContent = etiquetaCategoria(catObj);
-      boton.addEventListener("click", () => {
-        categoriaActual = catObj.id;
-        crearCategorias();
-        crearLista();
-      });
-      contenedor.appendChild(boton);
-    });
-  }
-
-  $("inputBuscador").addEventListener("input", e => {
-    terminoBusqueda = e.target.value;
-    crearLista();
-  });
-
-  /* LIGHTBOX DE FOTOGRAFÍA */
-  const fotoAmpliadaOverlay = $("fotoAmpliadaOverlay");
-  const fotoAmpliadaImagen = $("fotoAmpliadaImagen");
-  const cerrarFotoAmpliadaBoton = $("cerrarFotoAmpliada");
-  let focoAntesFoto = null;
-
-  function ampliarFoto(imagen, nombre) {
-    if (!imagen.complete || !imagen.naturalWidth) return;
-    focoAntesFoto = document.activeElement;
-    fotoAmpliadaImagen.src = imagen.currentSrc || imagen.src;
-    fotoAmpliadaImagen.alt = nombre;
-    fotoAmpliadaOverlay.hidden = false;
-    document.body.classList.add("modal-abierto");
-    cerrarFotoAmpliadaBoton.focus();
-  }
-
-  function cerrarFotoAmpliada() {
-    fotoAmpliadaOverlay.hidden = true;
-    fotoAmpliadaImagen.removeAttribute("src");
-    document.body.classList.remove("modal-abierto");
-    if (focoAntesFoto?.isConnected) focoAntesFoto.focus();
-  }
-
-  cerrarFotoAmpliadaBoton.addEventListener("click", cerrarFotoAmpliada);
-  fotoAmpliadaOverlay.addEventListener("click", e => { if (e.target === fotoAmpliadaOverlay) cerrarFotoAmpliada(); });
-  document.addEventListener("keydown", e => {
-    if (!fotoAmpliadaOverlay.hidden && e.key === "Escape") {
-      e.preventDefault();
-      cerrarFotoAmpliada();
-    }
-  });
-
-  function crearLista() {
-    const listaHTML = $("listaPlatillos");
-    listaHTML.replaceChildren();
-
-    obtenerPlatillos().forEach(item => {
-      const tarjeta = document.createElement("article");
-      tarjeta.className = "platillo-tarjeta";
-
-      const bloque = document.createElement("div");
-      bloque.className = "platillo";
-
-      const nombreProd = textoProducto(item, "nombre");
-      const visual = document.createElement("button");
-      visual.type = "button";
-      visual.className = "platillo-visual";
-      visual.setAttribute("aria-label", t("enlargePhoto") + " " + nombreProd);
-      visual.title = t("enlargePhoto");
-      visual.disabled = true;
-
-      const fallback = document.createElement("div");
-      fallback.className = "foto-fallback";
-      fallback.textContent = t("photoPending");
-
-      const imagen = document.createElement("img");
-      imagen.loading = "lazy";
-      imagen.addEventListener("load", () => { visual.disabled = false; });
-      imagen.addEventListener("error", () => { visual.disabled = true; });
-      cargarImagenSegura(imagen, fallback, item.imagen, nombreProd);
-
-      visual.append(fallback, imagen);
-      visual.addEventListener("click", () => ampliarFoto(imagen, nombreProd));
-
-      const info = document.createElement("div");
-      info.className = "platillo-info";
-
-      const encabezado = document.createElement("div");
-      encabezado.className = "platillo-encabezado";
-
-      const nombre = document.createElement("h3");
-      nombre.className = "platillo-nombre";
-      nombre.textContent = nombreProd;
-
-      const precio = document.createElement("span");
-      precio.className = "platillo-precio";
-      precio.textContent = precioVisible(item.precio);
-
-      encabezado.append(nombre, precio);
-      info.appendChild(encabezado);
-
-      const descTexto = textoProducto(item, "descripcion");
-      if ((descTexto || "").trim()) {
-        const desc = document.createElement("p");
-        desc.className = "platillo-descripcion";
-        desc.textContent = descTexto;
-        info.appendChild(desc);
-      }
-
-      bloque.append(visual, info, crearControlesPedido(item));
-      tarjeta.appendChild(bloque);
-      listaHTML.appendChild(tarjeta);
-    });
-
-    document.title = restaurante.nombre + " | " + t("menuTab");
-  }
-
-  /* IDIOMA E INICIALIZACIÓN */
-  function aplicarIdioma() {
-    document.documentElement.lang = idioma;
-    const btnIdioma = $("botonIdioma");
-    btnIdioma.textContent = idioma === "es" ? "English · EN" : "Español · ES";
-    btnIdioma.setAttribute("aria-label", idioma === "es" ? "Switch to English" : "Cambiar a español");
-    btnIdioma.setAttribute("aria-pressed", String(idioma === "en"));
-
-    for (const el of document.querySelectorAll("[data-i18n]")) el.textContent = t(el.dataset.i18n);
-    for (const el of document.querySelectorAll("[data-i18n-placeholder]")) el.placeholder = t(el.dataset.i18nPlaceholder);
-    for (const el of document.querySelectorAll("[data-i18n-aria]")) el.setAttribute("aria-label", t(el.dataset.i18nAria));
-
-    $("heroKicker").textContent = idioma === "en" ? (restaurante.kickerEn || restaurante.kickerEs) : restaurante.kickerEs;
-    $("heroSubtitulo").textContent = idioma === "en" ? (restaurante.subtituloEn || restaurante.subtitulo) : restaurante.subtitulo;
-    $("inicioTitulo").textContent = idioma === "en" ? (restaurante.tituloHistoriaEn || restaurante.tituloHistoria) : restaurante.tituloHistoria;
-    $("inicioHistoria").textContent = idioma === "en" ? (restaurante.historiaEn || restaurante.historia) : restaurante.historia;
-    $("inicioContactoTexto").textContent = idioma === "en" ? (restaurante.contactoTextoEn || restaurante.contactoTexto) : restaurante.contactoTexto;
-    $("textoUbicacion").textContent = idioma === "en" ? (restaurante.ubicacionTextoEn || restaurante.ubicacionTexto) : restaurante.ubicacionTexto;
-    $("footerTexto").textContent = idioma === "en" ? (restaurante.footerEn || restaurante.footer) : restaurante.footer;
-
-    if (!pedidoOverlay.hidden) {
-      $("pedidoDescripcion").textContent = t(pedidoFormulario.hidden ? "review" : "deliveryInfo");
-      if (!pedidoFormulario.hidden) {
-        const listo = /^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
-        pedidoAviso.textContent = listo ? "" : t("waNotReady");
-      }
-    }
-
-    if (envioConfigurado()) {
-      $("tarifasEnvio").textContent = moneda(restaurante.envioBase) + t("mapRateUntil") + restaurante.envioKmIncluidos + t("mapRateBeyond") + moneda(restaurante.envioKmExtra) + t("mapRatePerKm");
-    }
-    resultadoEnvio.textContent = distanciaRutaKm === null ? t("mapWaiting") : t("routePrefix") + distanciaRutaKm.toFixed(2) + t("routeShipping") + moneda(calcularCostoEnvio());
-
-    crearCategorias();
-    crearLista();
-    actualizarPedidoUI();
-  }
-
-  $("botonIdioma").addEventListener("click", () => {
-    idioma = idioma === "es" ? "en" : "es";
-    aplicarIdioma();
-  });
-
-  function iniciarRuta() {
-    mostrarVista(window.location.hash.toLowerCase() === "#inicio" ? "inicio" : "menu", false);
-  }
-  window.addEventListener("hashchange", iniciarRuta);
-
-  aplicarIdioma();
-  iniciarRuta();
-</script>
-</body>
-</html>
+    
+    if (!pedido
