@@ -28,1042 +28,279 @@
     }
 
     *{box-sizing:border-box}
-
-    html{
-      scroll-behavior:smooth;
-      background:var(--fondo);
-    }
-
+    html{scroll-behavior:smooth;background:var(--fondo)}
     body{
       margin:0;
-      background:
-        radial-gradient(circle at 10% -10%, rgba(166,79,49,.07), transparent 28%),
-        var(--fondo);
+      background:radial-gradient(circle at 10% -10%, rgba(166,79,49,.07), transparent 28%),var(--fondo);
       color:var(--texto);
       font-family:Arial,Helvetica,sans-serif;
     }
-
-    body.modal-abierto{
-      overflow:hidden;
-    }
-
-    button,
-    a,
-    select{
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    select:focus-visible{
+    body.modal-abierto{overflow:hidden}
+    button,a,select{-webkit-tap-highlight-color:transparent}
+    button:focus-visible,a:focus-visible,select:focus-visible{
       outline:3px solid rgba(166,79,49,.28);
       outline-offset:3px;
     }
+    img{max-width:100%}
 
-    img{
-      max-width:100%;
-    }
-
-    /* ===================================================== */
-    /* PORTADA CINEMÁTICA                                    */
-    /* ===================================================== */
-
+    /* PORTADA */
     .hero{
-      position:relative;
-      min-height:460px;
-      display:grid;
-      align-items:end;
-      overflow:hidden;
-      color:#fff;
-      background:
-        linear-gradient(180deg,rgba(20,14,10,.12),rgba(20,14,10,.72)),
-        linear-gradient(135deg,var(--acento),var(--acento-oscuro));
+      position:relative;min-height:460px;display:grid;align-items:end;overflow:hidden;color:#fff;
+      background:linear-gradient(180deg,rgba(20,14,10,.12),rgba(20,14,10,.72)),linear-gradient(135deg,var(--acento),var(--acento-oscuro));
       isolation:isolate;
     }
-
-    .hero-media{
-      position:absolute;
-      inset:0;
-      z-index:-2;
-    }
-
-    .hero-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
+    .hero-media{position:absolute;inset:0;z-index:-2}
+    .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
     .hero-overlay{
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      background:
-        linear-gradient(90deg,rgba(25,17,12,.72),rgba(25,17,12,.22) 55%,rgba(25,17,12,.08)),
-        linear-gradient(0deg,rgba(20,14,10,.64),transparent 58%);
+      position:absolute;inset:0;z-index:-1;
+      background:linear-gradient(90deg,rgba(25,17,12,.72),rgba(25,17,12,.22) 55%,rgba(25,17,12,.08)),linear-gradient(0deg,rgba(20,14,10,.64),transparent 58%);
     }
-
     .hero-fallback{
-      position:absolute;
-      inset:0;
-      z-index:-3;
-      background:
-        radial-gradient(circle at 75% 20%,rgba(255,255,255,.14),transparent 24%),
-        linear-gradient(135deg,var(--acento),var(--acento-oscuro));
+      position:absolute;inset:0;z-index:-3;
+      background:radial-gradient(circle at 75% 20%,rgba(255,255,255,.14),transparent 24%),linear-gradient(135deg,var(--acento),var(--acento-oscuro));
     }
-
-    .hero-inner{
-      width:min(1280px,100%);
-      margin:0 auto;
-      padding:54px 22px 50px;
-      text-align:center;
-    }
-
+    .hero-inner{width:min(1280px,100%);margin:0 auto;padding:54px 22px 50px;text-align:center}
     .hero-kicker{
-      position:absolute;
-      top:19px;
-      left:max(18px,calc((100vw - 1280px)/2 + 22px));
-      margin:0;
-      z-index:2;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:999px;
-      background:rgba(20,14,10,.18);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-      font-size:11px;
-      font-weight:bold;
-      letter-spacing:1.2px;
+      position:absolute;top:19px;left:max(18px,calc((100vw - 1280px)/2 + 22px));margin:0;z-index:2;
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;
+      border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(20,14,10,.18);
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11px;font-weight:bold;letter-spacing:1.2px;
     }
-
     .boton-idioma{
-      position:absolute;
-      right:max(18px,calc((100vw - 1280px)/2 + 22px));
-      top:19px;
-      z-index:3;
-      min-height:38px;
-      padding:8px 14px;
-      border:1px solid rgba(255,255,255,.52);
-      border-radius:99px;
-      background:rgba(28,22,19,.42);
-      backdrop-filter:blur(6px);
-      color:white;
-      font-size:12px;
-      font-weight:bold;
-      cursor:pointer;
+      position:absolute;right:max(18px,calc((100vw - 1280px)/2 + 22px));top:19px;z-index:3;
+      min-height:38px;padding:8px 14px;border:1px solid rgba(255,255,255,.52);border-radius:99px;
+      background:rgba(28,22,19,.42);backdrop-filter:blur(6px);color:white;font-size:12px;font-weight:bold;cursor:pointer;
     }
-
-    .boton-idioma:hover{
-      background:rgba(28,22,19,.7);
-    }
-
+    .boton-idioma:hover{background:rgba(28,22,19,.7)}
     .hero h1{
-      max-width:830px;
-      margin:0 auto;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(52px,9vw,100px);
-      font-weight:normal;
-      line-height:.94;
-      text-wrap:balance;
+      max-width:830px;margin:0 auto;font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(52px,9vw,100px);font-weight:normal;line-height:.94;text-wrap:balance;
     }
+    .hero-subtitulo{max-width:650px;margin:19px auto 0;font-size:16px;line-height:1.75;color:rgba(255,255,255,.92)}
 
-    .hero-subtitulo{
-      max-width:650px;
-      margin:19px auto 0;
-      font-size:16px;
-      line-height:1.75;
-      color:rgba(255,255,255,.92);
-    }
-
-    /* ===================================================== */
-    /* NAVEGACIÓN SUPERIOR                                   */
-    /* ===================================================== */
-
+    /* NAVEGACIÓN SUPERIOR */
     .nav-principal-wrap{
-      position:sticky;
-      top:0;
-      z-index:100;
-      border-bottom:1px solid rgba(222,210,196,.78);
-      background:rgba(245,240,232,.91);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
+      position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(222,210,196,.78);
+      background:rgba(245,240,232,.91);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     }
-
     .nav-principal{
-      width:min(1280px,100%);
-      margin:0 auto;
-      padding:10px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+      width:min(1280px,100%);margin:0 auto;padding:10px 18px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
     }
-
     .nav-marca{
-      min-width:0;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:19px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      min-width:0;font-family:Georgia,"Times New Roman",serif;font-size:19px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-
-    .nav-acciones{
-      display:flex;
-      gap:8px;
-    }
-
+    .nav-acciones{display:flex;gap:8px}
     .nav-principal button{
-      min-height:42px;
-      padding:9px 17px;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      border:1px solid transparent;
-      border-radius:999px;
-      background:transparent;
-      color:var(--texto-suave);
-      font-size:12px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:all var(--transicion);
+      min-height:42px;padding:9px 17px;display:inline-flex;align-items:center;gap:6px;
+      border:1px solid transparent;border-radius:999px;background:transparent;
+      color:var(--texto-suave);font-size:12px;font-weight:bold;cursor:pointer;transition:all var(--transicion);
     }
+    .nav-principal button:hover{background:rgba(255,255,255,.55);color:var(--texto)}
+    .nav-principal button.activo{background:var(--texto);color:#fff}
 
-    .nav-principal button:hover{
-      background:rgba(255,255,255,.55);
-      color:var(--texto);
-    }
+    /* ESTRUCTURA */
+    .contenedor{width:min(1280px,100%);margin:0 auto;padding:34px 18px 58px}
+    .vista{display:none}
+    .vista.activa{display:block;animation:entrada .28s ease both}
+    @keyframes entrada{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .section-kicker{margin:0 0 8px;color:var(--acento);font-size:11px;font-weight:bold;letter-spacing:1.4px}
 
-    .nav-principal button.activo{
-      background:var(--texto);
-      color:#fff;
-    }
-
-    /* ===================================================== */
-    /* ESTRUCTURA                                            */
-    /* ===================================================== */
-
-    .contenedor{
-      width:min(1280px,100%);
-      margin:0 auto;
-      padding:34px 18px 58px;
-    }
-
-    .vista{
-      display:none;
-    }
-
-    .vista.activa{
-      display:block;
-      animation:entrada .28s ease both;
-    }
-
-    @keyframes entrada{
-      from{opacity:0;transform:translateY(6px)}
-      to{opacity:1;transform:none}
-    }
-
-    .section-kicker{
-      margin:0 0 8px;
-      color:var(--acento);
-      font-size:11px;
-      font-weight:bold;
-      letter-spacing:1.4px;
-    }
-
-    /* ===================================================== */
-    /* INICIO                                                */
-    /* ===================================================== */
-
-    .inicio-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-      gap:22px;
-      align-items:stretch;
-    }
-
-    .panel{
-      overflow:hidden;
-      border:1px solid var(--linea);
-      border-radius:var(--radio-xl);
-      background:var(--tarjeta);
-      box-shadow:var(--sombra);
-    }
-
-    .historia-imagen{
-      position:relative;
-      height:210px;
-      min-height:180px;
-      max-height:230px;
-      overflow:hidden;
-      background:linear-gradient(135deg,#8D4A30,#C18456);
-    }
-
-    .historia-imagen img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
+    /* INICIO */
+    .inicio-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;align-items:stretch}
+    .panel{overflow:hidden;border:1px solid var(--linea);border-radius:var(--radio-xl);background:var(--tarjeta);box-shadow:var(--sombra)}
+    .historia-imagen{position:relative;height:210px;min-height:180px;max-height:230px;overflow:hidden;background:linear-gradient(135deg,#8D4A30,#C18456)}
+    .historia-imagen img{width:100%;height:100%;object-fit:cover;display:block}
     .historia-fallback{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      text-align:center;
-      color:rgba(255,255,255,.9);
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:22px;
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      padding:20px;text-align:center;color:rgba(255,255,255,.9);font-family:Georgia,"Times New Roman",serif;font-size:22px;
     }
-
-    .historia-contenido{
-      padding:26px 30px 30px;
-    }
-
-    .historia-contenido h2,
-    .contacto-panel h2{
-      margin:0;
-      font-family:Georgia,"Times New Roman",serif;
-      font-weight:normal;
-      font-size:clamp(31px,4vw,46px);
-      line-height:1.08;
-    }
-
-    .historia-contenido p,
-    .contacto-panel p{
-      margin:15px 0 0;
-      color:var(--texto-suave);
-      font-size:15px;
-      line-height:1.8;
-    }
-
-    .contacto-panel{
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:22px;
-    }
-
-    .contacto-lista{
-      display:grid;
-      gap:10px;
-    }
-
-    .contacto-item{
-      padding:14px 15px;
-      border:1px solid #E8DDD1;
-      border-radius:var(--radio-md);
-      background:#FAF7F2;
-    }
-
-    .contacto-item strong{
-      display:block;
-      margin-bottom:4px;
-      color:#76685D;
-      font-size:10px;
-      letter-spacing:1px;
-    }
-
-    .contacto-item span{
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .contacto-botones{
-      display:grid;
-      gap:9px;
-    }
-
+    .historia-contenido{padding:26px 30px 30px}
+    .historia-contenido h2,.contacto-panel h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:normal;font-size:clamp(31px,4vw,46px);line-height:1.08}
+    .historia-contenido p,.contacto-panel p{margin:15px 0 0;color:var(--texto-suave);font-size:15px;line-height:1.8}
+    .contacto-panel{padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:22px}
+    .contacto-lista{display:grid;gap:10px}
+    .contacto-item{padding:14px 15px;border:1px solid #E8DDD1;border-radius:var(--radio-md);background:#FAF7F2}
+    .contacto-item strong{display:block;margin-bottom:4px;color:#76685D;font-size:10px;letter-spacing:1px}
+    .contacto-item span{font-size:13px;line-height:1.55}
+    .contacto-botones{display:grid;gap:9px}
     .boton-ancho{
-      min-height:48px;
-      padding:12px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      border:0;
-      border-radius:14px;
-      font-size:12px;
-      font-weight:bold;
-      cursor:pointer;
+      min-height:48px;padding:12px 16px;display:flex;align-items:center;justify-content:center;
+      gap:9px;border:0;border-radius:14px;font-size:12px;font-weight:bold;cursor:pointer;
     }
-
-    .boton-maps{
-      background:var(--texto);
-      color:#fff;
-    }
-
-    .boton-pedido{
-      background:var(--acento);
-      color:#fff;
-    }
-
-    .redes-restaurante{
-      padding-top:8px;
-      border-top:1px solid var(--linea);
-    }
-
-    .redes-restaurante-titulo{
-      margin:8px 0 11px;
-      color:var(--texto-suave);
-      font-size:11px;
-      font-weight:bold;
-      letter-spacing:.9px;
-    }
-
-    .redes-restaurante-botones{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:9px;
-    }
-
+    .boton-maps{background:var(--texto);color:#fff}
+    .boton-pedido{background:var(--acento);color:#fff}
+    .redes-restaurante{padding-top:8px;border-top:1px solid var(--linea)}
+    .redes-restaurante-titulo{margin:8px 0 11px;color:var(--texto-suave);font-size:11px;font-weight:bold;letter-spacing:.9px}
+    .redes-restaurante-botones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
     .red-social{
-      min-height:49px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      padding:10px 12px;
-      border:1px solid var(--linea);
-      border-radius:14px;
-      background:var(--tarjeta);
-      color:var(--texto);
-      font-size:13px;
-      font-weight:bold;
-      cursor:pointer;
+      min-height:49px;display:flex;align-items:center;justify-content:center;gap:9px;padding:10px 12px;
+      border:1px solid var(--linea);border-radius:14px;background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:bold;cursor:pointer;
     }
+    .red-social:hover{border-color:var(--acento);background:#FAF6F0}
+    .red-social-icono{font-size:19px;font-weight:bold;line-height:1}
 
-    .red-social:hover{
-      border-color:var(--acento);
-      background:#FAF6F0;
-    }
-
-    .red-social-icono{
-      font-size:19px;
-      font-weight:bold;
-      line-height:1;
-    }
-
-    /* ===================================================== */
-    /* MENÚ Y BUSCADOR DE PLATILLOS                          */
-    /* ===================================================== */
-
-    .intro{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:30px;
-      margin-bottom:18px;
-    }
-
-    .intro h2{
-      margin:0;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(34px,5vw,52px);
-      font-weight:normal;
-    }
-
-    .intro p{
-      max-width:580px;
-      margin:9px 0 0;
-      color:var(--texto-suave);
-      font-size:14px;
-      line-height:1.7;
-    }
-
-    .buscador-menu-wrap{
-      margin-bottom:16px;
-    }
-
+    /* MENÚ Y BUSCADOR */
+    .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:18px}
+    .intro h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(34px,5vw,52px);font-weight:normal}
+    .intro p{max-width:580px;margin:9px 0 0;color:var(--texto-suave);font-size:14px;line-height:1.7}
+    .buscador-menu-wrap{margin-bottom:16px}
     .buscador-menu{
-      width:100%;
-      min-height:48px;
-      padding:12px 18px;
-      border:1px solid var(--linea);
-      border-radius:var(--radio-md);
-      background:var(--tarjeta);
-      color:var(--texto);
-      font-size:14px;
-      box-shadow:var(--sombra-suave);
-      transition:border-color var(--transicion), box-shadow var(--transicion);
+      width:100%;min-height:48px;padding:12px 18px;border:1px solid var(--linea);border-radius:var(--radio-md);
+      background:var(--tarjeta);color:var(--texto);font-size:14px;box-shadow:var(--sombra-suave);
+      transition:border-color var(--transicion),box-shadow var(--transicion);
     }
-
-    .buscador-menu:focus-visible{
-      outline:3px solid rgba(166,79,49,.28);
-      outline-offset:2px;
-      border-color:var(--acento);
-    }
-
-    .categorias{
-      display:flex;
-      gap:9px;
-      overflow-x:auto;
-      padding:3px 0 18px;
-      scrollbar-width:none;
-    }
-
+    .buscador-menu:focus-visible{outline:3px solid rgba(166,79,49,.28);outline-offset:2px;border-color:var(--acento)}
+    .categorias{display:flex;gap:9px;overflow-x:auto;padding:3px 0 18px;scrollbar-width:none}
     .categorias::-webkit-scrollbar{display:none}
-
     .categoria{
-      flex:0 0 auto;
-      min-height:42px;
-      padding:9px 16px;
-      border:1px solid var(--linea);
-      border-radius:999px;
-      background:rgba(255,253,249,.82);
-      color:var(--texto);
-      font-size:12px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:all var(--transicion);
+      flex:0 0 auto;min-height:42px;padding:9px 16px;border:1px solid var(--linea);border-radius:999px;
+      background:rgba(255,253,249,.82);color:var(--texto);font-size:12px;font-weight:bold;cursor:pointer;transition:all var(--transicion);
     }
+    .categoria:hover{transform:translateY(-1px)}
+    .categoria.activa{border-color:var(--texto);background:var(--texto);color:#fff}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:start}
 
-    .categoria:hover{
-      transform:translateY(-1px);
-    }
-
-    .categoria.activa{
-      border-color:var(--texto);
-      background:var(--texto);
-      color:#fff;
-    }
-
-    .layout{
-      display:grid;
-      grid-template-columns:minmax(0,1fr);
-      gap:22px;
-      align-items:start;
-    }
-
-    /* Estandarte de aviso de categoría (Barbacoa fines de semana) */
+    /* AVISO DE CATEGORÍA (BARBACOA FINES DE SEMANA) */
     .alerta-categoria{
-      grid-column:1 / -1;
-      padding:14px 18px;
-      border-radius:16px;
-      background:linear-gradient(135deg,#F6E6DC,#F0D8C8);
-      color:var(--acento-oscuro);
-      font-size:14px;
-      font-weight:bold;
-      text-align:center;
-      border:1px solid rgba(166,79,49,.28);
-      box-shadow:var(--sombra-suave);
+      grid-column:1 / -1;padding:14px 18px;border-radius:16px;
+      background:linear-gradient(135deg,#F6E6DC,#F0D8C8);color:var(--acento-oscuro);
+      font-size:14px;font-weight:bold;text-align:center;
+      border:1px solid rgba(166,79,49,.32);box-shadow:var(--sombra-suave);
     }
 
-    /* ===================================================== */
-    /* TARJETAS DE PLATILLOS Y CONTROLES DE COMPRA           */
-    /* ===================================================== */
-
-    .lista{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:20px;
-    }
-
+    /* TARJETAS DE PLATILLOS */
+    .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
     .platillo-tarjeta{
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-      border:1px solid var(--linea);
-      border-radius:var(--radio-lg);
-      background:var(--tarjeta);
-      box-shadow:var(--sombra-suave);
+      min-width:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--linea);
+      border-radius:var(--radio-lg);background:var(--tarjeta);box-shadow:var(--sombra-suave);
       transition:transform var(--transicion),box-shadow var(--transicion);
     }
-
-    .platillo-tarjeta:hover{
-      transform:translateY(-3px);
-      box-shadow:var(--sombra);
-    }
-
+    .platillo-tarjeta:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
     .platillo{
-      width:100%;
-      height:100%;
-      padding:0;
-      display:flex;
-      flex-direction:column;
-      text-align:left;
-      border:0;
-      border-radius:0;
-      background:transparent;
-      box-shadow:none;
-      overflow:hidden;
+      width:100%;height:100%;padding:0;display:flex;flex-direction:column;text-align:left;
+      border:0;border-radius:0;background:transparent;box-shadow:none;overflow:hidden;
     }
-
     .platillo-visual{
-      width:100%;
-      height:auto;
-      aspect-ratio:4/3;
-      display:block;
-      padding:0;
-      border:0;
-      border-radius:0;
-      cursor:zoom-in;
-      position:relative;
-      background:#E9E0D5;
-      overflow:hidden;
+      width:100%;height:auto;aspect-ratio:4/3;display:block;padding:0;border:0;border-radius:0;
+      cursor:zoom-in;position:relative;background:#E9E0D5;overflow:hidden;
     }
-
-    .platillo-visual img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      object-position:center;
-      display:block;
-    }
-
-    .platillo-visual:disabled{
-      cursor:default;
-    }
-
-    .platillo-visual:focus-visible{
-      outline:3px solid var(--acento);
-      outline-offset:-4px;
-    }
-
+    .platillo-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+    .platillo-visual:disabled{cursor:default}
+    .platillo-visual:focus-visible{outline:3px solid var(--acento);outline-offset:-4px}
     .foto-fallback{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      background:linear-gradient(135deg,#DCCFC1,#EEE5DC);
-      color:#786C62;
-      text-align:center;
-      font-size:12px;
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      padding:20px;background:linear-gradient(135deg,#DCCFC1,#EEE5DC);color:#786C62;text-align:center;font-size:12px;
     }
-
     .distintivo-fin-semana{
-      position:absolute;
-      top:10px;
-      right:10px;
-      z-index:3;
-      padding:5px 10px;
-      border-radius:999px;
-      background:rgba(108,47,28,.9);
-      color:#fff;
-      font-size:10px;
-      font-weight:bold;
-      letter-spacing:.3px;
+      position:absolute;top:10px;right:10px;z-index:3;padding:5px 10px;border-radius:999px;
+      background:rgba(108,47,28,.92);color:#fff;font-size:10px;font-weight:bold;letter-spacing:.3px;
       box-shadow:0 4px 12px rgba(0,0,0,.18);
     }
-
-    .platillo-info{
-      flex:1 1 auto;
-      padding:15px 16px 14px;
-      background:var(--tarjeta);
-    }
-
-    .platillo-encabezado{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-
+    .platillo-info{flex:1 1 auto;padding:15px 16px 14px;background:var(--tarjeta)}
+    .platillo-encabezado{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
     .platillo-nombre{
-      flex:1 1 auto;
-      min-width:0;
-      margin:0;
-      color:var(--texto);
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(20px,2vw,24px);
-      font-weight:600;
-      line-height:1.25;
-      overflow-wrap:anywhere;
+      flex:1 1 auto;min-width:0;margin:0;color:var(--texto);font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(20px,2vw,24px);font-weight:600;line-height:1.25;overflow-wrap:anywhere;
     }
+    .platillo-precio{flex:0 0 auto;padding-top:3px;color:var(--acento);font-size:19px;font-weight:bold;white-space:nowrap}
+    .platillo-descripcion{margin:10px 0 0;color:var(--texto-suave);font-size:13px;line-height:1.58}
 
-    .platillo-precio{
-      flex:0 0 auto;
-      padding-top:3px;
-      color:var(--acento);
-      font-size:19px;
-      font-weight:bold;
-      white-space:nowrap;
+    /* CAJA DE COMPRA Y SELECTORES DE GUISADOS / TAMAÑOS */
+    .caldo-compra,.platillo-compra{
+      display:grid;gap:10px;margin:0 16px 16px;padding:13px 14px;
+      border:1px solid #E8DCCE;border-radius:17px;background:linear-gradient(145deg,#FBF7F1,#F5EDE3);
     }
-
-    .platillo-descripcion{
-      margin:10px 0 0;
-      color:var(--texto-suave);
-      font-size:13px;
-      line-height:1.58;
-    }
-
-    /* ===================================================== */
-    /* CAJA DE COMPRA Y BOTONES DE AÑADIR (CALDOS Y GUISADOS)*/
-    /* ===================================================== */
-
-    .caldo-compra,
-    .platillo-compra{
-      display:grid;
-      gap:10px;
-      margin:0 16px 16px;
-      padding:13px 14px;
-      border:1px solid #E8DCCE;
-      border-radius:17px;
-      background:linear-gradient(145deg,#FBF7F1,#F5EDE3);
-    }
-
     .caldo-compra-etiqueta{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      color:#68594D;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.45px;
-      text-transform:uppercase;
+      display:flex;align-items:center;justify-content:space-between;gap:8px;
+      color:#68594D;font-size:11px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;
     }
-
-    .caldo-compra-etiqueta small{
-      color:#968579;
-      font-size:10px;
-      font-weight:600;
-      letter-spacing:0;
-      text-transform:none;
-    }
-
-    .guisados-contenedor{
-      display:grid;
-      gap:7px;
-    }
-
+    .caldo-compra-etiqueta small{color:#968579;font-size:10px;font-weight:600;letter-spacing:0;text-transform:none}
+    .guisados-contenedor{display:grid;gap:7px}
     .guisado-select{
-      width:100%;
-      min-height:40px;
-      padding:8px 11px;
-      border:1px solid #DED0C1;
-      border-radius:10px;
-      background:#FFF;
-      color:var(--texto);
-      font-size:13px;
-      font-family:inherit;
-      cursor:pointer;
-      transition:border-color var(--transicion), box-shadow var(--transicion);
+      width:100%;min-height:40px;padding:8px 11px;border:1px solid #DED0C1;border-radius:10px;
+      background:#FFF;color:var(--texto);font-size:13px;font-family:inherit;cursor:pointer;
+      transition:border-color var(--transicion),box-shadow var(--transicion);
     }
+    .guisado-select:hover{border-color:#B9795E}
+    .guisado-select.requerido-alerta{border-color:#C93B2B;box-shadow:0 0 0 3px rgba(201,59,43,.18)}
 
-    .guisado-select:hover{
-      border-color:#B9795E;
-    }
-
-    .guisado-select.requerido-alerta{
-      border-color:#C93B2B;
-      box-shadow:0 0 0 3px rgba(201,59,43,.18);
-    }
-
-    .caldo-tamanos{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:7px;
-    }
-
+    .caldo-tamanos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
     .caldo-tamano-btn{
-      min-width:0;
-      min-height:57px;
-      padding:8px 4px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:4px;
-      border:1px solid #DED0C1;
-      border-radius:12px;
-      background:rgba(255,255,255,.84);
-      color:#53463C;
-      cursor:pointer;
+      min-width:0;min-height:57px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:4px;border:1px solid #DED0C1;border-radius:12px;background:rgba(255,255,255,.84);color:#53463C;cursor:pointer;
       transition:background var(--transicion),border-color var(--transicion),transform var(--transicion),box-shadow var(--transicion);
     }
-
-    .caldo-tamano-btn:hover{
-      border-color:#B9795E;
-      transform:translateY(-1px);
-    }
-
+    .caldo-tamano-btn:hover{border-color:#B9795E;transform:translateY(-1px)}
     .caldo-tamano-btn[aria-pressed="true"]{
-      border-color:var(--acento);
-      background:#F4E4D9;
-      color:var(--acento-oscuro);
+      border-color:var(--acento);background:#F4E4D9;color:var(--acento-oscuro);
       box-shadow:inset 0 0 0 1px rgba(166,79,49,.18),0 4px 10px rgba(100,54,34,.07);
     }
-
-    .caldo-tamano-nombre{
-      font-size:12px;
-      font-weight:800;
-      line-height:1.1;
-    }
-
-    .caldo-tamano-precio{
-      font-size:11px;
-      font-weight:700;
-      color:var(--acento);
-      white-space:nowrap;
-    }
-
-    .caldo-compra-pie{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .caldo-en-pedido{
-      min-width:0;
-      color:#7C6D61;
-      font-size:11px;
-      line-height:1.35;
-    }
-
-    .caldo-en-pedido strong{
-      display:block;
-      color:#5A6B45;
-      font-size:12px;
-    }
-
-    .compra-acciones{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      flex-shrink:0;
-    }
-
+    .caldo-tamano-nombre{font-size:12px;font-weight:800;line-height:1.1}
+    .caldo-tamano-precio{font-size:11px;font-weight:700;color:var(--acento);white-space:nowrap}
+    .caldo-compra-pie{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .caldo-en-pedido{min-width:0;color:#7C6D61;font-size:11px;line-height:1.35}
+    .caldo-en-pedido strong{display:block;color:#5A6B45;font-size:12px}
+    .compra-acciones{display:flex;align-items:center;gap:6px;flex-shrink:0}
     .platillo-restar-btn{
-      width:43px;
-      height:43px;
-      border:1px solid #DED0C1;
-      border-radius:12px;
-      background:#fff;
-      color:var(--acento);
-      font-size:22px;
-      font-weight:bold;
-      line-height:1;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion);
+      width:43px;height:43px;border:1px solid #DED0C1;border-radius:12px;background:#fff;color:var(--acento);
+      font-size:22px;font-weight:bold;line-height:1;display:inline-flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background var(--transicion),border-color var(--transicion),transform var(--transicion);
     }
-
-    .platillo-restar-btn:hover:not(:disabled){
-      border-color:var(--acento);
-      background:#FAF3EC;
-      transform:translateY(-1px);
-    }
-
-    .platillo-restar-btn[hidden]{
-      display:none;
-    }
-
+    .platillo-restar-btn:hover:not(:disabled){border-color:var(--acento);background:#FAF3EC;transform:translateY(-1px)}
+    .platillo-restar-btn[hidden]{display:none}
     .caldo-agregar-btn{
-      flex:0 0 auto;
-      min-height:43px;
-      padding:10px 14px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      border:0;
-      border-radius:12px;
-      background:var(--acento);
-      color:#fff;
-      font-size:11px;
-      font-weight:800;
-      box-shadow:0 6px 14px rgba(166,79,49,.16);
-      cursor:pointer;
+      flex:0 0 auto;min-height:43px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:center;
+      gap:6px;border:0;border-radius:12px;background:var(--acento);color:#fff;font-size:11px;font-weight:800;
+      box-shadow:0 6px 14px rgba(166,79,49,.16);cursor:pointer;
       transition:transform var(--transicion),background var(--transicion),box-shadow var(--transicion);
     }
+    .caldo-agregar-btn:hover:not(:disabled){background:var(--acento-oscuro);transform:translateY(-1px);box-shadow:0 8px 17px rgba(166,79,49,.22)}
+    .caldo-agregar-btn:active:not(:disabled){transform:scale(.98)}
+    .caldo-agregar-btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
 
-    .caldo-agregar-btn:hover:not(:disabled){
-      background:var(--acento-oscuro);
-      transform:translateY(-1px);
-      box-shadow:0 8px 17px rgba(166,79,49,.22);
-    }
-
-    .caldo-agregar-btn:active:not(:disabled){
-      transform:scale(.98);
-    }
-
-    .caldo-agregar-btn:disabled{
-      opacity:.42;
-      cursor:not-allowed;
-      box-shadow:none;
-    }
-
-    /* ===================================================== */
-    /* WHATSAPP MINI Y BOTÓN VOLVER AL MENÚ                  */
-    /* ===================================================== */
-
+    /* BOTONES FLOTANTES Y NAVEGACIÓN MÓVIL */
     .whatsapp-flotante{
-      position:fixed;
-      right:16px;
-      bottom:100px;
-      z-index:500;
-      width:50px;
-      height:50px;
-      padding:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border:0;
-      border-radius:50%;
-      background:var(--whatsapp);
-      box-shadow:0 12px 26px rgba(0,0,0,.20);
-      cursor:pointer;
-      transition:transform var(--transicion);
+      position:fixed;right:16px;bottom:100px;z-index:500;width:50px;height:50px;padding:0;
+      display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;
+      background:var(--whatsapp);box-shadow:0 12px 26px rgba(0,0,0,.20);cursor:pointer;transition:transform var(--transicion);
     }
-
-    .whatsapp-flotante:hover{
-      transform:translateY(-2px) scale(1.02);
-    }
-
-    .whatsapp-flotante svg{
-      width:27px;
-      height:27px;
-      fill:none;
-      stroke:#fff;
-      stroke-width:2.2;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
+    .whatsapp-flotante:hover{transform:translateY(-2px) scale(1.02)}
+    .whatsapp-flotante svg{width:27px;height:27px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
     .boton-volver-menu{
-      position:fixed;
-      left:18px;
-      bottom:22px;
-      z-index:480;
-      min-height:45px;
-      padding:11px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      border:1px solid rgba(255,255,255,.34);
-      border-radius:999px;
-      background:rgba(36,31,26,.58);
-      color:#fff;
-      font-size:12px;
-      font-weight:bold;
-      letter-spacing:.2px;
-      box-shadow:0 9px 25px rgba(0,0,0,.16);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transform:translateY(9px);
-      transition:opacity var(--transicion),transform var(--transicion),visibility var(--transicion),background var(--transicion);
-      cursor:pointer;
+      position:fixed;left:18px;bottom:22px;z-index:480;min-height:45px;padding:11px 16px;
+      display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(255,255,255,.34);
+      border-radius:999px;background:rgba(36,31,26,.58);color:#fff;font-size:12px;font-weight:bold;letter-spacing:.2px;
+      box-shadow:0 9px 25px rgba(0,0,0,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      opacity:0;visibility:hidden;pointer-events:none;transform:translateY(9px);
+      transition:opacity var(--transicion),transform var(--transicion),visibility var(--transicion),background var(--transicion);cursor:pointer;
     }
-
-    .boton-volver-menu.visible{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-      transform:translateY(0);
-    }
-
-    .boton-volver-menu:hover{
-      background:rgba(36,31,26,.82);
-    }
-
-    /* ===================================================== */
-    /* NAVEGACIÓN MÓVIL                                      */
-    /* ===================================================== */
+    .boton-volver-menu.visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+    .boton-volver-menu:hover{background:rgba(36,31,26,.82)}
 
     .nav-movil{
-      display:none;
-      position:fixed;
-      left:10px;
-      right:10px;
-      bottom:10px;
-      z-index:400;
-      min-height:62px;
-      padding:7px;
-      grid-template-columns:repeat(3,1fr);
-      gap:4px;
-      border:1px solid rgba(222,210,196,.92);
-      border-radius:20px;
-      background:rgba(255,253,249,.94);
-      box-shadow:0 16px 38px rgba(38,28,20,.18);
-      backdrop-filter:blur(13px);
-      -webkit-backdrop-filter:blur(13px);
+      display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:400;min-height:62px;padding:7px;
+      grid-template-columns:repeat(3,1fr);gap:4px;border:1px solid rgba(222,210,196,.92);border-radius:20px;
+      background:rgba(255,253,249,.94);box-shadow:0 16px 38px rgba(38,28,20,.18);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
     }
-
     .nav-movil button{
-      min-width:0;
-      min-height:48px;
-      padding:6px 3px;
-      display:grid;
-      place-items:center;
-      gap:2px;
-      border:0;
-      border-radius:14px;
-      background:transparent;
-      color:var(--texto-suave);
-      font-size:9px;
-      font-weight:bold;
-      cursor:pointer;
+      min-width:0;min-height:48px;padding:6px 3px;display:grid;place-items:center;gap:2px;
+      border:0;border-radius:14px;background:transparent;color:var(--texto-suave);font-size:9px;font-weight:bold;cursor:pointer;
     }
+    .nav-movil button.activo{background:#F0E8DE;color:var(--acento-oscuro)}
+    .nav-movil .nav-icono{display:block;font-size:18px;line-height:1}
 
-    .nav-movil button.activo{
-      background:#F0E8DE;
-      color:var(--acento-oscuro);
-    }
-
-    .nav-movil .nav-icono{
-      display:block;
-      font-size:18px;
-      line-height:1;
-    }
-
-    /* TOAST */
     .toast{
-      position:fixed;
-      left:50%;
-      bottom:86px;
-      z-index:13000;
-      width:min(calc(100% - 32px),430px);
-      padding:12px 15px;
-      transform:translate(-50%,14px);
-      opacity:0;
-      pointer-events:none;
-      border-radius:13px;
-      background:#27221E;
-      color:#fff;
-      font-size:12px;
-      line-height:1.5;
-      text-align:center;
-      transition:opacity .2s ease,transform .2s ease;
-      box-shadow:0 12px 28px rgba(0,0,0,.25);
+      position:fixed;left:50%;bottom:86px;z-index:13000;width:min(calc(100% - 32px),430px);padding:12px 15px;
+      transform:translate(-50%,14px);opacity:0;pointer-events:none;border-radius:13px;background:#27221E;color:#fff;
+      font-size:12px;line-height:1.5;text-align:center;transition:opacity .2s ease,transform .2s ease;box-shadow:0 12px 28px rgba(0,0,0,.25);
     }
+    .toast.visible{opacity:1;transform:translate(-50%,0)}
+    footer{padding:20px 15px 84px;text-align:center;color:#8A7E74;font-size:11px;line-height:1.7}
 
-    .toast.visible{
-      opacity:1;
-      transform:translate(-50%,0);
-    }
-
-    footer{
-      padding:20px 15px 84px;
-      text-align:center;
-      color:#8A7E74;
-      font-size:11px;
-      line-height:1.7;
-    }
-
-    /* ===================================================== */
-    /* MODAL DE PEDIDO Y CARRITO                             */
-    /* ===================================================== */
-
+    /* MODAL DE PEDIDOS Y CARRITO */
     .icono-motoneta{width:29px;height:23px;display:block}
     .pedido-overlay[hidden]{display:none!important}
     .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(25,17,12,.6);display:flex;align-items:center;justify-content:center;padding:16px}
@@ -1106,87 +343,54 @@
     #resultadoEnvio{display:block;font-size:14px;margin-top:10px}
 
     /* MODAL FOTO AMPLIADA */
-    .foto-ampliada-overlay[hidden]{display:none!important;}
+    .foto-ampliada-overlay[hidden]{display:none!important}
     .foto-ampliada-overlay{
-      position:fixed;inset:0;z-index:12000;display:flex;
-      align-items:center;justify-content:center;padding:54px 18px 26px;
-      background:rgba(10,9,8,.91);
+      position:fixed;inset:0;z-index:12000;display:flex;align-items:center;justify-content:center;
+      padding:54px 18px 26px;background:rgba(10,9,8,.91);
     }
-    .foto-ampliada-overlay img{
-      display:block;max-width:96vw;max-height:calc(100dvh - 95px);
-      width:auto;height:auto;object-fit:contain;
-    }
+    .foto-ampliada-overlay img{display:block;max-width:96vw;max-height:calc(100dvh - 95px);width:auto;height:auto;object-fit:contain}
     .foto-ampliada-cerrar{
-      position:absolute;top:12px;right:15px;width:45px;height:45px;
-      display:grid;place-items:center;border:1px solid #ffffff80;
-      border-radius:50%;background:#26211c;color:white;font-size:29px;
-      cursor:pointer;
+      position:absolute;top:12px;right:15px;width:45px;height:45px;display:grid;place-items:center;
+      border:1px solid #ffffff80;border-radius:50%;background:#26211c;color:white;font-size:29px;cursor:pointer;
     }
 
-    /* ===================================================== */
-    /* RESPONSIVE                                            */
-    /* ===================================================== */
-
-    @media(max-width:1100px){
-      .lista{grid-template-columns:repeat(2,minmax(0,1fr));}
-    }
-
-    @media(max-width:1000px){
-      .inicio-grid{grid-template-columns:1fr;}
-      .layout{grid-template-columns:1fr;}
-    }
-
+    @media(max-width:1100px){.lista{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:1000px){.inicio-grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}}
     @media(max-width:720px){
-      .hero{min-height:430px;}
-      .hero-inner{padding:48px 18px 38px;}
-      .hero h1{font-size:clamp(48px,16vw,76px);}
-      .hero-kicker{left:15px;top:15px;font-size:9px;letter-spacing:.2px;max-width:63%;}
-      .boton-idioma{right:14px;top:15px;font-size:11px;min-height:35px;padding:7px 11px;}
-      .nav-principal-wrap{display:none;}
-      .contenedor{padding:24px 11px 118px;}
-      .intro{display:block;}
-      .nav-movil{display:grid;}
-      .whatsapp-flotante{right:14px;bottom:85px;width:46px;height:46px;}
-      .boton-volver-menu{left:14px;bottom:88px;min-height:43px;padding:10px 14px;font-size:11px;}
-      .pedido-form-grid{grid-template-columns:1fr;}
-      footer{padding-bottom:105px;}
+      .hero{min-height:430px}
+      .hero-inner{padding:48px 18px 38px}
+      .hero h1{font-size:clamp(48px,16vw,76px)}
+      .hero-kicker{left:15px;top:15px;font-size:9px;letter-spacing:.2px;max-width:63%}
+      .boton-idioma{right:14px;top:15px;font-size:11px;min-height:35px;padding:7px 11px}
+      .nav-principal-wrap{display:none}
+      .contenedor{padding:24px 11px 118px}
+      .intro{display:block}
+      .nav-movil{display:grid}
+      .whatsapp-flotante{right:14px;bottom:85px;width:46px;height:46px}
+      .boton-volver-menu{left:14px;bottom:88px;min-height:43px;padding:10px 14px;font-size:11px}
+      .pedido-form-grid{grid-template-columns:1fr}
+      footer{padding-bottom:105px}
     }
-
-    @media(max-width:600px){
-      .lista{grid-template-columns:1fr;}
-    }
-
-    @media(max-width:480px){
-      .pedido-overlay{padding:10px;}
-      .pedido-panel{padding:18px;}
-    }
-
+    @media(max-width:600px){.lista{grid-template-columns:1fr}}
+    @media(max-width:480px){.pedido-overlay{padding:10px}.pedido-panel{padding:18px}}
     @media(max-width:420px){
-      .caldo-compra,.platillo-compra{margin:0 12px 13px;padding:12px;gap:9px;}
-      .caldo-tamanos{gap:6px;}
-      .caldo-tamano-btn{min-height:54px;}
-      .caldo-compra-pie{align-items:stretch;}
-      .caldo-en-pedido{align-self:center;}
-      .caldo-agregar-btn{padding:10px 11px;font-size:10px;}
-      .platillo-restar-btn{width:40px;height:40px;}
+      .caldo-compra,.platillo-compra{margin:0 12px 13px;padding:12px;gap:9px}
+      .caldo-tamanos{gap:6px}
+      .caldo-tamano-btn{min-height:54px}
+      .caldo-compra-pie{align-items:stretch}
+      .caldo-en-pedido{align-self:center}
+      .caldo-agregar-btn{padding:10px 11px;font-size:10px}
+      .platillo-restar-btn{width:40px;height:40px}
     }
-
     @media (prefers-reduced-motion:reduce){
-      *{
-        scroll-behavior:auto !important;
-        animation-duration:.01ms !important;
-        transition-duration:.01ms !important;
-      }
+      *{scroll-behavior:auto !important;animation-duration:.01ms !important;transition-duration:.01ms !important}
     }
   </style>
 </head>
 
 <body>
 
-<!-- ===================================================== -->
-<!-- PORTADA                                               -->
-<!-- ===================================================== -->
-
+<!-- PORTADA -->
 <header class="hero" id="portada">
   <div class="hero-fallback"></div>
   <div class="hero-media">
@@ -1201,10 +405,7 @@
   </div>
 </header>
 
-<!-- ===================================================== -->
-<!-- NAVEGACIÓN DESKTOP                                    -->
-<!-- ===================================================== -->
-
+<!-- NAVEGACIÓN DESKTOP -->
 <div class="nav-principal-wrap">
   <nav class="nav-principal">
     <div class="nav-marca" id="navMarca">Restaurante</div>
@@ -1221,10 +422,7 @@
 
 <main class="contenedor">
 
-  <!-- =================================================== -->
-  <!-- INICIO                                              -->
-  <!-- =================================================== -->
-
+  <!-- VISTA INICIO -->
   <section class="vista" id="vistaInicio">
     <div class="inicio-grid">
       <article class="panel">
@@ -1275,10 +473,7 @@
     </div>
   </section>
 
-  <!-- =================================================== -->
-  <!-- MENÚ                                                -->
-  <!-- =================================================== -->
-
+  <!-- VISTA MENÚ -->
   <section class="vista activa" id="vistaMenu">
     <section class="intro">
       <div>
@@ -1301,7 +496,7 @@
 
 </main>
 
-<!-- WhatsApp para consultas directas, independiente del carrito -->
+<!-- WhatsApp directo -->
 <button type="button" class="whatsapp-flotante" id="whatsappFlotante" data-i18n-aria="chatWAFloat" aria-label="Contactar a Comedor Lucy por WhatsApp" title="WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.3-4A8 8 0 1 1 20 11.7Z"></path>
@@ -1313,10 +508,7 @@
   ↑ Volver al menú
 </button>
 
-<!-- ===================================================== -->
-<!-- NAVEGACIÓN MÓVIL                                      -->
-<!-- ===================================================== -->
-
+<!-- NAVEGACIÓN MÓVIL -->
 <nav class="nav-movil" aria-label="Navegación móvil">
   <button type="button" id="movilInicio">
     <span class="nav-icono">⌂</span>
@@ -1334,13 +526,13 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- Ampliación de fotografía -->
+<!-- FOTO AMPLIADA -->
 <div id="fotoAmpliadaOverlay" class="foto-ampliada-overlay" role="dialog" aria-modal="true" aria-label="Fotografía del platillo" data-i18n-aria="photoAlt" hidden>
   <button type="button" class="foto-ampliada-cerrar" id="cerrarFotoAmpliada" aria-label="Cerrar fotografía ampliada" data-i18n-aria="closePhoto">×</button>
   <img id="fotoAmpliadaImagen" alt="" />
 </div>
 
-<!-- MODAL DE PEDIDOS: conserva toda la estructura de envío en el código, oculta si mostrarCostoEnvio es false -->
+<!-- MODAL DE PEDIDOS (el costo de envío se oculta si mostrarCostoEnvio es false, pero permanece en el código para la plantilla) -->
 <div id="pedidoOverlay" class="pedido-overlay" hidden>
   <section class="pedido-panel" role="dialog" aria-modal="true" aria-labelledby="pedidoTitulo" tabindex="-1">
     <div class="pedido-cabecera">
@@ -1376,7 +568,6 @@
         <button type="button" id="usarUbicacionActual" class="pedido-secundario" data-i18n="useLocation">USAR MI UBICACIÓN</button>
         <p data-i18n="geolocationNote">Tu ubicación se consulta únicamente al pulsar el botón.</p>
 
-        <!-- Calculadora de envío preservada en el código para reutilizar en otros menús -->
         <section id="calculadoraEnvio" class="calculadora-envio" hidden>
           <h3 data-i18n="calculateShipping">Calcula tu envío</h3>
           <p id="tarifasEnvio"></p>
@@ -1408,7 +599,6 @@
 <footer id="footerTexto"></footer>
 
 <script>
-
   /* ===================================================== */
   /*            ★★★ PLANTILLA MAESTRA V2 ★★★               */
   /*   PARA OTRO RESTAURANTE EDITA SOLO ESTA SECCIÓN.      */
@@ -1435,8 +625,7 @@
       instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==",
       facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/",
       tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q",
-      // Interruptor de costo de envío: false lo oculta en la interfaz de pedido,
-      // pero conserva el código listo para ponerse en true en otros restaurantes.
+      // En false oculta el costo de envío en la info del pedido, pero mantiene la lógica para otros menús
       mostrarCostoEnvio: false,
       origenEnvio: null,
       ciudadEnvio: "",
@@ -1460,7 +649,7 @@
       "Crujir de felicidad 😍": "Crispy delights 😍",
       "Panza llena corazón contento 🥰": "Hearty comfort dishes 🥰",
       "Bocado ágil ⚡": "Quick & light bites ⚡",
-      "Barbacuérdate de mí 🔥": "Barbacoa & Birria (Weekends) 🔥",
+      "Barbacuérdate de mí 🔥": "Barbacoa & Birria (Weekends only) 🔥",
       "Bocados traviesos 🍟": "Kids' favorites 🍟",
       "Esencia de la casa ⭐": "House specialties ⭐",
       "Sazón de la Abuela 👵🏻🫶": "Grandma’s home cooking 👵🏻🫶",
@@ -1468,7 +657,7 @@
       "Souvenirs de La Monita 🛍️🎀": "La Monita souvenirs 🛍️🎀"
     },
 
-    // Lista oficial de guisados con soporte bilingüe ES/EN
+    // Lista oficial de los 13 guisados solicitados
     guisados: [
       { id: "huevo_verde", nombre: "Huevo verde", nombreEn: "Egg in green salsa" },
       { id: "huevo_rojo", nombre: "Huevo rojo", nombreEn: "Egg in red salsa" },
@@ -1485,7 +674,8 @@
       { id: "tinga_pollo", nombre: "Tinga de pollo", nombreEn: "Chicken tinga" }
     ],
 
-    // Cantidad máxima de guisados por platillo
+    // Regla de cantidad de guisados por platillo:
+    // Machete: hasta 3 guisados | Quesadilla, Gordita, Sope y Torta de guisado: 1 guisado
     guisadosPorPlatillo: {
       machete: 3,
       quesadilla: 1,
@@ -1525,12 +715,12 @@
         "chooseOneGuisado": "ELIGE 1 GUISADO",
         "chooseUpTo3Guisados": "ELIGE HASTA 3 GUISADOS",
         "selectGuisadoRequired": "Guisado 1 (obligatorio)...",
-        "selectSingleGuisado": "Selecciona tu guisado...",
+        "selectSingleGuisado": "Selecciona 1 guisado...",
         "selectGuisadoOptional2": "Guisado 2 (opcional)...",
         "selectGuisadoOptional3": "Guisado 3 (opcional)...",
         "plainNoGuisado": "Sencillo (sin guisado)",
-        "alertSelectGuisado": "Por favor elige tu guisado antes de añadir al pedido.",
-        "weekendOnlyBanner": "🔥 Nota: La barbacoa y birria están disponibles únicamente los fines de semana.",
+        "alertSelectGuisado": "Por favor selecciona tu guisado antes de añadir al pedido.",
+        "weekendOnlyBanner": "🔥 En esta categoría solo hay servicio los fines de semana.",
         "weekendBadge": "Solo fines de semana",
         "addToOrder": "Añadir al pedido",
         "addAnother": "Añadir otro",
@@ -1654,12 +844,12 @@
         "chooseOneGuisado": "CHOOSE 1 FILLING",
         "chooseUpTo3Guisados": "CHOOSE UP TO 3 FILLINGS",
         "selectGuisadoRequired": "Filling 1 (required)...",
-        "selectSingleGuisado": "Choose your filling...",
+        "selectSingleGuisado": "Select 1 filling...",
         "selectGuisadoOptional2": "Filling 2 (optional)...",
         "selectGuisadoOptional3": "Filling 3 (optional)...",
         "plainNoGuisado": "Plain (no filling)",
-        "alertSelectGuisado": "Please choose a filling before adding to your order.",
-        "weekendOnlyBanner": "🔥 Note: Barbacoa and birria dishes are available on weekends only.",
+        "alertSelectGuisado": "Please select a filling before adding to your order.",
+        "weekendOnlyBanner": "🔥 Dishes in this category are available on weekends only.",
         "weekendBadge": "Weekends only",
         "addToOrder": "Add to order",
         "addAnother": "Add another",
@@ -1791,16 +981,14 @@
     },
 
     platillos: [
-      /* ===================================================== */
-      /* CATEGORÍA: ANTOJITOS PAL CORAZÓN ❤️                   */
-      /* ===================================================== */
+      /* CATEGORÍA: ANTOJITOS PAL CORAZÓN ❤️ */
       {
         "id": "machete",
         "categoria": "Antojitos pal corazón ❤️",
         "nombre": "Machete (45 cm)",
         "nombreEn": "Giant quesadilla (45 cm)",
         "precio": "$110",
-        "descripcion": "Quesadilla gigante (45 cm) con queso y hasta 3 guisados, incluye ensalada.",
+        "descripcion": "Quesadilla gigante (45 cm) con queso y hasta 3 guisados a elegir, incluye ensalada.",
         "descripcionEn": "Giant 45 cm quesadilla with cheese and up to three fillings; includes salad.",
         "imagen": "images/Menu/machete.jpg",
         "maxGuisados": 3,
@@ -1835,8 +1023,8 @@
         "nombre": "Gordita",
         "nombreEn": "Gordita",
         "precio": "Por definir",
-        "descripcion": "Gordita tradicional con 1 guisado a elegir.",
-        "descripcionEn": "Traditional stuffed corn masa pocket with 1 filling of your choice.",
+        "descripcion": "Gordita rellena con 1 guisado a elegir.",
+        "descripcionEn": "Traditional gordita stuffed with 1 filling of your choice.",
         "imagen": "images/Menu/gordita.jpg",
         "maxGuisados": 1,
         "badges": []
@@ -1847,8 +1035,8 @@
         "nombre": "Sope sencillo o con guiso",
         "nombreEn": "Plain sope or with filling",
         "precio": "Por definir",
-        "descripcion": "Puedes pedirlo sencillo o elegir 1 guisado.",
-        "descripcionEn": "Order it plain or choose 1 filling.",
+        "descripcion": "Elige 1 guisado o pídelo sencillo.",
+        "descripcionEn": "Choose 1 filling or order it plain.",
         "imagen": "images/Menu/sope.jpg",
         "maxGuisados": 1,
         "permiteSencillo": true,
@@ -1872,10 +1060,9 @@
         "nombre": "Tortas de barbacoa",
         "nombreEn": "Barbacoa tortas",
         "precio": "Por definir",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
+        "descripcion": "",
+        "descripcionEn": "",
         "imagen": "images/Menu/tortas_barbacoa.jpg",
-        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -1895,10 +1082,9 @@
         "nombre": "Lechuza con barbacoa",
         "nombreEn": "Lechuza with barbacoa",
         "precio": "Por definir",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
+        "descripcion": "",
+        "descripcionEn": "",
         "imagen": "images/Menu/lechuza_barbacoa.jpg",
-        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -1918,10 +1104,9 @@
         "nombre": "Gringa con barbacoa",
         "nombreEn": "Gringa with barbacoa",
         "precio": "Por definir",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
+        "descripcion": "",
+        "descripcionEn": "",
         "imagen": "images/Menu/gringa_barbacoa.jpg",
-        "soloFinDeSemana": true,
         "badges": []
       },
       {
@@ -1947,9 +1132,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: DESAYUNOS DE CAMPEÓN 🏆                    */
-      /* ===================================================== */
+      /* CATEGORÍA: DESAYUNOS DE CAMPEÓN 🏆 */
       {
         "id": "chilaquiles",
         "categoria": "Desayunos de campeón 🏆",
@@ -2050,9 +1233,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: CRUJIR DE FELICIDAD 😍                     */
-      /* ===================================================== */
+      /* CATEGORÍA: CRUJIR DE FELICIDAD 😍 */
       {
         "id": "pollo_empanizado",
         "categoria": "Crujir de felicidad 😍",
@@ -2175,9 +1356,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: PANZA LLENA CORAZÓN CONTENTO 🥰            */
-      /* ===================================================== */
+      /* CATEGORÍA: PANZA LLENA CORAZÓN CONTENTO 🥰 */
       {
         "id": "pollo_salsa",
         "categoria": "Panza llena corazón contento 🥰",
@@ -2278,9 +1457,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: BOCADO ÁGIL ⚡                              */
-      /* ===================================================== */
+      /* CATEGORÍA: BOCADO ÁGIL ⚡ */
       {
         "id": "filete_pescado_plancha",
         "categoria": "Bocado ágil ⚡",
@@ -2315,9 +1492,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: BARBACUÉRDATE DE MÍ 🔥                     */
-      /* ===================================================== */
+      /* CATEGORÍA: BARBACUÉRDATE DE MÍ 🔥 (SOLO FINES DE SEMANA) */
       {
         "id": "orden_barbacoa",
         "categoria": "Barbacuérdate de mí 🔥",
@@ -2343,9 +1518,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: BOCADOS TRAVIESOS 🍟                       */
-      /* ===================================================== */
+      /* CATEGORÍA: BOCADOS TRAVIESOS 🍟 */
       {
         "id": "milanesa_kids",
         "categoria": "Bocados traviesos 🍟",
@@ -2369,9 +1542,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: ESENCIA DE LA CASA ⭐                      */
-      /* ===================================================== */
+      /* CATEGORÍA: ESENCIA DE LA CASA ⭐ */
       {
         "id": "tampiquena_sencilla",
         "categoria": "Esencia de la casa ⭐",
@@ -2395,9 +1566,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: SAZÓN DE LA ABUELA 👵🏻🫶                    */
-      /* ===================================================== */
+      /* CATEGORÍA: SAZÓN DE LA ABUELA 👵🏻🫶 */
       {
         "id": "menudo",
         "categoria": "Sazón de la Abuela 👵🏻🫶",
@@ -2454,9 +1623,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: AVENTURA MARINA 🌊🌴                       */
-      /* ===================================================== */
+      /* CATEGORÍA: AVENTURA MARINA 🌊🌴 */
       {
         "id": "camarones_momia",
         "categoria": "Aventura marina 🌊🌴",
@@ -2579,9 +1746,7 @@
         "badges": []
       },
 
-      /* ===================================================== */
-      /* CATEGORÍA: SOUVENIRS DE LA MONITA 🛍️🎀                */
-      /* ===================================================== */
+      /* CATEGORÍA: SOUVENIRS DE LA MONITA 🛍️🎀 */
       {
         "id": "paliacates",
         "categoria": "Souvenirs de La Monita 🛍️🎀",
@@ -2626,7 +1791,6 @@
   const platillos = CONFIG.platillos;
   const categorias = CONFIG.categorias;
 
-  // Configura presentaciones de caldos y límite de guisados por platillo
   const idsCaldosConTamano = new Set(CONFIG.caldosConTamano || []);
   platillos.forEach(item => {
     if (CONFIG.guisadosPorPlatillo && CONFIG.guisadosPorPlatillo[item.id]) {
@@ -2651,26 +1815,18 @@
   let terminoBusqueda = "";
   let toastTimer = null;
 
-  /* ===================================================== */
-  /* ELEMENTOS DEL DOM                                     */
-  /* ===================================================== */
-
   const heroNombre = document.getElementById("heroNombre");
   const heroSubtitulo = document.getElementById("heroSubtitulo");
   const heroImagen = document.getElementById("heroImagen");
-
   const navMarca = document.getElementById("navMarca");
   const navInicio = document.getElementById("navInicio");
   const navMenu = document.getElementById("navMenu");
   const navPedido = document.getElementById("navPedido");
-
   const movilInicio = document.getElementById("movilInicio");
   const movilMenu = document.getElementById("movilMenu");
   const movilMaps = document.getElementById("movilMaps");
-
   const vistaInicio = document.getElementById("vistaInicio");
   const vistaMenu = document.getElementById("vistaMenu");
-
   const inicioTitulo = document.getElementById("inicioTitulo");
   const inicioHistoria = document.getElementById("inicioHistoria");
   const inicioContactoTexto = document.getElementById("inicioContactoTexto");
@@ -2681,18 +1837,12 @@
   const contactoHorario = document.getElementById("contactoHorario");
   const botonMaps = document.getElementById("botonMaps");
   const botonPedidoInicio = document.getElementById("botonPedidoInicio");
-
   const categoriasHTML = document.getElementById("categorias");
   const listaHTML = document.getElementById("listaPlatillos");
   const inputBuscador = document.getElementById("inputBuscador");
   const botonVolverMenu = document.getElementById("botonVolverMenu");
-
   const toast = document.getElementById("toast");
   const footerTexto = document.getElementById("footerTexto");
-
-  /* ===================================================== */
-  /* IDENTIDAD VISUAL                                      */
-  /* ===================================================== */
 
   document.documentElement.style.setProperty("--fondo", restaurante.colores.fondo);
   document.documentElement.style.setProperty("--tarjeta", restaurante.colores.tarjeta);
@@ -2703,14 +1853,12 @@
   heroNombre.textContent = restaurante.nombre;
   heroSubtitulo.textContent = restaurante.subtitulo;
   navMarca.textContent = restaurante.nombre;
-
   inicioTitulo.textContent = restaurante.tituloHistoria;
   inicioHistoria.textContent = restaurante.historia;
   inicioContactoTexto.textContent = restaurante.contactoTexto;
   textoUbicacion.textContent = restaurante.ubicacionTexto;
   textoHorario.textContent = restaurante.horario || "";
   footerTexto.textContent = restaurante.footer;
-
   document.title = restaurante.nombre + " | Menú Digital";
 
   function cargarImagenSegura(img, fallback, ruta, alt){
@@ -2721,13 +1869,8 @@
     }
     img.src = new URL(ruta, document.baseURI).href;
     img.alt = alt;
-    img.addEventListener("load", () => {
-      if(fallback) fallback.style.display = "none";
-    });
-    img.addEventListener("error", () => {
-      img.style.display = "none";
-      if(fallback) fallback.style.display = "flex";
-    });
+    img.addEventListener("load", () => { if(fallback) fallback.style.display = "none"; });
+    img.addEventListener("error", () => { img.style.display = "none"; if(fallback) fallback.style.display = "flex"; });
   }
 
   cargarImagenSegura(heroImagen, null, restaurante.heroImagen, "Ambiente de " + restaurante.nombre);
@@ -2741,9 +1884,7 @@
     if(toastTimer) clearTimeout(toastTimer);
     toast.textContent = mensaje;
     toast.classList.add("visible");
-    toastTimer = setTimeout(() => {
-      toast.classList.remove("visible");
-    }, 2800);
+    toastTimer = setTimeout(() => { toast.classList.remove("visible"); }, 2800);
   }
 
   function abrirMaps(){
@@ -2755,7 +1896,7 @@
   }
 
   /* ===================================================== */
-  /* LÓGICA DE CARRITO, VARIANTES DE GUISADOS Y ENVÍO       */
+  /* CARRITO, GUISADOS, CALDOS Y ENVÍO                     */
   /* ===================================================== */
 
   const carrito = new Map();
@@ -2814,7 +1955,6 @@
     return mostrarEnvioActivo() && !!o && Number.isFinite(o.lat) && Math.abs(o.lat) <= 90 && Number.isFinite(o.lng) && Math.abs(o.lng) <= 180 && [r.envioBase, r.envioKmIncluidos, r.envioKmExtra].every(n => typeof n === 'number' && Number.isFinite(n) && n >= 0);
   }
 
-  // Permite añadir platillos tanto con precio numérico como con precio "Por definir"
   function cambiarCantidad(item, cambio, notificar = false){
     if(!item.originalId) item.originalId = item.id;
     const anterior = carrito.get(item.id)?.cantidad || 0;
@@ -2831,7 +1971,6 @@
     }
   }
 
-  // Resta la última variante agregada de un platillo base
   function restarUltimaVarianteDePlatillo(itemBaseId){
     const entradas = [...carrito.entries()].filter(([, r]) => r.item.originalId === itemBaseId || r.item.id === itemBaseId);
     if(!entradas.length) return;
@@ -2909,7 +2048,6 @@
     caja.className = 'platillo-compra';
     caja.dataset.producto = item.id;
 
-    // Si el platillo requiere selección de guisados (1 o hasta 3)
     if(item.maxGuisados){
       const encabezado = document.createElement('div');
       encabezado.className = 'caldo-compra-etiqueta';
@@ -2936,7 +2074,6 @@
         optDefault.textContent = placeholderTexto;
         select.appendChild(optDefault);
 
-        // Si es Sope sencillo o con guiso, permite elegir "Sencillo (sin guisado)"
         if(item.permiteSencillo && i === 0){
           const optSencillo = document.createElement('option');
           optSencillo.value = 'sencillo';
@@ -3017,7 +2154,6 @@
 
         cambiarCantidad(variante, 1, true);
 
-        // Limpia los selectores para permitir otra combinación fácilmente
         caja.selectsGuisados.forEach(s => {
           s.value = '';
           s.classList.remove('requerido-alerta');
@@ -3390,7 +2526,7 @@
   });
 
   /* ===================================================== */
-  /* LÓGICA DE MAPA Y ENVÍO (PRESERVADA PARA LA PLANTILLA) */
+  /* MAPA Y ENVÍO (PRESERVADO PARA LA PLANTILLA)           */
   /* ===================================================== */
 
   let promesaMapa;
@@ -3411,15 +2547,8 @@
     return promesaMapa;
   }
 
-  let mapa = null;
-  let marcadorEntrega = null;
-  let lineaRuta = null;
-  let destinoPendiente = null;
-  let distanciaRutaKm = null;
-  let calculoRutaToken = 0;
-  let busquedaToken = 0;
-  let ultimaBusqueda = 0;
-  let ultimaRuta = 0;
+  let mapa = null, marcadorEntrega = null, lineaRuta = null, destinoPendiente = null, distanciaRutaKm = null;
+  let calculoRutaToken = 0, busquedaToken = 0, ultimaBusqueda = 0, ultimaRuta = 0;
 
   function calcularCostoEnvio(){
     if(!envioConfigurado() || distanciaRutaKm === null) return null;
@@ -3472,9 +2601,7 @@
   buscarDireccionMapa.addEventListener("click", async () => {
     if(!envioConfigurado()) return;
     const calle = pedidoCalle.value.trim(), numero = pedidoNumeroExterior.value.trim(), colonia = pedidoColonia.value.trim();
-    if(!calle || !numero || !colonia){
-      mostrarToast(t('mapFields')); return;
-    }
+    if(!calle || !numero || !colonia){ mostrarToast(t('mapFields')); return; }
     if(Date.now() - ultimaBusqueda < 1100){ mostrarToast(t('mapWaitBeforeSearch')); return; }
     ultimaBusqueda = Date.now();
     const token = ++busquedaToken;
@@ -3487,9 +2614,7 @@
       if(!respuesta.ok) throw new Error("Geocodificación no disponible");
       const resultados = await respuesta.json();
       if(token !== busquedaToken) return;
-      if(!Array.isArray(resultados) || !resultados.length){
-        resultadoEnvio.textContent = t('mapNotFound'); return;
-      }
+      if(!Array.isArray(resultados) || !resultados.length){ resultadoEnvio.textContent = t('mapNotFound'); return; }
       ponerDestino({ lat: Number(resultados[0].lat), lng: Number(resultados[0].lon) });
       resultadoEnvio.textContent = t('mapVerify');
     }catch(error){
@@ -3628,7 +2753,7 @@
   document.getElementById('socialTikTok').addEventListener('click', () => abrirEnlaceSocial('tiktokUrl', ['tiktok.com', 'www.tiktok.com'], 'TikTok'));
 
   /* ===================================================== */
-  /* NAVEGACIÓN ENTRE VISTAS                               */
+  /* NAVEGACIÓN, CATEGORÍAS Y TARJETAS DEL MENÚ            */
   /* ===================================================== */
 
   function mostrarVista(nombre, actualizarHash = true){
@@ -3643,4 +2768,237 @@
     if(actualizarHash){
       history.replaceState(null, "", esInicio ? "#inicio" : "#menu");
     }
-    window.scrollTo({ top: 0,
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    actualizarBotonVolverMenu();
+  }
+
+  navInicio.addEventListener("click", () => mostrarVista("inicio"));
+  navMenu.addEventListener("click", () => mostrarVista("menu"));
+  movilInicio.addEventListener("click", () => mostrarVista("inicio"));
+  movilMenu.addEventListener("click", () => mostrarVista("menu"));
+
+  function actualizarBotonVolverMenu(){
+    const menuVisible = vistaMenu.classList.contains("activa");
+    const debeMostrarse = menuVisible && window.scrollY > 580;
+    botonVolverMenu.classList.toggle("visible", debeMostrarse);
+    botonVolverMenu.setAttribute("aria-hidden", String(!debeMostrarse));
+    botonVolverMenu.tabIndex = debeMostrarse ? 0 : -1;
+  }
+
+  window.addEventListener("scroll", actualizarBotonVolverMenu, { passive: true });
+  botonVolverMenu.addEventListener("click", () => {
+    const encabezadoMenu = vistaMenu.querySelector(".intro");
+    if(encabezadoMenu) encabezadoMenu.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  function obtenerPlatillos(){
+    let filtrados = platillos;
+    if(categoriaActual !== "Todos"){
+      filtrados = filtrados.filter(item => item.categoria === categoriaActual);
+    }
+    if(terminoBusqueda.trim() !== ""){
+      const q = terminoBusqueda.toLowerCase().trim();
+      filtrados = filtrados.filter(item => {
+        const nombre = textoProducto(item, 'nombre').toLowerCase();
+        const desc = (textoProducto(item, 'descripcion') || '').toLowerCase();
+        return nombre.includes(q) || desc.includes(q);
+      });
+    }
+    return filtrados;
+  }
+
+  function crearCategorias(){
+    categoriasHTML.innerHTML = "";
+    categorias.forEach(categoria => {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "categoria";
+      boton.textContent = etiquetaCategoria(categoria);
+      if(categoria === categoriaActual){
+        boton.classList.add("activa");
+      }
+      boton.addEventListener("click", () => {
+        categoriaActual = categoria;
+        crearCategorias();
+        crearLista();
+      });
+      categoriasHTML.appendChild(boton);
+    });
+  }
+
+  inputBuscador.addEventListener("input", (e) => {
+    terminoBusqueda = e.target.value;
+    crearLista();
+  });
+
+  const fotoAmpliadaOverlay = document.getElementById('fotoAmpliadaOverlay');
+  const fotoAmpliadaImagen = document.getElementById('fotoAmpliadaImagen');
+  const cerrarFotoAmpliadaBoton = document.getElementById('cerrarFotoAmpliada');
+  let focoAntesFoto = null;
+
+  function ampliarFoto(imagen, nombre){
+    if(!imagen.complete || !imagen.naturalWidth) return;
+    focoAntesFoto = document.activeElement;
+    fotoAmpliadaImagen.src = imagen.currentSrc || imagen.src;
+    fotoAmpliadaImagen.alt = nombre;
+    fotoAmpliadaOverlay.hidden = false;
+    document.body.classList.add('modal-abierto');
+    cerrarFotoAmpliadaBoton.focus();
+  }
+
+  function cerrarFotoAmpliada(){
+    fotoAmpliadaOverlay.hidden = true;
+    fotoAmpliadaImagen.removeAttribute('src');
+    document.body.classList.remove('modal-abierto');
+    if(focoAntesFoto?.isConnected) focoAntesFoto.focus();
+  }
+
+  cerrarFotoAmpliadaBoton.addEventListener('click', cerrarFotoAmpliada);
+  fotoAmpliadaOverlay.addEventListener('click', e => { if(e.target === fotoAmpliadaOverlay) cerrarFotoAmpliada(); });
+  document.addEventListener('keydown', e => {
+    if(!fotoAmpliadaOverlay.hidden && e.key === 'Escape'){
+      e.preventDefault();
+      cerrarFotoAmpliada();
+    }
+  });
+
+  function crearLista(){
+    const visibles = obtenerPlatillos();
+    listaHTML.replaceChildren();
+
+    // Indica en la categoría de barbacoa que solo hay los fines de semana
+    if(categoriaActual === "Barbacuérdate de mí 🔥"){
+      const alerta = document.createElement('div');
+      alerta.className = 'alerta-categoria';
+      alerta.textContent = t('weekendOnlyBanner');
+      listaHTML.appendChild(alerta);
+    }
+
+    visibles.forEach(item => {
+      const tarjeta = document.createElement("article");
+      tarjeta.className = "platillo-tarjeta";
+      const bloque = document.createElement("div");
+      bloque.className = "platillo";
+
+      const visual = document.createElement("button");
+      visual.type = "button";
+      visual.className = "platillo-visual";
+      visual.setAttribute('aria-label', t('enlargePhoto') + ' ' + textoProducto(item, 'nombre'));
+      visual.title = t('enlargePhoto');
+      visual.disabled = true;
+
+      if(item.soloFinDeSemana || item.categoria === "Barbacuérdate de mí 🔥"){
+        const badgeFin = document.createElement("span");
+        badgeFin.className = "distintivo-fin-semana";
+        badgeFin.textContent = t('weekendBadge');
+        visual.appendChild(badgeFin);
+      }
+
+      const fallback = document.createElement("div");
+      fallback.className = "foto-fallback";
+      fallback.textContent = t('photoPending');
+
+      const imagen = document.createElement("img");
+      imagen.loading = "lazy";
+      imagen.addEventListener('load', () => { visual.disabled = false; });
+      imagen.addEventListener('error', () => { visual.disabled = true; });
+      cargarImagenSegura(imagen, fallback, item.imagen, textoProducto(item, 'nombre'));
+      visual.append(fallback, imagen);
+      visual.addEventListener('click', () => ampliarFoto(imagen, textoProducto(item, 'nombre')));
+
+      const info = document.createElement("div");
+      info.className = "platillo-info";
+      const encabezado = document.createElement("div");
+      encabezado.className = "platillo-encabezado";
+      const nombre = document.createElement("h3");
+      nombre.className = "platillo-nombre";
+      nombre.textContent = textoProducto(item, 'nombre');
+      const precio = document.createElement("span");
+      precio.className = "platillo-precio";
+      precio.textContent = precioVisible(item.precio);
+      encabezado.append(nombre, precio);
+      info.appendChild(encabezado);
+
+      if((item.descripcion || "").trim()){
+        const desc = document.createElement("p");
+        desc.className = "platillo-descripcion";
+        desc.textContent = textoProducto(item, 'descripcion');
+        info.appendChild(desc);
+      }
+
+      if(item.presentaciones){
+        const tamanoInicial = item.presentaciones.find(p => p.id === item.presentacionSeleccionada);
+        precio.textContent = tamanoInicial ? precioVisible(tamanoInicial.precio) : t('chooseSize');
+        precio.dataset.precioCal = item.id;
+        bloque.append(visual, info, crearControlPresentacion(item));
+      }else{
+        bloque.append(visual, info, crearControlCompraPlatillo(item));
+      }
+
+      tarjeta.append(bloque);
+      listaHTML.appendChild(tarjeta);
+    });
+
+    document.title = restaurante.nombre + ' | ' + t('menuTab');
+  }
+
+  function iniciarRuta(){
+    const hash = window.location.hash.toLowerCase();
+    if(hash === "#inicio"){
+      mostrarVista("inicio", false);
+    }else{
+      mostrarVista("menu", false);
+    }
+  }
+
+  window.addEventListener("hashchange", iniciarRuta);
+
+  function aplicarIdioma(){
+    document.documentElement.lang = idioma;
+    const btnIdioma = document.getElementById('botonIdioma');
+    btnIdioma.textContent = idioma === 'es' ? 'English · EN' : 'Español · ES';
+    btnIdioma.setAttribute('aria-label', idioma === 'es' ? 'Switch to English' : 'Cambiar a español');
+    btnIdioma.setAttribute('aria-pressed', String(idioma === 'en'));
+
+    for(const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
+    for(const el of document.querySelectorAll('[data-i18n-placeholder]')) el.placeholder = t(el.dataset.i18nPlaceholder);
+    for(const el of document.querySelectorAll('[data-i18n-aria]')) el.setAttribute('aria-label', t(el.dataset.i18nAria));
+
+    heroSubtitulo.textContent = idioma === 'en' ? restaurante.subtituloEn || restaurante.subtitulo : restaurante.subtitulo;
+    inicioTitulo.textContent = idioma === 'en' ? restaurante.tituloHistoriaEn || restaurante.tituloHistoria : restaurante.tituloHistoria;
+    inicioHistoria.textContent = idioma === 'en' ? restaurante.historiaEn || restaurante.historia : restaurante.historia;
+    inicioContactoTexto.textContent = idioma === 'en' ? restaurante.contactoTextoEn || restaurante.contactoTexto : restaurante.contactoTexto;
+    textoUbicacion.textContent = idioma === 'en' ? restaurante.ubicacionTextoEn || restaurante.ubicacionTexto : restaurante.ubicacionTexto;
+    footerTexto.textContent = idioma === 'en' ? restaurante.footerEn || restaurante.footer : restaurante.footer;
+
+    if(pedidoOverlay.hidden === false){
+      document.getElementById('pedidoDescripcion').textContent = t(pedidoFormulario.hidden ? 'review' : 'deliveryInfo');
+      if(!pedidoFormulario.hidden){
+        const listo = /^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
+        pedidoAviso.textContent = listo ? '' : t('waNotReady');
+      }
+    }
+
+    if(envioConfigurado()){
+      document.getElementById('tarifasEnvio').textContent = moneda(restaurante.envioBase) + t('mapRateUntil') + restaurante.envioKmIncluidos + t('mapRateBeyond') + moneda(restaurante.envioKmExtra) + t('mapRatePerKm');
+    }
+    if(distanciaRutaKm === null) resultadoEnvio.textContent = t('mapWaiting');
+    else resultadoEnvio.textContent = t('routePrefix') + distanciaRutaKm.toFixed(2) + t('routeShipping') + moneda(calcularCostoEnvio());
+
+    crearCategorias();
+    crearLista();
+    actualizarPedidoUI();
+  }
+
+  document.getElementById('botonIdioma').addEventListener('click', () => {
+    idioma = idioma === 'es' ? 'en' : 'es';
+    aplicarIdioma();
+  });
+
+  aplicarIdioma();
+  iniciarRuta();
+  actualizarBotonVolverMenu();
+</script>
+
+</body>
+</html>
