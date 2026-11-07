@@ -226,6 +226,89 @@
     .guisado-select:hover{border-color:#B9795E}
     .guisado-select.requerido-alerta{border-color:#C93B2B;box-shadow:0 0 0 3px rgba(201,59,43,.18)}
 
+    /* SELECTOR INTERACTIVO MULTIGUISADO (GORDITAS UI/UX) */
+    .guisados-desplegar-btn{
+      width:100%;min-height:44px;padding:10px 13px;display:flex;align-items:center;justify-content:space-between;
+      gap:10px;border:1px solid #D9C8B6;border-radius:12px;background:#FFF;color:var(--texto);
+      font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(44,31,21,.04);
+      transition:all var(--transicion);
+    }
+    .guisados-desplegar-btn:hover{border-color:var(--acento);background:#FFFDF9}
+    .guisados-desplegar-btn[aria-expanded="true"]{
+      border-color:var(--acento);background:#F8ECE4;color:var(--acento-oscuro);
+    }
+    .guisados-desplegar-izq{display:flex;align-items:center;gap:8px;min-width:0}
+    .guisados-desplegar-badge{
+      padding:2px 8px;border-radius:999px;background:#EFE6DC;color:#68594D;
+      font-size:11px;font-weight:800;white-space:nowrap;transition:all var(--transicion);
+    }
+    .guisados-desplegar-badge.con-seleccion{background:var(--acento);color:#fff}
+    .guisados-desplegar-flecha{
+      font-size:13px;line-height:1;transition:transform var(--transicion);color:var(--acento);
+    }
+    .guisados-desplegar-btn[aria-expanded="true"] .guisados-desplegar-flecha{transform:rotate(180deg)}
+
+    .guisados-lista-panel{
+      display:grid;gap:8px;padding:10px;border:1px solid #E5D8C8;border-radius:14px;
+      background:rgba(255,255,255,.72);animation:entrada .2s ease both;
+    }
+    .guisados-lista-panel[hidden]{display:none!important}
+    .guisados-lista-ayuda{
+      margin:0;padding:2px 4px 4px;color:var(--texto-suave);font-size:11px;line-height:1.4;
+      border-bottom:1px dashed #E4D7C7;
+    }
+    .guisados-lista-items{
+      display:grid;gap:6px;max-height:270px;overflow-y:auto;padding-right:3px;
+      scrollbar-width:thin;scrollbar-color:#CBB8A6 transparent;
+    }
+    .guisados-lista-items::-webkit-scrollbar{width:5px}
+    .guisados-lista-items::-webkit-scrollbar-thumb{background:#CBB8A6;border-radius:99px}
+    .guisado-fila{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;
+      padding:7px 10px;border:1px solid #E6D9C8;border-radius:11px;background:#FFF;
+      transition:border-color var(--transicion),background var(--transicion),box-shadow var(--transicion);
+    }
+    .guisado-fila.activo{
+      border-color:var(--acento);background:#FDF6F0;
+      box-shadow:inset 3px 0 0 var(--acento),0 2px 6px rgba(166,79,49,.07);
+    }
+    .guisado-fila-info{min-width:0;flex:1 1 auto}
+    .guisado-fila-nombre{
+      display:block;font-size:13px;font-weight:600;color:var(--texto);
+      line-height:1.25;overflow-wrap:anywhere;
+    }
+    .guisado-fila.activo .guisado-fila-nombre{font-weight:800;color:var(--acento-oscuro)}
+    .guisado-fila-controles{display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
+    .guisado-ctrl-btn{
+      width:34px;height:34px;border-radius:10px;border:1px solid #DED0C1;background:#FFF;
+      color:var(--texto);font-size:18px;font-weight:bold;line-height:1;
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+      transition:all var(--transicion);
+    }
+    .guisado-ctrl-btn.mas{
+      border-color:var(--acento);background:var(--acento);color:#FFF;
+      box-shadow:0 3px 8px rgba(166,79,49,.18);
+    }
+    .guisado-ctrl-btn.mas:hover:not(:disabled){background:var(--acento-oscuro);transform:translateY(-1px)}
+    .guisado-ctrl-btn.menos{color:var(--acento)}
+    .guisado-ctrl-btn.menos:hover:not(:disabled){border-color:var(--acento);background:#FAF2EA}
+    .guisado-ctrl-btn:active:not(:disabled){transform:scale(.94)}
+    .guisado-ctrl-btn:disabled{opacity:.32;cursor:default;box-shadow:none}
+    .guisado-ctrl-cant{
+      min-width:22px;text-align:center;font-size:13px;font-weight:800;color:var(--texto-suave);
+    }
+    .guisado-fila.activo .guisado-ctrl-cant{color:var(--acento-oscuro);font-size:14px}
+
+    .guisados-resumen-chips{
+      display:flex;flex-wrap:wrap;gap:5px;padding-top:2px;
+    }
+    .guisados-resumen-chips[hidden]{display:none!important}
+    .guisado-chip{
+      display:inline-flex;align-items:center;gap:5px;padding:4px 9px;
+      border-radius:999px;background:#EFE4D8;border:1px solid rgba(166,79,49,.24);
+      color:var(--acento-oscuro);font-size:11px;font-weight:700;line-height:1.2;
+    }
+
     .caldo-tamanos{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:7px}
     .caldo-tamano-btn{
       min-width:0;min-height:57px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -714,6 +797,15 @@
         "chooseYourSize": "ELIGE TU TAMAÑO",
         "chooseOneGuisado": "ELIGE 1 GUISADO",
         "chooseUpTo3Guisados": "ELIGE HASTA 3 GUISADOS",
+        "chooseMultiGuisados": "ARMA TUS GORDITAS",
+        "chooseMultiGuisadosSub": "Elige piezas por guisado",
+        "openGuisadosList": "Elegir guisados",
+        "closeGuisadosList": "Ocultar lista de guisados",
+        "guisadosAvailable": "13 opciones",
+        "guisadosSelectedCount": "seleccionadas",
+        "multiGuisadosHelp": "Pulsa + o − en cada guisado para añadir o quitar piezas directamente:",
+        "doneSelecting": "Listo ✓",
+        "modifyGuisados": "Modificar guisados",
         "chooseOption": "ELIGE TU OPCIÓN",
         "selectOption": "Selecciona una opción...",
         "alertSelectOption": "Por favor selecciona una opción antes de añadir al pedido.",
@@ -846,6 +938,15 @@
         "chooseYourSize": "CHOOSE YOUR SIZE",
         "chooseOneGuisado": "CHOOSE 1 FILLING",
         "chooseUpTo3Guisados": "CHOOSE UP TO 3 FILLINGS",
+        "chooseMultiGuisados": "BUILD YOUR GORDITAS",
+        "chooseMultiGuisadosSub": "Pick quantity per filling",
+        "openGuisadosList": "Choose fillings",
+        "closeGuisadosList": "Hide fillings list",
+        "guisadosAvailable": "13 options",
+        "guisadosSelectedCount": "selected",
+        "multiGuisadosHelp": "Tap + or − on each filling to add or remove pieces directly:",
+        "doneSelecting": "Done ✓",
+        "modifyGuisados": "Edit fillings",
         "chooseOption": "CHOOSE YOUR OPTION",
         "selectOption": "Select an option...",
         "alertSelectOption": "Please select an option before adding to your order.",
@@ -1043,6 +1144,7 @@
         "descripcionEn": "Traditional gordita made of corn stuffed with 1 filling of your choice.",
         "imagen": "images/Menu/gordita.jpg",
         "maxGuisados": 1,
+        "selectorMultipleGuisados": true,
         "badges": []
       },
       {
@@ -1142,8 +1244,12 @@
         "nombreEn": "Tacos",
         "precio": "$19",
         "descripcion": "Taco en tortilla de maiz relleno de bistec o chorizo.",
-        "descripcionEn": "",
+        "descripcionEn": "Corn tortilla taco stuffed with beef steak or chorizo.",
         "imagen": "images/Menu/tacos.jpg",
+        "opcionesSubmenu": [
+          { "id": "bistec", "nombre": "De bistec", "nombreEn": "Beef steak (bistec)" },
+          { "id": "chorizo", "nombre": "De chorizo", "nombreEn": "Chorizo" }
+        ],
         "badges": []
       },
       {
@@ -1997,6 +2103,16 @@
     };
   }
 
+  function crearVarianteGuisadoIndividual(item, g){
+    return {
+      ...item,
+      originalId: item.id,
+      id: item.id + '__' + g.id,
+      nombre: item.nombre + ' [' + g.nombre + ']',
+      nombreEn: (item.nombreEn || item.nombre) + ' [' + (g.nombreEn || g.nombre) + ']'
+    };
+  }
+
   function normalizarNumeroWhatsApp(){
     let n = String(restaurante.whatsappNumero || '').replace(/\D/g, '');
     return n.length === 10 ? '52' + n : n;
@@ -2088,6 +2204,73 @@
       estado.textContent = t('notInOrder');
     }
 
+    if(item.selectorMultipleGuisados){
+      const filas = caja.querySelectorAll('.guisado-fila');
+      const chipsContenedor = caja.querySelector('.guisados-resumen-chips');
+      if(chipsContenedor) chipsContenedor.replaceChildren();
+
+      filas.forEach(fila => {
+        const gId = fila.dataset.guisadoId;
+        const varianteId = item.id + '__' + gId;
+        const cant = carrito.get(varianteId)?.cantidad || 0;
+        const output = fila.querySelector('.guisado-ctrl-cant');
+        const btnMenos = fila.querySelector('.guisado-ctrl-btn.menos');
+        const btnMas = fila.querySelector('.guisado-ctrl-btn.mas');
+
+        if(output) output.textContent = String(cant);
+        if(btnMenos) btnMenos.disabled = cant === 0;
+        if(btnMas) btnMas.disabled = cant >= 99;
+        fila.classList.toggle('activo', cant > 0);
+
+        if(cant > 0 && chipsContenedor){
+          const gObj = (CONFIG.guisados || []).find(x => x.id === gId);
+          if(gObj){
+            const chip = document.createElement('span');
+            chip.className = 'guisado-chip';
+            const nombreG = idioma === 'en' ? (gObj.nombreEn || gObj.nombre) : gObj.nombre;
+            chip.textContent = cant + '× ' + nombreG;
+            chipsContenedor.appendChild(chip);
+          }
+        }
+      });
+
+      if(chipsContenedor){
+        chipsContenedor.hidden = cantidadTotal === 0;
+      }
+
+      const btnDesplegar = caja.querySelector('.guisados-desplegar-btn');
+      const panelLista = caja.querySelector('.guisados-lista-panel');
+      const estaAbierto = panelLista && !panelLista.hidden;
+
+      if(btnDesplegar){
+        const textoBtn = btnDesplegar.querySelector('.guisados-desplegar-texto');
+        const badgeBtn = btnDesplegar.querySelector('.guisados-desplegar-badge');
+        if(textoBtn){
+          textoBtn.textContent = estaAbierto ? t('closeGuisadosList') : t('openGuisadosList');
+        }
+        if(badgeBtn){
+          badgeBtn.textContent = cantidadTotal > 0
+            ? cantidadTotal + ' ' + t('guisadosSelectedCount')
+            : t('guisadosAvailable');
+          badgeBtn.classList.toggle('con-seleccion', cantidadTotal > 0);
+        }
+      }
+
+      if(botonRestar){
+        botonRestar.hidden = !cantidadTotal;
+        botonRestar.disabled = !cantidadTotal;
+        botonRestar.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre'));
+      }
+
+      if(botonAgregar){
+        botonAgregar.textContent = estaAbierto
+          ? t('doneSelecting')
+          : (cantidadTotal ? t('modifyGuisados') + ' ▾' : t('openGuisadosList') + ' ▾');
+        botonAgregar.disabled = false;
+      }
+      return;
+    }
+
     if(botonRestar){
       botonRestar.hidden = !cantidadTotal;
       botonRestar.disabled = !cantidadTotal;
@@ -2103,6 +2286,155 @@
     const caja = document.createElement('section');
     caja.className = 'platillo-compra';
     caja.dataset.producto = item.id;
+
+    if(item.selectorMultipleGuisados){
+      const encabezado = document.createElement('div');
+      encabezado.className = 'caldo-compra-etiqueta';
+      const titulo = document.createElement('span');
+      titulo.textContent = t('chooseMultiGuisados');
+      const sub = document.createElement('small');
+      sub.textContent = t('chooseMultiGuisadosSub');
+      encabezado.append(titulo, sub);
+      caja.appendChild(encabezado);
+
+      const btnDesplegar = document.createElement('button');
+      btnDesplegar.type = 'button';
+      btnDesplegar.className = 'guisados-desplegar-btn';
+      const abiertoInicial = Boolean(item._listaGuisadosAbierta);
+      btnDesplegar.setAttribute('aria-expanded', String(abiertoInicial));
+
+      const izq = document.createElement('span');
+      izq.className = 'guisados-desplegar-izq';
+      const textoBtn = document.createElement('span');
+      textoBtn.className = 'guisados-desplegar-texto';
+      textoBtn.textContent = abiertoInicial ? t('closeGuisadosList') : t('openGuisadosList');
+      const badgeBtn = document.createElement('span');
+      badgeBtn.className = 'guisados-desplegar-badge';
+      badgeBtn.textContent = t('guisadosAvailable');
+      izq.append(textoBtn, badgeBtn);
+
+      const flecha = document.createElement('span');
+      flecha.className = 'guisados-desplegar-flecha';
+      flecha.setAttribute('aria-hidden', 'true');
+      flecha.textContent = '▾';
+
+      btnDesplegar.append(izq, flecha);
+
+      const panelLista = document.createElement('div');
+      panelLista.className = 'guisados-lista-panel';
+      panelLista.hidden = !abiertoInicial;
+
+      const ayuda = document.createElement('p');
+      ayuda.className = 'guisados-lista-ayuda';
+      ayuda.textContent = t('multiGuisadosHelp');
+      panelLista.appendChild(ayuda);
+
+      const contenedorItems = document.createElement('div');
+      contenedorItems.className = 'guisados-lista-items';
+
+      (CONFIG.guisados || []).forEach(g => {
+        const fila = document.createElement('div');
+        fila.className = 'guisado-fila';
+        fila.dataset.guisadoId = g.id;
+
+        const infoG = document.createElement('div');
+        infoG.className = 'guisado-fila-info';
+        const nombreG = document.createElement('span');
+        nombreG.className = 'guisado-fila-nombre';
+        const textoGuisado = idioma === 'en' ? (g.nombreEn || g.nombre) : g.nombre;
+        nombreG.textContent = textoGuisado;
+        infoG.appendChild(nombreG);
+
+        const controles = document.createElement('div');
+        controles.className = 'guisado-fila-controles';
+
+        const btnMenos = document.createElement('button');
+        btnMenos.type = 'button';
+        btnMenos.className = 'guisado-ctrl-btn menos';
+        btnMenos.textContent = '−';
+        btnMenos.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre') + ' ' + textoGuisado);
+
+        const cantOutput = document.createElement('output');
+        cantOutput.className = 'guisado-ctrl-cant';
+        cantOutput.textContent = '0';
+
+        const btnMas = document.createElement('button');
+        btnMas.type = 'button';
+        btnMas.className = 'guisado-ctrl-btn mas';
+        btnMas.textContent = '+';
+        btnMas.setAttribute('aria-label', t('add') + ' ' + textoProducto(item, 'nombre') + ' ' + textoGuisado);
+
+        btnMenos.addEventListener('click', e => {
+          e.stopPropagation();
+          const variante = crearVarianteGuisadoIndividual(item, g);
+          cambiarCantidad(variante, -1, false);
+        });
+
+        btnMas.addEventListener('click', e => {
+          e.stopPropagation();
+          const variante = crearVarianteGuisadoIndividual(item, g);
+          cambiarCantidad(variante, 1, true);
+        });
+
+        controles.append(btnMenos, cantOutput, btnMas);
+        fila.append(infoG, controles);
+        contenedorItems.appendChild(fila);
+      });
+
+      panelLista.appendChild(contenedorItems);
+
+      const chipsResumen = document.createElement('div');
+      chipsResumen.className = 'guisados-resumen-chips';
+      chipsResumen.hidden = true;
+
+      const alternarLista = () => {
+        const nuevoEstado = panelLista.hidden;
+        panelLista.hidden = !nuevoEstado;
+        item._listaGuisadosAbierta = nuevoEstado;
+        btnDesplegar.setAttribute('aria-expanded', String(nuevoEstado));
+        actualizarControlCompraPlatillo(caja, item);
+      };
+
+      btnDesplegar.addEventListener('click', e => {
+        e.stopPropagation();
+        alternarLista();
+      });
+
+      const pie = document.createElement('div');
+      pie.className = 'caldo-compra-pie';
+
+      const estado = document.createElement('div');
+      estado.className = 'caldo-en-pedido';
+      estado.setAttribute('aria-live', 'polite');
+
+      const acciones = document.createElement('div');
+      acciones.className = 'compra-acciones';
+
+      const restar = document.createElement('button');
+      restar.type = 'button';
+      restar.className = 'platillo-restar-btn';
+      restar.textContent = '−';
+      restar.hidden = true;
+      restar.addEventListener('click', e => {
+        e.stopPropagation();
+        restarUltimaVarianteDePlatillo(item.id);
+      });
+
+      const agregar = document.createElement('button');
+      agregar.type = 'button';
+      agregar.className = 'caldo-agregar-btn';
+      agregar.addEventListener('click', e => {
+        e.stopPropagation();
+        alternarLista();
+      });
+
+      acciones.append(restar, agregar);
+      pie.append(estado, acciones);
+
+      caja.append(btnDesplegar, panelLista, chipsResumen, pie);
+      actualizarControlCompraPlatillo(caja, item);
+      return caja;
+    }
 
     if(item.opcionesSubmenu && item.opcionesSubmenu.length){
       const encabezado = document.createElement('div');
