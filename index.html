@@ -226,7 +226,7 @@
     .guisado-select:hover{border-color:#B9795E}
     .guisado-select.requerido-alerta{border-color:#C93B2B;box-shadow:0 0 0 3px rgba(201,59,43,.18)}
 
-    .caldo-tamanos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+    .caldo-tamanos{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:7px}
     .caldo-tamano-btn{
       min-width:0;min-height:57px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;
       gap:4px;border:1px solid #DED0C1;border-radius:12px;background:rgba(255,255,255,.84);color:#53463C;cursor:pointer;
@@ -484,7 +484,7 @@
     </section>
 
     <div class="buscador-menu-wrap">
-      <input type="search" id="inputBuscador" class="buscador-menu" placeholder="Buscar platillos..." data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
+      <input type="search" id="inputBuscador" class="buscador-menu" enterkeyhint="search" placeholder="Buscar platillos..." data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
     </div>
 
     <nav class="categorias" id="categorias" aria-label="Categorías del menú"></nav>
@@ -532,7 +532,7 @@
   <img id="fotoAmpliadaImagen" alt="" />
 </div>
 
-<!-- MODAL DE PEDIDOS (el costo de envío se oculta si mostrarCostoEnvio es false, pero permanece en el código para la plantilla) -->
+<!-- MODAL DE PEDIDOS -->
 <div id="pedidoOverlay" class="pedido-overlay" hidden>
   <section class="pedido-panel" role="dialog" aria-modal="true" aria-labelledby="pedidoTitulo" tabindex="-1">
     <div class="pedido-cabecera">
@@ -675,12 +675,12 @@
     ],
 
     // Regla de cantidad de guisados por platillo:
-    // Machete: hasta 3 guisados | Quesadilla, Gordita, Sope y Torta de guisado: 1 guisado
+    // Machete: hasta 3 guisados | Quesadilla, Gordita, Sope especial y Torta de guisado: 1 guisado
     guisadosPorPlatillo: {
       machete: 3,
       quesadilla: 1,
       gordita: 1,
-      sope_sencillo_guiso: 1,
+      sope_especial: 1,
       tortas: 1
     },
 
@@ -714,6 +714,9 @@
         "chooseYourSize": "ELIGE TU TAMAÑO",
         "chooseOneGuisado": "ELIGE 1 GUISADO",
         "chooseUpTo3Guisados": "ELIGE HASTA 3 GUISADOS",
+        "chooseOption": "ELIGE TU OPCIÓN",
+        "selectOption": "Selecciona una opción...",
+        "alertSelectOption": "Por favor selecciona una opción antes de añadir al pedido.",
         "selectGuisadoRequired": "Guisado 1 (obligatorio)...",
         "selectSingleGuisado": "Selecciona 1 guisado...",
         "selectGuisadoOptional2": "Guisado 2 (opcional)...",
@@ -843,6 +846,9 @@
         "chooseYourSize": "CHOOSE YOUR SIZE",
         "chooseOneGuisado": "CHOOSE 1 FILLING",
         "chooseUpTo3Guisados": "CHOOSE UP TO 3 FILLINGS",
+        "chooseOption": "CHOOSE YOUR OPTION",
+        "selectOption": "Select an option...",
+        "alertSelectOption": "Please select an option before adding to your order.",
         "selectGuisadoRequired": "Filling 1 (required)...",
         "selectSingleGuisado": "Select 1 filling...",
         "selectGuisadoOptional2": "Filling 2 (optional)...",
@@ -972,12 +978,22 @@
       "caldo_res",
       "caldo_pollo"
     ],
+    tamanosCocteles: [
+      { id: "chico", nombre: "Chico", nombreEn: "Small" },
+      { id: "normal", nombre: "Normal", nombreEn: "Regular" }
+    ],
+    coctelesConTamano: [
+      "coctel_camaron",
+      "vuelve_vida"
+    ],
     preciosPorTamano: {
       menudo: { chico: "$110", mediano: "$110", grande: "$110" },
       pozole: { chico: "110", mediano: "120", grande: "130" },
       espinazo_puerco: { chico: "$110", mediano: "$110", grande: "$110" },
       caldo_res: { chico: "$100", mediano: "$100", grande: "$100" },
-      caldo_pollo: { grande: "120" }
+      caldo_pollo: { grande: "120" },
+      coctel_camaron: { chico: "$150", normal: "$200" },
+      vuelve_vida: { chico: "$150", normal: "$200" }
     },
 
     platillos: [
@@ -1030,16 +1046,26 @@
         "badges": []
       },
       {
-        "id": "sope_sencillo_guiso",
+        "id": "sope_sencillo",
         "categoria": "Antojitos pal corazón ❤️",
-        "nombre": "Sope sencillo o con guiso",
-        "nombreEn": "Plain sope or with filling",
+        "nombre": "Sope sencillo",
+        "nombreEn": "Plain sope",
         "precio": "30",
-        "descripcion": "Elige 1 guisado o pídelo sencillo.",
-        "descripcionEn": "Choose 1 filling or order it plain.",
+        "descripcion": "Sope tradicional sencillo.",
+        "descripcionEn": "Traditional plain sope.",
+        "imagen": "images/Menu/sope.jpg",
+        "badges": []
+      },
+      {
+        "id": "sope_especial",
+        "categoria": "Antojitos pal corazón ❤️",
+        "nombre": "Sope especial",
+        "nombreEn": "Special sope",
+        "precio": "30",
+        "descripcion": "Elige 1 guisado para tu sope.",
+        "descripcionEn": "Choose 1 filling for your sope.",
         "imagen": "images/Menu/sope.jpg",
         "maxGuisados": 1,
-        "permiteSencillo": true,
         "badges": []
       },
       {
@@ -1139,9 +1165,15 @@
         "nombre": "Chilaquiles con huevo",
         "nombreEn": "Chilaquiles with egg",
         "precio": "$95",
-        "descripcion": "Chilaquiles acompañados de huevo revuelto, pollo o bisteck de puerco, incluye café y bolillo.",
-        "descripcionEn": "Chilaquiles served with egg, chicken or pork steak; includes coffee and a bread roll.",
+        "descripcion": "Chilaquiles acompañados de huevo estrellado o revuelto, pollo o bisteck de puerco, incluye café y bolillo.",
+        "descripcionEn": "Chilaquiles served with fried or scrambled egg, chicken or pork steak; includes coffee and a bread roll.",
         "imagen": "images/Menu/chilaquiles.jpg",
+        "opcionesSubmenu": [
+          { "id": "huevo_estrellado", "nombre": "Con huevo estrellado", "nombreEn": "With fried egg" },
+          { "id": "huevo_revuelto", "nombre": "Con huevo revuelto", "nombreEn": "With scrambled egg" },
+          { "id": "pollo", "nombre": "Con pollo", "nombreEn": "With chicken" },
+          { "id": "bistec", "nombre": "Con bistec", "nombreEn": "With steak" }
+        ],
         "badges": []
       },
       {
@@ -1182,10 +1214,22 @@
         "categoria": "Desayunos de campeón 🏆",
         "nombre": "Desayuno de Campeón",
         "nombreEn": "Champion Breakfast",
-        "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
+        "precio": "$95",
+        "descripcion": "(Acompañado con frijoles, crema, queso, bolillo, o tortilla, agua del dia ó café)",
+        "descripcionEn": "(Served with beans, cream, cheese, bread roll or tortilla, water of the day or coffee)",
         "imagen": "images/Menu/desayuno_campeon.jpg",
+        "opcionesSubmenu": [
+          { "id": "chilaquiles_revuelto", "nombre": "Chilaquiles con huevo revuelto", "nombreEn": "Chilaquiles with scrambled egg" },
+          { "id": "chilaquiles_estrellado", "nombre": "Chilaquiles con huevo estrellado", "nombreEn": "Chilaquiles with fried egg" },
+          { "id": "chilaquiles_pollo", "nombre": "Chilaquiles con pollo", "nombreEn": "Chilaquiles with chicken" },
+          { "id": "chilaquiles_bistec", "nombre": "Chilaquiles con bistec", "nombreEn": "Chilaquiles with steak" },
+          { "id": "huevos_jamon", "nombre": "Huevos con Jamon", "nombreEn": "Eggs with Ham" },
+          { "id": "huevos_salchicha", "nombre": "Huevos con Salchicha", "nombreEn": "Eggs with Sausage" },
+          { "id": "huevos_chorizo", "nombre": "Huevos con Chorizo", "nombreEn": "Eggs with Chorizo" },
+          { "id": "huevos_mexicana", "nombre": "Huevos a la Mexicana", "nombreEn": "Mexican-style Eggs" },
+          { "id": "huevos_estrellados", "nombre": "Huevos Estrellados", "nombreEn": "Fried Eggs" },
+          { "id": "huevos_rancheros", "nombre": "Huevos Rancheros", "nombreEn": "Ranchero Eggs" }
+        ],
         "badges": []
       },
       {
@@ -1287,6 +1331,28 @@
         "descripcion": "",
         "descripcionEn": "",
         "imagen": "images/Menu/enchiladas_lucy.jpg",
+        "badges": []
+      },
+      {
+        "id": "enchiladas_potosinas",
+        "categoria": "Crujir de felicidad 😍",
+        "nombre": "Enchiladas potosinas",
+        "nombreEn": "Potosina enchiladas",
+        "precio": "Por definir",
+        "descripcion": "110",
+        "descripcionEn": "Enchiladas potosinas acompañadas de arroz, frijoles, consomé y agua natural de frutas del día.",
+        "imagen": "images/Menu/enchiladas_potosinas.jpg",
+        "badges": []
+      },
+      {
+        "id": "enchiladas_potosinas_cecina",
+        "categoria": "Crujir de felicidad 😍",
+        "nombre": "Enchiladas potosinas con cecina o carne asada",
+        "nombreEn": "Potosina enchiladas with cecina or grilled beef",
+        "precio": "190",
+        "descripcion": "Enchiladas pñotosinas con cecina o carne asada, acompañadas de arroz, frijoles,papas fritas, pico de gallo, tostada de guacamole, cebollitas, chile güero, con consomé y agua natural de frutas del día.",
+        "descripcionEn": "",
+        "imagen": "images/Menu/enchiladas_cecina.jpg",
         "badges": []
       },
       {
@@ -1402,17 +1468,6 @@
         "badges": []
       },
       {
-        "id": "enchiladas_potosinas",
-        "categoria": "Panza llena corazón contento 🥰",
-        "nombre": "Enchiladas potosinas",
-        "nombreEn": "Potosina enchiladas",
-        "precio": "Por definir",
-        "descripcion": "110",
-        "descripcionEn": "Enchiladas potosinas acompañadas de arroz, frijoles, consomé y agua natural de frutas del día.",
-        "imagen": "images/Menu/enchiladas_potosinas.jpg",
-        "badges": []
-      },
-      {
         "id": "picadillo",
         "categoria": "Panza llena corazón contento 🥰",
         "nombre": "Picadillo",
@@ -1432,17 +1487,6 @@
         "descripcion": "Chuleta acompañada de arroz, frijoles, ensalada, nopales, cebollitas, 6 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua de frutas del día.",
         "descripcionEn": "",
         "imagen": "images/Menu/chuleta.jpg",
-        "badges": []
-      },
-      {
-        "id": "enchiladas_potosinas_cecina",
-        "categoria": "Panza llena corazón contento 🥰",
-        "nombre": "Enchiladas potosinas con cecina o carne asada",
-        "nombreEn": "Potosina enchiladas with cecina or grilled beef",
-        "precio": "190",
-        "descripcion": "Enchiladas pñotosinas con cecina o carne asada, acompañadas de arroz, frijoles,papas fritas, pico de gallo, tostada de guacamole, cebollitas, chile güero, con consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/enchiladas_cecina.jpg",
         "badges": []
       },
       {
@@ -1792,17 +1836,26 @@
   const categorias = CONFIG.categorias;
 
   const idsCaldosConTamano = new Set(CONFIG.caldosConTamano || []);
+  const idsCoctelesConTamano = new Set(CONFIG.coctelesConTamano || []);
   platillos.forEach(item => {
     if (CONFIG.guisadosPorPlatillo && CONFIG.guisadosPorPlatillo[item.id]) {
       item.maxGuisados = CONFIG.guisadosPorPlatillo[item.id];
     }
-    if (!idsCaldosConTamano.has(item.id)) return;
-    item.presentacionSeleccionada = CONFIG.tamanosCaldos?.[0]?.id || "chico";
-    const precios = CONFIG.preciosPorTamano?.[item.id] || {};
-    item.presentaciones = (CONFIG.tamanosCaldos || []).map(tamano => ({
-      ...tamano,
-      precio: precios[tamano.id] ?? item.precio
-    }));
+    if (idsCaldosConTamano.has(item.id)) {
+      item.presentacionSeleccionada = CONFIG.tamanosCaldos?.[0]?.id || "chico";
+      const precios = CONFIG.preciosPorTamano?.[item.id] || {};
+      item.presentaciones = (CONFIG.tamanosCaldos || []).map(tamano => ({
+        ...tamano,
+        precio: precios[tamano.id] ?? item.precio
+      }));
+    } else if (idsCoctelesConTamano.has(item.id)) {
+      item.presentacionSeleccionada = CONFIG.tamanosCocteles?.[0]?.id || "chico";
+      const precios = CONFIG.preciosPorTamano?.[item.id] || {};
+      item.presentaciones = (CONFIG.tamanosCocteles || []).map(tamano => ({
+        ...tamano,
+        precio: precios[tamano.id] ?? item.precio
+      }));
+    }
   });
 
   let idioma = CONFIG.idiomaInicial === 'en' ? 'en' : 'es';
@@ -2048,7 +2101,44 @@
     caja.className = 'platillo-compra';
     caja.dataset.producto = item.id;
 
-    if(item.maxGuisados){
+    if(item.opcionesSubmenu && item.opcionesSubmenu.length){
+      const encabezado = document.createElement('div');
+      encabezado.className = 'caldo-compra-etiqueta';
+      const titulo = document.createElement('span');
+      titulo.textContent = t('chooseOption');
+      encabezado.appendChild(titulo);
+      caja.appendChild(encabezado);
+
+      const guisadosDiv = document.createElement('div');
+      guisadosDiv.className = 'guisados-contenedor';
+
+      const select = document.createElement('select');
+      select.className = 'guisado-select';
+      select.setAttribute('aria-label', t('selectOption') + ' - ' + textoProducto(item, 'nombre'));
+
+      const optDefault = document.createElement('option');
+      optDefault.value = '';
+      optDefault.textContent = t('selectOption');
+      select.appendChild(optDefault);
+
+      item.opcionesSubmenu.forEach(op => {
+        const opt = document.createElement('option');
+        opt.value = op.id;
+        opt.dataset.nombreEs = op.nombre;
+        opt.dataset.nombreEn = op.nombreEn || op.nombre;
+        opt.textContent = idioma === 'en' ? (op.nombreEn || op.nombre) : op.nombre;
+        select.appendChild(opt);
+      });
+
+      select.addEventListener('change', () => {
+        select.classList.remove('requerido-alerta');
+      });
+
+      guisadosDiv.appendChild(select);
+      caja.appendChild(guisadosDiv);
+      caja.selectsGuisados = [select];
+      caja.esSubmenuOpciones = true;
+    } else if(item.maxGuisados){
       const encabezado = document.createElement('div');
       encabezado.className = 'caldo-compra-etiqueta';
       const titulo = document.createElement('span');
@@ -2130,13 +2220,13 @@
     agregar.addEventListener('click', e => {
       e.stopPropagation();
 
-      if(item.maxGuisados && caja.selectsGuisados){
+      if((item.maxGuisados || item.opcionesSubmenu) && caja.selectsGuisados){
         const seleccionados = caja.selectsGuisados.filter(s => s.value !== '');
         if(!seleccionados.length){
           const primerSelect = caja.selectsGuisados[0];
           primerSelect.classList.add('requerido-alerta');
           primerSelect.focus();
-          mostrarToast(t('alertSelectGuisado'));
+          mostrarToast(caja.esSubmenuOpciones ? t('alertSelectOption') : t('alertSelectGuisado'));
           return;
         }
 
@@ -2830,6 +2920,25 @@
     terminoBusqueda = e.target.value;
     crearLista();
   });
+
+  inputBuscador.addEventListener("keydown", (e) => {
+    if(e.key === "Enter" || e.keyCode === 13){
+      e.preventDefault();
+      inputBuscador.blur();
+    }
+  });
+
+  inputBuscador.addEventListener("search", () => {
+    if(inputBuscador.value.trim() !== ""){
+      inputBuscador.blur();
+    }
+  });
+
+  listaHTML.addEventListener("touchstart", () => {
+    if(document.activeElement === inputBuscador){
+      inputBuscador.blur();
+    }
+  }, { passive: true });
 
   const fotoAmpliadaOverlay = document.getElementById('fotoAmpliadaOverlay');
   const fotoAmpliadaImagen = document.getElementById('fotoAmpliadaImagen');
