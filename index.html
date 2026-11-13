@@ -6,6 +6,9 @@
   <meta name="theme-color" content="#F4EFE7">
   <meta name="description" content="Comedor Lucy: menú digital con fotografías, carrito y pedidos por WhatsApp.">
   <title>Comedor Lucy | Menú Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -13,32 +16,40 @@
       --fondo-profundo:#E9DFD2;
       --tarjeta:#FFFDF9;
       --texto:#241F1A;
-      --texto-suave:#756A60;
+      --texto-suave:#6E6258;
       --acento:#A64F31;
       --acento-oscuro:#6C2F1C;
+      --acento-suave:#F6E8E0;
+      --dorado-suave:#FBF0D9;
+      --dorado-borde:#E2B96B;
       --olivo:#6C7550;
       --linea:#DED2C4;
       --whatsapp:#25D366;
       --sombra:0 18px 45px rgba(44,31,21,.10);
-      --sombra-suave:0 8px 24px rgba(44,31,21,.07);
+      --sombra-suave:0 8px 24px rgba(44,31,21,.06);
       --radio-xl:28px;
-      --radio-lg:22px;
+      --radio-lg:20px;
       --radio-md:16px;
-      --transicion:220ms cubic-bezier(.2,.8,.2,1);
+      --font-display:'Fraunces',Georgia,"Times New Roman",serif;
+      --font-sans:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;
+      --transicion:200ms cubic-bezier(.2,.8,.2,1);
     }
 
     *{box-sizing:border-box}
+    [hidden]{display:none!important}
     html{scroll-behavior:smooth;background:var(--fondo)}
     body{
       margin:0;
       background:radial-gradient(circle at 10% -10%, rgba(166,79,49,.07), transparent 28%),var(--fondo);
       color:var(--texto);
-      font-family:Arial,Helvetica,sans-serif;
+      font-family:var(--font-sans);
+      -webkit-font-smoothing:antialiased;
     }
     body.modal-abierto{overflow:hidden}
-    button,a,select{-webkit-tap-highlight-color:transparent}
+    button,input,select,textarea{font:inherit}
+    button,a,select{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
     button:focus-visible,a:focus-visible,select:focus-visible{
-      outline:3px solid rgba(166,79,49,.28);
+      outline:3px solid rgba(166,79,49,.32);
       outline-offset:3px;
     }
     img{max-width:100%}
@@ -64,48 +75,48 @@
       position:absolute;top:19px;left:max(18px,calc((100vw - 1280px)/2 + 22px));margin:0;z-index:2;
       display:inline-flex;align-items:center;gap:8px;padding:8px 12px;
       border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(20,14,10,.18);
-      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11px;font-weight:bold;letter-spacing:1.2px;
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11px;font-weight:800;letter-spacing:1.2px;
     }
     .boton-idioma{
       position:absolute;right:max(18px,calc((100vw - 1280px)/2 + 22px));top:19px;z-index:3;
       min-height:38px;padding:8px 14px;border:1px solid rgba(255,255,255,.52);border-radius:99px;
-      background:rgba(28,22,19,.42);backdrop-filter:blur(6px);color:white;font-size:12px;font-weight:bold;cursor:pointer;
+      background:rgba(28,22,19,.42);backdrop-filter:blur(6px);color:white;font-size:12px;font-weight:800;cursor:pointer;
     }
     .boton-idioma:hover{background:rgba(28,22,19,.7)}
     .hero h1{
-      max-width:830px;margin:0 auto;font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(52px,9vw,100px);font-weight:normal;line-height:.94;text-wrap:balance;
+      max-width:830px;margin:0 auto;font-family:var(--font-display);
+      font-size:clamp(52px,9vw,100px);font-weight:800;line-height:.94;text-wrap:balance;
     }
     .hero-subtitulo{max-width:650px;margin:19px auto 0;font-size:16px;line-height:1.75;color:rgba(255,255,255,.92)}
 
     /* NAVEGACIÓN SUPERIOR */
     .nav-principal-wrap{
       position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(222,210,196,.78);
-      background:rgba(245,240,232,.91);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      background:rgba(245,240,232,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     }
     .nav-principal{
       width:min(1280px,100%);margin:0 auto;padding:10px 18px;
       display:flex;align-items:center;justify-content:space-between;gap:16px;
     }
     .nav-marca{
-      min-width:0;font-family:Georgia,"Times New Roman",serif;font-size:19px;
+      min-width:0;font-family:var(--font-display);font-size:21px;font-weight:800;color:var(--acento-oscuro);
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .nav-acciones{display:flex;gap:8px}
     .nav-principal button{
-      min-height:42px;padding:9px 17px;display:inline-flex;align-items:center;gap:6px;
+      height:42px;min-width:118px;padding:0 17px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
       border:1px solid transparent;border-radius:999px;background:transparent;
-      color:var(--texto-suave);font-size:12px;font-weight:bold;cursor:pointer;transition:all var(--transicion);
+      color:var(--texto-suave);font-size:12px;font-weight:800;cursor:pointer;transition:all var(--transicion);
     }
     .nav-principal button:hover{background:rgba(255,255,255,.55);color:var(--texto)}
-    .nav-principal button.activo{background:var(--texto);color:#fff}
+    .nav-principal button.activo{background:var(--acento-oscuro);color:#fff}
 
     /* ESTRUCTURA */
     .contenedor{width:min(1280px,100%);margin:0 auto;padding:34px 18px 58px}
     .vista{display:none}
     .vista.activa{display:block;animation:entrada .28s ease both}
     @keyframes entrada{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-    .section-kicker{margin:0 0 8px;color:var(--acento);font-size:11px;font-weight:bold;letter-spacing:1.4px}
+    .section-kicker{margin:0 0 8px;color:var(--acento);font-size:11px;font-weight:800;letter-spacing:1.4px}
 
     /* INICIO */
     .inicio-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;align-items:stretch}
@@ -114,238 +125,254 @@
     .historia-imagen img{width:100%;height:100%;object-fit:cover;display:block}
     .historia-fallback{
       position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      padding:20px;text-align:center;color:rgba(255,255,255,.9);font-family:Georgia,"Times New Roman",serif;font-size:22px;
+      padding:20px;text-align:center;color:rgba(255,255,255,.9);font-family:var(--font-display);font-size:22px;
     }
     .historia-contenido{padding:26px 30px 30px}
-    .historia-contenido h2,.contacto-panel h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:normal;font-size:clamp(31px,4vw,46px);line-height:1.08}
+    .historia-contenido h2,.contacto-panel h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:clamp(31px,4vw,44px);line-height:1.08}
     .historia-contenido p,.contacto-panel p{margin:15px 0 0;color:var(--texto-suave);font-size:15px;line-height:1.8}
     .contacto-panel{padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:22px}
     .contacto-lista{display:grid;gap:10px}
     .contacto-item{padding:14px 15px;border:1px solid #E8DDD1;border-radius:var(--radio-md);background:#FAF7F2}
     .contacto-item strong{display:block;margin-bottom:4px;color:#76685D;font-size:10px;letter-spacing:1px}
-    .contacto-item span{font-size:13px;line-height:1.55}
+    .contacto-item span{font-size:13px;line-height:1.55;font-weight:600}
     .contacto-botones{display:grid;gap:9px}
     .boton-ancho{
       min-height:48px;padding:12px 16px;display:flex;align-items:center;justify-content:center;
-      gap:9px;border:0;border-radius:14px;font-size:12px;font-weight:bold;cursor:pointer;
+      gap:9px;border:0;border-radius:14px;font-size:12px;font-weight:800;cursor:pointer;
     }
     .boton-maps{background:var(--texto);color:#fff}
     .boton-pedido{background:var(--acento);color:#fff}
     .redes-restaurante{padding-top:8px;border-top:1px solid var(--linea)}
-    .redes-restaurante-titulo{margin:8px 0 11px;color:var(--texto-suave);font-size:11px;font-weight:bold;letter-spacing:.9px}
+    .redes-restaurante-titulo{margin:8px 0 11px;color:var(--texto-suave);font-size:11px;font-weight:800;letter-spacing:.9px}
     .redes-restaurante-botones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
     .red-social{
       min-height:49px;display:flex;align-items:center;justify-content:center;gap:9px;padding:10px 12px;
-      border:1px solid var(--linea);border-radius:14px;background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:bold;cursor:pointer;
+      border:1px solid var(--linea);border-radius:14px;background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:800;cursor:pointer;
     }
     .red-social:hover{border-color:var(--acento);background:#FAF6F0}
     .red-social-icono{font-size:19px;font-weight:bold;line-height:1}
 
     /* MENÚ Y BUSCADOR */
     .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:18px}
-    .intro h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(34px,5vw,52px);font-weight:normal}
-    .intro p{max-width:580px;margin:9px 0 0;color:var(--texto-suave);font-size:14px;line-height:1.7}
+    .intro h2{margin:0;font-family:var(--font-display);font-size:clamp(34px,5vw,50px);font-weight:800;color:var(--acento-oscuro)}
+    .intro p{max-width:580px;margin:9px 0 0;color:var(--texto-suave);font-size:14.5px;line-height:1.7}
     .buscador-menu-wrap{margin-bottom:16px}
     .buscador-menu{
-      width:100%;min-height:48px;padding:12px 18px;border:1px solid var(--linea);border-radius:var(--radio-md);
-      background:var(--tarjeta);color:var(--texto);font-size:14px;box-shadow:var(--sombra-suave);
+      width:min(100%,420px);height:48px;padding:0 18px;border:1.5px solid var(--linea);border-radius:14px;
+      background:var(--tarjeta);color:var(--texto);font-size:14.5px;font-weight:600;box-shadow:var(--sombra-suave);
       transition:border-color var(--transicion),box-shadow var(--transicion);
     }
     .buscador-menu:focus-visible{outline:3px solid rgba(166,79,49,.28);outline-offset:2px;border-color:var(--acento)}
-    .categorias{display:flex;gap:9px;overflow-x:auto;padding:3px 0 18px;scrollbar-width:none}
+    .categorias{
+      display:flex;gap:10px;overflow-x:auto;padding:4px 2px 18px;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;
+    }
     .categorias::-webkit-scrollbar{display:none}
     .categoria{
-      flex:0 0 auto;min-height:42px;padding:9px 16px;border:1px solid var(--linea);border-radius:999px;
-      background:rgba(255,253,249,.82);color:var(--texto);font-size:12px;font-weight:bold;cursor:pointer;transition:all var(--transicion);
+      flex:0 0 auto;height:43px;padding:0 18px;border:1.5px solid var(--linea);border-radius:999px;
+      background:var(--tarjeta);color:var(--texto);font-size:12.5px;font-weight:800;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;transition:all var(--transicion);
     }
-    .categoria:hover{transform:translateY(-1px)}
-    .categoria.activa{border-color:var(--texto);background:var(--texto);color:#fff}
+    .categoria:hover{border-color:var(--acento);background:var(--acento-suave)}
+    .categoria.activa{border-color:var(--acento-oscuro);background:var(--acento-oscuro);color:#fff;box-shadow:0 4px 12px rgba(108,47,28,.18)}
     .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:start}
 
     /* AVISO DE CATEGORÍA (BARBACOA FINES DE SEMANA) */
     .alerta-categoria{
       grid-column:1 / -1;padding:14px 18px;border-radius:16px;
       background:linear-gradient(135deg,#F6E6DC,#F0D8C8);color:var(--acento-oscuro);
-      font-size:14px;font-weight:bold;text-align:center;
-      border:1px solid rgba(166,79,49,.32);box-shadow:var(--sombra-suave);
+      font-size:14px;font-weight:800;text-align:center;
+      border:1.5px solid rgba(166,79,49,.32);box-shadow:var(--sombra-suave);
     }
 
-    /* TARJETAS DE PLATILLOS */
-    .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    /* ============================================================
+       SISTEMA DE TARJETAS DE PLATILLOS ESTILO LIMONCELLO
+       ============================================================ */
+    .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
     .platillo-tarjeta{
-      min-width:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--linea);
-      border-radius:var(--radio-lg);background:var(--tarjeta);box-shadow:var(--sombra-suave);
-      transition:transform var(--transicion),box-shadow var(--transicion);
+      min-width:0;border:1.5px solid var(--linea);border-radius:var(--radio-lg);
+      overflow:hidden;background:var(--tarjeta);display:flex;flex-direction:column;
+      box-shadow:var(--sombra-suave);transition:transform .2s,border-color .2s,box-shadow .2s;
     }
-    .platillo-tarjeta:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
-    .platillo{
-      width:100%;height:100%;padding:0;display:flex;flex-direction:column;text-align:left;
-      border:0;border-radius:0;background:transparent;box-shadow:none;overflow:hidden;
+    .platillo-tarjeta:hover{
+      transform:translateY(-3px);border-color:var(--acento);
+      box-shadow:0 14px 32px rgba(44,31,21,.11);
     }
     .platillo-visual{
-      width:100%;height:auto;aspect-ratio:4/3;display:block;padding:0;border:0;border-radius:0;
-      cursor:zoom-in;position:relative;background:#E9E0D5;overflow:hidden;
+      width:100%;aspect-ratio:16/9;position:relative;display:grid;
+      place-items:center;background:linear-gradient(135deg,var(--acento-oscuro),var(--acento));
+      border:0;padding:0;overflow:hidden;border-bottom:3px solid var(--dorado-borde);
+      cursor:zoom-in;transition:aspect-ratio .2s ease;
     }
-    .platillo-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block}
-    .platillo-visual:disabled{cursor:default}
-    .platillo-visual:focus-visible{outline:3px solid var(--acento);outline-offset:-4px}
-    .foto-fallback{
-      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      padding:20px;background:linear-gradient(135deg,#DCCFC1,#EEE5DC);color:#786C62;text-align:center;font-size:12px;
+    .platillo-visual.has-img{
+      aspect-ratio:4/3;
+      background:#E9E0D5;
     }
-    .distintivo-fin-semana{
-      position:absolute;top:10px;right:10px;z-index:3;padding:5px 10px;border-radius:999px;
-      background:rgba(108,47,28,.92);color:#fff;font-size:10px;font-weight:bold;letter-spacing:.3px;
-      box-shadow:0 4px 12px rgba(0,0,0,.18);
+    .platillo-visual:disabled{cursor:default;opacity:1}
+    .platillo-visual img{
+      width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
+      opacity:0;transition:opacity .3s ease,transform .35s ease;
     }
-    .platillo-info{flex:1 1 auto;padding:15px 16px 14px;background:var(--tarjeta)}
-    .platillo-encabezado{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-    .platillo-nombre{
-      flex:1 1 auto;min-width:0;margin:0;color:var(--texto);font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(20px,2vw,24px);font-weight:600;line-height:1.25;overflow-wrap:anywhere;
-    }
-    .platillo-precio{flex:0 0 auto;padding-top:3px;color:var(--acento);font-size:19px;font-weight:bold;white-space:nowrap}
-    .platillo-descripcion{margin:10px 0 0;color:var(--texto-suave);font-size:13px;line-height:1.58}
+    .platillo-visual.has-img img{opacity:1}
+    .platillo-tarjeta:hover .platillo-visual.has-img img{transform:scale(1.02)}
 
-    /* CAJA DE COMPRA Y SELECTORES DE GUISADOS / TAMAÑOS */
-    .caldo-compra,.platillo-compra{
-      display:grid;gap:10px;margin:0 16px 16px;padding:13px 14px;
-      border:1px solid #E8DCCE;border-radius:17px;background:linear-gradient(145deg,#FBF7F1,#F5EDE3);
+    .foto-fallback{
+      text-align:center;color:#FFFDF9;padding:18px;
+      display:flex;flex-direction:column;align-items:center;gap:5px;
+      position:relative;z-index:1;
     }
-    .caldo-compra-etiqueta{
-      display:flex;align-items:center;justify-content:space-between;gap:8px;
-      color:#68594D;font-size:11px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;
+    .placeholder-icon{
+      width:42px;height:42px;border-radius:50%;
+      background:rgba(251,240,217,.16);border:1.5px solid var(--dorado-borde);
+      display:grid;place-items:center;color:var(--dorado-suave);font-size:19px;margin-bottom:2px;
     }
-    .caldo-compra-etiqueta small{color:#968579;font-size:10px;font-weight:600;letter-spacing:0;text-transform:none}
-    .guisados-contenedor{display:grid;gap:7px}
-    .guisado-select{
-      width:100%;min-height:40px;padding:8px 11px;border:1px solid #DED0C1;border-radius:10px;
-      background:#FFF;color:var(--texto);font-size:13px;font-family:inherit;cursor:pointer;
+    .foto-fallback strong{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--dorado-suave);display:block}
+    .foto-fallback small{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,253,249,.82)}
+
+    .distintivo-fin-semana{
+      position:absolute;top:10px;right:10px;z-index:3;padding:5px 11px;border-radius:999px;
+      background:rgba(108,47,28,.94);color:#fff;font-size:10px;font-weight:800;letter-spacing:.4px;
+      box-shadow:0 4px 12px rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);
+    }
+
+    /* Cuerpo de la tarjeta estilo Limoncello */
+    .platillo-info{
+      padding:18px 20px 14px;flex:1;display:flex;flex-direction:column;background:var(--tarjeta);
+    }
+    .card-top-row{
+      display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;
+    }
+    .category-label{
+      font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--acento);
+      text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .pill-badge{
+      display:inline-block;background:var(--fondo);border:1.5px solid var(--acento);
+      color:var(--acento-oscuro);padding:3px 10px;border-radius:8px;flex-shrink:0;
+      font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+    }
+    .platillo-nombre{
+      font-family:var(--font-display);font-size:22px;font-weight:800;
+      line-height:1.2;margin:2px 0 8px;color:var(--texto);overflow-wrap:anywhere;
+    }
+    .platillo-descripcion{
+      font-size:13.5px;line-height:1.55;color:var(--texto-suave);margin:0 0 12px;
+    }
+
+    /* Selectores desplegables dentro de la tarjeta (estilo Limoncello) */
+    .variant-block{
+      margin-top:auto;padding-top:6px;display:grid;gap:7px;
+    }
+    .variant-label{
+      display:block;font-size:10.5px;font-weight:800;color:var(--acento-oscuro);
+      text-transform:uppercase;letter-spacing:.6px;
+    }
+    .guisado-select,.variant-select{
+      display:block;width:100%;height:43px;padding:9px 12px;
+      border:1.5px solid var(--acento);border-radius:11px;background:#FFF;
+      color:var(--texto);font-size:13.5px;font-weight:700;cursor:pointer;
       transition:border-color var(--transicion),box-shadow var(--transicion);
     }
-    .guisado-select:hover{border-color:#B9795E}
-    .guisado-select.requerido-alerta{border-color:#C93B2B;box-shadow:0 0 0 3px rgba(201,59,43,.18)}
-
-    /* SELECTOR INTERACTIVO MULTIGUISADO (GORDITAS UI/UX) */
-    .guisados-desplegar-btn{
-      width:100%;min-height:44px;padding:10px 13px;display:flex;align-items:center;justify-content:space-between;
-      gap:10px;border:1px solid #D9C8B6;border-radius:12px;background:#FFF;color:var(--texto);
-      font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(44,31,21,.04);
-      transition:all var(--transicion);
+    .guisado-select.requerido-alerta{
+      border-color:#C93B2B;box-shadow:0 0 0 3px rgba(201,59,43,.2);
     }
-    .guisados-desplegar-btn:hover{border-color:var(--acento);background:#FFFDF9}
+
+    /* Selector interactivo multiguisado (Gorditas) adaptado a la tarjeta */
+    .guisados-desplegar-btn{
+      width:100%;min-height:43px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;
+      gap:10px;border:1.5px solid var(--acento);border-radius:11px;background:#FFF;color:var(--texto);
+      font-size:13px;font-weight:800;cursor:pointer;transition:all var(--transicion);
+    }
+    .guisados-desplegar-btn:hover{background:#FFFDF9}
     .guisados-desplegar-btn[aria-expanded="true"]{
-      border-color:var(--acento);background:#F8ECE4;color:var(--acento-oscuro);
+      background:var(--acento-suave);color:var(--acento-oscuro);
     }
     .guisados-desplegar-izq{display:flex;align-items:center;gap:8px;min-width:0}
     .guisados-desplegar-badge{
       padding:2px 8px;border-radius:999px;background:#EFE6DC;color:#68594D;
-      font-size:11px;font-weight:800;white-space:nowrap;transition:all var(--transicion);
+      font-size:10.5px;font-weight:800;white-space:nowrap;
     }
     .guisados-desplegar-badge.con-seleccion{background:var(--acento);color:#fff}
-    .guisados-desplegar-flecha{
-      font-size:13px;line-height:1;transition:transform var(--transicion);color:var(--acento);
-    }
+    .guisados-desplegar-flecha{font-size:13px;line-height:1;transition:transform var(--transicion);color:var(--acento)}
     .guisados-desplegar-btn[aria-expanded="true"] .guisados-desplegar-flecha{transform:rotate(180deg)}
 
     .guisados-lista-panel{
-      display:grid;gap:8px;padding:10px;border:1px solid #E5D8C8;border-radius:14px;
-      background:rgba(255,255,255,.72);animation:entrada .2s ease both;
+      display:grid;gap:8px;padding:10px;border:1px solid #E5D8C8;border-radius:13px;
+      background:#FAF6F0;animation:entrada .2s ease both;
     }
-    .guisados-lista-panel[hidden]{display:none!important}
     .guisados-lista-ayuda{
       margin:0;padding:2px 4px 4px;color:var(--texto-suave);font-size:11px;line-height:1.4;
       border-bottom:1px dashed #E4D7C7;
     }
     .guisados-lista-items{
-      display:grid;gap:6px;max-height:270px;overflow-y:auto;padding-right:3px;
+      display:grid;gap:6px;max-height:240px;overflow-y:auto;padding-right:3px;
       scrollbar-width:thin;scrollbar-color:#CBB8A6 transparent;
     }
-    .guisados-lista-items::-webkit-scrollbar{width:5px}
-    .guisados-lista-items::-webkit-scrollbar-thumb{background:#CBB8A6;border-radius:99px}
     .guisado-fila{
       display:flex;align-items:center;justify-content:space-between;gap:8px;
-      padding:7px 10px;border:1px solid #E6D9C8;border-radius:11px;background:#FFF;
-      transition:border-color var(--transicion),background var(--transicion),box-shadow var(--transicion);
+      padding:6px 10px;border:1px solid #E6D9C8;border-radius:10px;background:#FFF;
     }
     .guisado-fila.activo{
       border-color:var(--acento);background:#FDF6F0;
-      box-shadow:inset 3px 0 0 var(--acento),0 2px 6px rgba(166,79,49,.07);
+      box-shadow:inset 3px 0 0 var(--acento);
     }
-    .guisado-fila-info{min-width:0;flex:1 1 auto}
-    .guisado-fila-nombre{
-      display:block;font-size:13px;font-weight:600;color:var(--texto);
-      line-height:1.25;overflow-wrap:anywhere;
-    }
+    .guisado-fila-nombre{font-size:12.5px;font-weight:600;color:var(--texto)}
     .guisado-fila.activo .guisado-fila-nombre{font-weight:800;color:var(--acento-oscuro)}
     .guisado-fila-controles{display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
     .guisado-ctrl-btn{
-      width:34px;height:34px;border-radius:10px;border:1px solid #DED0C1;background:#FFF;
-      color:var(--texto);font-size:18px;font-weight:bold;line-height:1;
+      width:32px;height:32px;border-radius:9px;border:1px solid #DED0C1;background:#FFF;
+      color:var(--texto);font-size:17px;font-weight:800;line-height:1;
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
-      transition:all var(--transicion);
     }
-    .guisado-ctrl-btn.mas{
-      border-color:var(--acento);background:var(--acento);color:#FFF;
-      box-shadow:0 3px 8px rgba(166,79,49,.18);
-    }
-    .guisado-ctrl-btn.mas:hover:not(:disabled){background:var(--acento-oscuro);transform:translateY(-1px)}
+    .guisado-ctrl-btn.mas{border-color:var(--acento);background:var(--acento);color:#FFF}
     .guisado-ctrl-btn.menos{color:var(--acento)}
-    .guisado-ctrl-btn.menos:hover:not(:disabled){border-color:var(--acento);background:#FAF2EA}
-    .guisado-ctrl-btn:active:not(:disabled){transform:scale(.94)}
-    .guisado-ctrl-btn:disabled{opacity:.32;cursor:default;box-shadow:none}
-    .guisado-ctrl-cant{
-      min-width:22px;text-align:center;font-size:13px;font-weight:800;color:var(--texto-suave);
-    }
-    .guisado-fila.activo .guisado-ctrl-cant{color:var(--acento-oscuro);font-size:14px}
+    .guisado-ctrl-btn:disabled{opacity:.32;cursor:default}
+    .guisado-ctrl-cant{min-width:20px;text-align:center;font-size:13px;font-weight:800;color:var(--texto)}
 
-    .guisados-resumen-chips{
-      display:flex;flex-wrap:wrap;gap:5px;padding-top:2px;
-    }
-    .guisados-resumen-chips[hidden]{display:none!important}
+    .guisados-resumen-chips{display:flex;flex-wrap:wrap;gap:5px;padding-top:4px}
     .guisado-chip{
-      display:inline-flex;align-items:center;gap:5px;padding:4px 9px;
-      border-radius:999px;background:#EFE4D8;border:1px solid rgba(166,79,49,.24);
-      color:var(--acento-oscuro);font-size:11px;font-weight:700;line-height:1.2;
+      display:inline-flex;align-items:center;gap:4px;padding:3px 9px;
+      border-radius:999px;background:var(--acento-suave);border:1px solid rgba(166,79,49,.28);
+      color:var(--acento-oscuro);font-size:11px;font-weight:800;line-height:1.2;
     }
 
-    .caldo-tamanos{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:7px}
-    .caldo-tamano-btn{
-      min-width:0;min-height:57px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:4px;border:1px solid #DED0C1;border-radius:12px;background:rgba(255,255,255,.84);color:#53463C;cursor:pointer;
-      transition:background var(--transicion),border-color var(--transicion),transform var(--transicion),box-shadow var(--transicion);
+    /* Pie de tarjeta idéntico al sistema Limoncello */
+    .card-footer{
+      margin:0 20px 18px;padding-top:14px;border-top:1px dashed var(--linea);
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
     }
-    .caldo-tamano-btn:hover{border-color:#B9795E;transform:translateY(-1px)}
-    .caldo-tamano-btn[aria-pressed="true"]{
-      border-color:var(--acento);background:#F4E4D9;color:var(--acento-oscuro);
-      box-shadow:inset 0 0 0 1px rgba(166,79,49,.18),0 4px 10px rgba(100,54,34,.07);
+    .platillo-precio{
+      font-family:var(--font-display);font-size:23px;font-weight:800;
+      color:var(--acento-oscuro);background:var(--dorado-suave);
+      padding:4px 12px;border-radius:10px;border:1.5px solid var(--dorado-borde);
+      white-space:nowrap;
     }
-    .caldo-tamano-nombre{font-size:12px;font-weight:800;line-height:1.1}
-    .caldo-tamano-precio{font-size:11px;font-weight:700;color:var(--acento);white-space:nowrap}
-    .caldo-compra-pie{display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .caldo-en-pedido{min-width:0;color:#7C6D61;font-size:11px;line-height:1.35}
-    .caldo-en-pedido strong{display:block;color:#5A6B45;font-size:12px}
-    .compra-acciones{display:flex;align-items:center;gap:6px;flex-shrink:0}
-    .platillo-restar-btn{
-      width:43px;height:43px;border:1px solid #DED0C1;border-radius:12px;background:#fff;color:var(--acento);
-      font-size:22px;font-weight:bold;line-height:1;display:inline-flex;align-items:center;justify-content:center;
-      cursor:pointer;transition:background var(--transicion),border-color var(--transicion),transform var(--transicion);
+    .platillo-precio.por-definir{
+      font-family:var(--font-sans);font-size:13px;padding:6px 11px;
     }
-    .platillo-restar-btn:hover:not(:disabled){border-color:var(--acento);background:#FAF3EC;transform:translateY(-1px)}
-    .platillo-restar-btn[hidden]{display:none}
-    .caldo-agregar-btn{
-      flex:0 0 auto;min-height:43px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:center;
-      gap:6px;border:0;border-radius:12px;background:var(--acento);color:#fff;font-size:11px;font-weight:800;
-      box-shadow:0 6px 14px rgba(166,79,49,.16);cursor:pointer;
-      transition:transform var(--transicion),background var(--transicion),box-shadow var(--transicion);
+    .quantity{
+      display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;
     }
-    .caldo-agregar-btn:hover:not(:disabled){background:var(--acento-oscuro);transform:translateY(-1px);box-shadow:0 8px 17px rgba(166,79,49,.22)}
-    .caldo-agregar-btn:active:not(:disabled){transform:scale(.98)}
-    .caldo-agregar-btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
+    .stepper{display:flex;align-items:center;gap:8px}
+    .stepper button{
+      width:40px;height:40px;border:1.5px solid var(--acento);border-radius:11px;
+      background:#fff;color:var(--acento);font-size:20px;font-weight:800;
+      display:inline-flex;align-items:center;justify-content:center;
+      transition:all .15s;
+    }
+    .stepper button:not(:disabled):hover{
+      background:var(--acento);color:#fff;
+    }
+    .stepper button:disabled{
+      opacity:.35;cursor:default;border-color:var(--linea);color:var(--texto-suave);
+    }
+    .stepper output{
+      min-width:20px;text-align:center;font-weight:800;font-size:15px;color:var(--texto);
+    }
 
     /* BOTONES FLOTANTES Y NAVEGACIÓN MÓVIL */
     .whatsapp-flotante{
-      position:fixed;right:16px;bottom:100px;z-index:500;width:50px;height:50px;padding:0;
+      position:fixed;right:16px;bottom:100px;z-index:500;width:52px;height:52px;padding:0;
       display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;
       background:var(--whatsapp);box-shadow:0 12px 26px rgba(0,0,0,.20);cursor:pointer;transition:transform var(--transicion);
     }
@@ -355,83 +382,82 @@
     .boton-volver-menu{
       position:fixed;left:18px;bottom:22px;z-index:480;min-height:45px;padding:11px 16px;
       display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(255,255,255,.34);
-      border-radius:999px;background:rgba(36,31,26,.58);color:#fff;font-size:12px;font-weight:bold;letter-spacing:.2px;
+      border-radius:999px;background:rgba(36,31,26,.65);color:#fff;font-size:12px;font-weight:800;letter-spacing:.2px;
       box-shadow:0 9px 25px rgba(0,0,0,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
       opacity:0;visibility:hidden;pointer-events:none;transform:translateY(9px);
       transition:opacity var(--transicion),transform var(--transicion),visibility var(--transicion),background var(--transicion);cursor:pointer;
     }
     .boton-volver-menu.visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
-    .boton-volver-menu:hover{background:rgba(36,31,26,.82)}
+    .boton-volver-menu:hover{background:rgba(36,31,26,.85)}
 
     .nav-movil{
-      display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:400;min-height:62px;padding:7px;
-      grid-template-columns:repeat(3,1fr);gap:4px;border:1px solid rgba(222,210,196,.92);border-radius:20px;
-      background:rgba(255,253,249,.94);box-shadow:0 16px 38px rgba(38,28,20,.18);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
+      display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:400;min-height:62px;padding:6px;
+      grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border:1.5px solid rgba(222,210,196,.95);border-radius:20px;
+      background:rgba(255,253,249,.95);box-shadow:0 16px 38px rgba(38,28,20,.18);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
     }
     .nav-movil button{
-      min-width:0;min-height:48px;padding:6px 3px;display:grid;place-items:center;gap:2px;
-      border:0;border-radius:14px;background:transparent;color:var(--texto-suave);font-size:9px;font-weight:bold;cursor:pointer;
+      position:relative;height:52px;width:100%;padding:6px 4px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+      border:0;border-radius:14px;background:transparent;color:var(--texto-suave);font-size:10px;font-weight:800;cursor:pointer;
     }
-    .nav-movil button.activo{background:#F0E8DE;color:var(--acento-oscuro)}
+    .nav-movil button.activo{background:var(--acento-oscuro);color:#fff}
     .nav-movil .nav-icono{display:block;font-size:18px;line-height:1}
 
     .toast{
       position:fixed;left:50%;bottom:86px;z-index:13000;width:min(calc(100% - 32px),430px);padding:12px 15px;
       transform:translate(-50%,14px);opacity:0;pointer-events:none;border-radius:13px;background:#27221E;color:#fff;
-      font-size:12px;line-height:1.5;text-align:center;transition:opacity .2s ease,transform .2s ease;box-shadow:0 12px 28px rgba(0,0,0,.25);
+      font-size:12.5px;font-weight:700;line-height:1.5;text-align:center;transition:opacity .2s ease,transform .2s ease;box-shadow:0 12px 28px rgba(0,0,0,.25);
     }
     .toast.visible{opacity:1;transform:translate(-50%,0)}
-    footer{padding:20px 15px 84px;text-align:center;color:#8A7E74;font-size:11px;line-height:1.7}
+    footer{padding:24px 15px 88px;text-align:center;color:#8A7E74;font-size:12px;font-weight:700;line-height:1.7}
 
     /* MODAL DE PEDIDOS Y CARRITO */
-    .icono-motoneta{width:29px;height:23px;display:block}
-    .pedido-overlay[hidden]{display:none!important}
-    .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(25,17,12,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+    .icono-motoneta{width:26px;height:20px;display:block}
+    .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(25,17,12,.62);display:flex;align-items:center;justify-content:center;padding:16px}
     .pedido-panel{width:min(620px,100%);max-height:90vh;max-height:90dvh;overflow:auto;overscroll-behavior:contain;background:var(--tarjeta);color:var(--texto);border-radius:22px;padding:24px;box-shadow:var(--sombra)}
     .pedido-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .pedido-cabecera h2{margin:0;font-family:Georgia,serif;font-size:28px;font-weight:normal}
+    .pedido-cabecera h2{margin:0;font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--acento-oscuro)}
     .pedido-cerrar{min-width:44px;min-height:44px;border:1px solid var(--linea);border-radius:50%;background:transparent;font-size:25px;cursor:pointer;color:var(--texto)}
     .pedido-panel p{font-size:14px;line-height:1.5;color:var(--texto-suave)}
-    .pedido-panel input,.pedido-panel textarea{box-sizing:border-box;width:100%;min-height:44px;border:1px solid var(--linea);border-radius:10px;background:#fff;color:var(--texto);padding:10px;font:16px Arial,sans-serif}
-    .pedido-panel input:focus-visible,.pedido-panel textarea:focus-visible{outline:3px solid rgba(166,79,49,.4);outline-offset:2px}
+    .pedido-panel input,.pedido-panel textarea{box-sizing:border-box;width:100%;min-height:44px;border:1px solid var(--linea);border-radius:10px;background:#fff;color:var(--texto);padding:10px;font-size:15px}
     .pedido-panel fieldset{min-width:0;margin:20px 0;padding:0;border:0}
-    .pedido-panel legend{font-weight:bold;margin-bottom:10px}
-    .pedido-campo{display:block;margin:12px 0;font-size:14px}
-    .pedido-campo input,.pedido-campo textarea{margin-top:6px}
-    .pedido-enviar{width:100%;min-height:48px;border:0;border-radius:12px;padding:12px;background:var(--acento);color:#fff;font-weight:bold;font-size:15px;cursor:pointer}
+    .pedido-panel legend{font-weight:800;color:var(--acento-oscuro);margin-bottom:10px}
+    .pedido-campo{display:block;margin:12px 0;font-size:13.5px;font-weight:600}
+    .pedido-campo input,.pedido-campo textarea{margin-top:6px;font-weight:400}
+    .pedido-enviar{width:100%;min-height:48px;border:0;border-radius:12px;padding:12px;background:var(--acento);color:#fff;font-weight:800;font-size:14px;cursor:pointer}
     .pedido-enviar:disabled{opacity:.6;cursor:not-allowed}
     #pedidoAviso{padding:10px;border-radius:10px;background:#F0E8DE}
 
-    .contador-pedido{background:var(--acento);color:white;border-radius:99px;padding:2px 6px;font-size:10px;line-height:1.2}
-    .contador-pedido[hidden]{display:none}
-    .control-carrito{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;margin-top:8px;font-size:13px}
+    .contador-pedido{background:var(--acento);color:white;border-radius:99px;padding:2px 7px;font-size:10.5px;font-weight:800;line-height:1.2}
+    .nav-movil .contador-pedido{
+      position:absolute;top:5px;right:calc(50% - 28px);
+    }
+    .control-carrito{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;margin-top:8px;font-size:13px;font-weight:700}
     .cantidad-control{display:flex;align-items:center;gap:10px;flex-shrink:0}
-    .cantidad-control button{width:44px;height:44px;border:1px solid var(--linea);border-radius:12px;background:var(--tarjeta);color:var(--acento);font-size:23px;cursor:pointer}
-    .cantidad-control button:disabled{opacity:.35;cursor:default}
-    .cantidad-control output{min-width:20px;text-align:center;font-weight:bold}
+    .cantidad-control button{width:40px;height:40px;border:1.5px solid var(--acento);border-radius:11px;background:#fff;color:var(--acento);font-size:20px;font-weight:800;cursor:pointer}
+    .cantidad-control button:disabled{opacity:.35;cursor:default;border-color:var(--linea);color:var(--texto-suave)}
+    .cantidad-control output{min-width:20px;text-align:center;font-weight:800;font-size:15px}
     .pedido-resumen-fila{padding:12px 0;border-bottom:1px solid var(--linea)}
-    .pedido-resumen-fila strong{font-size:14px;display:block;margin-bottom:4px}
+    .pedido-resumen-fila strong{font-size:14.5px;display:block;margin-bottom:4px}
     .pedido-resumen-fila .control-carrito{border:0;padding:4px 0;margin:0;background:transparent}
     .pedido-totales{margin:18px 0;border-top:1px solid var(--linea);padding-top:12px}
     .pedido-totales div{display:flex;justify-content:space-between;gap:12px;margin:8px 0;font-size:14px}
-    .pedido-totales .pedido-total-final{font-size:18px;font-weight:bold}
-    .pedido-secundario{width:100%;min-height:46px;border:1px solid var(--linea);background:transparent;color:var(--texto);border-radius:12px;margin-top:10px;font-weight:bold;cursor:pointer}
+    .pedido-totales .pedido-total-final{font-size:18px;font-weight:800;color:var(--acento-oscuro)}
+    .pedido-secundario{width:100%;min-height:46px;border:1.5px solid var(--acento);background:transparent;color:var(--acento-oscuro);border-radius:12px;margin-top:10px;font-weight:800;cursor:pointer}
     .pedido-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
     .pedido-campo-ancho{grid-column:1/-1}
-    .pedido-panel select{font:16px Arial;padding:12px;width:100%;border:1px solid var(--linea);border-radius:10px;margin-top:6px;background:#fff;color:var(--texto)}
-    .pedido-panel [hidden]{display:none!important}
+    .pedido-panel select{font-size:15px;padding:11px;width:100%;border:1px solid var(--linea);border-radius:10px;margin-top:6px;background:#fff;color:var(--texto)}
     .calculadora-envio{padding:14px;border:1px solid var(--linea);border-radius:14px;margin-top:15px}
     #mapaEntrega{height:220px;border-radius:12px;margin:10px 0;background:#eee7db}
     .calculadora-envio small{display:block;margin-top:8px;line-height:1.5}
     #resultadoEnvio{display:block;font-size:14px;margin-top:10px}
 
     /* MODAL FOTO AMPLIADA */
-    .foto-ampliada-overlay[hidden]{display:none!important}
     .foto-ampliada-overlay{
       position:fixed;inset:0;z-index:12000;display:flex;align-items:center;justify-content:center;
       padding:54px 18px 26px;background:rgba(10,9,8,.91);
     }
-    .foto-ampliada-overlay img{display:block;max-width:96vw;max-height:calc(100dvh - 95px);width:auto;height:auto;object-fit:contain}
+    .foto-ampliada-overlay img{display:block;max-width:96vw;max-height:calc(100dvh - 95px);width:auto;height:auto;object-fit:contain;border-radius:14px}
     .foto-ampliada-cerrar{
       position:absolute;top:12px;right:15px;width:45px;height:45px;display:grid;place-items:center;
       border:1px solid #ffffff80;border-radius:50%;background:#26211c;color:white;font-size:29px;cursor:pointer;
@@ -440,31 +466,23 @@
     @media(max-width:1100px){.lista{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:1000px){.inicio-grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}}
     @media(max-width:720px){
-      .hero{min-height:430px}
+      .hero{min-height:420px}
       .hero-inner{padding:48px 18px 38px}
-      .hero h1{font-size:clamp(48px,16vw,76px)}
+      .hero h1{font-size:clamp(46px,14vw,74px)}
       .hero-kicker{left:15px;top:15px;font-size:9px;letter-spacing:.2px;max-width:63%}
       .boton-idioma{right:14px;top:15px;font-size:11px;min-height:35px;padding:7px 11px}
       .nav-principal-wrap{display:none}
-      .contenedor{padding:24px 11px 118px}
+      .contenedor{padding:24px 14px 118px}
       .intro{display:block}
+      .buscador-menu{width:100%}
       .nav-movil{display:grid}
-      .whatsapp-flotante{right:14px;bottom:85px;width:46px;height:46px}
+      .whatsapp-flotante{right:14px;bottom:85px;width:48px;height:48px}
       .boton-volver-menu{left:14px;bottom:88px;min-height:43px;padding:10px 14px;font-size:11px}
       .pedido-form-grid{grid-template-columns:1fr}
       footer{padding-bottom:105px}
     }
     @media(max-width:600px){.lista{grid-template-columns:1fr}}
     @media(max-width:480px){.pedido-overlay{padding:10px}.pedido-panel{padding:18px}}
-    @media(max-width:420px){
-      .caldo-compra,.platillo-compra{margin:0 12px 13px;padding:12px;gap:9px}
-      .caldo-tamanos{gap:6px}
-      .caldo-tamano-btn{min-height:54px}
-      .caldo-compra-pie{align-items:stretch}
-      .caldo-en-pedido{align-self:center}
-      .caldo-agregar-btn{padding:10px 11px;font-size:10px}
-      .platillo-restar-btn{width:40px;height:40px}
-    }
     @media (prefers-reduced-motion:reduce){
       *{scroll-behavior:auto !important;animation-duration:.01ms !important;transition-duration:.01ms !important}
     }
@@ -511,7 +529,7 @@
       <article class="panel">
         <div class="historia-imagen">
           <div class="historia-fallback" id="historiaFallback">Fotografía del restaurante</div>
-          <img id="imagenRestaurante" alt="Fotografía del restaurante" loading="lazy">
+          <img id="imagenRestaurante" alt="Fotografía del restaurante">
         </div>
         <div class="historia-contenido">
           <p class="section-kicker" data-i18n="ourStory">NUESTRA HISTORIA</p>
@@ -603,7 +621,8 @@
   </button>
   <button type="button" id="movilMaps" aria-label="Pedidos a domicilio" data-i18n-aria="orderTab" aria-haspopup="dialog">
     <svg class="icono-motoneta" viewBox="0 0 40 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="23" r="5"/><circle cx="32" cy="23" r="5"/><path d="M3 20c0-6 4-9 10-9h6v8h7l-4-14h-4m4 0h6m-5 3h5M9 23h15c0-5 3-9 8-9M7 10h10M5 8h11"/></svg>
-    <span><span data-i18n="navPedidos">PEDIDOS</span> <span id="contadorPedido" class="contador-pedido" hidden>0</span></span>
+    <span data-i18n="navPedidos">PEDIDOS</span>
+    <span id="contadorPedido" class="contador-pedido" hidden>0</span>
   </button>
 </nav>
 
@@ -683,8 +702,8 @@
 
 <script>
   /* ===================================================== */
-  /*            ★★★ PLANTILLA MAESTRA V2 ★★★               */
-  /*   PARA OTRO RESTAURANTE EDITA SOLO ESTA SECCIÓN.      */
+  /*             ★★★ PLANTILLA MAESTRA V2 ★★★              */
+  /*    PARA OTRO RESTAURANTE EDITA SOLO ESTA SECCIÓN.     */
   /* ===================================================== */
 
   const CONFIG = {
@@ -708,7 +727,6 @@
       instagramUrl: "https://www.instagram.com/comedor_lucy1979?xtok=ZDNlZDc0MzIxNw==",
       facebookUrl: "https://www.facebook.com/share/1DMgqhaJUq/",
       tiktokUrl: "https://www.tiktok.com/@comedorlucy?_r=1&_t=ZS-9AdSnDkVO4q",
-      // En false oculta el costo de envío en la info del pedido, pero mantiene la lógica para otros menús
       mostrarCostoEnvio: false,
       origenEnvio: null,
       ciudadEnvio: "",
@@ -740,7 +758,6 @@
       "Souvenirs de La Monita 🛍️🎀": "La Monita souvenirs 🛍️🎀"
     },
 
-    // Lista oficial de los 13 guisados solicitados
     guisados: [
       { id: "huevo_verde", nombre: "Huevo verde", nombreEn: "Egg in green salsa" },
       { id: "huevo_rojo", nombre: "Huevo rojo", nombreEn: "Egg in red salsa" },
@@ -757,8 +774,6 @@
       { id: "tinga_pollo", nombre: "Tinga de pollo", nombreEn: "Chicken tinga" }
     ],
 
-    // Regla de cantidad de guisados por platillo:
-    // Machete: hasta 3 guisados | Quesadilla, Gordita, Sope especial y Torta de guisado: 1 guisado
     guisadosPorPlatillo: {
       machete: 3,
       quesadilla: 1,
@@ -787,7 +802,7 @@
         "takeout": "PEDIR PARA LLEVAR",
         "followUs": "SÍGUENOS Y CONTÁCTANOS",
         "all": "Todos",
-        "photoPending": "Imagen pendiente",
+        "photoPending": "Comedor Lucy",
         "enlargePhoto": "Ampliar fotografía",
         "photoAlt": "Fotografía del platillo",
         "closePhoto": "Cerrar fotografía ampliada",
@@ -798,14 +813,11 @@
         "chooseOneGuisado": "ELIGE 1 GUISADO",
         "chooseUpTo3Guisados": "ELIGE HASTA 3 GUISADOS",
         "chooseMultiGuisados": "ARMA TUS GORDITAS",
-        "chooseMultiGuisadosSub": "Elige piezas por guisado",
         "openGuisadosList": "Elegir guisados",
         "closeGuisadosList": "Ocultar lista de guisados",
         "guisadosAvailable": "13 opciones",
         "guisadosSelectedCount": "seleccionadas",
         "multiGuisadosHelp": "Pulsa + o − en cada guisado para añadir o quitar piezas directamente:",
-        "doneSelecting": "Listo ✓",
-        "modifyGuisados": "Modificar guisados",
         "chooseOption": "ELIGE TU OPCIÓN",
         "selectOption": "Selecciona una opción...",
         "alertSelectOption": "Por favor selecciona una opción antes de añadir al pedido.",
@@ -817,17 +829,12 @@
         "alertSelectGuisado": "Por favor selecciona tu guisado antes de añadir al pedido.",
         "weekendOnlyBanner": "🔥 En esta categoría solo hay servicio los fines de semana.",
         "weekendBadge": "Solo fines de semana",
-        "addToOrder": "Añadir al pedido",
-        "addAnother": "Añadir otro",
-        "notInOrder": "Aún no agregado",
-        "inOrder": "En tu pedido",
         "addedToast": "Agregado al pedido",
         "backToMenu": "↑ Volver al menú",
         "remove": "Quitar",
         "add": "Agregar",
         "quantityOf": "Cantidad de",
         "pendingPrice": "Por definir",
-        "name": "Nombre",
         "orderTitle": "Mi pedido",
         "review": "Revisa los productos y las cantidades antes de continuar.",
         "subtotal": "Productos",
@@ -906,8 +913,7 @@
         "menuTab": "Menú",
         "visitTab": "Visítanos",
         "orderTab": "Pedidos a domicilio",
-        "orderNumber": "productos",
-        "photoLocal": "Fotografía del restaurante"
+        "orderNumber": "productos"
       },
       en: {
         "kicker": "DIGITAL MENU · COMEDOR LUCY",
@@ -928,7 +934,7 @@
         "takeout": "ORDER TAKEOUT",
         "followUs": "FOLLOW US AND GET IN TOUCH",
         "all": "All",
-        "photoPending": "Image coming soon",
+        "photoPending": "Comedor Lucy",
         "enlargePhoto": "Enlarge photo",
         "photoAlt": "Dish photo",
         "closePhoto": "Close enlarged photo",
@@ -939,14 +945,11 @@
         "chooseOneGuisado": "CHOOSE 1 FILLING",
         "chooseUpTo3Guisados": "CHOOSE UP TO 3 FILLINGS",
         "chooseMultiGuisados": "BUILD YOUR GORDITAS",
-        "chooseMultiGuisadosSub": "Pick quantity per filling",
         "openGuisadosList": "Choose fillings",
         "closeGuisadosList": "Hide fillings list",
         "guisadosAvailable": "13 options",
         "guisadosSelectedCount": "selected",
         "multiGuisadosHelp": "Tap + or − on each filling to add or remove pieces directly:",
-        "doneSelecting": "Done ✓",
-        "modifyGuisados": "Edit fillings",
         "chooseOption": "CHOOSE YOUR OPTION",
         "selectOption": "Select an option...",
         "alertSelectOption": "Please select an option before adding to your order.",
@@ -958,17 +961,12 @@
         "alertSelectGuisado": "Please select a filling before adding to your order.",
         "weekendOnlyBanner": "🔥 Dishes in this category are available on weekends only.",
         "weekendBadge": "Weekends only",
-        "addToOrder": "Add to order",
-        "addAnother": "Add another",
-        "notInOrder": "Not added yet",
-        "inOrder": "In your order",
         "addedToast": "Added to order",
         "backToMenu": "↑ Back to menu",
         "remove": "Remove",
         "add": "Add",
         "quantityOf": "Quantity of",
         "pendingPrice": "Price pending",
-        "name": "Name",
         "orderTitle": "My order",
         "review": "Review your items and quantities before continuing.",
         "subtotal": "Items",
@@ -1047,8 +1045,7 @@
         "menuTab": "Menu",
         "visitTab": "Visit us",
         "orderTab": "Delivery orders",
-        "orderNumber": "items",
-        "photoLocal": "Restaurant photo"
+        "orderNumber": "items"
       }
     },
 
@@ -1102,6 +1099,7 @@
       {
         "id": "machete",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "45 CM · 3 GUISADOS",
         "nombre": "Machete (45 cm)",
         "nombreEn": "Giant quesadilla (45 cm)",
         "precio": "$110",
@@ -1114,6 +1112,7 @@
       {
         "id": "quesadilla",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "1 GUISADO",
         "nombre": "Quesadilla",
         "nombreEn": "Quesadilla",
         "precio": "$60",
@@ -1126,6 +1125,7 @@
       {
         "id": "huarache",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "TRADICIONAL",
         "nombre": "Huarache",
         "nombreEn": "Huarache",
         "precio": "$60",
@@ -1137,6 +1137,7 @@
       {
         "id": "gordita",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "13 GUISADOS",
         "nombre": "Gordita",
         "nombreEn": "Gordita",
         "precio": "$17",
@@ -1150,6 +1151,7 @@
       {
         "id": "sope_sencillo",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "SENCILLO",
         "nombre": "Sope sencillo",
         "nombreEn": "Plain sope",
         "precio": "$30",
@@ -1161,6 +1163,7 @@
       {
         "id": "sope_especial",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "1 GUISADO",
         "nombre": "Sope especial",
         "nombreEn": "Special sope",
         "precio": "$30",
@@ -1173,6 +1176,7 @@
       {
         "id": "tortas",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "1 GUISADO",
         "nombre": "Torta de guisado",
         "nombreEn": "Torta with filling (Mexican sandwich)",
         "precio": "$50",
@@ -1185,28 +1189,31 @@
       {
         "id": "tortas_barbacoa",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "BARBACOA",
         "nombre": "Tortas de barbacoa",
         "nombreEn": "Barbacoa tortas",
         "precio": "$60",
         "descripcion": "Torta de barbacoa de res.",
-        "descripcionEn": "Torta of beef barbacue.",
+        "descripcionEn": "Beef barbacoa Mexican sandwich.",
         "imagen": "images/Menu/tortas_barbacoa.jpg",
         "badges": []
       },
       {
         "id": "lechuza",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "HARINA Y QUESO",
         "nombre": "Lechuza",
         "nombreEn": "Lechuza",
         "precio": "$80",
         "descripcion": "Tortilla de harina rellena de queso y bisteck o chorizo.",
-        "descripcionEn": "Tortilla with cheese and meat or chorizo.",
+        "descripcionEn": "Flour tortilla stuffed with cheese and steak or chorizo.",
         "imagen": "images/Menu/lechuza.jpg",
         "badges": []
       },
       {
         "id": "lechuza_barbacoa",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "CON BARBACOA",
         "nombre": "Lechuza con barbacoa",
         "nombreEn": "Lechuza with barbacoa",
         "precio": "$90",
@@ -1218,6 +1225,7 @@
       {
         "id": "gringa",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "BISTEC O CHORIZO",
         "nombre": "Gringa",
         "nombreEn": "Gringa",
         "precio": "$50",
@@ -1229,6 +1237,7 @@
       {
         "id": "gringa_barbacoa",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "CON BARBACOA",
         "nombre": "Gringa con barbacoa",
         "nombreEn": "Gringa with barbacoa",
         "precio": "$65",
@@ -1240,10 +1249,11 @@
       {
         "id": "tacos",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "MAÍZ",
         "nombre": "Tacos",
         "nombreEn": "Tacos",
         "precio": "$19",
-        "descripcion": "Taco en tortilla de maiz relleno de bistec o chorizo.",
+        "descripcion": "Taco en tortilla de maíz relleno de bistec o chorizo.",
         "descripcionEn": "Corn tortilla taco stuffed with beef steak or chorizo.",
         "imagen": "images/Menu/tacos.jpg",
         "opcionesSubmenu": [
@@ -1255,6 +1265,7 @@
       {
         "id": "nopal_azteca",
         "categoria": "Antojitos pal corazón ❤️",
+        "badge": "QUESO FUNDIDO",
         "nombre": "Nopal Azteca",
         "nombreEn": "Aztec Nopal (grilled cactus)",
         "precio": "$85",
@@ -1268,6 +1279,7 @@
       {
         "id": "chilaquiles",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "INCLUYE CAFÉ",
         "nombre": "Chilaquiles con huevo",
         "nombreEn": "Chilaquiles with egg",
         "precio": "$95",
@@ -1285,6 +1297,7 @@
       {
         "id": "huevos_chorizo",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "DESAYUNO",
         "nombre": "Huevos con chorizo",
         "nombreEn": "Eggs with chorizo",
         "precio": "$95",
@@ -1296,6 +1309,7 @@
       {
         "id": "huevos_jamon",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "DESAYUNO",
         "nombre": "Huevos con jamón",
         "nombreEn": "Eggs with ham",
         "precio": "$95",
@@ -1307,6 +1321,7 @@
       {
         "id": "chilaquiles_campeon",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "COMPLETO",
         "nombre": "Chilaquiles de Campeón",
         "nombreEn": "Champion Chilaquiles",
         "precio": "$145",
@@ -1318,6 +1333,7 @@
       {
         "id": "desayuno_campeon",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "A ELEGIR",
         "nombre": "Desayuno de Campeón",
         "nombreEn": "Champion Breakfast",
         "precio": "$95",
@@ -1341,6 +1357,7 @@
       {
         "id": "sope_renido_lucy",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "ROJOS VS VERDES",
         "nombre": "Sope reñido de Lucy",
         "nombreEn": "Lucy's special sope",
         "precio": "$120",
@@ -1352,6 +1369,7 @@
       {
         "id": "chilaquiles_compadre",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "CON BARBACOA",
         "nombre": "Chilaquiles del compadre",
         "nombreEn": "Compadre's Chilaquiles",
         "precio": "$130",
@@ -1363,6 +1381,7 @@
       {
         "id": "apapachilaquiles",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "ESPECIALIDAD",
         "nombre": "Los ApapaChilaquiles",
         "nombreEn": "Los ApapaChilaquiles",
         "precio": "$130",
@@ -1374,6 +1393,7 @@
       {
         "id": "pecadora_lucy",
         "categoria": "Desayunos de campeón 🏆",
+        "badge": "COSTRA DE QUESO",
         "nombre": "La pecadora de Lucy",
         "nombreEn": "La pecadora de Lucy",
         "precio": "$135",
@@ -1387,6 +1407,7 @@
       {
         "id": "pollo_empanizado",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "CRUJIENTE",
         "nombre": "Pollo empanizado",
         "nombreEn": "Breaded chicken",
         "precio": "$100",
@@ -1398,6 +1419,7 @@
       {
         "id": "bisteck_ranchero",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "RES",
         "nombre": "Bisteck ranchero",
         "nombreEn": "Ranch-style beef steak",
         "precio": "$100",
@@ -1409,6 +1431,7 @@
       {
         "id": "bisteck_mexicana",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "RES",
         "nombre": "Bisteck a la mexicana",
         "nombreEn": "Mexican-style beef steak",
         "precio": "$100",
@@ -1420,6 +1443,7 @@
       {
         "id": "enmoladas",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "MOLE CASERO",
         "nombre": "Enmoladas",
         "nombreEn": "Enmoladas (mole enchiladas)",
         "precio": "$125",
@@ -1431,6 +1455,7 @@
       {
         "id": "enchiladas_lucy",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "ESTILO LUCY",
         "nombre": "Enchiladas estilo Comedor Lucy",
         "nombreEn": "Comedor Lucy style enchiladas",
         "precio": "$125",
@@ -1442,6 +1467,7 @@
       {
         "id": "enchiladas_potosinas",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "6 PIEZAS",
         "nombre": "Enchiladas potosinas",
         "nombreEn": "Potosina enchiladas",
         "precio": "$110",
@@ -1453,10 +1479,11 @@
       {
         "id": "enchiladas_potosinas_cecina",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "CON CECINA O ASADA",
         "nombre": "Enchiladas potosinas con cecina o carne asada",
         "nombreEn": "Potosina enchiladas with cecina or grilled beef",
         "precio": "$190",
-        "descripcion": "Enchiladas pñotosinas con cecina o carne asada, acompañadas de arroz, frijoles,papas fritas, pico de gallo, tostada de guacamole, cebollitas, chile güero, con consomé y agua natural de frutas del día.",
+        "descripcion": "Enchiladas potosinas con cecina o carne asada, acompañadas de arroz, frijoles, papas fritas, pico de gallo, tostada de guacamole, cebollitas, chile güero, con consomé y agua natural de frutas del día.",
         "descripcionEn": "",
         "imagen": "images/Menu/enchiladas_cecina.jpg",
         "badges": []
@@ -1464,6 +1491,7 @@
       {
         "id": "flautas_lucy",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "ESTILO LUCY",
         "nombre": "Flautas estilo Comedor Lucy",
         "nombreEn": "Comedor Lucy style flautas",
         "precio": "$125",
@@ -1472,20 +1500,37 @@
         "imagen": "images/Menu/flautas_lucy.jpg",
         "badges": []
       },
+      /* PLATILLOS SEPARADOS: MILANESA DE RES Y MILANESA DE POLLO */
       {
-        "id": "milanesa_res_pollo",
+        "id": "milanesa_res",
         "categoria": "Crujir de felicidad 😍",
-        "nombre": "Milanesa de res o de pollo",
-        "nombreEn": "Breaded beef or chicken milanesa",
+        "badge": "RES",
+        "nombre": "Milanesa de res",
+        "nombreEn": "Breaded beef milanesa",
         "precio": "$120",
         "descripcion": "",
         "descripcionEn": "",
-        "imagen": "images/Menu/milanesa.jpg",
+        "imagen": "images/Menu/milanesa_res.jpg",
+        "imagenFallback": "images/Menu/milanesa.jpg",
+        "badges": []
+      },
+      {
+        "id": "milanesa_pollo",
+        "categoria": "Crujir de felicidad 😍",
+        "badge": "POLLO",
+        "nombre": "Milanesa de pollo",
+        "nombreEn": "Breaded chicken milanesa",
+        "precio": "$120",
+        "descripcion": "",
+        "descripcionEn": "",
+        "imagen": "images/Menu/milanesa_pollo.jpg",
+        "imagenFallback": "images/Menu/milanesa.jpg",
         "badges": []
       },
       {
         "id": "chile_relleno",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "TRADICIONAL",
         "nombre": "Chile relleno",
         "nombreEn": "Stuffed poblano pepper",
         "precio": "$120",
@@ -1497,6 +1542,7 @@
       {
         "id": "higado_encebollado",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "CASERO",
         "nombre": "Hígado encebollado",
         "nombreEn": "Liver and onions",
         "precio": "$120",
@@ -1508,6 +1554,7 @@
       {
         "id": "carne_asada",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "A LA PLANCHA",
         "nombre": "Carne asada",
         "nombreEn": "Grilled beef steak",
         "precio": "$120",
@@ -1519,6 +1566,7 @@
       {
         "id": "pollo_frito",
         "categoria": "Crujir de felicidad 😍",
+        "badge": "DORADITO",
         "nombre": "Pollo frito",
         "nombreEn": "Fried chicken",
         "precio": "$120",
@@ -1532,6 +1580,7 @@
       {
         "id": "pollo_salsa",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "CON CONSOMÉ Y AGUA",
         "nombre": "Pollo en salsa",
         "nombreEn": "Chicken in salsa",
         "precio": "$90",
@@ -1543,6 +1592,7 @@
       {
         "id": "mole_pollo",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "MOLE POBLANO",
         "nombre": "Mole de pollo",
         "nombreEn": "Chicken in mole sauce",
         "precio": "$110",
@@ -1554,6 +1604,7 @@
       {
         "id": "costilla_puerco",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "EN SALSA",
         "nombre": "Costilla de puerco",
         "nombreEn": "Pork ribs in salsa",
         "precio": "$90",
@@ -1565,6 +1616,7 @@
       {
         "id": "mole_puerco",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "MOLE POBLANO",
         "nombre": "Mole de puerco",
         "nombreEn": "Pork in mole sauce",
         "precio": "$110",
@@ -1576,10 +1628,11 @@
       {
         "id": "picadillo",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "CASERO",
         "nombre": "Picadillo",
         "nombreEn": "Picadillo (ground beef hash)",
         "precio": "$110",
-        "descripcion": "Picadillo acompañado de  arroz, frijoles, consomé y agua natural de frutas del día.",
+        "descripcion": "Picadillo acompañado de arroz, frijoles, consomé y agua natural de frutas del día.",
         "descripcionEn": "",
         "imagen": "images/Menu/picadillo.jpg",
         "badges": []
@@ -1587,6 +1640,7 @@
       {
         "id": "chuleta_ahumada_res",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "PLATILLO COMPLETO",
         "nombre": "Chuleta ahumada o de res",
         "nombreEn": "Smoked pork chop or beef chop",
         "precio": "$210",
@@ -1598,1851 +1652,6 @@
       {
         "id": "placer_culposo",
         "categoria": "Panza llena corazón contento 🥰",
+        "badge": "ESPECIALIDAD",
         "nombre": "Placer culposo",
-        "nombreEn": "Placer culposo (Guilty pleasure)",
-        "precio": "$195",
-        "descripcion": "Chile relleno conrica costilla de puerco, arroz, frijoles, ensalada de pico de gallo y guacamole con 3 pzs de enchiladas potosinas.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/placer_culposo.jpg",
-        "badges": []
-      },
-
-      /* CATEGORÍA: BOCADO ÁGIL ⚡ */
-      {
-        "id": "filete_pescado_plancha",
-        "categoria": "Bocado ágil ⚡",
-        "nombre": "Filete de pescado a la plancha",
-        "nombreEn": "Grilled fish fillet",
-        "precio": "Por definir",
-        "descripcion": "130.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/filete_pescado_plancha.jpg",
-        "badges": []
-      },
-      {
-        "id": "pollo_plancha",
-        "categoria": "Bocado ágil ⚡",
-        "nombre": "Pollo a la plancha",
-        "nombreEn": "Grilled chicken breast",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/pollo_plancha.jpg",
-        "badges": []
-      },
-      {
-        "id": "fajitas_pimenteras",
-        "categoria": "Bocado ágil ⚡",
-        "nombre": "Fajitas pimenteras",
-        "nombreEn": "Bell pepper fajitas",
-        "precio": "$170",
-        "descripcion": "Fajitas de pollo asadas con pimiento morrón, acompañado de arroz, frijoles, papas fritas, pico de gallo, guacamole con consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/fajitas_pimenteras.jpg",
-        "badges": []
-      },
-
-      /* CATEGORÍA: BARBACUÉRDATE DE MÍ 🔥 (SOLO FINES DE SEMANA) */
-      {
-        "id": "orden_barbacoa",
-        "categoria": "Barbacuérdate de mí 🔥",
-        "nombre": "Orden de barbacoa",
-        "nombreEn": "Barbacoa plate",
-        "precio": "$120",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
-        "imagen": "images/Menu/orden_barbacoa.jpg",
-        "soloFinDeSemana": true,
-        "badges": []
-      },
-      {
-        "id": "orden_birria",
-        "categoria": "Barbacuérdate de mí 🔥",
-        "nombre": "Orden de birria",
-        "nombreEn": "Birria plate",
-        "precio": "$120",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
-        "imagen": "images/Menu/orden_birria.jpg",
-        "soloFinDeSemana": true,
-        "badges": []
-      },
-
-      /* CATEGORÍA: BOCADOS TRAVIESOS 🍟 */
-      {
-        "id": "milanesa_kids",
-        "categoria": "Bocados traviesos 🍟",
-        "nombre": "Milanesa Kids",
-        "nombreEn": "Kids' Milanesa",
-        "precio": "$90",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/milanesa_kids.jpg",
-        "badges": []
-      },
-      {
-        "id": "orden_nuggets",
-        "categoria": "Bocados traviesos 🍟",
-        "nombre": "Orden de nuggets",
-        "nombreEn": "Chicken nuggets order",
-        "precio": "$90",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/orden_nuggets.jpg",
-        "badges": []
-      },
-
-      /* CATEGORÍA: ESENCIA DE LA CASA ⭐ */
-      {
-        "id": "tampiquena_sencilla",
-        "categoria": "Esencia de la casa ⭐",
-        "nombre": "Tampiqueña sencilla",
-        "nombreEn": "Classic Carne a la Tampiqueña",
-        "precio": "$285",
-        "descripcion": "Porción para 2 personas. Acompañada de bistec de resy  de bistec de pollo a la plancha, acompañado de arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de friutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/tampiquena_sencilla.jpg",
-        "badges": []
-      },
-      {
-        "id": "tampiquena_especial",
-        "categoria": "Esencia de la casa ⭐",
-        "nombre": "Tampiqueña especial",
-        "nombreEn": "Special Carne a la Tampiqueña",
-        "precio": "$390",
-        "descripcion": "Porción para 3 personas. Acompañada de bistec de resy  de bistec de pollo a la plancha, acompañado de arroz, frijoles, cebollitas, ensalada de nopales,chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de friutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/tampiquena_especial.jpg",
-        "badges": []
-      },
-
-      /* CATEGORÍA: SAZÓN DE LA ABUELA 👵🏻🫶 */
-      {
-        "id": "menudo",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "nombre": "Menudo",
-        "nombreEn": "Menudo",
-        "precio": "$110",
-        "descripcion": "Rica pancita de res en caldo rojo (disponible en tamaño chico, mediano y grande), incluye guarniciones, tortillas hechas a mano y agua de frutas.",
-        "descripcionEn": "Beef tripe in red broth (available in small, medium and large); includes garnishes, handmade tortillas and fruit-flavored water.",
-        "imagen": "images/Menu/menudo.jpg",
-        "badges": []
-      },
-      {
-        "id": "pozole",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "nombre": "Pozole",
-        "nombreEn": "Pozole",
-        "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/pozole.jpg",
-        "badges": []
-      },
-      {
-        "id": "espinazo_puerco",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "nombre": "Espinazo",
-        "nombreEn": "Pork backbone soup",
-        "precio": "$110",
-        "descripcion": "Rico caldo de espinazo de puerco (disponible en tamaño chico, mediano y grande), acompañado de arroz, incluye tortillas y agua de frutas.",
-        "descripcionEn": "Pork backbone broth (available in small, medium and large), served with rice; includes tortillas and fruit-flavored water.",
-        "imagen": "images/Menu/espinazo_puerco.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_res",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "nombre": "Caldo de res",
-        "nombreEn": "Beef and vegetable soup",
-        "precio": "$100",
-        "descripcion": "Cocido de res con verduras y arroz, incluye agua de frutas.",
-        "descripcionEn": "Beef stew with vegetables and rice; includes fruit-flavored water.",
-        "imagen": "images/Menu/caldo_res.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_pollo",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "nombre": "Caldo de pollo",
-        "nombreEn": "Chicken soup",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/caldo_pollo.jpg",
-        "badges": []
-      },
-
-      /* CATEGORÍA: AVENTURA MARINA 🌊🌴 */
-      {
-        "id": "camarones_momia",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Camarones a la momia",
-        "nombreEn": "Bacon-wrapped stuffed shrimp",
-        "precio": "$320",
-        "descripcion": "10 Camarones envueltos con tocino queso fundido, arroz, frijoles, tostada de guacamole, papas fritas, ensalada, con consome de pescado y agua de frutas.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/camarones_momia.jpg",
-        "badges": []
-      },
-      {
-        "id": "camarones_mexicana",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Camarones a la Mexicana",
-        "nombreEn": "Mexican-style shrimp",
-        "precio": "$230",
-        "descripcion": "Revueltos a la mexicana, con arroz, frijoles, ensalada, con consome de pescado y agua de frutas.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/camarones_mexicana.jpg",
-        "badges": []
-      },
-      {
-        "id": "camarones_coco",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Camarones empanizados o al coco 🥥🌴",
-        "nombreEn": "Breaded or coconut shrimp 🥥🌴",
-        "precio": "$220",
-        "descripcion": "Ricos camarones empanizados o con coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.",
-        "descripcionEn": "Ten breaded or coconut shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.",
-        "imagen": "images/Menu/camarones_coco.jpg",
-        "badges": []
-      },
-      {
-        "id": "filete_pescado",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Filete de pescado",
-        "nombreEn": "Fish fillet",
-        "precio": "$130",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/filete_pescado.jpg",
-        "badges": []
-      },
-      {
-        "id": "mojarra_frita",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Mojarra frita",
-        "nombreEn": "Whole fried tilapia",
-        "precio": "$210",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/mojarra_frita.jpg",
-        "badges": []
-      },
-      {
-        "id": "huachinango",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Huachinango",
-        "nombreEn": "Red snapper",
-        "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/huachinango.jpg",
-        "badges": []
-      },
-      {
-        "id": "coctel_camaron",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Cóctel de camarones",
-        "nombreEn": "Shrimp cocktail",
-        "precio": "$150",
-        "descripcion": "Coctel de camarones con salsas y guarniciones, incluye agua de frutas.",
-        "descripcionEn": "Shrimp cocktail served with sauces and garnishes; includes fruit-flavored water.",
-        "imagen": "images/Menu/coctel_camaron.jpg",
-        "badges": []
-      },
-      {
-        "id": "vuelve_vida",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Vuelve a la vida",
-        "nombreEn": "Vuelve a la Vida seafood cocktail",
-        "precio": "$150",
-        "descripcion": "Coctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.",
-        "descripcionEn": "Shrimp, octopus and oyster cocktail served with sauces and garnishes; includes fruit-flavored water.",
-        "imagen": "images/Menu/vuelve_vida.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_pescado",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Caldo de pescado",
-        "nombreEn": "Fish soup",
-        "precio": "$120",
-        "descripcion": "Caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.",
-        "descripcionEn": "Fish broth with stingray meat and garnishes; includes fruit-flavored water.",
-        "imagen": "images/Menu/caldo_pescado.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_camaron",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Caldo de camarón",
-        "nombreEn": "Shrimp soup",
-        "precio": "$200",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/caldo_camaron.jpg",
-        "badges": []
-      },
-      {
-        "id": "sopa_mariscos",
-        "categoria": "Aventura marina 🌊🌴",
-        "nombre": "Sopa de mariscos",
-        "nombreEn": "Seafood soup",
-        "precio": "$200",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/sopa_mariscos.jpg",
-        "badges": []
-      },
-
-      /* CATEGORÍA: SOUVENIRS DE LA MONITA 🛍️🎀 */
-      {
-        "id": "paliacates",
-        "categoria": "Souvenirs de La Monita 🛍️🎀",
-        "nombre": "Paliacates Los de La Monita",
-        "nombreEn": "Los de La Monita bandanas",
-        "precio": "$270",
-        "descripcion": "Paliacate, variedad de colores.",
-        "descripcionEn": "Bandana available in a variety of colors.",
-        "imagen": "images/Menu/paliacates.jpg",
-        "badges": []
-      },
-      {
-        "id": "libreta_grande",
-        "categoria": "Souvenirs de La Monita 🛍️🎀",
-        "nombre": "Libreta grande Los de La Monita",
-        "nombreEn": "Los de La Monita large notebook",
-        "precio": "$160",
-        "descripcion": "Variedad de colores.",
-        "descripcionEn": "Available in a variety of colors.",
-        "imagen": "images/Menu/libreta_grande.jpg",
-        "badges": []
-      },
-      {
-        "id": "libreta_chica",
-        "categoria": "Souvenirs de La Monita 🛍️🎀",
-        "nombre": "Libreta chica Los de La Monita",
-        "nombreEn": "Los de La Monita small notebook",
-        "precio": "$80",
-        "descripcion": "Variedad de colores.",
-        "descripcionEn": "Available in a variety of colors.",
-        "imagen": "images/Menu/libreta_chica.jpg",
-        "badges": []
-      }
-    ]
-  };
-
-  /* ===================================================== */
-  /* FIN DE LA ZONA EDITABLE                               */
-  /* ===================================================== */
-
-  const restaurante = CONFIG.restaurante;
-  const platillos = CONFIG.platillos;
-  const categorias = CONFIG.categorias;
-
-  const idsCaldosConTamano = new Set(CONFIG.caldosConTamano || []);
-  const idsCoctelesConTamano = new Set(CONFIG.coctelesConTamano || []);
-  platillos.forEach(item => {
-    if (CONFIG.guisadosPorPlatillo && CONFIG.guisadosPorPlatillo[item.id]) {
-      item.maxGuisados = CONFIG.guisadosPorPlatillo[item.id];
-    }
-    if (idsCaldosConTamano.has(item.id)) {
-      const precios = CONFIG.preciosPorTamano?.[item.id] || {};
-      const tamanosDisponibles = item.id === "caldo_pollo"
-        ? (CONFIG.tamanosCaldos || []).filter(tamano => tamano.id === "grande")
-        : (CONFIG.tamanosCaldos || []);
-      item.presentacionSeleccionada = tamanosDisponibles[0]?.id || "chico";
-      item.presentaciones = tamanosDisponibles.map(tamano => ({
-        ...tamano,
-        precio: precios[tamano.id] ?? item.precio
-      }));
-    } else if (idsCoctelesConTamano.has(item.id)) {
-      item.presentacionSeleccionada = CONFIG.tamanosCocteles?.[0]?.id || "chico";
-      const precios = CONFIG.preciosPorTamano?.[item.id] || {};
-      item.presentaciones = (CONFIG.tamanosCocteles || []).map(tamano => ({
-        ...tamano,
-        precio: precios[tamano.id] ?? item.precio
-      }));
-    }
-  });
-
-  let idioma = CONFIG.idiomaInicial === 'en' ? 'en' : 'es';
-  const t = (clave) => CONFIG.textos[idioma]?.[clave] || CONFIG.textos.es[clave] || clave;
-  const textoProducto = (item, campo) => idioma === 'en' ? (item[campo + 'En'] || item[campo]) : item[campo];
-  const etiquetaCategoria = cat => idioma === 'en' ? (cat === 'Todos' ? t('all') : CONFIG.categoriasEn[cat] || cat) : cat;
-  const precioVisible = precio => precioANumero(precio) === null ? t('pendingPrice') : precio;
-
-  let categoriaActual = "Todos";
-  let terminoBusqueda = "";
-  let toastTimer = null;
-
-  const heroNombre = document.getElementById("heroNombre");
-  const heroSubtitulo = document.getElementById("heroSubtitulo");
-  const heroImagen = document.getElementById("heroImagen");
-  const navMarca = document.getElementById("navMarca");
-  const navInicio = document.getElementById("navInicio");
-  const navMenu = document.getElementById("navMenu");
-  const navPedido = document.getElementById("navPedido");
-  const movilInicio = document.getElementById("movilInicio");
-  const movilMenu = document.getElementById("movilMenu");
-  const movilMaps = document.getElementById("movilMaps");
-  const vistaInicio = document.getElementById("vistaInicio");
-  const vistaMenu = document.getElementById("vistaMenu");
-  const inicioTitulo = document.getElementById("inicioTitulo");
-  const inicioHistoria = document.getElementById("inicioHistoria");
-  const inicioContactoTexto = document.getElementById("inicioContactoTexto");
-  const imagenRestaurante = document.getElementById("imagenRestaurante");
-  const historiaFallback = document.getElementById("historiaFallback");
-  const textoUbicacion = document.getElementById("textoUbicacion");
-  const textoHorario = document.getElementById("textoHorario");
-  const contactoHorario = document.getElementById("contactoHorario");
-  const botonMaps = document.getElementById("botonMaps");
-  const botonPedidoInicio = document.getElementById("botonPedidoInicio");
-  const categoriasHTML = document.getElementById("categorias");
-  const listaHTML = document.getElementById("listaPlatillos");
-  const inputBuscador = document.getElementById("inputBuscador");
-  const botonVolverMenu = document.getElementById("botonVolverMenu");
-  const toast = document.getElementById("toast");
-  const footerTexto = document.getElementById("footerTexto");
-
-  document.documentElement.style.setProperty("--fondo", restaurante.colores.fondo);
-  document.documentElement.style.setProperty("--tarjeta", restaurante.colores.tarjeta);
-  document.documentElement.style.setProperty("--texto", restaurante.colores.texto);
-  document.documentElement.style.setProperty("--acento", restaurante.colores.acento);
-  document.documentElement.style.setProperty("--acento-oscuro", restaurante.colores.acentoOscuro);
-
-  heroNombre.textContent = restaurante.nombre;
-  heroSubtitulo.textContent = restaurante.subtitulo;
-  navMarca.textContent = restaurante.nombre;
-  inicioTitulo.textContent = restaurante.tituloHistoria;
-  inicioHistoria.textContent = restaurante.historia;
-  inicioContactoTexto.textContent = restaurante.contactoTexto;
-  textoUbicacion.textContent = restaurante.ubicacionTexto;
-  textoHorario.textContent = restaurante.horario || "";
-  footerTexto.textContent = restaurante.footer;
-  document.title = restaurante.nombre + " | Menú Digital";
-
-  function cargarImagenSegura(img, fallback, ruta, alt){
-    if(!ruta){
-      img.style.display = "none";
-      if(fallback) fallback.style.display = "flex";
-      return;
-    }
-    img.src = new URL(ruta, document.baseURI).href;
-    img.alt = alt;
-    img.addEventListener("load", () => { if(fallback) fallback.style.display = "none"; });
-    img.addEventListener("error", () => { img.style.display = "none"; if(fallback) fallback.style.display = "flex"; });
-  }
-
-  cargarImagenSegura(heroImagen, null, restaurante.heroImagen, "Ambiente de " + restaurante.nombre);
-  cargarImagenSegura(imagenRestaurante, historiaFallback, restaurante.imagenRestaurante, "Fotografía de " + restaurante.nombre);
-
-  if(!restaurante.horario){
-    contactoHorario.style.display = "none";
-  }
-
-  function mostrarToast(mensaje){
-    if(toastTimer) clearTimeout(toastTimer);
-    toast.textContent = mensaje;
-    toast.classList.add("visible");
-    toastTimer = setTimeout(() => { toast.classList.remove("visible"); }, 2800);
-  }
-
-  function abrirMaps(){
-    if(!restaurante.mapsUrl){
-      mostrarToast(t('demoMaps'));
-      return;
-    }
-    window.open(restaurante.mapsUrl, "_blank", "noopener,noreferrer");
-  }
-
-  /* ===================================================== */
-  /* CARRITO, GUISADOS, CALDOS Y ENVÍO                     */
-  /* ===================================================== */
-
-  const carrito = new Map();
-  const pedidoOverlay = document.getElementById('pedidoOverlay');
-  const pedidoFormulario = document.getElementById('pedidoFormulario');
-  const pedidoAviso = document.getElementById('pedidoAviso');
-  const pedidoEnviar = document.getElementById('pedidoEnviar');
-  const pedidoUbicacion = document.getElementById('pedidoUbicacion');
-  const pedidoCalle = document.getElementById('pedidoCalle');
-  const pedidoNumeroExterior = document.getElementById('pedidoExterior');
-  const pedidoColonia = document.getElementById('pedidoColonia');
-  const pedidoCiudad = document.getElementById('pedidoCiudad');
-  const mapaEntrega = document.getElementById('mapaEntrega');
-  const resultadoEnvio = document.getElementById('resultadoEnvio');
-  const buscarDireccionMapa = document.getElementById('buscarDireccionMapa');
-  const confirmarDireccionMapa = document.getElementById('confirmarDireccionMapa');
-  let focoAntesPedido = null, pedidoId = null;
-
-  const moneda = n => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(n);
-
-  function precioANumero(valor){
-    const limpio = String(valor ?? '').replace(/[$,\s]/g, '');
-    if(!limpio) return null;
-    const n = Number(limpio);
-    return Number.isFinite(n) && n >= 0 ? n : null;
-  }
-
-  function crearVariantePedido(item, presentacionId = item.presentacionSeleccionada){
-    if(!item.presentaciones) return { ...item, originalId: item.id };
-    const presentacion = item.presentaciones.find(p => p.id === presentacionId);
-    if(!presentacion){
-      return { ...item, originalId: item.id, id: item.id + "__sin_tamano", precio: "Por definir" };
-    }
-    return {
-      ...item,
-      originalId: item.id,
-      id: item.id + "__" + presentacion.id,
-      nombre: item.nombre + " (" + presentacion.nombre + ")",
-      nombreEn: (item.nombreEn || item.nombre) + " (" + presentacion.nombreEn + ")",
-      precio: presentacion.precio,
-      presentacionId: presentacion.id
-    };
-  }
-
-  function crearVarianteGuisadoIndividual(item, g){
-    return {
-      ...item,
-      originalId: item.id,
-      id: item.id + '__' + g.id,
-      nombre: item.nombre + ' [' + g.nombre + ']',
-      nombreEn: (item.nombreEn || item.nombre) + ' [' + (g.nombreEn || g.nombre) + ']'
-    };
-  }
-
-  function normalizarNumeroWhatsApp(){
-    let n = String(restaurante.whatsappNumero || '').replace(/\D/g, '');
-    return n.length === 10 ? '52' + n : n;
-  }
-
-  function mostrarEnvioActivo(){
-    return Boolean(restaurante.mostrarCostoEnvio);
-  }
-
-  function envioConfigurado(){
-    const r = restaurante, o = r.origenEnvio;
-    return mostrarEnvioActivo() && !!o && Number.isFinite(o.lat) && Math.abs(o.lat) <= 90 && Number.isFinite(o.lng) && Math.abs(o.lng) <= 180 && [r.envioBase, r.envioKmIncluidos, r.envioKmExtra].every(n => typeof n === 'number' && Number.isFinite(n) && n >= 0);
-  }
-
-  function cambiarCantidad(item, cambio, notificar = false){
-    if(!item.originalId) item.originalId = item.id;
-    const anterior = carrito.get(item.id)?.cantidad || 0;
-    const cantidad = Math.max(0, Math.min(99, anterior + cambio));
-    if(cantidad) carrito.set(item.id, { item, cantidad });
-    else carrito.delete(item.id);
-
-    if(!pedidoId && carrito.size) pedidoId = 'CL-' + Date.now().toString(36).toUpperCase();
-    if(!carrito.size) pedidoId = null;
-
-    actualizarPedidoUI();
-    if(notificar && cantidad > anterior){
-      mostrarToast(t('addedToast') + ': ' + textoProducto(item, 'nombre'));
-    }
-  }
-
-  function restarUltimaVarianteDePlatillo(itemBaseId){
-    const entradas = [...carrito.entries()].filter(([, r]) => r.item.originalId === itemBaseId || r.item.id === itemBaseId);
-    if(!entradas.length) return;
-    const [, ultimaEntrada] = entradas[entradas.length - 1];
-    cambiarCantidad(ultimaEntrada.item, -1);
-  }
-
-  function crearControlesPedido(item){
-    const fila = document.createElement('div');
-    fila.className = 'control-carrito';
-    fila.dataset.producto = item.id;
-    fila.dataset.precio = item.precio ?? '';
-
-    const etiqueta = document.createElement('span');
-    etiqueta.textContent = t('quantity');
-
-    const control = document.createElement('div');
-    control.className = 'cantidad-control';
-
-    const menos = document.createElement('button');
-    const mas = document.createElement('button');
-    const numero = document.createElement('output');
-
-    menos.type = mas.type = 'button';
-    menos.textContent = '−';
-    mas.textContent = '+';
-    menos.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre'));
-    mas.setAttribute('aria-label', t('add') + ' ' + textoProducto(item, 'nombre'));
-    numero.setAttribute('aria-label', t('quantityOf') + ' ' + textoProducto(item, 'nombre'));
-
-    const cantActual = carrito.get(item.id)?.cantidad || 0;
-    numero.textContent = String(cantActual);
-    menos.disabled = cantActual === 0;
-    mas.disabled = cantActual >= 99;
-
-    menos.addEventListener('click', e => { e.stopPropagation(); cambiarCantidad(item, -1); });
-    mas.addEventListener('click', e => { e.stopPropagation(); cambiarCantidad(item, 1); });
-
-    control.append(menos, numero, mas);
-    fila.append(etiqueta, control);
-    return fila;
-  }
-
-  function actualizarControlCompraPlatillo(caja, item){
-    const cantidadTotal = [...carrito.values()]
-      .filter(r => r.item.originalId === item.id || r.item.id === item.id)
-      .reduce((sum, r) => sum + r.cantidad, 0);
-
-    const estado = caja.querySelector('.caldo-en-pedido');
-    const botonRestar = caja.querySelector('.platillo-restar-btn');
-    const botonAgregar = caja.querySelector('.caldo-agregar-btn');
-
-    estado.replaceChildren();
-    if(cantidadTotal){
-      const fuerte = document.createElement('strong');
-      fuerte.textContent = t('inOrder') + ': ' + cantidadTotal;
-      estado.appendChild(fuerte);
-    }else{
-      estado.textContent = t('notInOrder');
-    }
-
-    if(item.selectorMultipleGuisados){
-      const filas = caja.querySelectorAll('.guisado-fila');
-      const chipsContenedor = caja.querySelector('.guisados-resumen-chips');
-      if(chipsContenedor) chipsContenedor.replaceChildren();
-
-      filas.forEach(fila => {
-        const gId = fila.dataset.guisadoId;
-        const varianteId = item.id + '__' + gId;
-        const cant = carrito.get(varianteId)?.cantidad || 0;
-        const output = fila.querySelector('.guisado-ctrl-cant');
-        const btnMenos = fila.querySelector('.guisado-ctrl-btn.menos');
-        const btnMas = fila.querySelector('.guisado-ctrl-btn.mas');
-
-        if(output) output.textContent = String(cant);
-        if(btnMenos) btnMenos.disabled = cant === 0;
-        if(btnMas) btnMas.disabled = cant >= 99;
-        fila.classList.toggle('activo', cant > 0);
-
-        if(cant > 0 && chipsContenedor){
-          const gObj = (CONFIG.guisados || []).find(x => x.id === gId);
-          if(gObj){
-            const chip = document.createElement('span');
-            chip.className = 'guisado-chip';
-            const nombreG = idioma === 'en' ? (gObj.nombreEn || gObj.nombre) : gObj.nombre;
-            chip.textContent = cant + '× ' + nombreG;
-            chipsContenedor.appendChild(chip);
-          }
-        }
-      });
-
-      if(chipsContenedor){
-        chipsContenedor.hidden = cantidadTotal === 0;
-      }
-
-      const btnDesplegar = caja.querySelector('.guisados-desplegar-btn');
-      const panelLista = caja.querySelector('.guisados-lista-panel');
-      const estaAbierto = panelLista && !panelLista.hidden;
-
-      if(btnDesplegar){
-        const textoBtn = btnDesplegar.querySelector('.guisados-desplegar-texto');
-        const badgeBtn = btnDesplegar.querySelector('.guisados-desplegar-badge');
-        if(textoBtn){
-          textoBtn.textContent = estaAbierto ? t('closeGuisadosList') : t('openGuisadosList');
-        }
-        if(badgeBtn){
-          badgeBtn.textContent = cantidadTotal > 0
-            ? cantidadTotal + ' ' + t('guisadosSelectedCount')
-            : t('guisadosAvailable');
-          badgeBtn.classList.toggle('con-seleccion', cantidadTotal > 0);
-        }
-      }
-
-      if(botonRestar){
-        botonRestar.hidden = !cantidadTotal;
-        botonRestar.disabled = !cantidadTotal;
-        botonRestar.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre'));
-      }
-
-      if(botonAgregar){
-        botonAgregar.textContent = estaAbierto
-          ? t('doneSelecting')
-          : (cantidadTotal ? t('modifyGuisados') + ' ▾' : t('openGuisadosList') + ' ▾');
-        botonAgregar.disabled = false;
-      }
-      return;
-    }
-
-    if(botonRestar){
-      botonRestar.hidden = !cantidadTotal;
-      botonRestar.disabled = !cantidadTotal;
-      botonRestar.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre'));
-    }
-
-    botonAgregar.textContent = cantidadTotal ? t('addAnother') + '  +' : t('addToOrder') + '  +';
-    botonAgregar.disabled = cantidadTotal >= 99;
-    botonAgregar.setAttribute('aria-label', t(cantidadTotal ? 'addAnother' : 'addToOrder') + ' ' + textoProducto(item, 'nombre') + ' ' + precioVisible(item.precio));
-  }
-
-  function crearControlCompraPlatillo(item){
-    const caja = document.createElement('section');
-    caja.className = 'platillo-compra';
-    caja.dataset.producto = item.id;
-
-    if(item.selectorMultipleGuisados){
-      const encabezado = document.createElement('div');
-      encabezado.className = 'caldo-compra-etiqueta';
-      const titulo = document.createElement('span');
-      titulo.textContent = t('chooseMultiGuisados');
-      const sub = document.createElement('small');
-      sub.textContent = t('chooseMultiGuisadosSub');
-      encabezado.append(titulo, sub);
-      caja.appendChild(encabezado);
-
-      const btnDesplegar = document.createElement('button');
-      btnDesplegar.type = 'button';
-      btnDesplegar.className = 'guisados-desplegar-btn';
-      const abiertoInicial = Boolean(item._listaGuisadosAbierta);
-      btnDesplegar.setAttribute('aria-expanded', String(abiertoInicial));
-
-      const izq = document.createElement('span');
-      izq.className = 'guisados-desplegar-izq';
-      const textoBtn = document.createElement('span');
-      textoBtn.className = 'guisados-desplegar-texto';
-      textoBtn.textContent = abiertoInicial ? t('closeGuisadosList') : t('openGuisadosList');
-      const badgeBtn = document.createElement('span');
-      badgeBtn.className = 'guisados-desplegar-badge';
-      badgeBtn.textContent = t('guisadosAvailable');
-      izq.append(textoBtn, badgeBtn);
-
-      const flecha = document.createElement('span');
-      flecha.className = 'guisados-desplegar-flecha';
-      flecha.setAttribute('aria-hidden', 'true');
-      flecha.textContent = '▾';
-
-      btnDesplegar.append(izq, flecha);
-
-      const panelLista = document.createElement('div');
-      panelLista.className = 'guisados-lista-panel';
-      panelLista.hidden = !abiertoInicial;
-
-      const ayuda = document.createElement('p');
-      ayuda.className = 'guisados-lista-ayuda';
-      ayuda.textContent = t('multiGuisadosHelp');
-      panelLista.appendChild(ayuda);
-
-      const contenedorItems = document.createElement('div');
-      contenedorItems.className = 'guisados-lista-items';
-
-      (CONFIG.guisados || []).forEach(g => {
-        const fila = document.createElement('div');
-        fila.className = 'guisado-fila';
-        fila.dataset.guisadoId = g.id;
-
-        const infoG = document.createElement('div');
-        infoG.className = 'guisado-fila-info';
-        const nombreG = document.createElement('span');
-        nombreG.className = 'guisado-fila-nombre';
-        const textoGuisado = idioma === 'en' ? (g.nombreEn || g.nombre) : g.nombre;
-        nombreG.textContent = textoGuisado;
-        infoG.appendChild(nombreG);
-
-        const controles = document.createElement('div');
-        controles.className = 'guisado-fila-controles';
-
-        const btnMenos = document.createElement('button');
-        btnMenos.type = 'button';
-        btnMenos.className = 'guisado-ctrl-btn menos';
-        btnMenos.textContent = '−';
-        btnMenos.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre') + ' ' + textoGuisado);
-
-        const cantOutput = document.createElement('output');
-        cantOutput.className = 'guisado-ctrl-cant';
-        cantOutput.textContent = '0';
-
-        const btnMas = document.createElement('button');
-        btnMas.type = 'button';
-        btnMas.className = 'guisado-ctrl-btn mas';
-        btnMas.textContent = '+';
-        btnMas.setAttribute('aria-label', t('add') + ' ' + textoProducto(item, 'nombre') + ' ' + textoGuisado);
-
-        btnMenos.addEventListener('click', e => {
-          e.stopPropagation();
-          const variante = crearVarianteGuisadoIndividual(item, g);
-          cambiarCantidad(variante, -1, false);
-        });
-
-        btnMas.addEventListener('click', e => {
-          e.stopPropagation();
-          const variante = crearVarianteGuisadoIndividual(item, g);
-          cambiarCantidad(variante, 1, true);
-        });
-
-        controles.append(btnMenos, cantOutput, btnMas);
-        fila.append(infoG, controles);
-        contenedorItems.appendChild(fila);
-      });
-
-      panelLista.appendChild(contenedorItems);
-
-      const chipsResumen = document.createElement('div');
-      chipsResumen.className = 'guisados-resumen-chips';
-      chipsResumen.hidden = true;
-
-      const alternarLista = () => {
-        const nuevoEstado = panelLista.hidden;
-        panelLista.hidden = !nuevoEstado;
-        item._listaGuisadosAbierta = nuevoEstado;
-        btnDesplegar.setAttribute('aria-expanded', String(nuevoEstado));
-        actualizarControlCompraPlatillo(caja, item);
-      };
-
-      btnDesplegar.addEventListener('click', e => {
-        e.stopPropagation();
-        alternarLista();
-      });
-
-      const pie = document.createElement('div');
-      pie.className = 'caldo-compra-pie';
-
-      const estado = document.createElement('div');
-      estado.className = 'caldo-en-pedido';
-      estado.setAttribute('aria-live', 'polite');
-
-      const acciones = document.createElement('div');
-      acciones.className = 'compra-acciones';
-
-      const restar = document.createElement('button');
-      restar.type = 'button';
-      restar.className = 'platillo-restar-btn';
-      restar.textContent = '−';
-      restar.hidden = true;
-      restar.addEventListener('click', e => {
-        e.stopPropagation();
-        restarUltimaVarianteDePlatillo(item.id);
-      });
-
-      const agregar = document.createElement('button');
-      agregar.type = 'button';
-      agregar.className = 'caldo-agregar-btn';
-      agregar.addEventListener('click', e => {
-        e.stopPropagation();
-        alternarLista();
-      });
-
-      acciones.append(restar, agregar);
-      pie.append(estado, acciones);
-
-      caja.append(btnDesplegar, panelLista, chipsResumen, pie);
-      actualizarControlCompraPlatillo(caja, item);
-      return caja;
-    }
-
-    if(item.opcionesSubmenu && item.opcionesSubmenu.length){
-      const encabezado = document.createElement('div');
-      encabezado.className = 'caldo-compra-etiqueta';
-      const titulo = document.createElement('span');
-      titulo.textContent = t('chooseOption');
-      encabezado.appendChild(titulo);
-      caja.appendChild(encabezado);
-
-      const guisadosDiv = document.createElement('div');
-      guisadosDiv.className = 'guisados-contenedor';
-
-      const select = document.createElement('select');
-      select.className = 'guisado-select';
-      select.setAttribute('aria-label', t('selectOption') + ' - ' + textoProducto(item, 'nombre'));
-
-      const optDefault = document.createElement('option');
-      optDefault.value = '';
-      optDefault.textContent = t('selectOption');
-      select.appendChild(optDefault);
-
-      item.opcionesSubmenu.forEach(op => {
-        const opt = document.createElement('option');
-        opt.value = op.id;
-        opt.dataset.nombreEs = op.nombre;
-        opt.dataset.nombreEn = op.nombreEn || op.nombre;
-        opt.textContent = idioma === 'en' ? (op.nombreEn || op.nombre) : op.nombre;
-        select.appendChild(opt);
-      });
-
-      select.addEventListener('change', () => {
-        select.classList.remove('requerido-alerta');
-      });
-
-      guisadosDiv.appendChild(select);
-      caja.appendChild(guisadosDiv);
-      caja.selectsGuisados = [select];
-      caja.esSubmenuOpciones = true;
-    } else if(item.maxGuisados){
-      const encabezado = document.createElement('div');
-      encabezado.className = 'caldo-compra-etiqueta';
-      const titulo = document.createElement('span');
-      titulo.textContent = item.maxGuisados > 1 ? t('chooseUpTo3Guisados') : t('chooseOneGuisado');
-      encabezado.appendChild(titulo);
-      caja.appendChild(encabezado);
-
-      const guisadosDiv = document.createElement('div');
-      guisadosDiv.className = 'guisados-contenedor';
-      const selectsArray = [];
-
-      for(let i = 0; i < item.maxGuisados; i++){
-        const select = document.createElement('select');
-        select.className = 'guisado-select';
-        const placeholderTexto = item.maxGuisados === 1
-          ? t('selectSingleGuisado')
-          : (i === 0 ? t('selectGuisadoRequired') : (i === 1 ? t('selectGuisadoOptional2') : t('selectGuisadoOptional3')));
-
-        select.setAttribute('aria-label', placeholderTexto + ' - ' + textoProducto(item, 'nombre'));
-
-        const optDefault = document.createElement('option');
-        optDefault.value = '';
-        optDefault.textContent = placeholderTexto;
-        select.appendChild(optDefault);
-
-        if(item.permiteSencillo && i === 0){
-          const optSencillo = document.createElement('option');
-          optSencillo.value = 'sencillo';
-          optSencillo.dataset.nombreEs = 'Sencillo';
-          optSencillo.dataset.nombreEn = 'Plain';
-          optSencillo.textContent = t('plainNoGuisado');
-          select.appendChild(optSencillo);
-        }
-
-        (CONFIG.guisados || []).forEach(g => {
-          const opt = document.createElement('option');
-          opt.value = g.id;
-          opt.dataset.nombreEs = g.nombre;
-          opt.dataset.nombreEn = g.nombreEn || g.nombre;
-          opt.textContent = idioma === 'en' ? (g.nombreEn || g.nombre) : g.nombre;
-          select.appendChild(opt);
-        });
-
-        select.addEventListener('change', () => {
-          select.classList.remove('requerido-alerta');
-        });
-
-        guisadosDiv.appendChild(select);
-        selectsArray.push(select);
-      }
-
-      caja.appendChild(guisadosDiv);
-      caja.selectsGuisados = selectsArray;
-    }
-
-    const pie = document.createElement('div');
-    pie.className = 'caldo-compra-pie';
-
-    const estado = document.createElement('div');
-    estado.className = 'caldo-en-pedido';
-    estado.setAttribute('aria-live', 'polite');
-
-    const acciones = document.createElement('div');
-    acciones.className = 'compra-acciones';
-
-    const restar = document.createElement('button');
-    restar.type = 'button';
-    restar.className = 'platillo-restar-btn';
-    restar.textContent = '−';
-    restar.hidden = true;
-    restar.addEventListener('click', e => {
-      e.stopPropagation();
-      restarUltimaVarianteDePlatillo(item.id);
-    });
-
-    const agregar = document.createElement('button');
-    agregar.type = 'button';
-    agregar.className = 'caldo-agregar-btn';
-    agregar.addEventListener('click', e => {
-      e.stopPropagation();
-
-      if((item.maxGuisados || item.opcionesSubmenu) && caja.selectsGuisados){
-        const seleccionados = caja.selectsGuisados.filter(s => s.value !== '');
-        if(!seleccionados.length){
-          const primerSelect = caja.selectsGuisados[0];
-          primerSelect.classList.add('requerido-alerta');
-          primerSelect.focus();
-          mostrarToast(caja.esSubmenuOpciones ? t('alertSelectOption') : t('alertSelectGuisado'));
-          return;
-        }
-
-        const nombresEs = seleccionados.map(s => s.selectedOptions[0].dataset.nombreEs);
-        const nombresEn = seleccionados.map(s => s.selectedOptions[0].dataset.nombreEn);
-        const ids = seleccionados.map(s => s.value);
-
-        const variante = {
-          ...item,
-          originalId: item.id,
-          id: item.id + '__' + ids.join('_'),
-          nombre: item.nombre + ' [' + nombresEs.join(', ') + ']',
-          nombreEn: (item.nombreEn || item.nombre) + ' [' + nombresEn.join(', ') + ']'
-        };
-
-        cambiarCantidad(variante, 1, true);
-
-        caja.selectsGuisados.forEach(s => {
-          s.value = '';
-          s.classList.remove('requerido-alerta');
-        });
-        return;
-      }
-
-      cambiarCantidad({ ...item, originalId: item.id }, 1, true);
-    });
-
-    acciones.append(restar, agregar);
-    pie.append(estado, acciones);
-    caja.appendChild(pie);
-    actualizarControlCompraPlatillo(caja, item);
-    return caja;
-  }
-
-  function actualizarControlPresentacion(caja, item){
-    const tamanoId = caja.dataset.tamanoSeleccionado || item.presentacionSeleccionada;
-    const presentacion = item.presentaciones.find(p => p.id === tamanoId);
-    if(!presentacion) return;
-    const varianteId = item.id + "__" + presentacion.id;
-    const cantidad = carrito.get(varianteId)?.cantidad || 0;
-    const estado = caja.querySelector('.caldo-en-pedido');
-    const botonRestar = caja.querySelector('.platillo-restar-btn');
-    const boton = caja.querySelector('.caldo-agregar-btn');
-    const nombreTamano = idioma === 'en' ? presentacion.nombreEn : presentacion.nombre;
-
-    estado.replaceChildren();
-    if(cantidad){
-      const fuerte = document.createElement('strong');
-      fuerte.textContent = t('inOrder') + ': ' + cantidad + ' × ' + nombreTamano;
-      estado.appendChild(fuerte);
-    }else{
-      estado.textContent = t('notInOrder');
-    }
-
-    if(botonRestar){
-      botonRestar.hidden = !cantidad;
-      botonRestar.disabled = !cantidad;
-      botonRestar.setAttribute('aria-label', t('remove') + ' ' + textoProducto(item, 'nombre') + ' ' + nombreTamano);
-    }
-
-    boton.textContent = cantidad ? t('addAnother') + '  +' : t('addToOrder') + '  +';
-    boton.disabled = cantidad >= 99;
-    boton.setAttribute('aria-label', t(cantidad ? 'addAnother' : 'addToOrder') + ' ' + textoProducto(item, 'nombre') + ' ' + nombreTamano + ' ' + precioVisible(presentacion.precio));
-  }
-
-  function crearControlPresentacion(item){
-    const caja = document.createElement('section');
-    caja.className = 'caldo-compra';
-    caja.dataset.producto = item.id;
-    caja.dataset.tamanoSeleccionado = item.presentacionSeleccionada || item.presentaciones[0]?.id || '';
-
-    const encabezado = document.createElement('div');
-    encabezado.className = 'caldo-compra-etiqueta';
-    const titulo = document.createElement('span');
-    titulo.textContent = t('chooseYourSize');
-    const ayuda = document.createElement('small');
-    ayuda.textContent = idioma === 'en' ? 'Select, then add' : 'Selecciona y después agrega';
-    encabezado.append(titulo, ayuda);
-
-    const opciones = document.createElement('div');
-    opciones.className = 'caldo-tamanos';
-    opciones.setAttribute('role', 'group');
-    opciones.setAttribute('aria-label', t('size') + ' ' + textoProducto(item, 'nombre'));
-
-    item.presentaciones.forEach(presentacion => {
-      const boton = document.createElement('button');
-      boton.type = 'button';
-      boton.className = 'caldo-tamano-btn';
-      boton.setAttribute('aria-pressed', String(presentacion.id === caja.dataset.tamanoSeleccionado));
-      boton.setAttribute('aria-label', (idioma === 'en' ? presentacion.nombreEn : presentacion.nombre) + ' · ' + precioVisible(presentacion.precio));
-
-      const nombre = document.createElement('span');
-      nombre.className = 'caldo-tamano-nombre';
-      nombre.textContent = idioma === 'en' ? presentacion.nombreEn : presentacion.nombre;
-
-      const importe = document.createElement('span');
-      importe.className = 'caldo-tamano-precio';
-      importe.textContent = precioVisible(presentacion.precio);
-
-      boton.append(nombre, importe);
-      boton.addEventListener('click', () => {
-        item.presentacionSeleccionada = presentacion.id;
-        caja.dataset.tamanoSeleccionado = presentacion.id;
-        opciones.querySelectorAll('.caldo-tamano-btn').forEach(opcion => opcion.setAttribute('aria-pressed', String(opcion === boton)));
-        const tarjeta = caja.closest('.platillo-tarjeta');
-        const precioTarjeta = tarjeta?.querySelector('.platillo-precio');
-        if(precioTarjeta) precioTarjeta.textContent = precioVisible(presentacion.precio);
-        actualizarControlPresentacion(caja, item);
-      });
-      opciones.appendChild(boton);
-    });
-
-    const pie = document.createElement('div');
-    pie.className = 'caldo-compra-pie';
-
-    const estado = document.createElement('div');
-    estado.className = 'caldo-en-pedido';
-    estado.setAttribute('aria-live', 'polite');
-
-    const acciones = document.createElement('div');
-    acciones.className = 'compra-acciones';
-
-    const restar = document.createElement('button');
-    restar.type = 'button';
-    restar.className = 'platillo-restar-btn';
-    restar.textContent = '−';
-    restar.hidden = true;
-    restar.addEventListener('click', () => {
-      const variante = crearVariantePedido(item, caja.dataset.tamanoSeleccionado);
-      cambiarCantidad(variante, -1);
-    });
-
-    const agregar = document.createElement('button');
-    agregar.type = 'button';
-    agregar.className = 'caldo-agregar-btn';
-    agregar.addEventListener('click', () => {
-      const variante = crearVariantePedido(item, caja.dataset.tamanoSeleccionado);
-      cambiarCantidad(variante, 1, true);
-    });
-
-    acciones.append(restar, agregar);
-    pie.append(estado, acciones);
-    caja.append(encabezado, opciones, pie);
-    actualizarControlPresentacion(caja, item);
-    return caja;
-  }
-
-  function calcularPedido(){
-    let subtotal = 0;
-    let hayPreciosDefinidos = false;
-    let hayPreciosPendientes = false;
-
-    carrito.forEach(({ item, cantidad }) => {
-      const precioNum = precioANumero(item.precio);
-      if(precioNum === null){
-        hayPreciosPendientes = true;
-      }else{
-        hayPreciosDefinidos = true;
-        subtotal += precioNum * cantidad;
-      }
-    });
-
-    if(!mostrarEnvioActivo()){
-      return { subtotal, envio: null, total: subtotal, hayPreciosDefinidos, hayPreciosPendientes };
-    }
-    const envio = envioConfigurado() ? calcularCostoEnvio() : null;
-    return {
-      subtotal,
-      envio,
-      total: envio === null ? null : subtotal + envio,
-      hayPreciosDefinidos,
-      hayPreciosPendientes
-    };
-  }
-
-  function formatearTotalPedido(c){
-    if(!carrito.size) return moneda(0) + ' MXN';
-    if(!c.hayPreciosDefinidos && c.hayPreciosPendientes) return t('toConfirm');
-    if(c.hayPreciosDefinidos && c.hayPreciosPendientes) return moneda(c.subtotal) + ' MXN' + t('plusToConfirm');
-    if(c.total === null) return t('toConfirm');
-    return moneda(c.total) + ' MXN';
-  }
-
-  function renderResumenPedido(){
-    const resumen = document.getElementById('resumenPedido');
-    const foco = document.activeElement;
-    const claveFoco = resumen.contains(foco) ? foco.getAttribute('aria-label') : null;
-    resumen.replaceChildren();
-
-    if(!carrito.size){
-      const p = document.createElement('p');
-      p.textContent = t('empty');
-      resumen.appendChild(p);
-    }
-
-    carrito.forEach(({ item, cantidad }) => {
-      const fila = document.createElement('div');
-      fila.className = 'pedido-resumen-fila';
-      const titulo = document.createElement('strong');
-      const precioNum = precioANumero(item.precio);
-      const textoImporte = precioNum === null ? t('toConfirm') : moneda(precioNum * cantidad);
-      titulo.textContent = textoProducto(item, 'nombre') + ' · ' + textoImporte;
-      fila.append(titulo, crearControlesPedido(item));
-      resumen.appendChild(fila);
-    });
-
-    const c = calcularPedido();
-    const filaEnvio = document.getElementById('filaEnvioPedido');
-    const filaSubtotal = document.getElementById('filaSubtotalPedido');
-    if(filaEnvio) filaEnvio.hidden = !mostrarEnvioActivo();
-    if(filaSubtotal) filaSubtotal.hidden = !mostrarEnvioActivo();
-
-    document.getElementById('subtotalPedido').textContent = formatearTotalPedido({ ...c, total: c.subtotal });
-    document.getElementById('envioPedido').textContent = c.envio === null ? t('toConfirm') : moneda(c.envio);
-    document.getElementById('totalPedido').textContent = formatearTotalPedido(c);
-    document.getElementById('continuarPedido').disabled = !carrito.size;
-
-    if(!carrito.size) mostrarPasoCarrito();
-    if(claveFoco){
-      const btn = [...resumen.querySelectorAll('button')].find(b => b.getAttribute('aria-label') === claveFoco && !b.disabled);
-      (btn || document.getElementById('agregarProductos')).focus();
-    }
-  }
-
-  function actualizarPedidoUI(){
-    document.querySelectorAll('.control-carrito').forEach(control => {
-      const n = carrito.get(control.dataset.producto)?.cantidad || 0;
-      control.querySelector('output').textContent = n;
-      const botones = control.querySelectorAll('button');
-      botones[0].disabled = n === 0;
-      botones[1].disabled = n >= 99;
-    });
-
-    const unidades = [...carrito.values()].reduce((n, r) => n + r.cantidad, 0);
-    const contador = document.getElementById('contadorPedido');
-    const contadorDesktop = document.getElementById('contadorPedidoDesktop');
-    contador.textContent = unidades;
-    contador.hidden = !unidades;
-    if(contadorDesktop){
-      contadorDesktop.textContent = unidades;
-      contadorDesktop.hidden = !unidades;
-    }
-
-    document.getElementById('movilMaps').setAttribute('aria-label', t('orderTab') + ', ' + unidades + ' ' + t('orderNumber'));
-
-    document.querySelectorAll('.caldo-compra').forEach(caja => {
-      const item = platillos.find(p => p.id === caja.dataset.producto);
-      if(item) actualizarControlPresentacion(caja, item);
-    });
-
-    document.querySelectorAll('.platillo-compra').forEach(caja => {
-      const item = platillos.find(p => p.id === caja.dataset.producto);
-      if(item) actualizarControlCompraPlatillo(caja, item);
-    });
-
-    renderResumenPedido();
-  }
-
-  function mostrarPasoCarrito(){
-    document.getElementById('pasoCarrito').hidden = false;
-    pedidoFormulario.hidden = true;
-    document.getElementById('pedidoDescripcion').textContent = t('review');
-  }
-
-  async function mostrarPasoEntrega(){
-    if(!carrito.size) return;
-    document.getElementById('pasoCarrito').hidden = true;
-    pedidoFormulario.hidden = false;
-    document.getElementById('pedidoDescripcion').textContent = t('deliveryInfo');
-    const listo = /^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
-    pedidoEnviar.disabled = !listo;
-    pedidoAviso.hidden = listo;
-    pedidoAviso.textContent = listo ? '' : t('waNotReady');
-    document.getElementById('pedidoNombre').focus();
-    if(envioConfigurado()){
-      await cargarMapaBiblioteca();
-      if(!pedidoFormulario.hidden) crearMapaEntrega();
-    }
-  }
-
-  function abrirWhatsApp(){
-    focoAntesPedido = document.activeElement;
-    mostrarPasoCarrito();
-    renderResumenPedido();
-    pedidoOverlay.hidden = false;
-    document.body.classList.add('modal-abierto');
-    pedidoOverlay.querySelector('.pedido-panel').scrollTop = 0;
-    document.getElementById('cerrarPedido').focus();
-  }
-
-  function cerrarPedido(){
-    pedidoOverlay.hidden = true;
-    document.body.classList.remove('modal-abierto');
-    if(focoAntesPedido?.isConnected) focoAntesPedido.focus();
-  }
-
-  document.getElementById('cerrarPedido').addEventListener('click', cerrarPedido);
-  document.getElementById('continuarPedido').addEventListener('click', mostrarPasoEntrega);
-  document.getElementById('volverCarrito').addEventListener('click', () => {
-    mostrarPasoCarrito();
-    document.getElementById('continuarPedido').focus();
-  });
-  document.getElementById('agregarProductos').addEventListener('click', () => {
-    cerrarPedido();
-    mostrarVista('menu');
-    listaHTML.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  pedidoOverlay.addEventListener('click', e => {
-    if(e.target === pedidoOverlay) cerrarPedido();
-  });
-
-  pedidoOverlay.addEventListener('keydown', e => {
-    if(e.key === 'Escape'){
-      e.preventDefault();
-      cerrarPedido();
-      return;
-    }
-    if(e.key !== 'Tab') return;
-    const visibles = [...pedidoOverlay.querySelectorAll('button:not(:disabled),input,textarea,select')].filter(el => el.getClientRects().length);
-    const primero = visibles[0], ultimo = visibles[visibles.length - 1];
-    if(e.shiftKey && document.activeElement === primero){
-      e.preventDefault();
-      ultimo.focus();
-    }else if(!e.shiftKey && document.activeElement === ultimo){
-      e.preventDefault();
-      primero.focus();
-    }
-  });
-
-  document.getElementById('pedidoPago').addEventListener('change', e => {
-    document.getElementById('notaTransferencia').hidden = e.target.value !== 'TRANSFERENCIA';
-  });
-
-  function construirMensajePedido(){
-    const valor = id => document.getElementById(id).value.trim() || 'No indicado';
-    const c = calcularPedido();
-    const lineasProductos = [...carrito.values()].map(r => {
-      const pNum = precioANumero(r.item.precio);
-      const importeTxt = pNum === null ? 'Precio por confirmar' : moneda(pNum * r.cantidad);
-      return r.cantidad + ' × ' + r.item.nombre + ' — ' + importeTxt;
-    });
-
-    const totalTexto = formatearTotalPedido(c);
-    const lineasTotales = mostrarEnvioActivo()
-      ? [
-          'Productos: ' + formatearTotalPedido({ ...c, total: c.subtotal }),
-          'Envío estimado: ' + (c.envio === null ? 'Por confirmar' : moneda(c.envio)),
-          'Total: ' + totalTexto
-        ]
-      : ['Total: ' + totalTexto];
-
-    return [
-      '*' + restaurante.nombre + '*',
-      'Pedido: ' + pedidoId,
-      '',
-      ...lineasProductos,
-      '',
-      ...lineasTotales,
-      '',
-      'Nombre: ' + valor('pedidoNombre'),
-      'Celular: ' + valor('pedidoTelefono'),
-      'Dirección: ' + [valor('pedidoCalle'), valor('pedidoExterior'), valor('pedidoColonia'), valor('pedidoCiudad'), 'CP ' + valor('pedidoCP')].join(', '),
-      'Referencias: ' + valor('pedidoReferencias'),
-      'Ubicación: ' + valor('pedidoUbicacion'),
-      'Indicaciones: ' + valor('pedidoNotas'),
-      'Pago solicitado: ' + valor('pedidoPago'),
-      '',
-      'Por favor confirma disponibilidad y tiempo de entrega.'
-    ].join('\n');
-  }
-
-  pedidoFormulario.querySelectorAll('input[required]').forEach(el => el.addEventListener('input', () => el.setCustomValidity('')));
-  pedidoFormulario.addEventListener('submit', e => {
-    e.preventDefault();
-    if(!carrito.size){
-      mostrarPasoCarrito();
-      return;
-    }
-    pedidoFormulario.querySelectorAll('input[required]').forEach(el => el.setCustomValidity(el.value.trim() ? '' : t('fillField')));
-    const tel = document.getElementById('pedidoTelefono'), cp = document.getElementById('pedidoCP');
-    if(!/^\d{10,15}$/.test(tel.value.replace(/\D/g, ''))) tel.setCustomValidity(t('phoneInvalid'));
-    if(!/^\d{5}$/.test(cp.value.trim())) cp.setCustomValidity(t('zipInvalid'));
-    if(!pedidoFormulario.reportValidity()) return;
-    if(!/^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp())) return;
-    window.location.assign('https://wa.me/' + normalizarNumeroWhatsApp() + '?text=' + encodeURIComponent(construirMensajePedido()));
-  });
-
-  /* ===================================================== */
-  /* MAPA Y ENVÍO (PRESERVADO PARA LA PLANTILLA)           */
-  /* ===================================================== */
-
-  let promesaMapa;
-  function cargarMapaBiblioteca(){
-    if(window.L) return Promise.resolve();
-    if(promesaMapa) return promesaMapa;
-    promesaMapa = new Promise(resolve => {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-      document.head.appendChild(css);
-      const js = document.createElement('script');
-      js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-      js.onload = resolve;
-      js.onerror = () => { promesaMapa = null; resolve(); };
-      document.head.appendChild(js);
-    });
-    return promesaMapa;
-  }
-
-  let mapa = null, marcadorEntrega = null, lineaRuta = null, destinoPendiente = null, distanciaRutaKm = null;
-  let calculoRutaToken = 0, busquedaToken = 0, ultimaBusqueda = 0, ultimaRuta = 0;
-
-  function calcularCostoEnvio(){
-    if(!envioConfigurado() || distanciaRutaKm === null) return null;
-    return restaurante.envioBase + Math.max(0, distanciaRutaKm - restaurante.envioKmIncluidos) * restaurante.envioKmExtra;
-  }
-
-  function invalidarRuta(){
-    calculoRutaToken++;
-    distanciaRutaKm = null;
-    if(lineaRuta && mapa){ mapa.removeLayer(lineaRuta); lineaRuta = null; }
-    confirmarDireccionMapa.disabled = !destinoPendiente;
-    resultadoEnvio.textContent = t('mapPointNeeded');
-    renderResumenPedido();
-  }
-
-  function crearMapaEntrega(){
-    if(!envioConfigurado()) return;
-    if(mapa){ mapa.invalidateSize(); return; }
-    if(!window.L){
-      mapaEntrega.textContent = t('mapLibraryFailed');
-      return;
-    }
-    mapa = L.map(mapaEntrega).setView([restaurante.origenEnvio.lat, restaurante.origenEnvio.lng], 13);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
-    }).addTo(mapa);
-    L.marker([restaurante.origenEnvio.lat, restaurante.origenEnvio.lng]).addTo(mapa).bindPopup(restaurante.nombre + " · punto de salida");
-    mapa.on("click", evento => ponerDestino(evento.latlng));
-    if(destinoPendiente) ponerDestino(destinoPendiente);
-    setTimeout(() => mapa.invalidateSize(), 100);
-  }
-
-  function ponerDestino(punto){
-    const lat = Number(punto.lat), lng = Number(punto.lng);
-    if(!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return;
-    destinoPendiente = { lat, lng };
-    pedidoUbicacion.value = "https://www.google.com/maps?q=" + lat.toFixed(6) + "," + lng.toFixed(6);
-    invalidarRuta();
-    confirmarDireccionMapa.disabled = false;
-    if(mapa){
-      if(!marcadorEntrega){
-        marcadorEntrega = L.marker([lat, lng], { draggable: true }).addTo(mapa);
-        marcadorEntrega.on("dragend", () => ponerDestino(marcadorEntrega.getLatLng()));
-      }else marcadorEntrega.setLatLng([lat, lng]);
-      mapa.setView([lat, lng], 16);
-    }
-  }
-
-  buscarDireccionMapa.addEventListener("click", async () => {
-    if(!envioConfigurado()) return;
-    const calle = pedidoCalle.value.trim(), numero = pedidoNumeroExterior.value.trim(), colonia = pedidoColonia.value.trim();
-    if(!calle || !numero || !colonia){ mostrarToast(t('mapFields')); return; }
-    if(Date.now() - ultimaBusqueda < 1100){ mostrarToast(t('mapWaitBeforeSearch')); return; }
-    ultimaBusqueda = Date.now();
-    const token = ++busquedaToken;
-    buscarDireccionMapa.disabled = true;
-    resultadoEnvio.textContent = t('mapSearching');
-    try{
-      const url = new URL("https://nominatim.openstreetmap.org/search");
-      url.search = new URLSearchParams({ q: [calle, numero, colonia, pedidoCiudad.value.trim() || restaurante.ciudadEnvio, "México"].join(", "), format: "jsonv2", limit: "3", countrycodes: "mx" }).toString();
-      const respuesta = await fetch(url.toString(), { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) });
-      if(!respuesta.ok) throw new Error("Geocodificación no disponible");
-      const resultados = await respuesta.json();
-      if(token !== busquedaToken) return;
-      if(!Array.isArray(resultados) || !resultados.length){ resultadoEnvio.textContent = t('mapNotFound'); return; }
-      ponerDestino({ lat: Number(resultados[0].lat), lng: Number(resultados[0].lon) });
-      resultadoEnvio.textContent = t('mapVerify');
-    }catch(error){
-      if(token === busquedaToken) resultadoEnvio.textContent = t('mapSearchFailed');
-    }finally{ if(token === busquedaToken) buscarDireccionMapa.disabled = false; }
-  });
-
-  async function calcularRutaConfirmada(){
-    if(!envioConfigurado()) return;
-    if(!destinoPendiente){ resultadoEnvio.textContent = t('mapSelectFirst'); return; }
-    if(Date.now() - ultimaRuta < 1100){ resultadoEnvio.textContent = t('mapWait'); return; }
-    ultimaRuta = Date.now();
-    const destino = { ...destinoPendiente };
-    const token = ++calculoRutaToken;
-    distanciaRutaKm = null;
-    if(lineaRuta && mapa){ mapa.removeLayer(lineaRuta); lineaRuta = null; }
-    renderResumenPedido();
-    confirmarDireccionMapa.disabled = true;
-    resultadoEnvio.textContent = t('mapRouteCalc');
-    try{
-      const origen = restaurante.origenEnvio;
-      const url = restaurante.servicioRutasUrl + origen.lng + "," + origen.lat + ";" + destino.lng + "," + destino.lat + "?overview=full&geometries=geojson";
-      const respuesta = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) });
-      if(!respuesta.ok) throw new Error("Ruta no disponible");
-      const datos = await respuesta.json();
-      if(token !== calculoRutaToken) return;
-      const ruta = datos.routes?.[0];
-      if(datos.code !== "Ok" || !Number.isFinite(ruta?.distance) || !ruta?.geometry?.coordinates) throw new Error("Sin ruta");
-      distanciaRutaKm = ruta.distance / 1000;
-      if(mapa){
-        if(lineaRuta) mapa.removeLayer(lineaRuta);
-        lineaRuta = L.geoJSON(ruta.geometry, { style: { color: "#b53a26", weight: 5 } }).addTo(mapa);
-        mapa.fitBounds(lineaRuta.getBounds().extend(L.latLng(origen.lat, origen.lng)), { padding: [22, 22] });
-      }
-      pedidoUbicacion.value = "https://www.google.com/maps?q=" + destino.lat.toFixed(6) + "," + destino.lng.toFixed(6);
-      resultadoEnvio.textContent = t('routePrefix') + distanciaRutaKm.toFixed(2) + t('routeShipping') + moneda(calcularCostoEnvio());
-      renderResumenPedido();
-    }catch(error){
-      if(token === calculoRutaToken){
-        resultadoEnvio.textContent = t('mapRouteFailed');
-        renderResumenPedido();
-      }
-    }finally{ if(token === calculoRutaToken) confirmarDireccionMapa.disabled = false; }
-  }
-  confirmarDireccionMapa.addEventListener("click", calcularRutaConfirmada);
-
-  [pedidoCalle, pedidoNumeroExterior, pedidoColonia, pedidoCiudad, document.getElementById("pedidoCP")].forEach(campo => {
-    campo.addEventListener("input", () => {
-      busquedaToken++;
-      buscarDireccionMapa.disabled = false;
-      destinoPendiente = null;
-      pedidoUbicacion.value = "";
-      invalidarRuta();
-    });
-  });
-
-  function coordenadasDeTexto(texto){
-    const patrones = [
-      /(?:[?&]q=|[?&]query=|[?&]ll=)(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)/i,
-      /\/@(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)/,
-      /!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/,
-      /^\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)\s*$/
-    ];
-    for(const patron of patrones){
-      const partes = texto.match(patron);
-      if(partes){
-        const lat = Number(partes[1]), lng = Number(partes[2]);
-        if(Math.abs(lat) <= 90 && Math.abs(lng) <= 180) return { lat, lng };
-      }
-    }
-    return null;
-  }
-
-  pedidoUbicacion.addEventListener("input", () => {
-    const punto = coordenadasDeTexto(pedidoUbicacion.value);
-    if(punto){
-      ponerDestino(punto);
-      resultadoEnvio.textContent = t('mapCoordsDetected');
-    }else{
-      destinoPendiente = null;
-      invalidarRuta();
-      if(pedidoUbicacion.value.trim()) resultadoEnvio.textContent = t('mapNoCoords');
-    }
-  });
-
-  const usarUbicacionActual = document.getElementById('usarUbicacionActual');
-  usarUbicacionActual.addEventListener('click', () => {
-    if(!navigator.geolocation){ mostrarToast(t('locationRequest')); return; }
-    usarUbicacionActual.disabled = true;
-    navigator.geolocation.getCurrentPosition(pos => {
-      usarUbicacionActual.disabled = false;
-      ponerDestino({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-      mostrarToast(t('locationAdded'));
-    }, () => {
-      usarUbicacionActual.disabled = false;
-      mostrarToast(t('locationUnavailable'));
-    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
-  });
-
-  document.getElementById('calculadoraEnvio').hidden = !envioConfigurado();
-  document.getElementById('envioPorConfirmar').hidden = !mostrarEnvioActivo() || envioConfigurado();
-  if(envioConfigurado()){
-    document.getElementById('tarifasEnvio').textContent = moneda(restaurante.envioBase) + t('mapRateUntil') + restaurante.envioKmIncluidos + t('mapRateBeyond') + moneda(restaurante.envioKmExtra) + t('mapRatePerKm');
-  }
-
-  botonMaps.addEventListener("click", abrirMaps);
-  movilMaps.addEventListener("click", abrirWhatsApp);
-  botonPedidoInicio.addEventListener("click", abrirWhatsApp);
-  navPedido.addEventListener("click", abrirWhatsApp);
-
-  function abrirChatDirectoWhatsApp(){
-    const numero = normalizarNumeroWhatsApp();
-    if(!/^[1-9][0-9]{10,14}$/.test(numero)){
-      mostrarToast(t('waConfig'));
-      return;
-    }
-    const saludo = t('directHello');
-    window.open("https://wa.me/" + numero + "?text=" + encodeURIComponent(saludo), "_blank", "noopener,noreferrer");
-  }
-  document.getElementById("socialWhatsApp").addEventListener("click", abrirChatDirectoWhatsApp);
-  document.getElementById("whatsappFlotante").addEventListener("click", abrirChatDirectoWhatsApp);
-
-  function abrirEnlaceSocial(campo, dominios, nombre){
-    const valor = String(restaurante[campo] || '').trim();
-    if(!valor){ mostrarToast(t('socialMissing').replace('{name}', nombre).replace('{field}', campo)); return; }
-    try{
-      const url = new URL(valor);
-      if(url.protocol !== 'https:' || !dominios.includes(url.hostname.toLowerCase())) throw new Error('Enlace inválido');
-      window.open(url.href, '_blank', 'noopener,noreferrer');
-    }catch{
-      mostrarToast(t('socialInvalid').replace('{name}', nombre).replace('{field}', campo));
-    }
-  }
-  document.getElementById('socialInstagram').addEventListener('click', () => abrirEnlaceSocial('instagramUrl', ['instagram.com', 'www.instagram.com'], 'Instagram'));
-  document.getElementById('socialFacebook').addEventListener('click', () => abrirEnlaceSocial('facebookUrl', ['facebook.com', 'www.facebook.com', 'm.facebook.com', 'fb.com', 'www.fb.com'], 'Facebook'));
-  document.getElementById('socialTikTok').addEventListener('click', () => abrirEnlaceSocial('tiktokUrl', ['tiktok.com', 'www.tiktok.com'], 'TikTok'));
-
-  /* ===================================================== */
-  /* NAVEGACIÓN, CATEGORÍAS Y TARJETAS DEL MENÚ            */
-  /* ===================================================== */
-
-  function mostrarVista(nombre, actualizarHash = true){
-    const esInicio = nombre === "inicio";
-    vistaInicio.classList.toggle("activa", esInicio);
-    vistaMenu.classList.toggle("activa", !esInicio);
-    navInicio.classList.toggle("activo", esInicio);
-    navMenu.classList.toggle("activo", !esInicio);
-    movilInicio.classList.toggle("activo", esInicio);
-    movilMenu.classList.toggle("activo", !esInicio);
-
-    if(actualizarHash){
-      history.replaceState(null, "", esInicio ? "#inicio" : "#menu");
-    }
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    actualizarBotonVolverMenu();
-  }
-
-  navInicio.addEventListener("click", () => mostrarVista("inicio"));
-  navMenu.addEventListener("click", () => mostrarVista("menu"));
-  movilInicio.addEventListener("click", () => mostrarVista("inicio"));
-  movilMenu.addEventListener("click", () => mostrarVista("menu"));
-
-  function actualizarBotonVolverMenu(){
-    const menuVisible = vistaMenu.classList.contains("activa");
-    const debeMostrarse = menuVisible && window.scrollY > 580;
-    botonVolverMenu.classList.toggle("visible", debeMostrarse);
-    botonVolverMenu.setAttribute("aria-hidden", String(!debeMostrarse));
-    botonVolverMenu.tabIndex = debeMostrarse ? 0 : -1;
-  }
-
-  window.addEventListener("scroll", actualizarBotonVolverMenu, { passive: true });
-  botonVolverMenu.addEventListener("click", () => {
-    const encabezadoMenu = vistaMenu.querySelector(".intro");
-    if(encabezadoMenu) encabezadoMenu.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  function obtenerPlatillos(){
-    let filtrados = platillos;
-    if(categoriaActual !== "Todos"){
-      filtrados = filtrados.filter(item => item.categoria === categoriaActual);
-    }
-    if(terminoBusqueda.trim() !== ""){
-      const q = terminoBusqueda.toLowerCase().trim();
-      filtrados = filtrados.filter(item => {
-        const nombre = textoProducto(item, 'nombre').toLowerCase();
-        const desc = (textoProducto(item, 'descripcion') || '').toLowerCase();
-        return nombre.includes(q) || desc.includes(q);
-      });
-    }
-    return filtrados;
-  }
-
-  function crearCategorias(){
-    categoriasHTML.innerHTML = "";
-    categorias.forEach(categoria => {
-      const boton = document.createElement("button");
-      boton.type = "button";
-      boton.className = "categoria";
-      boton.textContent = etiquetaCategoria(categoria);
-      if(categoria === categoriaActual){
-        boton.classList.add("activa");
-      }
-      boton.addEventListener("click", () => {
-        categoriaActual = categoria;
-        crearCategorias();
-        crearLista();
-      });
-      categoriasHTML.appendChild(boton);
-    });
-  }
-
-  inputBuscador.addEventListener("input", (e) => {
-    terminoBusqueda = e.target.value;
-    crearLista();
-  });
-
-  inputBuscador.addEventListener("keydown", (e) => {
-    if(e.key === "Enter" || e.keyCode === 13){
-      e.preventDefault();
-      inputBuscador.blur();
-    }
-  });
-
-  inputBuscador.addEventListener("search", () => {
-    if(inputBuscador.value.trim() !== ""){
-      inputBuscador.blur();
-    }
-  });
-
-  listaHTML.addEventListener("touchstart", () => {
-    if(document.activeElement === inputBuscador){
-      inputBuscador.blur();
-    }
-  }, { passive: true });
-
-  const fotoAmpliadaOverlay = document.getElementById('fotoAmpliadaOverlay');
-  const fotoAmpliadaImagen = document.getElementById('fotoAmpliadaImagen');
-  const cerrarFotoAmpliadaBoton = document.getElementById('cerrarFotoAmpliada');
-  let focoAntesFoto = null;
-
-  function ampliarFoto(imagen, nombre){
-    if(!imagen.complete || !imagen.naturalWidth) return;
-    focoAntesFoto = document.activeElement;
-    fotoAmpliadaImagen.src = imagen.currentSrc || imagen.src;
-    fotoAmpliadaImagen.alt = nombre;
-    fotoAmpliadaOverlay.hidden = false;
-    document.body.classList.add('modal-abierto');
-    cerrarFotoAmpliadaBoton.focus();
-  }
-
-  function cerrarFotoAmpliada(){
-    fotoAmpliadaOverlay.hidden = true;
-    fotoAmpliadaImagen.removeAttribute('src');
-    document.body.classList.remove('modal-abierto');
-    if(focoAntesFoto?.isConnected) focoAntesFoto.focus();
-  }
-
-  cerrarFotoAmpliadaBoton.addEventListener('click', cerrarFotoAmpliada);
-  fotoAmpliadaOverlay.addEventListener('click', e => { if(e.target === fotoAmpliadaOverlay) cerrarFotoAmpliada(); });
-  document.addEventListener('keydown', e => {
-    if(!fotoAmpliadaOverlay.hidden && e.key === 'Escape'){
-      e.preventDefault();
-      cerrarFotoAmpliada();
-    }
-  });
-
-  function crearLista(){
-    const visibles = obtenerPlatillos();
-    listaHTML.replaceChildren();
-
-    // Indica en la categoría de barbacoa que solo hay los fines de semana
-    if(categoriaActual === "Barbacuérdate de mí 🔥"){
-      const alerta = document.createElement('div');
-      alerta.className = 'alerta-categoria';
-      alerta.textContent = t('weekendOnlyBanner');
-      listaHTML.appendChild(alerta);
-    }
-
-    visibles.forEach(item => {
-      const tarjeta = document.createElement("article");
-      tarjeta.className = "platillo-tarjeta";
-      const bloque = document.createElement("div");
-      bloque.className = "platillo";
-
-      const visual = document.createElement("button");
-      visual.type = "button";
-      visual.className = "platillo-visual";
-      visual.setAttribute('aria-label', t('enlargePhoto') + ' ' + textoProducto(item, 'nombre'));
-      visual.title = t('enlargePhoto');
-      visual.disabled = true;
-
-      if(item.soloFinDeSemana || item.categoria === "Barbacuérdate de mí 🔥"){
-        const badgeFin = document.createElement("span");
-        badgeFin.className = "distintivo-fin-semana";
-        badgeFin.textContent = t('weekendBadge');
-        visual.appendChild(badgeFin);
-      }
-
-      const fallback = document.createElement("div");
-      fallback.className = "foto-fallback";
-      fallback.textContent = t('photoPending');
-
-      const imagen = document.createElement("img");
-      imagen.loading = "lazy";
-      imagen.addEventListener('load', () => { visual.disabled = false; });
-      imagen.addEventListener('error', () => { visual.disabled = true; });
-      cargarImagenSegura(imagen, fallback, item.imagen, textoProducto(item, 'nombre'));
-      visual.append(fallback, imagen);
-      visual.addEventListener('click', () => ampliarFoto(imagen, textoProducto(item, 'nombre')));
-
-      const info = document.createElement("div");
-      info.className = "platillo-info";
-      const encabezado = document.createElement("div");
-      encabezado.className = "platillo-encabezado";
-      const nombre = document.createElement("h3");
-      nombre.className = "platillo-nombre";
-      nombre.textContent = textoProducto(item, 'nombre');
-      const precio = document.createElement("span");
-      precio.className = "platillo-precio";
-      precio.textContent = precioVisible(item.precio);
-      encabezado.append(nombre, precio);
-      info.appendChild(encabezado);
-
-      if((item.descripcion || "").trim()){
-        const desc = document.createElement("p");
-        desc.className = "platillo-descripcion";
-        desc.textContent = textoProducto(item, 'descripcion');
-        info.appendChild(desc);
-      }
-
-      if(item.presentaciones){
-        const tamanoInicial = item.presentaciones.find(p => p.id === item.presentacionSeleccionada);
-        precio.textContent = tamanoInicial ? precioVisible(tamanoInicial.precio) : t('chooseSize');
-        precio.dataset.precioCal = item.id;
-        bloque.append(visual, info, crearControlPresentacion(item));
-      }else{
-        bloque.append(visual, info, crearControlCompraPlatillo(item));
-      }
-
-      tarjeta.append(bloque);
-      listaHTML.appendChild(tarjeta);
-    });
-
-    document.title = restaurante.nombre + ' | ' + t('menuTab');
-  }
-
-  function iniciarRuta(){
-    const hash = window.location.hash.toLowerCase();
-    if(hash === "#inicio"){
-      mostrarVista("inicio", false);
-    }else{
-      mostrarVista("menu", false);
-    }
-  }
-
-  window.addEventListener("hashchange", iniciarRuta);
-
-  function aplicarIdioma(){
-    document.documentElement.lang = idioma;
-    const btnIdioma = document.getElementById('botonIdioma');
-    btnIdioma.textContent = idioma === 'es' ? 'English · EN' : 'Español · ES';
-    btnIdioma.setAttribute('aria-label', idioma === 'es' ? 'Switch to English' : 'Cambiar a español');
-    btnIdioma.setAttribute('aria-pressed', String(idioma === 'en'));
-
-    for(const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
-    for(const el of document.querySelectorAll('[data-i18n-placeholder]')) el.placeholder = t(el.dataset.i18nPlaceholder);
-    for(const el of document.querySelectorAll('[data-i18n-aria]')) el.setAttribute('aria-label', t(el.dataset.i18nAria));
-
-    heroSubtitulo.textContent = idioma === 'en' ? restaurante.subtituloEn || restaurante.subtitulo : restaurante.subtitulo;
-    inicioTitulo.textContent = idioma === 'en' ? restaurante.tituloHistoriaEn || restaurante.tituloHistoria : restaurante.tituloHistoria;
-    inicioHistoria.textContent = idioma === 'en' ? restaurante.historiaEn || restaurante.historia : restaurante.historia;
-    inicioContactoTexto.textContent = idioma === 'en' ? restaurante.contactoTextoEn || restaurante.contactoTexto : restaurante.contactoTexto;
-    textoUbicacion.textContent = idioma === 'en' ? restaurante.ubicacionTextoEn || restaurante.ubicacionTexto : restaurante.ubicacionTexto;
-    footerTexto.textContent = idioma === 'en' ? restaurante.footerEn || restaurante.footer : restaurante.footer;
-
-    if(pedidoOverlay.hidden === false){
-      document.getElementById('pedidoDescripcion').textContent = t(pedidoFormulario.hidden ? 'review' : 'deliveryInfo');
-      if(!pedidoFormulario.hidden){
-        const listo = /^[1-9][0-9]{10,14}$/.test(normalizarNumeroWhatsApp());
-        pedidoAviso.textContent = listo ? '' : t('waNotReady');
-      }
-    }
-
-    if(envioConfigurado()){
-      document.getElementById('tarifasEnvio').textContent = moneda(restaurante.envioBase) + t('mapRateUntil') + restaurante.envioKmIncluidos + t('mapRateBeyond') + moneda(restaurante.envioKmExtra) + t('mapRatePerKm');
-    }
-    if(distanciaRutaKm === null) resultadoEnvio.textContent = t('mapWaiting');
-    else resultadoEnvio.textContent = t('routePrefix') + distanciaRutaKm.toFixed(2) + t('routeShipping') + moneda(calcularCostoEnvio());
-
-    crearCategorias();
-    crearLista();
-    actualizarPedidoUI();
-  }
-
-  document.getElementById('botonIdioma').addEventListener('click', () => {
-    idioma = idioma === 'es' ? 'en' : 'es';
-    aplicarIdioma();
-  });
-
-  aplicarIdioma();
-  iniciarRuta();
-  actualizarBotonVolverMenu();
-</script>
-
-</body>
-</html>
+        "nombreEn": "Placer culposo (Gu
