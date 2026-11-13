@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#F4EFE7">
+  <meta name="theme-color" content="#E88B1A">
   <meta name="description" content="Comedor Lucy: menú digital con fotografías, carrito y pedidos por WhatsApp.">
   <title>Comedor Lucy | Menú Digital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,26 +12,26 @@
 
   <style>
     :root{
-      --fondo:#F5F0E8;
-      --fondo-profundo:#E9DFD2;
-      --tarjeta:#FFFDF9;
-      --texto:#241F1A;
-      --texto-suave:#6E6258;
-      --acento:#A64F31;
-      --acento-oscuro:#6C2F1C;
-      --acento-suave:#F6E8E0;
-      --dorado-suave:#FBF0D9;
-      --dorado-borde:#E2B96B;
-      --olivo:#6C7550;
-      --linea:#DED2C4;
+      --fondo:#FAF6EE;
+      --fondo-profundo:#F2E9D8;
+      --tarjeta:#FFFFFF;
+      --texto:#1F1A14;
+      --texto-suave:#665B4E;
+      --acento:#E88B1A;
+      --acento-vivo:#F5A623;
+      --acento-oscuro:#C2650A;
+      --acento-suave:#FFF3DC;
+      --dorado-suave:#FFF5D6;
+      --dorado-borde:#F3B63F;
+      --linea:#E8DEC8;
       --whatsapp:#25D366;
-      --sombra:0 18px 45px rgba(44,31,21,.10);
-      --sombra-suave:0 8px 24px rgba(44,31,21,.06);
+      --sombra:0 18px 42px rgba(64,42,12,.10);
+      --sombra-suave:0 8px 24px rgba(64,42,12,.06);
       --radio-xl:28px;
-      --radio-lg:20px;
+      --radio-lg:22px;
       --radio-md:16px;
       --font-display:'Fraunces',Georgia,"Times New Roman",serif;
-      --font-sans:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;
+      --font-sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
       --transicion:200ms cubic-bezier(.2,.8,.2,1);
     }
 
@@ -40,7 +40,7 @@
     html{scroll-behavior:smooth;background:var(--fondo)}
     body{
       margin:0;
-      background:radial-gradient(circle at 10% -10%, rgba(166,79,49,.07), transparent 28%),var(--fondo);
+      background:radial-gradient(circle at 12% -8%, rgba(245,166,35,.14), transparent 32%),var(--fondo);
       color:var(--texto);
       font-family:var(--font-sans);
       -webkit-font-smoothing:antialiased;
@@ -49,144 +49,163 @@
     button,input,select,textarea{font:inherit}
     button,a,select{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
     button:focus-visible,a:focus-visible,select:focus-visible{
-      outline:3px solid rgba(166,79,49,.32);
+      outline:3px solid rgba(232,139,26,.38);
       outline-offset:3px;
     }
     img{max-width:100%}
 
     /* PORTADA */
     .hero{
-      position:relative;min-height:460px;display:grid;align-items:end;overflow:hidden;color:#fff;
-      background:linear-gradient(180deg,rgba(20,14,10,.12),rgba(20,14,10,.72)),linear-gradient(135deg,var(--acento),var(--acento-oscuro));
+      position:relative;min-height:440px;display:grid;align-items:end;overflow:hidden;color:#fff;
+      background:linear-gradient(180deg,rgba(28,18,6,.10),rgba(28,18,6,.72)),linear-gradient(135deg,var(--acento-vivo),var(--acento-oscuro));
       isolation:isolate;
+      border-bottom:4px solid var(--acento-vivo);
     }
     .hero-media{position:absolute;inset:0;z-index:-2}
     .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
     .hero-overlay{
       position:absolute;inset:0;z-index:-1;
-      background:linear-gradient(90deg,rgba(25,17,12,.72),rgba(25,17,12,.22) 55%,rgba(25,17,12,.08)),linear-gradient(0deg,rgba(20,14,10,.64),transparent 58%);
+      background:linear-gradient(90deg,rgba(32,20,8,.74),rgba(32,20,8,.28) 55%,rgba(32,20,8,.12)),linear-gradient(0deg,rgba(26,16,6,.70),transparent 62%);
     }
     .hero-fallback{
       position:absolute;inset:0;z-index:-3;
-      background:radial-gradient(circle at 75% 20%,rgba(255,255,255,.14),transparent 24%),linear-gradient(135deg,var(--acento),var(--acento-oscuro));
+      background:radial-gradient(circle at 75% 20%,rgba(255,255,255,.22),transparent 28%),linear-gradient(135deg,var(--acento-vivo),var(--acento-oscuro));
     }
-    .hero-inner{width:min(1280px,100%);margin:0 auto;padding:54px 22px 50px;text-align:center}
+    .hero-inner{width:min(1280px,100%);margin:0 auto;padding:54px 22px 48px;text-align:center}
     .hero-kicker{
       position:absolute;top:19px;left:max(18px,calc((100vw - 1280px)/2 + 22px));margin:0;z-index:2;
-      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;
-      border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(20,14,10,.18);
-      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:11px;font-weight:800;letter-spacing:1.2px;
+      display:inline-flex;align-items:center;gap:8px;padding:8px 14px;
+      border:1px solid rgba(255,245,214,.45);border-radius:999px;background:rgba(32,20,8,.32);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:11px;font-weight:800;letter-spacing:1.2px;color:#FFF5D6;
     }
     .boton-idioma{
       position:absolute;right:max(18px,calc((100vw - 1280px)/2 + 22px));top:19px;z-index:3;
-      min-height:38px;padding:8px 14px;border:1px solid rgba(255,255,255,.52);border-radius:99px;
-      background:rgba(28,22,19,.42);backdrop-filter:blur(6px);color:white;font-size:12px;font-weight:800;cursor:pointer;
+      min-height:38px;padding:8px 15px;border:1.5px solid rgba(255,245,214,.65);border-radius:99px;
+      background:rgba(32,20,8,.42);backdrop-filter:blur(8px);color:#FFF5D6;font-size:12px;font-weight:800;cursor:pointer;
+      transition:all var(--transicion);
     }
-    .boton-idioma:hover{background:rgba(28,22,19,.7)}
+    .boton-idioma:hover{background:var(--acento-vivo);color:var(--texto);border-color:var(--acento-vivo)}
     .hero h1{
       max-width:830px;margin:0 auto;font-family:var(--font-display);
-      font-size:clamp(52px,9vw,100px);font-weight:800;line-height:.94;text-wrap:balance;
+      font-size:clamp(50px,8.5vw,94px);font-weight:800;line-height:.95;text-wrap:balance;
+      text-shadow:0 6px 24px rgba(0,0,0,.22);
     }
-    .hero-subtitulo{max-width:650px;margin:19px auto 0;font-size:16px;line-height:1.75;color:rgba(255,255,255,.92)}
+    .hero-subtitulo{max-width:650px;margin:16px auto 0;font-size:16px;line-height:1.7;color:rgba(255,252,245,.94);font-weight:500}
 
     /* NAVEGACIÓN SUPERIOR */
     .nav-principal-wrap{
-      position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(222,210,196,.78);
-      background:rgba(245,240,232,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      position:sticky;top:0;z-index:100;border-bottom:1px solid var(--linea);
+      background:rgba(250,246,238,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      box-shadow:0 4px 18px rgba(64,42,12,.04);
     }
     .nav-principal{
       width:min(1280px,100%);margin:0 auto;padding:10px 18px;
       display:flex;align-items:center;justify-content:space-between;gap:16px;
     }
     .nav-marca{
-      min-width:0;font-family:var(--font-display);font-size:21px;font-weight:800;color:var(--acento-oscuro);
+      min-width:0;font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--acento-oscuro);
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .nav-acciones{display:flex;gap:8px}
     .nav-principal button{
-      height:42px;min-width:118px;padding:0 17px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
-      border:1px solid transparent;border-radius:999px;background:transparent;
-      color:var(--texto-suave);font-size:12px;font-weight:800;cursor:pointer;transition:all var(--transicion);
+      height:42px;min-width:122px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      border:1.5px solid transparent;border-radius:999px;background:transparent;
+      color:var(--texto-suave);font-size:12.5px;font-weight:800;cursor:pointer;transition:all var(--transicion);
     }
-    .nav-principal button:hover{background:rgba(255,255,255,.55);color:var(--texto)}
-    .nav-principal button.activo{background:var(--acento-oscuro);color:#fff}
+    .nav-principal button:hover:not(.activo){background:var(--acento-suave);color:var(--acento-oscuro);border-color:var(--dorado-borde)}
+    .nav-principal button.activo{
+      background:linear-gradient(135deg,var(--acento-vivo),var(--acento));
+      color:var(--texto);border-color:var(--acento);
+      box-shadow:0 4px 12px rgba(232,139,26,.25);
+    }
 
     /* ESTRUCTURA */
-    .contenedor{width:min(1280px,100%);margin:0 auto;padding:34px 18px 58px}
+    .contenedor{width:min(1280px,100%);margin:0 auto;padding:30px 18px 58px}
     .vista{display:none}
     .vista.activa{display:block;animation:entrada .28s ease both}
     @keyframes entrada{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-    .section-kicker{margin:0 0 8px;color:var(--acento);font-size:11px;font-weight:800;letter-spacing:1.4px}
+    .section-kicker{margin:0 0 8px;color:var(--acento-oscuro);font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}
 
     /* INICIO */
     .inicio-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;align-items:stretch}
-    .panel{overflow:hidden;border:1px solid var(--linea);border-radius:var(--radio-xl);background:var(--tarjeta);box-shadow:var(--sombra)}
-    .historia-imagen{position:relative;height:210px;min-height:180px;max-height:230px;overflow:hidden;background:linear-gradient(135deg,#8D4A30,#C18456)}
+    .panel{overflow:hidden;border:1.5px solid var(--linea);border-radius:var(--radio-xl);background:var(--tarjeta);box-shadow:var(--sombra)}
+    .historia-imagen{position:relative;height:220px;min-height:180px;max-height:240px;overflow:hidden;background:linear-gradient(135deg,var(--acento-vivo),var(--acento-oscuro))}
     .historia-imagen img{width:100%;height:100%;object-fit:cover;display:block}
     .historia-fallback{
       position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      padding:20px;text-align:center;color:rgba(255,255,255,.9);font-family:var(--font-display);font-size:22px;
+      padding:20px;text-align:center;color:rgba(255,255,255,.95);font-family:var(--font-display);font-size:22px;
     }
     .historia-contenido{padding:26px 30px 30px}
-    .historia-contenido h2,.contacto-panel h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:clamp(31px,4vw,44px);line-height:1.08}
-    .historia-contenido p,.contacto-panel p{margin:15px 0 0;color:var(--texto-suave);font-size:15px;line-height:1.8}
+    .historia-contenido h2,.contacto-panel h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:clamp(30px,4vw,42px);line-height:1.1;color:var(--texto)}
+    .historia-contenido p,.contacto-panel p{margin:14px 0 0;color:var(--texto-suave);font-size:15px;line-height:1.75}
     .contacto-panel{padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:22px}
     .contacto-lista{display:grid;gap:10px}
-    .contacto-item{padding:14px 15px;border:1px solid #E8DDD1;border-radius:var(--radio-md);background:#FAF7F2}
-    .contacto-item strong{display:block;margin-bottom:4px;color:#76685D;font-size:10px;letter-spacing:1px}
-    .contacto-item span{font-size:13px;line-height:1.55;font-weight:600}
-    .contacto-botones{display:grid;gap:9px}
+    .contacto-item{padding:14px 16px;border:1.5px solid var(--linea);border-radius:var(--radio-md);background:var(--fondo)}
+    .contacto-item strong{display:block;margin-bottom:4px;color:var(--acento-oscuro);font-size:10.5px;font-weight:800;letter-spacing:1px}
+    .contacto-item span{font-size:13.5px;line-height:1.55;font-weight:600}
+    .contacto-botones{display:grid;gap:10px}
     .boton-ancho{
-      min-height:48px;padding:12px 16px;display:flex;align-items:center;justify-content:center;
-      gap:9px;border:0;border-radius:14px;font-size:12px;font-weight:800;cursor:pointer;
+      min-height:50px;padding:12px 16px;display:flex;align-items:center;justify-content:center;
+      gap:9px;border:0;border-radius:14px;font-size:12.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;
+      transition:transform .15s,filter .15s;
     }
+    .boton-ancho:hover{transform:translateY(-1px);filter:brightness(1.03)}
     .boton-maps{background:var(--texto);color:#fff}
-    .boton-pedido{background:var(--acento);color:#fff}
-    .redes-restaurante{padding-top:8px;border-top:1px solid var(--linea)}
+    .boton-pedido{background:linear-gradient(135deg,var(--acento-vivo),var(--acento));color:var(--texto);border:1.5px solid var(--acento)}
+    .redes-restaurante{padding-top:10px;border-top:1px solid var(--linea)}
     .redes-restaurante-titulo{margin:8px 0 11px;color:var(--texto-suave);font-size:11px;font-weight:800;letter-spacing:.9px}
-    .redes-restaurante-botones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .redes-restaurante-botones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     .red-social{
-      min-height:49px;display:flex;align-items:center;justify-content:center;gap:9px;padding:10px 12px;
-      border:1px solid var(--linea);border-radius:14px;background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:800;cursor:pointer;
+      min-height:48px;display:flex;align-items:center;justify-content:center;gap:9px;padding:10px 12px;
+      border:1.5px solid var(--linea);border-radius:14px;background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:800;cursor:pointer;
+      transition:all var(--transicion);
     }
-    .red-social:hover{border-color:var(--acento);background:#FAF6F0}
-    .red-social-icono{font-size:19px;font-weight:bold;line-height:1}
+    .red-social:hover{border-color:var(--acento);background:var(--acento-suave);color:var(--acento-oscuro)}
+    .red-social-icono{font-size:18px;font-weight:bold;line-height:1;color:var(--acento-oscuro)}
 
-    /* MENÚ Y BUSCADOR */
+    /* MENÚ, BUSCADOR Y BARRA DE CATEGORÍAS FIJA/DESLIZABLE */
     .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:18px}
-    .intro h2{margin:0;font-family:var(--font-display);font-size:clamp(34px,5vw,50px);font-weight:800;color:var(--acento-oscuro)}
-    .intro p{max-width:580px;margin:9px 0 0;color:var(--texto-suave);font-size:14.5px;line-height:1.7}
-    .buscador-menu-wrap{margin-bottom:16px}
+    .intro h2{margin:0;font-family:var(--font-display);font-size:clamp(32px,4.5vw,48px);font-weight:800;color:var(--texto)}
+    .intro p{max-width:580px;margin:8px 0 0;color:var(--texto-suave);font-size:14.5px;line-height:1.65}
+    .buscador-menu-wrap{margin-bottom:14px}
     .buscador-menu{
       width:min(100%,420px);height:48px;padding:0 18px;border:1.5px solid var(--linea);border-radius:14px;
       background:var(--tarjeta);color:var(--texto);font-size:14.5px;font-weight:600;box-shadow:var(--sombra-suave);
       transition:border-color var(--transicion),box-shadow var(--transicion);
     }
-    .buscador-menu:focus-visible{outline:3px solid rgba(166,79,49,.28);outline-offset:2px;border-color:var(--acento)}
+    .buscador-menu:focus{outline:none;border-color:var(--acento);box-shadow:0 0 0 3px rgba(232,139,26,.18)}
     .categorias{
-      display:flex;gap:10px;overflow-x:auto;padding:4px 2px 18px;
-      scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;
+      display:flex;align-items:center;gap:10px;width:100%;
+      overflow-x:auto;overflow-y:hidden;padding:4px 2px 16px;
+      scroll-behavior:smooth;-webkit-overflow-scrolling:touch;touch-action:pan-x;
+      scrollbar-width:none;user-select:none;cursor:grab;
     }
+    .categorias:active{cursor:grabbing}
     .categorias::-webkit-scrollbar{display:none}
     .categoria{
-      flex:0 0 auto;height:43px;padding:0 18px;border:1.5px solid var(--linea);border-radius:999px;
-      background:var(--tarjeta);color:var(--texto);font-size:12.5px;font-weight:800;cursor:pointer;
+      flex:0 0 auto;height:44px;min-width:128px;padding:0 18px;border:1.5px solid var(--linea);border-radius:999px;
+      background:var(--tarjeta);color:var(--texto);font-size:13px;font-weight:800;white-space:nowrap;cursor:pointer;
       display:inline-flex;align-items:center;justify-content:center;transition:all var(--transicion);
     }
-    .categoria:hover{border-color:var(--acento);background:var(--acento-suave)}
-    .categoria.activa{border-color:var(--acento-oscuro);background:var(--acento-oscuro);color:#fff;box-shadow:0 4px 12px rgba(108,47,28,.18)}
+    .categoria:hover:not(.activa){border-color:var(--acento);background:var(--acento-suave)}
+    .categoria.activa{
+      border-color:var(--acento);
+      background:linear-gradient(135deg,var(--acento-vivo),var(--acento));
+      color:var(--texto);
+      box-shadow:0 4px 14px rgba(232,139,26,.28);
+    }
     .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:start}
 
     /* AVISO DE CATEGORÍA (BARBACOA FINES DE SEMANA) */
     .alerta-categoria{
       grid-column:1 / -1;padding:14px 18px;border-radius:16px;
-      background:linear-gradient(135deg,#F6E6DC,#F0D8C8);color:var(--acento-oscuro);
+      background:linear-gradient(135deg,#FFF4D9,#FFE6B3);color:#7C3E04;
       font-size:14px;font-weight:800;text-align:center;
-      border:1.5px solid rgba(166,79,49,.32);box-shadow:var(--sombra-suave);
+      border:1.5px solid var(--dorado-borde);box-shadow:var(--sombra-suave);
     }
 
     /* ============================================================
-       SISTEMA DE TARJETAS DE PLATILLOS ESTILO LIMONCELLO
+       SISTEMA DE TARJETAS DE PLATILLOS ESTILO LIMONCELLO MODERNO
        ============================================================ */
     .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
     .platillo-tarjeta{
@@ -196,17 +215,17 @@
     }
     .platillo-tarjeta:hover{
       transform:translateY(-3px);border-color:var(--acento);
-      box-shadow:0 14px 32px rgba(44,31,21,.11);
+      box-shadow:0 14px 32px rgba(64,42,12,.11);
     }
     .platillo-visual{
       width:100%;aspect-ratio:16/9;position:relative;display:grid;
-      place-items:center;background:linear-gradient(135deg,var(--acento-oscuro),var(--acento));
-      border:0;padding:0;overflow:hidden;border-bottom:3px solid var(--dorado-borde);
+      place-items:center;background:linear-gradient(135deg,#F7B334,var(--acento),#C96B0C);
+      border:0;padding:0;overflow:hidden;border-bottom:3px solid var(--acento-vivo);
       cursor:zoom-in;transition:aspect-ratio .2s ease;
     }
     .platillo-visual.has-img{
       aspect-ratio:4/3;
-      background:#E9E0D5;
+      background:#F3ECE0;
     }
     .platillo-visual:disabled{cursor:default;opacity:1}
     .platillo-visual img{
@@ -222,20 +241,20 @@
       position:relative;z-index:1;
     }
     .placeholder-icon{
-      width:42px;height:42px;border-radius:50%;
-      background:rgba(251,240,217,.16);border:1.5px solid var(--dorado-borde);
-      display:grid;place-items:center;color:var(--dorado-suave);font-size:19px;margin-bottom:2px;
+      width:44px;height:44px;border-radius:50%;
+      background:rgba(255,255,255,.22);border:1.5px solid rgba(255,255,255,.65);
+      display:grid;place-items:center;color:#fff;font-size:20px;margin-bottom:2px;
     }
-    .foto-fallback strong{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--dorado-suave);display:block}
-    .foto-fallback small{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,253,249,.82)}
+    .foto-fallback strong{font-family:var(--font-display);font-size:18px;font-weight:800;color:#FFF;display:block;text-shadow:0 2px 8px rgba(0,0,0,.15)}
+    .foto-fallback small{font-size:9.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,253,249,.92)}
 
     .distintivo-fin-semana{
       position:absolute;top:10px;right:10px;z-index:3;padding:5px 11px;border-radius:999px;
-      background:rgba(108,47,28,.94);color:#fff;font-size:10px;font-weight:800;letter-spacing:.4px;
-      box-shadow:0 4px 12px rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);
+      background:rgba(31,26,20,.88);color:var(--acento-vivo);font-size:10px;font-weight:800;letter-spacing:.4px;
+      box-shadow:0 4px 12px rgba(0,0,0,.22);border:1px solid var(--acento-vivo);
     }
 
-    /* Cuerpo de la tarjeta estilo Limoncello */
+    /* Cuerpo de la tarjeta */
     .platillo-info{
       padding:18px 20px 14px;flex:1;display:flex;flex-direction:column;background:var(--tarjeta);
     }
@@ -243,12 +262,12 @@
       display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;
     }
     .category-label{
-      font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--acento);
+      font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--acento-oscuro);
       text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .pill-badge{
-      display:inline-block;background:var(--fondo);border:1.5px solid var(--acento);
-      color:var(--acento-oscuro);padding:3px 10px;border-radius:8px;flex-shrink:0;
+      display:inline-block;background:var(--acento-suave);border:1.5px solid var(--dorado-borde);
+      color:#7C3E04;padding:3px 10px;border-radius:8px;flex-shrink:0;
       font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
     }
     .platillo-nombre{
@@ -256,10 +275,23 @@
       line-height:1.2;margin:2px 0 8px;color:var(--texto);overflow-wrap:anywhere;
     }
     .platillo-descripcion{
-      font-size:13.5px;line-height:1.55;color:var(--texto-suave);margin:0 0 12px;
+      font-size:13.5px;line-height:1.55;color:var(--texto-suave);margin:0 0 10px;
     }
 
-    /* Selectores desplegables dentro de la tarjeta (estilo Limoncello) */
+    /* Bloque destacado de guarniciones incluidas (Psicología de valor percibido) */
+    .platillo-acompanamiento{
+      margin:2px 0 12px;padding:9px 12px;
+      background:linear-gradient(135deg,#FFF9EB,#FFF2D1);
+      border-left:3.5px solid var(--acento);
+      border-radius:6px 11px 11px 6px;
+      color:#593A10;font-size:12.5px;line-height:1.45;font-weight:600;
+    }
+    .platillo-acompanamiento strong{
+      color:var(--acento-oscuro);font-weight:800;text-transform:uppercase;
+      font-size:10.5px;letter-spacing:.5px;display:block;margin-bottom:2px;
+    }
+
+    /* Selectores desplegables dentro de la tarjeta */
     .variant-block{
       margin-top:auto;padding-top:6px;display:grid;gap:7px;
     }
@@ -269,71 +301,74 @@
     }
     .guisado-select,.variant-select{
       display:block;width:100%;height:43px;padding:9px 12px;
-      border:1.5px solid var(--acento);border-radius:11px;background:#FFF;
+      border:1.5px solid var(--dorado-borde);border-radius:11px;background:#FFF;
       color:var(--texto);font-size:13.5px;font-weight:700;cursor:pointer;
       transition:border-color var(--transicion),box-shadow var(--transicion);
     }
+    .guisado-select:focus,.variant-select:focus{
+      outline:none;border-color:var(--acento-oscuro);box-shadow:0 0 0 3px rgba(232,139,26,.18);
+    }
     .guisado-select.requerido-alerta{
-      border-color:#C93B2B;box-shadow:0 0 0 3px rgba(201,59,43,.2);
+      border-color:#D9381E;box-shadow:0 0 0 3px rgba(217,56,30,.2);
     }
 
-    /* Selector interactivo multiguisado (Gorditas) adaptado a la tarjeta */
+    /* Selector interactivo multiguisado (Gorditas) */
     .guisados-desplegar-btn{
       width:100%;min-height:43px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;
       gap:10px;border:1.5px solid var(--acento);border-radius:11px;background:#FFF;color:var(--texto);
       font-size:13px;font-weight:800;cursor:pointer;transition:all var(--transicion);
     }
-    .guisados-desplegar-btn:hover{background:#FFFDF9}
+    .guisados-desplegar-btn:hover{background:var(--acento-suave)}
     .guisados-desplegar-btn[aria-expanded="true"]{
-      background:var(--acento-suave);color:var(--acento-oscuro);
+      background:var(--acento-suave);color:var(--acento-oscuro);border-color:var(--acento-oscuro);
     }
     .guisados-desplegar-izq{display:flex;align-items:center;gap:8px;min-width:0}
     .guisados-desplegar-badge{
-      padding:2px 8px;border-radius:999px;background:#EFE6DC;color:#68594D;
+      padding:2px 8px;border-radius:999px;background:#F3E8D2;color:#685233;
       font-size:10.5px;font-weight:800;white-space:nowrap;
     }
-    .guisados-desplegar-badge.con-seleccion{background:var(--acento);color:#fff}
-    .guisados-desplegar-flecha{font-size:13px;line-height:1;transition:transform var(--transicion);color:var(--acento)}
+    .guisados-desplegar-badge.con-seleccion{background:var(--acento);color:var(--texto)}
+    .guisados-desplegar-flecha{font-size:13px;line-height:1;transition:transform var(--transicion);color:var(--acento-oscuro)}
     .guisados-desplegar-btn[aria-expanded="true"] .guisados-desplegar-flecha{transform:rotate(180deg)}
 
     .guisados-lista-panel{
-      display:grid;gap:8px;padding:10px;border:1px solid #E5D8C8;border-radius:13px;
-      background:#FAF6F0;animation:entrada .2s ease both;
+      display:grid;gap:8px;padding:10px;border:1px solid var(--linea);border-radius:13px;
+      background:var(--fondo);animation:entrada .2s ease both;
     }
     .guisados-lista-ayuda{
       margin:0;padding:2px 4px 4px;color:var(--texto-suave);font-size:11px;line-height:1.4;
-      border-bottom:1px dashed #E4D7C7;
+      border-bottom:1px dashed var(--linea);
     }
     .guisados-lista-items{
       display:grid;gap:6px;max-height:240px;overflow-y:auto;padding-right:3px;
-      scrollbar-width:thin;scrollbar-color:#CBB8A6 transparent;
+      scrollbar-width:thin;scrollbar-color:#D8C49E transparent;
     }
     .guisado-fila{
       display:flex;align-items:center;justify-content:space-between;gap:8px;
-      padding:6px 10px;border:1px solid #E6D9C8;border-radius:10px;background:#FFF;
+      padding:6px 10px;border:1px solid var(--linea);border-radius:10px;background:#FFF;
     }
     .guisado-fila.activo{
-      border-color:var(--acento);background:#FDF6F0;
+      border-color:var(--acento);background:var(--acento-suave);
       box-shadow:inset 3px 0 0 var(--acento);
     }
     .guisado-fila-nombre{font-size:12.5px;font-weight:600;color:var(--texto)}
-    .guisado-fila.activo .guisado-fila-nombre{font-weight:800;color:var(--acento-oscuro)}
+    .guisado-fila.activo .guisado-fila-nombre{font-weight:800;color:#7C3E04}
     .guisado-fila-controles{display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
     .guisado-ctrl-btn{
-      width:32px;height:32px;border-radius:9px;border:1px solid #DED0C1;background:#FFF;
+      width:32px;height:32px;border-radius:9px;border:1.5px solid var(--linea);background:#FFF;
       color:var(--texto);font-size:17px;font-weight:800;line-height:1;
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
     }
-    .guisado-ctrl-btn.mas{border-color:var(--acento);background:var(--acento);color:#FFF}
-    .guisado-ctrl-btn.menos{color:var(--acento)}
+    .guisado-ctrl-btn.mas{border-color:var(--acento);background:var(--acento-vivo);color:var(--texto)}
+    .guisado-ctrl-btn.menos{color:var(--acento-oscuro);border-color:var(--dorado-borde)}
     .guisado-ctrl-btn:disabled{opacity:.32;cursor:default}
     .guisado-ctrl-cant{min-width:20px;text-align:center;font-size:13px;font-weight:800;color:var(--texto)}
 
     .guisados-resumen-chips{display:flex;flex-wrap:wrap;gap:5px;padding-top:4px}
     .guisado-chip{
       display:inline-flex;align-items:center;gap:4px;padding:3px 9px;
-      border-radius:999px;background:var(--acento-suave);border:1px solid rgba(166,79,49,.28);
-      color:var(--acento-oscuro);font-size:11px;font-weight:800;line-height:1.2;
+      border-radius:999px;background:var(--acento-suave);border:1px solid var(--dorado-borde);
+      color:#7C3E04;font-size:11px;font-weight:800;line-height:1.2;
     }
 
     /* Pie de tarjeta idéntico al sistema Limoncello */
@@ -343,8 +378,8 @@
     }
     .platillo-precio{
       font-family:var(--font-display);font-size:23px;font-weight:800;
-      color:var(--acento-oscuro);background:var(--dorado-suave);
-      padding:4px 12px;border-radius:10px;border:1.5px solid var(--dorado-borde);
+      color:#7C3E04;background:var(--dorado-suave);
+      padding:4px 13px;border-radius:10px;border:1.5px solid var(--dorado-borde);
       white-space:nowrap;
     }
     .platillo-precio.por-definir{
@@ -356,12 +391,12 @@
     .stepper{display:flex;align-items:center;gap:8px}
     .stepper button{
       width:40px;height:40px;border:1.5px solid var(--acento);border-radius:11px;
-      background:#fff;color:var(--acento);font-size:20px;font-weight:800;
+      background:#fff;color:var(--acento-oscuro);font-size:20px;font-weight:800;
       display:inline-flex;align-items:center;justify-content:center;
       transition:all .15s;
     }
     .stepper button:not(:disabled):hover{
-      background:var(--acento);color:#fff;
+      background:var(--acento-vivo);color:var(--texto);border-color:var(--acento);
     }
     .stepper button:disabled{
       opacity:.35;cursor:default;border-color:var(--linea);color:var(--texto-suave);
@@ -376,65 +411,73 @@
       display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;
       background:var(--whatsapp);box-shadow:0 12px 26px rgba(0,0,0,.20);cursor:pointer;transition:transform var(--transicion);
     }
-    .whatsapp-flotante:hover{transform:translateY(-2px) scale(1.02)}
+    .whatsapp-flotante:hover{transform:translateY(-2px) scale(1.03)}
     .whatsapp-flotante svg{width:27px;height:27px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
     .boton-volver-menu{
       position:fixed;left:18px;bottom:22px;z-index:480;min-height:45px;padding:11px 16px;
-      display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(255,255,255,.34);
-      border-radius:999px;background:rgba(36,31,26,.65);color:#fff;font-size:12px;font-weight:800;letter-spacing:.2px;
-      box-shadow:0 9px 25px rgba(0,0,0,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      display:flex;align-items:center;justify-content:center;gap:7px;border:1.5px solid var(--dorado-borde);
+      border-radius:999px;background:rgba(31,26,20,.78);color:var(--dorado-suave);font-size:12px;font-weight:800;letter-spacing:.2px;
+      box-shadow:0 9px 25px rgba(0,0,0,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
       opacity:0;visibility:hidden;pointer-events:none;transform:translateY(9px);
       transition:opacity var(--transicion),transform var(--transicion),visibility var(--transicion),background var(--transicion);cursor:pointer;
     }
     .boton-volver-menu.visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
-    .boton-volver-menu:hover{background:rgba(36,31,26,.85)}
+    .boton-volver-menu:hover{background:rgba(31,26,20,.94)}
 
     .nav-movil{
       display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:400;min-height:62px;padding:6px;
-      grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border:1.5px solid rgba(222,210,196,.95);border-radius:20px;
-      background:rgba(255,253,249,.95);box-shadow:0 16px 38px rgba(38,28,20,.18);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
+      grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border:1.5px solid var(--linea);border-radius:20px;
+      background:rgba(255,255,255,.95);box-shadow:0 16px 38px rgba(64,42,12,.16);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
     }
     .nav-movil button{
       position:relative;height:52px;width:100%;padding:6px 4px;
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
       border:0;border-radius:14px;background:transparent;color:var(--texto-suave);font-size:10px;font-weight:800;cursor:pointer;
     }
-    .nav-movil button.activo{background:var(--acento-oscuro);color:#fff}
+    .nav-movil button.activo{
+      background:linear-gradient(135deg,var(--acento-vivo),var(--acento));
+      color:var(--texto);
+    }
     .nav-movil .nav-icono{display:block;font-size:18px;line-height:1}
 
     .toast{
-      position:fixed;left:50%;bottom:86px;z-index:13000;width:min(calc(100% - 32px),430px);padding:12px 15px;
-      transform:translate(-50%,14px);opacity:0;pointer-events:none;border-radius:13px;background:#27221E;color:#fff;
-      font-size:12.5px;font-weight:700;line-height:1.5;text-align:center;transition:opacity .2s ease,transform .2s ease;box-shadow:0 12px 28px rgba(0,0,0,.25);
+      position:fixed;left:50%;bottom:86px;z-index:13000;width:min(calc(100% - 32px),430px);padding:12px 16px;
+      transform:translate(-50%,14px);opacity:0;pointer-events:none;border-radius:13px;background:var(--texto);color:var(--dorado-suave);
+      border:1px solid var(--acento);font-size:12.5px;font-weight:700;line-height:1.5;text-align:center;
+      transition:opacity .2s ease,transform .2s ease;box-shadow:0 12px 28px rgba(0,0,0,.25);
     }
     .toast.visible{opacity:1;transform:translate(-50%,0)}
-    footer{padding:24px 15px 88px;text-align:center;color:#8A7E74;font-size:12px;font-weight:700;line-height:1.7}
+    footer{padding:26px 15px 88px;text-align:center;color:var(--texto-suave);font-size:12.5px;font-weight:700;line-height:1.7}
 
     /* MODAL DE PEDIDOS Y CARRITO */
     .icono-motoneta{width:26px;height:20px;display:block}
-    .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(25,17,12,.62);display:flex;align-items:center;justify-content:center;padding:16px}
-    .pedido-panel{width:min(620px,100%);max-height:90vh;max-height:90dvh;overflow:auto;overscroll-behavior:contain;background:var(--tarjeta);color:var(--texto);border-radius:22px;padding:24px;box-shadow:var(--sombra)}
+    .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(31,26,20,.65);display:flex;align-items:center;justify-content:center;padding:16px}
+    .pedido-panel{width:min(620px,100%);max-height:90vh;max-height:90dvh;overflow:auto;overscroll-behavior:contain;background:var(--tarjeta);color:var(--texto);border-radius:24px;padding:24px;box-shadow:var(--sombra)}
     .pedido-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .pedido-cabecera h2{margin:0;font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--acento-oscuro)}
-    .pedido-cerrar{min-width:44px;min-height:44px;border:1px solid var(--linea);border-radius:50%;background:transparent;font-size:25px;cursor:pointer;color:var(--texto)}
+    .pedido-cabecera h2{margin:0;font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--texto)}
+    .pedido-cerrar{min-width:44px;min-height:44px;border:1.5px solid var(--linea);border-radius:50%;background:transparent;font-size:25px;cursor:pointer;color:var(--texto)}
     .pedido-panel p{font-size:14px;line-height:1.5;color:var(--texto-suave)}
-    .pedido-panel input,.pedido-panel textarea{box-sizing:border-box;width:100%;min-height:44px;border:1px solid var(--linea);border-radius:10px;background:#fff;color:var(--texto);padding:10px;font-size:15px}
+    .pedido-panel input,.pedido-panel textarea{box-sizing:border-box;width:100%;min-height:44px;border:1.5px solid var(--linea);border-radius:10px;background:#fff;color:var(--texto);padding:10px;font-size:15px}
     .pedido-panel fieldset{min-width:0;margin:20px 0;padding:0;border:0}
     .pedido-panel legend{font-weight:800;color:var(--acento-oscuro);margin-bottom:10px}
     .pedido-campo{display:block;margin:12px 0;font-size:13.5px;font-weight:600}
     .pedido-campo input,.pedido-campo textarea{margin-top:6px;font-weight:400}
-    .pedido-enviar{width:100%;min-height:48px;border:0;border-radius:12px;padding:12px;background:var(--acento);color:#fff;font-weight:800;font-size:14px;cursor:pointer}
-    .pedido-enviar:disabled{opacity:.6;cursor:not-allowed}
-    #pedidoAviso{padding:10px;border-radius:10px;background:#F0E8DE}
+    .pedido-enviar{
+      width:100%;min-height:48px;border:0;border-radius:12px;padding:12px;
+      background:linear-gradient(135deg,var(--acento-vivo),var(--acento));color:var(--texto);
+      font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 6px 16px rgba(232,139,26,.24);
+    }
+    .pedido-enviar:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+    #pedidoAviso{padding:10px;border-radius:10px;background:var(--acento-suave)}
 
-    .contador-pedido{background:var(--acento);color:white;border-radius:99px;padding:2px 7px;font-size:10.5px;font-weight:800;line-height:1.2}
+    .contador-pedido{background:var(--texto);color:var(--acento-vivo);border-radius:99px;padding:2px 7px;font-size:10.5px;font-weight:800;line-height:1.2}
     .nav-movil .contador-pedido{
       position:absolute;top:5px;right:calc(50% - 28px);
     }
     .control-carrito{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;margin-top:8px;font-size:13px;font-weight:700}
     .cantidad-control{display:flex;align-items:center;gap:10px;flex-shrink:0}
-    .cantidad-control button{width:40px;height:40px;border:1.5px solid var(--acento);border-radius:11px;background:#fff;color:var(--acento);font-size:20px;font-weight:800;cursor:pointer}
+    .cantidad-control button{width:40px;height:40px;border:1.5px solid var(--acento);border-radius:11px;background:#fff;color:var(--acento-oscuro);font-size:20px;font-weight:800;cursor:pointer}
     .cantidad-control button:disabled{opacity:.35;cursor:default;border-color:var(--linea);color:var(--texto-suave)}
     .cantidad-control output{min-width:20px;text-align:center;font-weight:800;font-size:15px}
     .pedido-resumen-fila{padding:12px 0;border-bottom:1px solid var(--linea)}
@@ -446,7 +489,7 @@
     .pedido-secundario{width:100%;min-height:46px;border:1.5px solid var(--acento);background:transparent;color:var(--acento-oscuro);border-radius:12px;margin-top:10px;font-weight:800;cursor:pointer}
     .pedido-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
     .pedido-campo-ancho{grid-column:1/-1}
-    .pedido-panel select{font-size:15px;padding:11px;width:100%;border:1px solid var(--linea);border-radius:10px;margin-top:6px;background:#fff;color:var(--texto)}
+    .pedido-panel select{font-size:15px;padding:11px;width:100%;border:1.5px solid var(--linea);border-radius:10px;margin-top:6px;background:#fff;color:var(--texto)}
     .calculadora-envio{padding:14px;border:1px solid var(--linea);border-radius:14px;margin-top:15px}
     #mapaEntrega{height:220px;border-radius:12px;margin:10px 0;background:#eee7db}
     .calculadora-envio small{display:block;margin-top:8px;line-height:1.5}
@@ -455,7 +498,7 @@
     /* MODAL FOTO AMPLIADA */
     .foto-ampliada-overlay{
       position:fixed;inset:0;z-index:12000;display:flex;align-items:center;justify-content:center;
-      padding:54px 18px 26px;background:rgba(10,9,8,.91);
+      padding:54px 18px 26px;background:rgba(15,12,8,.92);
     }
     .foto-ampliada-overlay img{display:block;max-width:96vw;max-height:calc(100dvh - 95px);width:auto;height:auto;object-fit:contain;border-radius:14px}
     .foto-ampliada-cerrar{
@@ -466,13 +509,13 @@
     @media(max-width:1100px){.lista{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:1000px){.inicio-grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}}
     @media(max-width:720px){
-      .hero{min-height:420px}
-      .hero-inner{padding:48px 18px 38px}
-      .hero h1{font-size:clamp(46px,14vw,74px)}
+      .hero{min-height:400px}
+      .hero-inner{padding:48px 18px 36px}
+      .hero h1{font-size:clamp(44px,13vw,70px)}
       .hero-kicker{left:15px;top:15px;font-size:9px;letter-spacing:.2px;max-width:63%}
       .boton-idioma{right:14px;top:15px;font-size:11px;min-height:35px;padding:7px 11px}
       .nav-principal-wrap{display:none}
-      .contenedor{padding:24px 14px 118px}
+      .contenedor{padding:22px 14px 118px}
       .intro{display:block}
       .buscador-menu{width:100%}
       .nav-movil{display:grid}
@@ -501,7 +544,7 @@
   <div class="hero-inner">
     <div class="hero-kicker" data-i18n="kicker">MENÚ DIGITAL · COMEDOR LUCY</div>
     <button type="button" class="boton-idioma" id="botonIdioma" aria-label="Switch to English" aria-pressed="false">English · EN</button>
-    <h1 id="heroNombre">Restaurante</h1>
+    <h1 id="heroNombre">Comedor Lucy</h1>
     <p class="hero-subtitulo" id="heroSubtitulo"></p>
   </div>
 </header>
@@ -509,7 +552,7 @@
 <!-- NAVEGACIÓN DESKTOP -->
 <div class="nav-principal-wrap">
   <nav class="nav-principal">
-    <div class="nav-marca" id="navMarca">Restaurante</div>
+    <div class="nav-marca" id="navMarca">Comedor Lucy</div>
     <div class="nav-acciones">
       <button type="button" id="navInicio" data-i18n="navVisitanos">VISÍTANOS</button>
       <button type="button" id="navMenu" data-i18n="navMenu" class="activo">MENÚ</button>
@@ -528,7 +571,7 @@
     <div class="inicio-grid">
       <article class="panel">
         <div class="historia-imagen">
-          <div class="historia-fallback" id="historiaFallback">Fotografía del restaurante</div>
+          <div class="historia-fallback" id="historiaFallback">Comedor Lucy</div>
           <img id="imagenRestaurante" alt="Fotografía del restaurante">
         </div>
         <div class="historia-contenido">
@@ -585,7 +628,7 @@
     </section>
 
     <div class="buscador-menu-wrap">
-      <input type="search" id="inputBuscador" class="buscador-menu" enterkeyhint="search" placeholder="Buscar platillos..." data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
+      <input type="search" id="inputBuscador" class="buscador-menu" enterkeyhint="search" placeholder="Buscar" data-i18n-placeholder="searchPlaceholder" aria-label="Buscar platillos">
     </div>
 
     <nav class="categorias" id="categorias" aria-label="Categorías del menú"></nav>
@@ -703,23 +746,23 @@
 <script>
   /* ===================================================== */
   /*             ★★★ PLANTILLA MAESTRA V2 ★★★              */
-  /*    PARA OTRO RESTAURANTE EDITA SOLO ESTA SECCIÓN.     */
   /* ===================================================== */
 
   const CONFIG = {
     restaurante: {
       nombre: "Comedor Lucy",
-      subtitulo: "Sabores para compartir. Explora nuestro menú y elige tus favoritos.",
-      subtituloEn: "Flavors to share. Explore our menu and choose your favorites.",
+      subtitulo: "Sabores caseros para compartir. Explora nuestro menú y elige tus favoritos.",
+      subtituloEn: "Homemade flavors to share. Explore our menu and choose your favorites.",
       heroImagen: "images/Restaurante/portada.jpg",
       imagenRestaurante: "images/Restaurante/portada.jpg",
+      rawGitHubBase: "https://raw.githubusercontent.com/blenderingforconservation-maker/comedor_lucy_slp/main/",
       tituloHistoria: "Bienvenidos a Comedor Lucy",
       tituloHistoriaEn: "Welcome to Comedor Lucy",
-      historia: ".",
-      historiaEn: ".",
+      historia: "Tradición, sazón de hogar y porciones generosas recién preparadas en el corazón del Mercado Hidalgo.",
+      historiaEn: "Tradition, home-style seasoning and generous freshly prepared portions in the heart of Mercado Hidalgo.",
       contactoTexto: "Visítanos o realiza tu pedido por WhatsApp.",
       contactoTextoEn: "Visit us or place your order via WhatsApp.",
-      ubicacionTexto: "José María Morelos y Pavón 6, Mercado Hidalgo, Centro Historico, S.L.P.",
+      ubicacionTexto: "José María Morelos y Pavón 6, Mercado Hidalgo, Centro Histórico, S.L.P.",
       ubicacionTextoEn: "José María Morelos y Pavón 6, Mercado Hidalgo, Historic Center, S.L.P.",
       horario: "Lun–Sáb · 8:00–18:00 · Dom · 8:00–17:00",
       mapsUrl: "https://maps.app.goo.gl/b5eKnTrMZ1TXsTLu8",
@@ -738,8 +781,23 @@
       footer: "Comedor Lucy · Menú digital 2026",
       footerEn: "Comedor Lucy · Digital menu 2026",
       colores: {
-        fondo: "#F5F0E8", tarjeta: "#FFFDF9", texto: "#241F1A",
-        acento: "#A64F31", acentoOscuro: "#6C2F1C"
+        fondo: "#FAF6EE",
+        tarjeta: "#FFFFFF",
+        texto: "#1F1A14",
+        acento: "#E88B1A",
+        acentoOscuro: "#C2650A"
+      }
+    },
+
+    /* ACOMPAÑAMIENTOS AUTOMÁTICOS POR CATEGORÍA */
+    acompanamientosPorCategoria: {
+      "Desayunos de campeón 🏆": {
+        es: "Acompañado de frijoles, crema, queso, bolillo o tortilla y agua de fruta natural del día o café.",
+        en: "Served with beans, cream, cheese, bread roll or tortillas, and natural fruit water of the day or coffee."
+      },
+      "Panza llena corazón contento 🥰": {
+        es: "Acompañado de arroz, frijoles, consomé y agua de frutas natural del día.",
+        en: "Served with rice, beans, consommé, and natural fruit water of the day."
       }
     },
 
@@ -792,7 +850,7 @@
         "discover": "DESCUBRE",
         "menuTitle": "Nuestro menú",
         "menuIntro": "Explora nuestros platillos con fotografías, elige tus favoritos y prepara tu pedido.",
-        "searchPlaceholder": "Buscar platillos por nombre o descripción...",
+        "searchPlaceholder": "Buscar",
         "ourStory": "NUESTRA HISTORIA",
         "visitUs": "VISÍTANOS",
         "nextTable": "Tu próxima mesa empieza aquí",
@@ -829,6 +887,7 @@
         "alertSelectGuisado": "Por favor selecciona tu guisado antes de añadir al pedido.",
         "weekendOnlyBanner": "🔥 En esta categoría solo hay servicio los fines de semana.",
         "weekendBadge": "Solo fines de semana",
+        "includesTitle": "✨ Tu platillo incluye",
         "addedToast": "Agregado al pedido",
         "backToMenu": "↑ Volver al menú",
         "remove": "Quitar",
@@ -924,7 +983,7 @@
         "discover": "DISCOVER",
         "menuTitle": "Our menu",
         "menuIntro": "Explore our dishes with photos, choose your favorites and prepare your order.",
-        "searchPlaceholder": "Search dishes by name or description...",
+        "searchPlaceholder": "Search",
         "ourStory": "OUR STORY",
         "visitUs": "VISIT US",
         "nextTable": "Your next table starts here",
@@ -961,6 +1020,7 @@
         "alertSelectGuisado": "Please select a filling before adding to your order.",
         "weekendOnlyBanner": "🔥 Dishes in this category are available on weekends only.",
         "weekendBadge": "Weekends only",
+        "includesTitle": "✨ Your dish includes",
         "addedToast": "Added to order",
         "backToMenu": "↑ Back to menu",
         "remove": "Remove",
@@ -1217,8 +1277,8 @@
         "nombre": "Lechuza con barbacoa",
         "nombreEn": "Lechuza with barbacoa",
         "precio": "$90",
-        "descripcion": "",
-        "descripcionEn": "",
+        "descripcion": "Tortilla de harina rellena de queso fundido y jugosa barbacoa.",
+        "descripcionEn": "Flour tortilla stuffed with melted cheese and juicy barbacoa.",
         "imagen": "images/Menu/lechuza_barbacoa.jpg",
         "badges": []
       },
@@ -1242,7 +1302,7 @@
         "nombreEn": "Gringa with barbacoa",
         "precio": "$65",
         "descripcion": "Par de tortillas de harina empalmadas y rellenas de queso y barbacoa.",
-        "descripcionEn": "",
+        "descripcionEn": "Pair of stacked flour tortillas stuffed with cheese and barbacoa.",
         "imagen": "images/Menu/gringa_barbacoa.jpg",
         "badges": []
       },
@@ -1275,16 +1335,17 @@
         "badges": []
       },
 
-      /* CATEGORÍA: DESAYUNOS DE CAMPEÓN 🏆 */
+      /* CATEGORÍA: DESAYUNOS DE CAMPEÓN 🏆
+         (Todos incluyen el bloque: Acompañado de frijoles, crema, queso, bolillo o tortilla y agua de fruta natural del día o café) */
       {
         "id": "chilaquiles",
         "categoria": "Desayunos de campeón 🏆",
-        "badge": "INCLUYE CAFÉ",
+        "badge": "AL GUSTO",
         "nombre": "Chilaquiles con huevo",
         "nombreEn": "Chilaquiles with egg",
         "precio": "$95",
-        "descripcion": "Chilaquiles acompañados de huevo estrellado o revuelto, pollo o bisteck de puerco, incluye café y bolillo.",
-        "descripcionEn": "Chilaquiles served with fried or scrambled egg, chicken or pork steak; includes coffee and a bread roll.",
+        "descripcion": "Chilaquiles servidos con huevo estrellado, revuelto, pollo o bistec de puerco.",
+        "descripcionEn": "Chilaquiles served with fried or scrambled egg, chicken or pork steak.",
         "imagen": "images/Menu/chilaquiles.jpg",
         "opcionesSubmenu": [
           { "id": "huevo_estrellado", "nombre": "Con huevo estrellado", "nombreEn": "With fried egg" },
@@ -1297,55 +1358,55 @@
       {
         "id": "huevos_chorizo",
         "categoria": "Desayunos de campeón 🏆",
-        "badge": "DESAYUNO",
+        "badge": "RECIÉN HECHOS",
         "nombre": "Huevos con chorizo",
         "nombreEn": "Eggs with chorizo",
         "precio": "$95",
-        "descripcion": "Huevos revueltos con chorizo, acompañados de frijoles y queso, café, tortillas o bolillo.",
-        "descripcionEn": "Scrambled eggs with chorizo, served with beans and cheese; includes coffee and your choice of tortillas or a bread roll.",
+        "descripcion": "Huevos revueltos al momento con chorizo bien doradito.",
+        "descripcionEn": "Freshly scrambled eggs cooked with savory chorizo.",
         "imagen": "images/Menu/huevos_chorizo.jpg",
         "badges": []
       },
       {
         "id": "huevos_jamon",
         "categoria": "Desayunos de campeón 🏆",
-        "badge": "DESAYUNO",
+        "badge": "CLÁSICO",
         "nombre": "Huevos con jamón",
         "nombreEn": "Eggs with ham",
         "precio": "$95",
-        "descripcion": "Huevos revueltos con jamón de pavo, acompañado de frijoles y queso, incluye café, tortillas o bolillo.",
-        "descripcionEn": "Scrambled eggs with turkey ham, served with beans and cheese; includes coffee and tortillas or a bread roll.",
+        "descripcion": "Huevos revueltos con jamón de pavo.",
+        "descripcionEn": "Scrambled eggs with turkey ham.",
         "imagen": "images/Menu/huevos_jamon.jpg",
         "badges": []
       },
       {
         "id": "chilaquiles_campeon",
         "categoria": "Desayunos de campeón 🏆",
-        "badge": "COMPLETO",
+        "badge": "ESPECIALIDAD",
         "nombre": "Chilaquiles de Campeón",
         "nombreEn": "Champion Chilaquiles",
         "precio": "$145",
-        "descripcion": "Chilaquiles acompañados con huevos al gusto, frijoles, crema, queso, 1 tostada de chorizo o de guacamole, agua natural de frutas del día, café de olla y fruta picada.",
-        "descripcionEn": "",
+        "descripcion": "Chilaquiles con huevos al gusto, 1 tostada de chorizo o de guacamole y porción de fruta picada.",
+        "descripcionEn": "Chilaquiles with eggs to your liking, 1 chorizo or guacamole tostada, and chopped fresh fruit.",
         "imagen": "images/Menu/chilaquiles_campeon.jpg",
         "badges": []
       },
       {
         "id": "desayuno_campeon",
         "categoria": "Desayunos de campeón 🏆",
-        "badge": "A ELEGIR",
+        "badge": "10 OPCIONES",
         "nombre": "Desayuno de Campeón",
         "nombreEn": "Champion Breakfast",
         "precio": "$95",
-        "descripcion": "(Acompañado con frijoles, crema, queso, bolillo, o tortilla, agua del dia ó café).",
-        "descripcionEn": "(Served with beans, cream, cheese, bread roll or tortilla, water of the day or coffee).",
+        "descripcion": "Elige tu preparación favorita de chilaquiles o huevos al gusto preparados al momento.",
+        "descripcionEn": "Choose your favorite chilaquiles or eggs cooked to order.",
         "imagen": "images/Menu/desayuno_campeon.jpg",
         "opcionesSubmenu": [
           { "id": "chilaquiles_revuelto", "nombre": "Chilaquiles con huevo revuelto", "nombreEn": "Chilaquiles with scrambled egg" },
           { "id": "chilaquiles_estrellado", "nombre": "Chilaquiles con huevo estrellado", "nombreEn": "Chilaquiles with fried egg" },
           { "id": "chilaquiles_pollo", "nombre": "Chilaquiles con pollo", "nombreEn": "Chilaquiles with chicken" },
           { "id": "chilaquiles_bistec", "nombre": "Chilaquiles con bistec", "nombreEn": "Chilaquiles with steak" },
-          { "id": "huevos_jamon", "nombre": "Huevos con Jamon", "nombreEn": "Eggs with Ham" },
+          { "id": "huevos_jamon", "nombre": "Huevos con Jamón", "nombreEn": "Eggs with Ham" },
           { "id": "huevos_salchicha", "nombre": "Huevos con Salchicha", "nombreEn": "Eggs with Sausage" },
           { "id": "huevos_chorizo", "nombre": "Huevos con Chorizo", "nombreEn": "Eggs with Chorizo" },
           { "id": "huevos_mexicana", "nombre": "Huevos a la Mexicana", "nombreEn": "Mexican-style Eggs" },
@@ -1361,8 +1422,8 @@
         "nombre": "Sope reñido de Lucy",
         "nombreEn": "Lucy's special sope",
         "precio": "$120",
-        "descripcion": "Rojos VS verdes pero sabrosamente reconciliados en el plato.",
-        "descripcionEn": "",
+        "descripcion": "Rojos VS verdes, pero sabrosamente reconciliados en el plato.",
+        "descripcionEn": "Red salsa vs. green salsa, deliciously reconciled on your plate.",
         "imagen": "images/Menu/sope_renido_lucy.jpg",
         "badges": []
       },
@@ -1373,20 +1434,20 @@
         "nombre": "Chilaquiles del compadre",
         "nombreEn": "Compadre's Chilaquiles",
         "precio": "$130",
-        "descripcion": "Totopos doraditos bañados en salsa roja o verde con su buena porción de barbacoa jugosa, cebolla morada, cremita y queso fresco.",
-        "descripcionEn": "",
+        "descripcion": "Totopos doraditos bañados en salsa roja o verde con su buena porción de barbacoa jugosa y cebolla morada.",
+        "descripcionEn": "Crispy tortilla chips bathed in red or green salsa with a generous portion of juicy barbacoa and red onion.",
         "imagen": "images/Menu/chilaquiles_compadre.jpg",
         "badges": []
       },
       {
         "id": "apapachilaquiles",
         "categoria": "Desayunos de campeón 🏆",
-        "badge": "ESPECIALIDAD",
+        "badge": "DE LA CASA",
         "nombre": "Los ApapaChilaquiles",
         "nombreEn": "Los ApapaChilaquiles",
         "precio": "$130",
         "descripcion": "Te abrazan por dentro, como debe ser la comida de Lucy.",
-        "descripcionEn": "",
+        "descripcionEn": "Warm comfort food that hugs you from the inside, Lucy's way.",
         "imagen": "images/Menu/apapachilaquiles.jpg",
         "badges": []
       },
@@ -1398,7 +1459,7 @@
         "nombreEn": "La pecadora de Lucy",
         "precio": "$135",
         "descripcion": "Crujiente costra de queso llena de carne y un gustazo que no se puede negar.",
-        "descripcionEn": "",
+        "descripcionEn": "Crispy melted cheese crust loaded with savory meat.",
         "imagen": "images/Menu/pecadora_lucy.jpg",
         "badges": []
       },
@@ -1576,16 +1637,17 @@
         "badges": []
       },
 
-      /* CATEGORÍA: PANZA LLENA CORAZÓN CONTENTO 🥰 */
+      /* CATEGORÍA: PANZA LLENA CORAZÓN CONTENTO 🥰
+         (Todos incluyen el bloque: Acompañado de arroz, frijoles, consomé y agua de frutas natural del día) */
       {
         "id": "pollo_salsa",
         "categoria": "Panza llena corazón contento 🥰",
-        "badge": "CON CONSOMÉ Y AGUA",
+        "badge": "EN SALSA CASERA",
         "nombre": "Pollo en salsa",
         "nombreEn": "Chicken in salsa",
         "precio": "$90",
-        "descripcion": "Rico pollo bañado en salsa, acompañado de arroz, frijoles, incluye tortillas, consomé y agua de frutas.",
-        "descripcionEn": "Chicken in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.",
+        "descripcion": "Rico pollo tierno bañado en salsa de la casa, incluye tortillas.",
+        "descripcionEn": "Tender chicken bathed in house salsa; includes tortillas.",
         "imagen": "images/Menu/pollo_salsa.jpg",
         "badges": []
       },
@@ -1596,8 +1658,8 @@
         "nombre": "Mole de pollo",
         "nombreEn": "Chicken in mole sauce",
         "precio": "$110",
-        "descripcion": "Mole poblano dulce con pollo, acompañado de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
-        "descripcionEn": "Sweet Puebla-style mole with chicken, rice and beans; includes tortillas, consommé and fruit-flavored water.",
+        "descripcion": "Mole poblano dulce con pieza de pollo, incluye tortillas.",
+        "descripcionEn": "Sweet Puebla-style mole with chicken; includes tortillas.",
         "imagen": "images/Menu/mole_pollo.jpg",
         "badges": []
       },
@@ -1608,8 +1670,8 @@
         "nombre": "Costilla de puerco",
         "nombreEn": "Pork ribs in salsa",
         "precio": "$90",
-        "descripcion": "Trocitos de puerco bañados en salsa, acompañados de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
-        "descripcionEn": "Pieces of pork in salsa, served with rice and beans; includes tortillas, consommé and fruit-flavored water.",
+        "descripcion": "Trocitos de costilla de puerco bañados en salsa casera, incluye tortillas.",
+        "descripcionEn": "Pieces of pork rib bathed in homemade salsa; includes tortillas.",
         "imagen": "images/Menu/costilla_puerco.jpg",
         "badges": []
       },
@@ -1620,8 +1682,8 @@
         "nombre": "Mole de puerco",
         "nombreEn": "Pork in mole sauce",
         "precio": "$110",
-        "descripcion": "Mole poblano dulce con carne de puerco, acompañado de arroz y frijoles, incluye tortillas, consomé y agua de frutas.",
-        "descripcionEn": "",
+        "descripcion": "Mole poblano dulce con carne de puerco, incluye tortillas.",
+        "descripcionEn": "Sweet Puebla-style mole with pork; includes tortillas.",
         "imagen": "images/Menu/mole_puerco.jpg",
         "badges": []
       },
@@ -1632,8 +1694,8 @@
         "nombre": "Picadillo",
         "nombreEn": "Picadillo (ground beef hash)",
         "precio": "$110",
-        "descripcion": "Picadillo acompañado de arroz, frijoles, consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
+        "descripcion": "Guiso tradicional de picadillo casero preparado al día.",
+        "descripcionEn": "Traditional home-style ground beef hash.",
         "imagen": "images/Menu/picadillo.jpg",
         "badges": []
       },
@@ -1644,8 +1706,8 @@
         "nombre": "Chuleta ahumada o de res",
         "nombreEn": "Smoked pork chop or beef chop",
         "precio": "$210",
-        "descripcion": "Chuleta acompañada de arroz, frijoles, ensalada, nopales, cebollitas, 6 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua de frutas del día.",
-        "descripcionEn": "",
+        "descripcion": "Jugosa chuleta servida con ensalada, nopales, cebollitas, 6 pzs de enchiladas potosinas, tostadas de chorizo o guacamole y papas fritas.",
+        "descripcionEn": "Juicy chop served with salad, nopales, grilled onions, 6 Potosina enchiladas, chorizo or guacamole tostadas, and French fries.",
         "imagen": "images/Menu/chuleta.jpg",
         "badges": []
       },
@@ -1656,8 +1718,8 @@
         "nombre": "Placer culposo",
         "nombreEn": "Placer culposo (Guilty pleasure)",
         "precio": "$195",
-        "descripcion": "Chile relleno con rica costilla de puerco, arroz, frijoles, ensalada de pico de gallo y guacamole con 3 pzs de enchiladas potosinas.",
-        "descripcionEn": "",
+        "descripcion": "Chile relleno con rica costilla de puerco, ensalada de pico de gallo, guacamole y 3 pzs de enchiladas potosinas.",
+        "descripcionEn": "Stuffed poblano pepper with pork ribs, pico de gallo salad, guacamole, and 3 Potosina enchiladas.",
         "imagen": "images/Menu/placer_culposo.jpg",
         "badges": []
       },
@@ -1669,8 +1731,8 @@
         "badge": "A LA PLANCHA",
         "nombre": "Filete de pescado a la plancha",
         "nombreEn": "Grilled fish fillet",
-        "precio": "Por definir",
-        "descripcion": "130.",
+        "precio": "$130",
+        "descripcion": "",
         "descripcionEn": "",
         "imagen": "images/Menu/filete_pescado_plancha.jpg",
         "badges": []
@@ -1762,7 +1824,7 @@
         "nombre": "Tampiqueña sencilla",
         "nombreEn": "Classic Carne a la Tampiqueña",
         "precio": "$285",
-        "descripcion": "Porción para 2 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, acompañado de arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.",
+        "descripcion": "Porción para 2 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.",
         "descripcionEn": "",
         "imagen": "images/Menu/tampiquena_sencilla.jpg",
         "badges": []
@@ -1774,7 +1836,7 @@
         "nombre": "Tampiqueña especial",
         "nombreEn": "Special Carne a la Tampiqueña",
         "precio": "$390",
-        "descripcion": "Porción para 3 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, acompañado de arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.",
+        "descripcion": "Porción para 3 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.",
         "descripcionEn": "",
         "imagen": "images/Menu/tampiquena_especial.jpg",
         "badges": []
@@ -2070,6 +2132,12 @@
   const etiquetaCategoria = cat => idioma === 'en' ? (cat === 'Todos' ? t('all') : CONFIG.categoriasEn[cat] || cat) : cat;
   const precioVisible = precio => precioANumero(precio) === null ? t('pendingPrice') : precio;
 
+  function obtenerAcompanamientoCategoria(item){
+    const conf = CONFIG.acompanamientosPorCategoria?.[item.categoria];
+    if(!conf) return "";
+    return idioma === 'en' ? (conf.en || conf.es) : conf.es;
+  }
+
   let categoriaActual = "Todos";
   let terminoBusqueda = "";
   let toastTimer = null;
@@ -2126,10 +2194,22 @@
       if(fallback) fallback.style.display = "flex";
       return;
     }
-    img.src = ruta;
+    let intentoRaw = false;
     img.alt = alt;
-    img.addEventListener("load", () => { if(fallback) fallback.style.display = "none"; });
-    img.addEventListener("error", () => { img.style.display = "none"; if(fallback) fallback.style.display = "flex"; });
+    img.onload = () => {
+      img.style.display = "block";
+      if(fallback) fallback.style.display = "none";
+    };
+    img.onerror = () => {
+      if(!intentoRaw && restaurante.rawGitHubBase){
+        intentoRaw = true;
+        img.src = restaurante.rawGitHubBase + ruta.replace(/^\//, "");
+      }else{
+        img.style.display = "none";
+        if(fallback) fallback.style.display = "flex";
+      }
+    };
+    img.src = ruta;
   }
 
   cargarImagenSegura(heroImagen, null, restaurante.heroImagen, "Ambiente de " + restaurante.nombre);
@@ -2154,8 +2234,31 @@
     window.open(restaurante.mapsUrl, "_blank", "noopener,noreferrer");
   }
 
+  /* SOPORTE DE DESPLAZAMIENTO HORIZONTAL SUAVE EN CATEGORÍAS (TÁCTIL + ARRASTRE MOUSE) */
+  (function enableCategoryDragScroll(){
+    let isDown = false, startX = 0, scrollLeft = 0, dragged = false;
+    categoriasHTML.addEventListener("mousedown", e => {
+      isDown = true; dragged = false;
+      startX = e.pageX - categoriasHTML.offsetLeft;
+      scrollLeft = categoriasHTML.scrollLeft;
+    });
+    window.addEventListener("mouseup", () => { isDown = false; });
+    categoriasHTML.addEventListener("mousemove", e => {
+      if(!isDown) return;
+      const x = e.pageX - categoriasHTML.offsetLeft;
+      const walk = x - startX;
+      if(Math.abs(walk) > 6){
+        dragged = true;
+        categoriasHTML.scrollLeft = scrollLeft - walk;
+      }
+    });
+    categoriasHTML.addEventListener("click", e => {
+      if(dragged){ e.stopPropagation(); dragged = false; }
+    }, true);
+  })();
+
   /* ===================================================== */
-  /* CARRITO, GUISADOS, TAMAÑOS Y SISTEMA LIMONCELLO       */
+  /* CARRITO, GUISADOS, TAMAÑOS Y SISTEMA DE TARJETAS      */
   /* ===================================================== */
 
   const carrito = new Map();
@@ -2312,7 +2415,6 @@
     if(btnMenos) btnMenos.disabled = cantidadTotal === 0;
     if(btnMas) btnMas.disabled = cantidadTotal >= 99;
 
-    // Si tiene chips de resumen de guisados/opciones o panel de gorditas
     const chipsContenedor = tarjeta.querySelector('.guisados-resumen-chips');
     if(chipsContenedor){
       chipsContenedor.replaceChildren();
@@ -2709,7 +2811,7 @@
       distanciaRutaKm = ruta.distance / 1000;
       if(mapa){
         if(lineaRuta) mapa.removeLayer(lineaRuta);
-        lineaRuta = L.geoJSON(ruta.geometry, { style: { color: "#b53a26", weight: 5 } }).addTo(mapa);
+        lineaRuta = L.geoJSON(ruta.geometry, { style: { color: "#E88B1A", weight: 5 } }).addTo(mapa);
         mapa.fitBounds(lineaRuta.getBounds().extend(L.latLng(origen.lat, origen.lng)), { padding: [22, 22] });
       }
       pedidoUbicacion.value = "https://www.google.com/maps?q=" + destino.lat.toFixed(6) + "," + destino.lng.toFixed(6);
@@ -2864,7 +2966,8 @@
       filtrados = filtrados.filter(item => {
         const nombre = textoProducto(item, 'nombre').toLowerCase();
         const desc = (textoProducto(item, 'descripcion') || '').toLowerCase();
-        return nombre.includes(q) || desc.includes(q);
+        const acomp = obtenerAcompanamientoCategoria(item).toLowerCase();
+        return nombre.includes(q) || desc.includes(q) || acomp.includes(q);
       });
     }
     return filtrados;
@@ -2882,7 +2985,8 @@
       }
       boton.addEventListener("click", () => {
         categoriaActual = categoria;
-        crearCategorias();
+        categoriasHTML.querySelectorAll(".categoria").forEach(b => b.classList.toggle("activa", b === boton));
+        boton.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         crearLista();
       });
       categoriasHTML.appendChild(boton);
@@ -2971,16 +3075,24 @@
     if(item.imagen){
       const imagen = document.createElement("img");
       imagen.alt = textoProducto(item, 'nombre');
-      let proboFallback = false;
+      const candidatos = [item.imagen];
+      if(item.imagenFallback) candidatos.push(item.imagenFallback);
+      if(restaurante.rawGitHubBase){
+        candidatos.push(restaurante.rawGitHubBase + item.imagen.replace(/^\//, ""));
+        if(item.imagenFallback){
+          candidatos.push(restaurante.rawGitHubBase + item.imagenFallback.replace(/^\//, ""));
+        }
+      }
+      let idxCandidato = 0;
       imagen.onload = () => {
         fallback.hidden = true;
         visual.disabled = false;
         visual.classList.add("has-img");
       };
       imagen.onerror = () => {
-        if(!proboFallback && item.imagenFallback){
-          proboFallback = true;
-          imagen.src = item.imagenFallback;
+        idxCandidato++;
+        if(idxCandidato < candidatos.length){
+          imagen.src = candidatos[idxCandidato];
         }else{
           imagen.remove();
           fallback.hidden = false;
@@ -2988,12 +3100,12 @@
           visual.classList.remove("has-img");
         }
       };
-      imagen.src = item.imagen;
+      imagen.src = candidatos[0];
       visual.appendChild(imagen);
       visual.addEventListener('click', () => ampliarFoto(imagen, textoProducto(item, 'nombre')));
     }
 
-    // 2. Contenido de la tarjeta estilo Limoncello
+    // 2. Contenido de la tarjeta
     const info = document.createElement("div");
     info.className = "platillo-info";
 
@@ -3019,6 +3131,19 @@
       desc.className = "platillo-descripcion";
       desc.textContent = descTexto;
       info.appendChild(desc);
+    }
+
+    // Bloque de acompañamiento automático para "Desayunos de campeón 🏆" y "Panza llena corazón contento 🥰"
+    const textoAcompanamiento = obtenerAcompanamientoCategoria(item);
+    if(textoAcompanamiento){
+      const boxAcomp = document.createElement("div");
+      boxAcomp.className = "platillo-acompanamiento";
+      const tituloAcomp = document.createElement("strong");
+      tituloAcomp.textContent = t('includesTitle');
+      const spanAcomp = document.createElement("span");
+      spanAcomp.textContent = textoAcompanamiento;
+      boxAcomp.append(tituloAcomp, spanAcomp);
+      info.appendChild(boxAcomp);
     }
 
     // 3. Selectores integrados en la tarjeta según el tipo de platillo
