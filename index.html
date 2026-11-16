@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#E88B1A">
-  <meta name="description" content="Comedor Lucy: menú digital con fotografías, carrito y pedidos por WhatsApp.">
+  <meta name="description" content="Comedor Lucy: menú digital con fotografías, carrito, taquizas para eventos y pedidos por WhatsApp.">
   <title>Comedor Lucy | Menú Digital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,9 +106,9 @@
       min-width:0;font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--acento-oscuro);
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-    .nav-acciones{display:flex;gap:8px}
+    .nav-acciones{display:flex;gap:8px;flex-wrap:wrap}
     .nav-principal button{
-      height:42px;min-width:122px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      height:42px;min-width:116px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
       border:1.5px solid transparent;border-radius:999px;background:transparent;
       color:var(--texto-suave);font-size:12.5px;font-weight:800;cursor:pointer;transition:all var(--transicion);
     }
@@ -152,6 +152,7 @@
     .boton-ancho:hover{transform:translateY(-1px);filter:brightness(1.03)}
     .boton-maps{background:var(--texto);color:#fff}
     .boton-pedido{background:linear-gradient(135deg,var(--acento-vivo),var(--acento));color:var(--texto);border:1.5px solid var(--acento)}
+    .boton-eventos-cta{background:var(--acento-suave);color:var(--acento-oscuro);border:1.5px solid var(--dorado-borde)}
     .redes-restaurante{padding-top:10px;border-top:1px solid var(--linea)}
     .redes-restaurante-titulo{margin:8px 0 11px;color:var(--texto-suave);font-size:11px;font-weight:800;letter-spacing:.9px}
     .redes-restaurante-botones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -162,6 +163,63 @@
     }
     .red-social:hover{border-color:var(--acento);background:var(--acento-suave);color:var(--acento-oscuro)}
     .red-social-icono{font-size:18px;font-weight:bold;line-height:1;color:var(--acento-oscuro)}
+
+    /* SECCIÓN EVENTOS Y TAQUIZAS */
+    .eventos-wrap{max-width:920px;margin:0 auto;display:grid;gap:22px}
+    .eventos-hero{
+      padding:30px;border:1.5px solid var(--linea);border-radius:var(--radio-xl);
+      background:linear-gradient(135deg,#FFFDF9,#FFF5DF);box-shadow:var(--sombra);
+    }
+    .eventos-hero h2{
+      margin:0;font-family:var(--font-display);font-weight:800;
+      font-size:clamp(30px,4.5vw,44px);line-height:1.1;color:var(--texto);
+    }
+    .eventos-hero .lead{
+      margin:12px 0 20px;color:var(--texto-suave);font-size:15.5px;line-height:1.7;max-width:680px;
+    }
+    .eventos-beneficios{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:24px;
+    }
+    .evento-pill{
+      padding:16px;border:1.5px solid var(--linea);border-radius:var(--radio-md);background:var(--tarjeta);
+      box-shadow:var(--sombra-suave);
+    }
+    .evento-pill strong{display:block;font-size:13.5px;font-weight:800;color:var(--acento-oscuro);margin-bottom:4px}
+    .evento-pill span{font-size:13px;line-height:1.5;color:var(--texto-suave);display:block}
+    .boton-cotizar-evento{
+      min-height:52px;padding:13px 24px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      border:1.5px solid var(--acento);border-radius:15px;
+      background:linear-gradient(135deg,var(--acento-vivo),var(--acento));color:var(--texto);
+      font-size:13.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;
+      box-shadow:0 8px 20px rgba(232,139,26,.24);transition:transform .15s,filter .15s;
+    }
+    .boton-cotizar-evento:hover{transform:translateY(-1px);filter:brightness(1.03)}
+
+    .evento-form-panel{
+      padding:28px 30px;border:1.5px solid var(--dorado-borde);border-radius:var(--radio-xl);
+      background:var(--tarjeta);box-shadow:var(--sombra);animation:entrada .25s ease both;
+    }
+    .evento-form-cabecera{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;
+      padding-bottom:12px;border-bottom:1px solid var(--linea);
+    }
+    .evento-form-cabecera h3{
+      margin:0;font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--texto);
+    }
+    .evento-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .evento-campo{display:block;font-size:13px;font-weight:700;color:var(--texto)}
+    .evento-campo.ancho{grid-column:1/-1}
+    .evento-campo input,.evento-campo select,.evento-campo textarea{
+      display:block;width:100%;margin-top:6px;padding:11px 12px;min-height:44px;
+      border:1.5px solid var(--linea);border-radius:11px;background:#fff;color:var(--texto);
+      font-size:14.5px;font-weight:500;
+    }
+    .evento-campo input:focus,.evento-campo select:focus,.evento-campo textarea:focus{
+      outline:none;border-color:var(--acento);box-shadow:0 0 0 3px rgba(232,139,26,.16);
+    }
+    .evento-form-acciones{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .evento-form-acciones .pedido-enviar{flex:1;min-width:220px}
+    .evento-form-acciones .pedido-secundario{flex:0 0 auto;width:auto;min-width:140px;margin-top:0;padding:0 18px}
 
     /* MENÚ, BUSCADOR Y BARRA DE CATEGORÍAS FIJA/DESLIZABLE */
     .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:18px}
@@ -204,9 +262,7 @@
       border:1.5px solid var(--dorado-borde);box-shadow:var(--sombra-suave);
     }
 
-    /* ============================================================
-       SISTEMA DE TARJETAS DE PLATILLOS ESTILO LIMONCELLO MODERNO
-       ============================================================ */
+    /* SISTEMA DE TARJETAS DE PLATILLOS */
     .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
     .platillo-tarjeta{
       min-width:0;border:1.5px solid var(--linea);border-radius:var(--radio-lg);
@@ -254,7 +310,6 @@
       box-shadow:0 4px 12px rgba(0,0,0,.22);border:1px solid var(--acento-vivo);
     }
 
-    /* Cuerpo de la tarjeta */
     .platillo-info{
       padding:18px 20px 14px;flex:1;display:flex;flex-direction:column;background:var(--tarjeta);
     }
@@ -278,7 +333,6 @@
       font-size:13.5px;line-height:1.55;color:var(--texto-suave);margin:0 0 10px;
     }
 
-    /* Bloque destacado de guarniciones incluidas (Psicología de valor percibido) */
     .platillo-acompanamiento{
       margin:2px 0 12px;padding:9px 12px;
       background:linear-gradient(135deg,#FFF9EB,#FFF2D1);
@@ -291,7 +345,6 @@
       font-size:10.5px;letter-spacing:.5px;display:block;margin-bottom:2px;
     }
 
-    /* Selectores desplegables dentro de la tarjeta */
     .variant-block{
       margin-top:auto;padding-top:6px;display:grid;gap:7px;
     }
@@ -312,7 +365,6 @@
       border-color:#D9381E;box-shadow:0 0 0 3px rgba(217,56,30,.2);
     }
 
-    /* Selector interactivo multiguisado (Gorditas) */
     .guisados-desplegar-btn{
       width:100%;min-height:43px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;
       gap:10px;border:1.5px solid var(--acento);border-radius:11px;background:#FFF;color:var(--texto);
@@ -371,7 +423,6 @@
       color:#7C3E04;font-size:11px;font-weight:800;line-height:1.2;
     }
 
-    /* Pie de tarjeta idéntico al sistema Limoncello */
     .card-footer{
       margin:0 20px 18px;padding-top:14px;border-top:1px dashed var(--linea);
       display:flex;justify-content:space-between;align-items:center;gap:12px;
@@ -406,6 +457,22 @@
     }
 
     /* BOTONES FLOTANTES Y NAVEGACIÓN MÓVIL */
+    .bolsa-flotante{
+      position:fixed;right:16px;bottom:164px;z-index:500;width:52px;height:52px;padding:0;
+      display:flex;align-items:center;justify-content:center;
+      border:2px solid #FFFDF9;border-radius:50%;
+      background:linear-gradient(135deg,var(--acento-vivo),var(--acento));
+      color:var(--texto);box-shadow:0 12px 26px rgba(64,42,12,.22);
+      cursor:pointer;transition:transform var(--transicion),filter var(--transicion);
+    }
+    .bolsa-flotante:hover{transform:translateY(-2px) scale(1.04);filter:brightness(1.03)}
+    .bolsa-flotante svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .bolsa-flotante .contador-pedido{
+      position:absolute;top:-5px;right:-4px;min-width:22px;height:22px;padding:0 6px;
+      display:inline-flex;align-items:center;justify-content:center;
+      border:2px solid #FFFDF9;
+    }
+
     .whatsapp-flotante{
       position:fixed;right:16px;bottom:100px;z-index:500;width:52px;height:52px;padding:0;
       display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;
@@ -431,15 +498,15 @@
       background:rgba(255,255,255,.95);box-shadow:0 16px 38px rgba(64,42,12,.16);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
     }
     .nav-movil button{
-      position:relative;height:52px;width:100%;padding:6px 4px;
+      position:relative;height:52px;width:100%;padding:6px 2px;
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-      border:0;border-radius:14px;background:transparent;color:var(--texto-suave);font-size:10px;font-weight:800;cursor:pointer;
+      border:0;border-radius:14px;background:transparent;color:var(--texto-suave);font-size:9.5px;font-weight:800;cursor:pointer;
     }
     .nav-movil button.activo{
       background:linear-gradient(135deg,var(--acento-vivo),var(--acento));
       color:var(--texto);
     }
-    .nav-movil .nav-icono{display:block;font-size:18px;line-height:1}
+    .nav-movil .nav-icono{display:block;font-size:17px;line-height:1}
 
     .toast{
       position:fixed;left:50%;bottom:86px;z-index:13000;width:min(calc(100% - 32px),430px);padding:12px 16px;
@@ -451,7 +518,7 @@
     footer{padding:26px 15px 88px;text-align:center;color:var(--texto-suave);font-size:12.5px;font-weight:700;line-height:1.7}
 
     /* MODAL DE PEDIDOS Y CARRITO */
-    .icono-motoneta{width:26px;height:20px;display:block}
+    .icono-motoneta{width:24px;height:18px;display:block}
     .pedido-overlay{position:fixed;inset:0;z-index:11000;background:rgba(31,26,20,.65);display:flex;align-items:center;justify-content:center;padding:16px}
     .pedido-panel{width:min(620px,100%);max-height:90vh;max-height:90dvh;overflow:auto;overscroll-behavior:contain;background:var(--tarjeta);color:var(--texto);border-radius:24px;padding:24px;box-shadow:var(--sombra)}
     .pedido-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -473,7 +540,7 @@
 
     .contador-pedido{background:var(--texto);color:var(--acento-vivo);border-radius:99px;padding:2px 7px;font-size:10.5px;font-weight:800;line-height:1.2}
     .nav-movil .contador-pedido{
-      position:absolute;top:5px;right:calc(50% - 28px);
+      position:absolute;top:5px;right:calc(50% - 24px);
     }
     .control-carrito{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;margin-top:8px;font-size:13px;font-weight:700}
     .cantidad-control{display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -519,9 +586,11 @@
       .intro{display:block}
       .buscador-menu{width:100%}
       .nav-movil{display:grid}
+      .bolsa-flotante{right:14px;bottom:144px;width:48px;height:48px}
       .whatsapp-flotante{right:14px;bottom:85px;width:48px;height:48px}
       .boton-volver-menu{left:14px;bottom:88px;min-height:43px;padding:10px 14px;font-size:11px}
-      .pedido-form-grid{grid-template-columns:1fr}
+      .pedido-form-grid,.evento-form-grid,.eventos-beneficios{grid-template-columns:1fr}
+      .eventos-hero,.evento-form-panel{padding:22px 18px}
       footer{padding-bottom:105px}
     }
     @media(max-width:600px){.lista{grid-template-columns:1fr}}
@@ -554,12 +623,9 @@
   <nav class="nav-principal">
     <div class="nav-marca" id="navMarca">Comedor Lucy</div>
     <div class="nav-acciones">
-      <button type="button" id="navInicio" data-i18n="navVisitanos">VISÍTANOS</button>
+      <button type="button" id="navInicio" data-i18n="navVisitanos">CONÓCENOS</button>
       <button type="button" id="navMenu" data-i18n="navMenu" class="activo">MENÚ</button>
-      <button type="button" id="navPedido">
-        <span data-i18n="navPedido">PEDIR</span>
-        <span id="contadorPedidoDesktop" class="contador-pedido" hidden>0</span>
-      </button>
+      <button type="button" id="navEventos" data-i18n="navEventos">EVENTOS</button>
     </div>
   </nav>
 </div>
@@ -602,6 +668,7 @@
         <div class="contacto-botones">
           <button type="button" class="boton-ancho boton-maps" id="botonMaps" data-i18n="maps">📍 VER EN GOOGLE MAPS</button>
           <button type="button" class="boton-ancho boton-pedido" id="botonPedidoInicio" data-i18n="takeout">PEDIR PARA LLEVAR</button>
+          <button type="button" class="boton-ancho boton-eventos-cta" id="botonEventosInicio" data-i18n="eventsCta">🌮 COTIZAR TAQUIZA PARA EVENTOS</button>
         </div>
 
         <section class="redes-restaurante" aria-label="Redes sociales de Comedor Lucy">
@@ -638,7 +705,119 @@
     </div>
   </section>
 
+  <!-- VISTA EVENTOS Y TAQUIZAS -->
+  <section class="vista" id="vistaEventos">
+    <div class="eventos-wrap">
+      <article class="eventos-hero">
+        <p class="section-kicker" data-i18n="eventsKicker">SERVICIO DE CATERING · COMEDOR LUCY</p>
+        <h2 data-i18n="eventsTitle">Taquizas para tus Eventos</h2>
+        <p class="lead" data-i18n="eventsIntro">Lleva el sazón casero de Comedor Lucy a tus reuniones, cumpleaños, bodas, posadas o eventos empresariales. Preparamos guisados tradicionales recién hechos para que tú solo disfrutes con tus invitados.</p>
+
+        <div class="eventos-beneficios">
+          <div class="evento-pill">
+            <strong data-i18n="eventFeat1Title">Guisados tradicionales</strong>
+            <span data-i18n="eventFeat1Desc">Elige entre nuestros guisados caseros más pedidos, preparados el mismo día.</span>
+          </div>
+          <div class="evento-pill">
+            <strong data-i18n="eventFeat2Title">Acompañamientos incluidos</strong>
+            <span data-i18n="eventFeat2Desc">Tortillas calientitas, arroz, frijoles y salsas de la casa listas para servir.</span>
+          </div>
+          <div class="evento-pill">
+            <strong data-i18n="eventFeat3Title">Cotización a tu medida</strong>
+            <span data-i18n="eventFeat3Desc">Adaptamos la cantidad de guisados y servicio según el número de invitados.</span>
+          </div>
+        </div>
+
+        <button type="button" id="btnDesplegarCotizacion" class="boton-cotizar-evento" aria-expanded="false" aria-controls="eventoFormPanel" data-i18n="eventsToggleBtn">
+          📋 SOLICITAR COTIZACIÓN DE TAQUIZA
+        </button>
+      </article>
+
+      <section id="eventoFormPanel" class="evento-form-panel" hidden>
+        <div class="evento-form-cabecera">
+          <h3 data-i18n="eventsFormTitle">Datos para tu cotización</h3>
+          <button type="button" id="cerrarEventoForm" class="pedido-cerrar" aria-label="Cerrar formulario">×</button>
+        </div>
+
+        <form id="eventoFormulario">
+          <div class="evento-form-grid">
+            <label class="evento-campo">
+              <span data-i18n="eventFieldName">Nombre completo *</span>
+              <input id="eventoNombre" name="eventoNombre" autocomplete="name" required maxlength="150">
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldPhone">Teléfono / WhatsApp *</span>
+              <input id="eventoTelefono" name="eventoTelefono" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25">
+            </label>
+            <label class="evento-campo ancho">
+              <span data-i18n="eventFieldLocation">Ubicación / Dirección del evento *</span>
+              <input id="eventoUbicacion" name="eventoUbicacion" required maxlength="250" data-i18n-placeholder="eventLocationPlaceholder" placeholder="Salón, colonia, calle o enlace de Maps">
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldDate">Fecha del evento *</span>
+              <input id="eventoFecha" name="eventoFecha" type="date" required>
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldTime">Hora aproximada</span>
+              <input id="eventoHora" name="eventoHora" type="time">
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldGuests">Número de personas *</span>
+              <input id="eventoPersonas" name="eventoPersonas" type="number" min="10" max="2000" required placeholder="Ej. 50" data-i18n-placeholder="eventGuestsPlaceholder">
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldType">Tipo de evento</span>
+              <select id="eventoTipo" name="eventoTipo">
+                <option value="Cumpleaños / Reunión familiar" data-i18n="eventTypeFamily">Cumpleaños / Reunión familiar</option>
+                <option value="Boda / XV años" data-i18n="eventTypeWedding">Boda / XV años</option>
+                <option value="Evento empresarial / Oficina" data-i18n="eventTypeCorporate">Evento empresarial / Oficina</option>
+                <option value="Posada / Otro evento" data-i18n="eventTypeOther">Posada / Otro evento</option>
+              </select>
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldStews">Cantidad de guisados</span>
+              <select id="eventoCantidadGuisados" name="eventoCantidadGuisados">
+                <option value="7 guisados" data-i18n="stews7">7 guisados</option>
+                <option value="8 guisados" data-i18n="stews8">8 guisados</option>
+                <option value="9 guisados" data-i18n="stews9">9 guisados</option>
+                <option value="10 guisados" data-i18n="stews10">10 guisados</option>
+                <option value="Más de 10 guisados" data-i18n="stewsMore">Más de 10 guisados</option>
+              </select>
+            </label>
+            <label class="evento-campo">
+              <span data-i18n="eventFieldService">Modalidad de servicio</span>
+              <select id="eventoModalidad" name="eventoModalidad">
+                <option value="Solo entrega de cazuelas listas" data-i18n="serviceDropoff">Solo entrega de cazuelas listas</option>
+                <option value="Servicio completo atendido en evento" data-i18n="serviceFull">Servicio completo atendido en evento</option>
+                <option value="Por definir / Asesoría" data-i18n="serviceTbd">Por definir / Quiero asesoría</option>
+              </select>
+            </label>
+            <label class="evento-campo ancho">
+              <span data-i18n="eventFieldNotes">Notas adicionales</span>
+              <textarea id="eventoNotas" name="eventoNotas" rows="3" maxlength="500" data-i18n-placeholder="eventNotesPlaceholder" placeholder="Escribe aquí cualquier detalle adicional para tu evento..."></textarea>
+            </label>
+          </div>
+
+          <div class="evento-form-acciones">
+            <button type="submit" class="pedido-enviar" data-i18n="eventSubmitWA">ENVIAR COTIZACIÓN POR WHATSAPP</button>
+            <button type="button" id="cancelarEventoForm" class="pedido-secundario" data-i18n="eventCancel">OCULTAR</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </section>
+
 </main>
+
+<!-- Bolsa de pedido flotante -->
+<button type="button" class="bolsa-flotante" id="bolsaFlotante" data-i18n-aria="orderTab" aria-label="Mi pedido" aria-haspopup="dialog" title="Mi pedido">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <path d="M16 10a4 4 0 0 1-8 0"></path>
+  </svg>
+  <span id="contadorPedidoFlotante" class="contador-pedido" hidden>0</span>
+</button>
 
 <!-- WhatsApp directo -->
 <button type="button" class="whatsapp-flotante" id="whatsappFlotante" data-i18n-aria="chatWAFloat" aria-label="Contactar a Comedor Lucy por WhatsApp" title="WhatsApp">
@@ -656,16 +835,15 @@
 <nav class="nav-movil" aria-label="Navegación móvil">
   <button type="button" id="movilInicio">
     <span class="nav-icono">⌂</span>
-    <span data-i18n="navVisitanos">VISÍTANOS</span>
+    <span data-i18n="navVisitanos">CONÓCENOS</span>
   </button>
   <button type="button" id="movilMenu" class="activo">
     <span class="nav-icono">☰</span>
     <span data-i18n="navMenu">MENÚ</span>
   </button>
-  <button type="button" id="movilMaps" aria-label="Pedidos a domicilio" data-i18n-aria="orderTab" aria-haspopup="dialog">
-    <svg class="icono-motoneta" viewBox="0 0 40 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="23" r="5"/><circle cx="32" cy="23" r="5"/><path d="M3 20c0-6 4-9 10-9h6v8h7l-4-14h-4m4 0h6m-5 3h5M9 23h15c0-5 3-9 8-9M7 10h10M5 8h11"/></svg>
-    <span data-i18n="navPedidos">PEDIDOS</span>
-    <span id="contadorPedido" class="contador-pedido" hidden>0</span>
+  <button type="button" id="movilEventos">
+    <span class="nav-icono">🌮</span>
+    <span data-i18n="navEventos">EVENTOS</span>
   </button>
 </nav>
 
@@ -745,7 +923,7 @@
 
 <script>
   /* ===================================================== */
-  /*             ★★★ PLANTILLA MAESTRA V2 ★★★              */
+  /*              ★★★ PLANTILLA MAESTRA V2 ★★★              */
   /* ===================================================== */
 
   const CONFIG = {
@@ -789,7 +967,6 @@
       }
     },
 
-    /* ACOMPAÑAMIENTOS AUTOMÁTICOS POR CATEGORÍA */
     acompanamientosPorCategoria: {
       "Desayunos de campeón 🏆": {
         es: "Acompañado de frijoles, crema, queso, bolillo o tortilla y agua de fruta natural del día o café.",
@@ -843,8 +1020,9 @@
     textos: {
       es: {
         "kicker": "MENÚ DIGITAL · COMEDOR LUCY",
-        "navVisitanos": "VISÍTANOS",
+        "navVisitanos": "CONÓCENOS",
         "navMenu": "MENÚ",
+        "navEventos": "EVENTOS",
         "navPedido": "PEDIR",
         "navPedidos": "PEDIDOS",
         "discover": "DESCUBRE",
@@ -858,7 +1036,48 @@
         "hours": "HORARIO",
         "maps": "📍 VER EN GOOGLE MAPS",
         "takeout": "PEDIR PARA LLEVAR",
+        "eventsCta": "🌮 COTIZAR TAQUIZA PARA EVENTOS",
         "followUs": "SÍGUENOS Y CONTÁCTANOS",
+        "eventsKicker": "SERVICIO DE CATERING · COMEDOR LUCY",
+        "eventsTitle": "Taquizas para tus Eventos",
+        "eventsIntro": "Lleva el sazón casero de Comedor Lucy a tus reuniones, cumpleaños, bodas, posadas o eventos empresariales. Preparamos guisados tradicionales recién hechos para que tú solo disfrutes con tus invitados.",
+        "eventFeat1Title": "Guisados tradicionales",
+        "eventFeat1Desc": "Elige entre nuestros guisados caseros más pedidos, preparados el mismo día.",
+        "eventFeat2Title": "Acompañamientos incluidos",
+        "eventFeat2Desc": "Tortillas calientitas, arroz, frijoles y salsas de la casa listas para servir.",
+        "eventFeat3Title": "Cotización a tu medida",
+        "eventFeat3Desc": "Adaptamos la cantidad de guisados y servicio según el número de invitados.",
+        "eventsToggleBtn": "📋 SOLICITAR COTIZACIÓN DE TAQUIZA",
+        "eventsToggleBtnClose": "✕ OCULTAR FORMULARIO",
+        "eventsFormTitle": "Datos para tu cotización",
+        "eventFieldName": "Nombre completo *",
+        "eventFieldPhone": "Teléfono / WhatsApp *",
+        "eventFieldLocation": "Ubicación / Dirección del evento *",
+        "eventLocationPlaceholder": "Salón, colonia, calle o enlace de Maps",
+        "eventFieldDate": "Fecha del evento *",
+        "eventFieldTime": "Hora aproximada",
+        "eventFieldGuests": "Número de personas *",
+        "eventGuestsPlaceholder": "Ej. 50",
+        "eventFieldType": "Tipo de evento",
+        "eventTypeFamily": "Cumpleaños / Reunión familiar",
+        "eventTypeWedding": "Boda / XV años",
+        "eventTypeCorporate": "Evento empresarial / Oficina",
+        "eventTypeOther": "Posada / Otro evento",
+        "eventFieldStews": "Cantidad de guisados",
+        "stews7": "7 guisados",
+        "stews8": "8 guisados",
+        "stews9": "9 guisados",
+        "stews10": "10 guisados",
+        "stewsMore": "Más de 10 guisados",
+        "eventFieldService": "Modalidad de servicio",
+        "serviceDropoff": "Solo entrega de cazuelas listas",
+        "serviceFull": "Servicio completo atendido en evento",
+        "serviceTbd": "Por definir / Quiero asesoría",
+        "eventFieldNotes": "Notas adicionales",
+        "eventNotesPlaceholder": "Escribe aquí cualquier detalle adicional para tu evento...",
+        "eventSubmitWA": "ENVIAR COTIZACIÓN POR WHATSAPP",
+        "eventCancel": "OCULTAR",
+        "eventsTab": "Eventos y taquizas",
         "all": "Todos",
         "photoPending": "Comedor Lucy",
         "enlargePhoto": "Ampliar fotografía",
@@ -970,14 +1189,15 @@
         "openTikTok": "Abrir TikTok",
         "chatWAFloat": "Contactar a Comedor Lucy por WhatsApp",
         "menuTab": "Menú",
-        "visitTab": "Visítanos",
+        "visitTab": "Conócenos",
         "orderTab": "Pedidos a domicilio",
         "orderNumber": "productos"
       },
       en: {
         "kicker": "DIGITAL MENU · COMEDOR LUCY",
-        "navVisitanos": "VISIT US",
+        "navVisitanos": "ABOUT US",
         "navMenu": "MENU",
+        "navEventos": "EVENTS",
         "navPedido": "ORDER",
         "navPedidos": "ORDERS",
         "discover": "DISCOVER",
@@ -991,7 +1211,48 @@
         "hours": "HOURS",
         "maps": "📍 VIEW ON GOOGLE MAPS",
         "takeout": "ORDER TAKEOUT",
+        "eventsCta": "🌮 REQUEST TAQUIZA CATERING QUOTE",
         "followUs": "FOLLOW US AND GET IN TOUCH",
+        "eventsKicker": "CATERING SERVICE · COMEDOR LUCY",
+        "eventsTitle": "Taquizas for Your Events",
+        "eventsIntro": "Bring Comedor Lucy's homemade seasoning to your gatherings, birthdays, weddings, or corporate events. We prepare traditional stews fresh on the day so you only focus on enjoying with your guests.",
+        "eventFeat1Title": "Traditional stews",
+        "eventFeat1Desc": "Choose from our most popular homemade stews, prepared fresh the same day.",
+        "eventFeat2Title": "Sides included",
+        "eventFeat2Desc": "Warm tortillas, rice, beans, and house salsas ready to serve.",
+        "eventFeat3Title": "Tailored quote",
+        "eventFeat3Desc": "We adjust the number of stews and service style to your guest count.",
+        "eventsToggleBtn": "📋 REQUEST A TAQUIZA QUOTE",
+        "eventsToggleBtnClose": "✕ HIDE QUOTE FORM",
+        "eventsFormTitle": "Event quote details",
+        "eventFieldName": "Full name *",
+        "eventFieldPhone": "Phone / WhatsApp *",
+        "eventFieldLocation": "Event location / address *",
+        "eventLocationPlaceholder": "Venue, neighborhood, street or Maps link",
+        "eventFieldDate": "Event date *",
+        "eventFieldTime": "Approximate time",
+        "eventFieldGuests": "Number of guests *",
+        "eventGuestsPlaceholder": "e.g. 50",
+        "eventFieldType": "Event type",
+        "eventTypeFamily": "Birthday / Family gathering",
+        "eventTypeWedding": "Wedding / Quinceañera",
+        "eventTypeCorporate": "Corporate / Office event",
+        "eventTypeOther": "Holiday party / Other",
+        "eventFieldStews": "Number of stews",
+        "stews7": "7 stews",
+        "stews8": "8 stews",
+        "stews9": "9 stews",
+        "stews10": "10 stews",
+        "stewsMore": "More than 10 stews",
+        "eventFieldService": "Service style",
+        "serviceDropoff": "Ready-to-serve casserole drop-off",
+        "serviceFull": "Full staffed catering service at event",
+        "serviceTbd": "To be defined / Need advice",
+        "eventFieldNotes": "Additional notes",
+        "eventNotesPlaceholder": "Write any additional details for your event here...",
+        "eventSubmitWA": "SEND QUOTE VIA WHATSAPP",
+        "eventCancel": "HIDE",
+        "eventsTab": "Events & taquizas",
         "all": "All",
         "photoPending": "Comedor Lucy",
         "enlargePhoto": "Enlarge photo",
@@ -1103,7 +1364,7 @@
         "openTikTok": "Open TikTok",
         "chatWAFloat": "Chat with Comedor Lucy on WhatsApp",
         "menuTab": "Menu",
-        "visitTab": "Visit us",
+        "visitTab": "About us",
         "orderTab": "Delivery orders",
         "orderNumber": "items"
       }
@@ -1129,21 +1390,12 @@
       { id: "mediano", nombre: "Mediano", nombreEn: "Medium" },
       { id: "grande", nombre: "Grande", nombreEn: "Large" }
     ],
-    caldosConTamano: [
-      "menudo",
-      "pozole",
-      "espinazo_puerco",
-      "caldo_res",
-      "caldo_pollo"
-    ],
+    caldosConTamano: ["menudo", "pozole", "espinazo_puerco", "caldo_res", "caldo_pollo"],
     tamanosCocteles: [
       { id: "chico", nombre: "Chico", nombreEn: "Small" },
       { id: "normal", nombre: "Normal", nombreEn: "Regular" }
     ],
-    coctelesConTamano: [
-      "coctel_camaron",
-      "vuelve_vida"
-    ],
+    coctelesConTamano: ["coctel_camaron", "vuelve_vida"],
     preciosPorTamano: {
       menudo: { chico: "$110", mediano: "$110", grande: "$110" },
       pozole: { chico: "$110", mediano: "$120", grande: "$130" },
@@ -1155,946 +1407,91 @@
     },
 
     platillos: [
-      /* CATEGORÍA: ANTOJITOS PAL CORAZÓN ❤️ */
-      {
-        "id": "machete",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "45 CM · 3 GUISADOS",
-        "nombre": "Machete (45 cm)",
-        "nombreEn": "Giant quesadilla (45 cm)",
-        "precio": "$110",
-        "descripcion": "Quesadilla gigante (45 cm) con queso y hasta 3 guisados a elegir, incluye ensalada.",
-        "descripcionEn": "Giant 45 cm quesadilla with cheese and up to three fillings; includes salad.",
-        "imagen": "images/Menu/machete.jpg",
-        "maxGuisados": 3,
-        "badges": []
-      },
-      {
-        "id": "quesadilla",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "1 GUISADO",
-        "nombre": "Quesadilla",
-        "nombreEn": "Quesadilla",
-        "precio": "$60",
-        "descripcion": "Quesadilla mediana con queso y 1 guisado a elegir, incluye ensalada.",
-        "descripcionEn": "Medium-sized quesadilla with cheese and 1 filling of your choice; includes salad.",
-        "imagen": "images/Menu/quesadilla.jpg",
-        "maxGuisados": 1,
-        "badges": []
-      },
-      {
-        "id": "huarache",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "TRADICIONAL",
-        "nombre": "Huarache",
-        "nombreEn": "Huarache",
-        "precio": "$60",
-        "descripcion": "Hecho de tortilla de maíz, frijoles, guisado, ensalada, crema y queso.",
-        "descripcionEn": "Made with a corn tortilla, beans, a choice of filling, salad, cream and cheese.",
-        "imagen": "images/Menu/huarache.jpg",
-        "badges": []
-      },
-      {
-        "id": "gordita",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "13 GUISADOS",
-        "nombre": "Gordita",
-        "nombreEn": "Gordita",
-        "precio": "$17",
-        "descripcion": "Gordita de maíz rellena con 1 guisado a elegir.",
-        "descripcionEn": "Traditional gordita made of corn stuffed with 1 filling of your choice.",
-        "imagen": "images/Menu/gordita.jpg",
-        "maxGuisados": 1,
-        "selectorMultipleGuisados": true,
-        "badges": []
-      },
-      {
-        "id": "sope_sencillo",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "SENCILLO",
-        "nombre": "Sope sencillo",
-        "nombreEn": "Plain sope",
-        "precio": "$30",
-        "descripcion": "Sope tradicional sencillo.",
-        "descripcionEn": "Traditional plain sope.",
-        "imagen": "images/Menu/sope.jpg",
-        "badges": []
-      },
-      {
-        "id": "sope_especial",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "1 GUISADO",
-        "nombre": "Sope especial",
-        "nombreEn": "Special sope",
-        "precio": "$30",
-        "descripcion": "Elige 1 guisado para tu sope.",
-        "descripcionEn": "Choose 1 filling for your sope.",
-        "imagen": "images/Menu/sope.jpg",
-        "maxGuisados": 1,
-        "badges": []
-      },
-      {
-        "id": "tortas",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "1 GUISADO",
-        "nombre": "Torta de guisado",
-        "nombreEn": "Torta with filling (Mexican sandwich)",
-        "precio": "$50",
-        "descripcion": "Torta preparada con 1 guisado a elegir.",
-        "descripcionEn": "Mexican sandwich prepared with 1 filling of your choice.",
-        "imagen": "images/Menu/tortas.jpg",
-        "maxGuisados": 1,
-        "badges": []
-      },
-      {
-        "id": "tortas_barbacoa",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "BARBACOA",
-        "nombre": "Tortas de barbacoa",
-        "nombreEn": "Barbacoa tortas",
-        "precio": "$60",
-        "descripcion": "Torta de barbacoa de res.",
-        "descripcionEn": "Beef barbacoa Mexican sandwich.",
-        "imagen": "images/Menu/tortas_barbacoa.jpg",
-        "badges": []
-      },
-      {
-        "id": "lechuza",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "HARINA Y QUESO",
-        "nombre": "Lechuza",
-        "nombreEn": "Lechuza",
-        "precio": "$80",
-        "descripcion": "Tortilla de harina rellena de queso y bisteck o chorizo.",
-        "descripcionEn": "Flour tortilla stuffed with cheese and steak or chorizo.",
-        "imagen": "images/Menu/lechuza.jpg",
-        "badges": []
-      },
-      {
-        "id": "lechuza_barbacoa",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "CON BARBACOA",
-        "nombre": "Lechuza con barbacoa",
-        "nombreEn": "Lechuza with barbacoa",
-        "precio": "$90",
-        "descripcion": "Tortilla de harina rellena de queso fundido y jugosa barbacoa.",
-        "descripcionEn": "Flour tortilla stuffed with melted cheese and juicy barbacoa.",
-        "imagen": "images/Menu/lechuza_barbacoa.jpg",
-        "badges": []
-      },
-      {
-        "id": "gringa",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "BISTEC O CHORIZO",
-        "nombre": "Gringa",
-        "nombreEn": "Gringa",
-        "precio": "$50",
-        "descripcion": "Par de tortillas de harina empalmadas y rellenas de queso y bistec o chorizo.",
-        "descripcionEn": "Pair of stacked flour tortillas stuffed with cheese and beef steak or chorizo.",
-        "imagen": "images/Menu/gringa.jpg",
-        "badges": []
-      },
-      {
-        "id": "gringa_barbacoa",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "CON BARBACOA",
-        "nombre": "Gringa con barbacoa",
-        "nombreEn": "Gringa with barbacoa",
-        "precio": "$65",
-        "descripcion": "Par de tortillas de harina empalmadas y rellenas de queso y barbacoa.",
-        "descripcionEn": "Pair of stacked flour tortillas stuffed with cheese and barbacoa.",
-        "imagen": "images/Menu/gringa_barbacoa.jpg",
-        "badges": []
-      },
-      {
-        "id": "tacos",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "MAÍZ",
-        "nombre": "Tacos",
-        "nombreEn": "Tacos",
-        "precio": "$19",
-        "descripcion": "Taco en tortilla de maíz relleno de bistec o chorizo.",
-        "descripcionEn": "Corn tortilla taco stuffed with beef steak or chorizo.",
-        "imagen": "images/Menu/tacos.jpg",
-        "opcionesSubmenu": [
-          { "id": "bistec", "nombre": "De bistec", "nombreEn": "Beef steak (bistec)" },
-          { "id": "chorizo", "nombre": "De chorizo", "nombreEn": "Chorizo" }
-        ],
-        "badges": []
-      },
-      {
-        "id": "nopal_azteca",
-        "categoria": "Antojitos pal corazón ❤️",
-        "badge": "QUESO FUNDIDO",
-        "nombre": "Nopal Azteca",
-        "nombreEn": "Aztec Nopal (grilled cactus)",
-        "precio": "$85",
-        "descripcion": "Nopal asado con 1 guisado y queso fundido.",
-        "descripcionEn": "Grilled cactus paddle topped with 1 filling and melted cheese.",
-        "imagen": "images/Menu/nopal_azteca.jpg",
-        "badges": []
-      },
+      { "id": "machete", "categoria": "Antojitos pal corazón ❤️", "badge": "45 CM · 3 GUISADOS", "nombre": "Machete (45 cm)", "nombreEn": "Giant quesadilla (45 cm)", "precio": "$110", "descripcion": "Quesadilla gigante (45 cm) con queso y hasta 3 guisados a elegir, incluye ensalada.", "descripcionEn": "Giant 45 cm quesadilla with cheese and up to three fillings; includes salad.", "imagen": "images/Menu/machete.jpg", "maxGuisados": 3, "badges": [] },
+      { "id": "quesadilla", "categoria": "Antojitos pal corazón ❤️", "badge": "1 GUISADO", "nombre": "Quesadilla", "nombreEn": "Quesadilla", "precio": "$60", "descripcion": "Quesadilla mediana con queso y 1 guisado a elegir, incluye ensalada.", "descripcionEn": "Medium-sized quesadilla with cheese and 1 filling of your choice; includes salad.", "imagen": "images/Menu/quesadilla.jpg", "maxGuisados": 1, "badges": [] },
+      { "id": "huarache", "categoria": "Antojitos pal corazón ❤️", "badge": "TRADICIONAL", "nombre": "Huarache", "nombreEn": "Huarache", "precio": "$60", "descripcion": "Hecho de tortilla de maíz, frijoles, guisado, ensalada, crema y queso.", "descripcionEn": "Made with a corn tortilla, beans, a choice of filling, salad, cream and cheese.", "imagen": "images/Menu/huarache.jpg", "badges": [] },
+      { "id": "gordita", "categoria": "Antojitos pal corazón ❤️", "badge": "13 GUISADOS", "nombre": "Gordita", "nombreEn": "Gordita", "precio": "$17", "descripcion": "Gordita de maíz rellena con 1 guisado a elegir.", "descripcionEn": "Traditional gordita made of corn stuffed with 1 filling of your choice.", "imagen": "images/Menu/gordita.jpg", "maxGuisados": 1, "selectorMultipleGuisados": true, "badges": [] },
+      { "id": "sope_sencillo", "categoria": "Antojitos pal corazón ❤️", "badge": "SENCILLO", "nombre": "Sope sencillo", "nombreEn": "Plain sope", "precio": "$30", "descripcion": "Sope tradicional sencillo.", "descripcionEn": "Traditional plain sope.", "imagen": "images/Menu/sope.jpg", "badges": [] },
+      { "id": "sope_especial", "categoria": "Antojitos pal corazón ❤️", "badge": "1 GUISADO", "nombre": "Sope especial", "nombreEn": "Special sope", "precio": "$30", "descripcion": "Elige 1 guisado para tu sope.", "descripcionEn": "Choose 1 filling for your sope.", "imagen": "images/Menu/sope.jpg", "maxGuisados": 1, "badges": [] },
+      { "id": "tortas", "categoria": "Antojitos pal corazón ❤️", "badge": "1 GUISADO", "nombre": "Torta de guisado", "nombreEn": "Torta with filling (Mexican sandwich)", "precio": "$50", "descripcion": "Torta preparada con 1 guisado a elegir.", "descripcionEn": "Mexican sandwich prepared with 1 filling of your choice.", "imagen": "images/Menu/tortas.jpg", "maxGuisados": 1, "badges": [] },
+      { "id": "tortas_barbacoa", "categoria": "Antojitos pal corazón ❤️", "badge": "BARBACOA", "nombre": "Tortas de barbacoa", "nombreEn": "Barbacoa tortas", "precio": "$60", "descripcion": "Torta de barbacoa de res.", "descripcionEn": "Beef barbacoa Mexican sandwich.", "imagen": "images/Menu/tortas_barbacoa.jpg", "badges": [] },
+      { "id": "lechuza", "categoria": "Antojitos pal corazón ❤️", "badge": "HARINA Y QUESO", "nombre": "Lechuza", "nombreEn": "Lechuza", "precio": "$80", "descripcion": "Tortilla de harina rellena de queso y bisteck o chorizo.", "descripcionEn": "Flour tortilla stuffed with cheese and steak or chorizo.", "imagen": "images/Menu/lechuza.jpg", "badges": [] },
+      { "id": "lechuza_barbacoa", "categoria": "Antojitos pal corazón ❤️", "badge": "CON BARBACOA", "nombre": "Lechuza con barbacoa", "nombreEn": "Lechuza with barbacoa", "precio": "$90", "descripcion": "Tortilla de harina rellena de queso fundido y jugosa barbacoa.", "descripcionEn": "Flour tortilla stuffed with melted cheese and juicy barbacoa.", "imagen": "images/Menu/lechuza_barbacoa.jpg", "badges": [] },
+      { "id": "gringa", "categoria": "Antojitos pal corazón ❤️", "badge": "BISTEC O CHORIZO", "nombre": "Gringa", "nombreEn": "Gringa", "precio": "$50", "descripcion": "Par de tortillas de harina empalmadas y rellenas de queso y bistec o chorizo.", "descripcionEn": "Pair of stacked flour tortillas stuffed with cheese and beef steak or chorizo.", "imagen": "images/Menu/gringa.jpg", "badges": [] },
+      { "id": "gringa_barbacoa", "categoria": "Antojitos pal corazón ❤️", "badge": "CON BARBACOA", "nombre": "Gringa con barbacoa", "nombreEn": "Gringa with barbacoa", "precio": "$65", "descripcion": "Par de tortillas de harina empalmadas y rellenas de queso y barbacoa.", "descripcionEn": "Pair of stacked flour tortillas stuffed with cheese and barbacoa.", "imagen": "images/Menu/gringa_barbacoa.jpg", "badges": [] },
+      { "id": "tacos", "categoria": "Antojitos pal corazón ❤️", "badge": "MAÍZ", "nombre": "Tacos", "nombreEn": "Tacos", "precio": "$19", "descripcion": "Taco en tortilla de maíz relleno de bistec o chorizo.", "descripcionEn": "Corn tortilla taco stuffed with beef steak or chorizo.", "imagen": "images/Menu/tacos.jpg", "opcionesSubmenu": [{ "id": "bistec", "nombre": "De bistec", "nombreEn": "Beef steak (bistec)" }, { "id": "chorizo", "nombre": "De chorizo", "nombreEn": "Chorizo" }], "badges": [] },
+      { "id": "nopal_azteca", "categoria": "Antojitos pal corazón ❤️", "badge": "QUESO FUNDIDO", "nombre": "Nopal Azteca", "nombreEn": "Aztec Nopal (grilled cactus)", "precio": "$85", "descripcion": "Nopal asado con 1 guisado y queso fundido.", "descripcionEn": "Grilled cactus paddle topped with 1 filling and melted cheese.", "imagen": "images/Menu/nopal_azteca.jpg", "badges": [] },
 
-      /* CATEGORÍA: DESAYUNOS DE CAMPEÓN 🏆
-         (Todos incluyen el bloque: Acompañado de frijoles, crema, queso, bolillo o tortilla y agua de fruta natural del día o café) */
-      {
-        "id": "chilaquiles",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "AL GUSTO",
-        "nombre": "Chilaquiles con huevo",
-        "nombreEn": "Chilaquiles with egg",
-        "precio": "$95",
-        "descripcion": "Chilaquiles servidos con huevo estrellado, revuelto, pollo o bistec de puerco.",
-        "descripcionEn": "Chilaquiles served with fried or scrambled egg, chicken or pork steak.",
-        "imagen": "images/Menu/chilaquiles.jpg",
-        "opcionesSubmenu": [
-          { "id": "huevo_estrellado", "nombre": "Con huevo estrellado", "nombreEn": "With fried egg" },
-          { "id": "huevo_revuelto", "nombre": "Con huevo revuelto", "nombreEn": "With scrambled egg" },
-          { "id": "pollo", "nombre": "Con pollo", "nombreEn": "With chicken" },
-          { "id": "bistec", "nombre": "Con bistec", "nombreEn": "With steak" }
-        ],
-        "badges": []
-      },
-      {
-        "id": "huevos_chorizo",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "RECIÉN HECHOS",
-        "nombre": "Huevos con chorizo",
-        "nombreEn": "Eggs with chorizo",
-        "precio": "$95",
-        "descripcion": "Huevos revueltos al momento con chorizo bien doradito.",
-        "descripcionEn": "Freshly scrambled eggs cooked with savory chorizo.",
-        "imagen": "images/Menu/huevos_chorizo.jpg",
-        "badges": []
-      },
-      {
-        "id": "huevos_jamon",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "CLÁSICO",
-        "nombre": "Huevos con jamón",
-        "nombreEn": "Eggs with ham",
-        "precio": "$95",
-        "descripcion": "Huevos revueltos con jamón de pavo.",
-        "descripcionEn": "Scrambled eggs with turkey ham.",
-        "imagen": "images/Menu/huevos_jamon.jpg",
-        "badges": []
-      },
-      {
-        "id": "chilaquiles_campeon",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "ESPECIALIDAD",
-        "nombre": "Chilaquiles de Campeón",
-        "nombreEn": "Champion Chilaquiles",
-        "precio": "$145",
-        "descripcion": "Chilaquiles con huevos al gusto, 1 tostada de chorizo o de guacamole y porción de fruta picada.",
-        "descripcionEn": "Chilaquiles with eggs to your liking, 1 chorizo or guacamole tostada, and chopped fresh fruit.",
-        "imagen": "images/Menu/chilaquiles_campeon.jpg",
-        "badges": []
-      },
-      {
-        "id": "desayuno_campeon",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "10 OPCIONES",
-        "nombre": "Desayuno de Campeón",
-        "nombreEn": "Champion Breakfast",
-        "precio": "$95",
-        "descripcion": "Elige tu preparación favorita de chilaquiles o huevos al gusto preparados al momento.",
-        "descripcionEn": "Choose your favorite chilaquiles or eggs cooked to order.",
-        "imagen": "images/Menu/desayuno_campeon.jpg",
-        "opcionesSubmenu": [
-          { "id": "chilaquiles_revuelto", "nombre": "Chilaquiles con huevo revuelto", "nombreEn": "Chilaquiles with scrambled egg" },
-          { "id": "chilaquiles_estrellado", "nombre": "Chilaquiles con huevo estrellado", "nombreEn": "Chilaquiles with fried egg" },
-          { "id": "chilaquiles_pollo", "nombre": "Chilaquiles con pollo", "nombreEn": "Chilaquiles with chicken" },
-          { "id": "chilaquiles_bistec", "nombre": "Chilaquiles con bistec", "nombreEn": "Chilaquiles with steak" },
-          { "id": "huevos_jamon", "nombre": "Huevos con Jamón", "nombreEn": "Eggs with Ham" },
-          { "id": "huevos_salchicha", "nombre": "Huevos con Salchicha", "nombreEn": "Eggs with Sausage" },
-          { "id": "huevos_chorizo", "nombre": "Huevos con Chorizo", "nombreEn": "Eggs with Chorizo" },
-          { "id": "huevos_mexicana", "nombre": "Huevos a la Mexicana", "nombreEn": "Mexican-style Eggs" },
-          { "id": "huevos_estrellados", "nombre": "Huevos Estrellados", "nombreEn": "Fried Eggs" },
-          { "id": "huevos_rancheros", "nombre": "Huevos Rancheros", "nombreEn": "Ranchero Eggs" }
-        ],
-        "badges": []
-      },
-      {
-        "id": "sope_renido_lucy",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "ROJOS VS VERDES",
-        "nombre": "Sope reñido de Lucy",
-        "nombreEn": "Lucy's special sope",
-        "precio": "$120",
-        "descripcion": "Rojos VS verdes, pero sabrosamente reconciliados en el plato.",
-        "descripcionEn": "Red salsa vs. green salsa, deliciously reconciled on your plate.",
-        "imagen": "images/Menu/sope_renido_lucy.jpg",
-        "badges": []
-      },
-      {
-        "id": "chilaquiles_compadre",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "CON BARBACOA",
-        "nombre": "Chilaquiles del compadre",
-        "nombreEn": "Compadre's Chilaquiles",
-        "precio": "$130",
-        "descripcion": "Totopos doraditos bañados en salsa roja o verde con su buena porción de barbacoa jugosa y cebolla morada.",
-        "descripcionEn": "Crispy tortilla chips bathed in red or green salsa with a generous portion of juicy barbacoa and red onion.",
-        "imagen": "images/Menu/chilaquiles_compadre.jpg",
-        "badges": []
-      },
-      {
-        "id": "apapachilaquiles",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "DE LA CASA",
-        "nombre": "Los ApapaChilaquiles",
-        "nombreEn": "Los ApapaChilaquiles",
-        "precio": "$130",
-        "descripcion": "Te abrazan por dentro, como debe ser la comida de Lucy.",
-        "descripcionEn": "Warm comfort food that hugs you from the inside, Lucy's way.",
-        "imagen": "images/Menu/apapachilaquiles.jpg",
-        "badges": []
-      },
-      {
-        "id": "pecadora_lucy",
-        "categoria": "Desayunos de campeón 🏆",
-        "badge": "COSTRA DE QUESO",
-        "nombre": "La pecadora de Lucy",
-        "nombreEn": "La pecadora de Lucy",
-        "precio": "$135",
-        "descripcion": "Crujiente costra de queso llena de carne y un gustazo que no se puede negar.",
-        "descripcionEn": "Crispy melted cheese crust loaded with savory meat.",
-        "imagen": "images/Menu/pecadora_lucy.jpg",
-        "badges": []
-      },
+      { "id": "chilaquiles", "categoria": "Desayunos de campeón 🏆", "badge": "AL GUSTO", "nombre": "Chilaquiles con huevo", "nombreEn": "Chilaquiles with egg", "precio": "$95", "descripcion": "Chilaquiles servidos con huevo estrellado, revuelto, pollo o bistec de puerco.", "descripcionEn": "Chilaquiles served with fried or scrambled egg, chicken or pork steak.", "imagen": "images/Menu/chilaquiles.jpg", "opcionesSubmenu": [{ "id": "huevo_estrellado", "nombre": "Con huevo estrellado", "nombreEn": "With fried egg" }, { "id": "huevo_revuelto", "nombre": "Con huevo revuelto", "nombreEn": "With scrambled egg" }, { "id": "pollo", "nombre": "Con pollo", "nombreEn": "With chicken" }, { "id": "bistec", "nombre": "Con bistec", "nombreEn": "With steak" }], "badges": [] },
+      { "id": "huevos_chorizo", "categoria": "Desayunos de campeón 🏆", "badge": "RECIÉN HECHOS", "nombre": "Huevos con chorizo", "nombreEn": "Eggs with chorizo", "precio": "$95", "descripcion": "Huevos revueltos al momento con chorizo bien doradito.", "descripcionEn": "Freshly scrambled eggs cooked with savory chorizo.", "imagen": "images/Menu/huevos_chorizo.jpg", "badges": [] },
+      { "id": "huevos_jamon", "categoria": "Desayunos de campeón 🏆", "badge": "CLÁSICO", "nombre": "Huevos con jamón", "nombreEn": "Eggs with ham", "precio": "$95", "descripcion": "Huevos revueltos con jamón de pavo.", "descripcionEn": "Scrambled eggs with turkey ham.", "imagen": "images/Menu/huevos_jamon.jpg", "badges": [] },
+      { "id": "chilaquiles_campeon", "categoria": "Desayunos de campeón 🏆", "badge": "ESPECIALIDAD", "nombre": "Chilaquiles de Campeón", "nombreEn": "Champion Chilaquiles", "precio": "$145", "descripcion": "Chilaquiles con huevos al gusto, 1 tostada de chorizo o de guacamole y porción de fruta picada.", "descripcionEn": "Chilaquiles with eggs to your liking, 1 chorizo or guacamole tostada, and chopped fresh fruit.", "imagen": "images/Menu/chilaquiles_campeon.jpg", "badges": [] },
+      { "id": "desayuno_campeon", "categoria": "Desayunos de campeón 🏆", "badge": "10 OPCIONES", "nombre": "Desayuno de Campeón", "nombreEn": "Champion Breakfast", "precio": "$95", "descripcion": "Elige tu preparación favorita de chilaquiles o huevos al gusto preparados al momento.", "descripcionEn": "Choose your favorite chilaquiles or eggs cooked to order.", "imagen": "images/Menu/desayuno_campeon.jpg", "opcionesSubmenu": [{ "id": "chilaquiles_revuelto", "nombre": "Chilaquiles con huevo revuelto", "nombreEn": "Chilaquiles with scrambled egg" }, { "id": "chilaquiles_estrellado", "nombre": "Chilaquiles con huevo estrellado", "nombreEn": "Chilaquiles with fried egg" }, { "id": "chilaquiles_pollo", "nombre": "Chilaquiles con pollo", "nombreEn": "Chilaquiles with chicken" }, { "id": "chilaquiles_bistec", "nombre": "Chilaquiles con bistec", "nombreEn": "Chilaquiles with steak" }, { "id": "huevos_jamon", "nombre": "Huevos con Jamón", "nombreEn": "Eggs with Ham" }, { "id": "huevos_salchicha", "nombre": "Huevos con Salchicha", "nombreEn": "Eggs with Sausage" }, { "id": "huevos_chorizo", "nombre": "Huevos con Chorizo", "nombreEn": "Eggs with Chorizo" }, { "id": "huevos_mexicana", "nombre": "Huevos a la Mexicana", "nombreEn": "Mexican-style Eggs" }, { "id": "huevos_estrellados", "nombre": "Huevos Estrellados", "nombreEn": "Fried Eggs" }, { "id": "huevos_rancheros", "nombre": "Huevos Rancheros", "nombreEn": "Ranchero Eggs" }], "badges": [] },
+      { "id": "sope_renido_lucy", "categoria": "Desayunos de campeón 🏆", "badge": "ROJOS VS VERDES", "nombre": "Sope reñido de Lucy", "nombreEn": "Lucy's special sope", "precio": "$120", "descripcion": "Rojos VS verdes, pero sabrosamente reconciliados en el plato.", "descripcionEn": "Red salsa vs. green salsa, deliciously reconciled on your plate.", "imagen": "images/Menu/sope_renido_lucy.jpg", "badges": [] },
+      { "id": "chilaquiles_compadre", "categoria": "Desayunos de campeón 🏆", "badge": "CON BARBACOA", "nombre": "Chilaquiles del compadre", "nombreEn": "Compadre's Chilaquiles", "precio": "$130", "descripcion": "Totopos doraditos bañados en salsa roja o verde con su buena porción de barbacoa jugosa y cebolla morada.", "descripcionEn": "Crispy tortilla chips bathed in red or green salsa with a generous portion of juicy barbacoa and red onion.", "imagen": "images/Menu/chilaquiles_compadre.jpg", "badges": [] },
+      { "id": "apapachilaquiles", "categoria": "Desayunos de campeón 🏆", "badge": "DE LA CASA", "nombre": "Los ApapaChilaquiles", "nombreEn": "Los ApapaChilaquiles", "precio": "$130", "descripcion": "Te abrazan por dentro, como debe ser la comida de Lucy.", "descripcionEn": "Warm comfort food that hugs you from the inside, Lucy's way.", "imagen": "images/Menu/apapachilaquiles.jpg", "badges": [] },
+      { "id": "pecadora_lucy", "categoria": "Desayunos de campeón 🏆", "badge": "COSTRA DE QUESO", "nombre": "La pecadora de Lucy", "nombreEn": "La pecadora de Lucy", "precio": "$135", "descripcion": "Crujiente costra de queso llena de carne y un gustazo que no se puede negar.", "descripcionEn": "Crispy melted cheese crust loaded with savory meat.", "imagen": "images/Menu/pecadora_lucy.jpg", "badges": [] },
 
-      /* CATEGORÍA: CRUJIR DE FELICIDAD 😍 */
-      {
-        "id": "pollo_empanizado",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "CRUJIENTE",
-        "nombre": "Pollo empanizado",
-        "nombreEn": "Breaded chicken",
-        "precio": "$100",
-        "descripcion": "Pieza de pollo empanizado frita, acompañada de ensalada, papas fritas, arroz, frijoles, incluye consomé y agua de frutas.",
-        "descripcionEn": "A piece of fried breaded chicken with salad, French fries, rice and beans; includes consommé and fruit-flavored water.",
-        "imagen": "images/Menu/pollo_empanizado.jpg",
-        "badges": []
-      },
-      {
-        "id": "bisteck_ranchero",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "RES",
-        "nombre": "Bisteck ranchero",
-        "nombreEn": "Ranch-style beef steak",
-        "precio": "$100",
-        "descripcion": "Bisteck de res encebollado bañado en salsa guisada, acompañado de arroz, papas fritas, frijoles, ensalada, incluye consomé y agua de frutas.",
-        "descripcionEn": "Beef steak with onions in a cooked salsa, served with rice, French fries, beans and salad; includes consommé and fruit-flavored water.",
-        "imagen": "images/Menu/bisteck_ranchero.jpg",
-        "badges": []
-      },
-      {
-        "id": "bisteck_mexicana",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "RES",
-        "nombre": "Bisteck a la mexicana",
-        "nombreEn": "Mexican-style beef steak",
-        "precio": "$100",
-        "descripcion": "Bisteck picado a la mexicana, acompañado de arroz, frijoles y ensalada, incluye tortillas, consomé y agua de frutas.",
-        "descripcionEn": "Diced beef steak cooked Mexican-style, served with rice, beans and salad; includes tortillas, consommé and fruit-flavored water.",
-        "imagen": "images/Menu/bisteck_mexicana.jpg",
-        "badges": []
-      },
-      {
-        "id": "enmoladas",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "MOLE CASERO",
-        "nombre": "Enmoladas",
-        "nombreEn": "Enmoladas (mole enchiladas)",
-        "precio": "$125",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/enmoladas.jpg",
-        "badges": []
-      },
-      {
-        "id": "enchiladas_lucy",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "ESTILO LUCY",
-        "nombre": "Enchiladas estilo Comedor Lucy",
-        "nombreEn": "Comedor Lucy style enchiladas",
-        "precio": "$125",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/enchiladas_lucy.jpg",
-        "badges": []
-      },
-      {
-        "id": "enchiladas_potosinas",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "6 PIEZAS",
-        "nombre": "Enchiladas potosinas",
-        "nombreEn": "Potosina enchiladas",
-        "precio": "$110",
-        "descripcion": "6 piezas acompañadas de arroz y frijoles, consomé y agua natural de frutas del día.",
-        "descripcionEn": "6 pieces served with rice and beans, consommé and natural fruit water of the day.",
-        "imagen": "images/Menu/enchiladas_potosinas.jpg",
-        "badges": []
-      },
-      {
-        "id": "enchiladas_potosinas_cecina",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "CON CECINA O ASADA",
-        "nombre": "Enchiladas potosinas con cecina o carne asada",
-        "nombreEn": "Potosina enchiladas with cecina or grilled beef",
-        "precio": "$190",
-        "descripcion": "Enchiladas potosinas con cecina o carne asada, acompañadas de arroz, frijoles, papas fritas, pico de gallo, tostada de guacamole, cebollitas, chile güero, con consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/enchiladas_cecina.jpg",
-        "badges": []
-      },
-      {
-        "id": "flautas_lucy",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "ESTILO LUCY",
-        "nombre": "Flautas estilo Comedor Lucy",
-        "nombreEn": "Comedor Lucy style flautas",
-        "precio": "$125",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/flautas_lucy.jpg",
-        "badges": []
-      },
-      /* PLATILLOS SEPARADOS: MILANESA DE RES Y MILANESA DE POLLO */
-      {
-        "id": "milanesa_res",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "RES",
-        "nombre": "Milanesa de res",
-        "nombreEn": "Breaded beef milanesa",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/milanesa_res.jpg",
-        "imagenFallback": "images/Menu/milanesa.jpg",
-        "badges": []
-      },
-      {
-        "id": "milanesa_pollo",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "POLLO",
-        "nombre": "Milanesa de pollo",
-        "nombreEn": "Breaded chicken milanesa",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/milanesa_pollo.jpg",
-        "imagenFallback": "images/Menu/milanesa.jpg",
-        "badges": []
-      },
-      {
-        "id": "chile_relleno",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "TRADICIONAL",
-        "nombre": "Chile relleno",
-        "nombreEn": "Stuffed poblano pepper",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/chile_relleno.jpg",
-        "badges": []
-      },
-      {
-        "id": "higado_encebollado",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "CASERO",
-        "nombre": "Hígado encebollado",
-        "nombreEn": "Liver and onions",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/higado_encebollado.jpg",
-        "badges": []
-      },
-      {
-        "id": "carne_asada",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "A LA PLANCHA",
-        "nombre": "Carne asada",
-        "nombreEn": "Grilled beef steak",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/carne_asada.jpg",
-        "badges": []
-      },
-      {
-        "id": "pollo_frito",
-        "categoria": "Crujir de felicidad 😍",
-        "badge": "DORADITO",
-        "nombre": "Pollo frito",
-        "nombreEn": "Fried chicken",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/pollo_frito.jpg",
-        "badges": []
-      },
+      { "id": "pollo_empanizado", "categoria": "Crujir de felicidad 😍", "badge": "CRUJIENTE", "nombre": "Pollo empanizado", "nombreEn": "Breaded chicken", "precio": "$100", "descripcion": "Pieza de pollo empanizado frita, acompañada de ensalada, papas fritas, arroz, frijoles, incluye consomé y agua de frutas.", "descripcionEn": "A piece of fried breaded chicken with salad, French fries, rice and beans; includes consommé and fruit-flavored water.", "imagen": "images/Menu/pollo_empanizado.jpg", "badges": [] },
+      { "id": "bisteck_ranchero", "categoria": "Crujir de felicidad 😍", "badge": "RES", "nombre": "Bisteck ranchero", "nombreEn": "Ranch-style beef steak", "precio": "$100", "descripcion": "Bisteck de res encebollado bañado en salsa guisada, acompañado de arroz, papas fritas, frijoles, ensalada, incluye consomé y agua de frutas.", "descripcionEn": "Beef steak with onions in a cooked salsa, served with rice, French fries, beans and salad; includes consommé and fruit-flavored water.", "imagen": "images/Menu/bisteck_ranchero.jpg", "badges": [] },
+      { "id": "bisteck_mexicana", "categoria": "Crujir de felicidad 😍", "badge": "RES", "nombre": "Bisteck a la mexicana", "nombreEn": "Mexican-style beef steak", "precio": "$100", "descripcion": "Bisteck picado a la mexicana, acompañado de arroz, frijoles y ensalada, incluye tortillas, consomé y agua de frutas.", "descripcionEn": "Diced beef steak cooked Mexican-style, served with rice, beans and salad; includes tortillas, consommé and fruit-flavored water.", "imagen": "images/Menu/bisteck_mexicana.jpg", "badges": [] },
+      { "id": "enmoladas", "categoria": "Crujir de felicidad 😍", "badge": "MOLE CASERO", "nombre": "Enmoladas", "nombreEn": "Enmoladas (mole enchiladas)", "precio": "$125", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/enmoladas.jpg", "badges": [] },
+      { "id": "enchiladas_lucy", "categoria": "Crujir de felicidad 😍", "badge": "ESTILO LUCY", "nombre": "Enchiladas estilo Comedor Lucy", "nombreEn": "Comedor Lucy style enchiladas", "precio": "$125", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/enchiladas_lucy.jpg", "badges": [] },
+      { "id": "enchiladas_potosinas", "categoria": "Crujir de felicidad 😍", "badge": "6 PIEZAS", "nombre": "Enchiladas potosinas", "nombreEn": "Potosina enchiladas", "precio": "$110", "descripcion": "6 piezas acompañadas de arroz y frijoles, consomé y agua natural de frutas del día.", "descripcionEn": "6 pieces served with rice and beans, consommé and natural fruit water of the day.", "imagen": "images/Menu/enchiladas_potosinas.jpg", "badges": [] },
+      { "id": "enchiladas_potosinas_cecina", "categoria": "Crujir de felicidad 😍", "badge": "CON CECINA O ASADA", "nombre": "Enchiladas potosinas con cecina o carne asada", "nombreEn": "Potosina enchiladas with cecina or grilled beef", "precio": "$190", "descripcion": "Enchiladas potosinas con cecina o carne asada, acompañadas de arroz, frijoles, papas fritas, pico de gallo, tostada de guacamole, cebollitas, chile güero, con consomé y agua natural de frutas del día.", "descripcionEn": "", "imagen": "images/Menu/enchiladas_cecina.jpg", "badges": [] },
+      { "id": "flautas_lucy", "categoria": "Crujir de felicidad 😍", "badge": "ESTILO LUCY", "nombre": "Flautas estilo Comedor Lucy", "nombreEn": "Comedor Lucy style flautas", "precio": "$125", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/flautas_lucy.jpg", "badges": [] },
+      { "id": "milanesa_res", "categoria": "Crujir de felicidad 😍", "badge": "RES", "nombre": "Milanesa de res", "nombreEn": "Breaded beef milanesa", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/milanesa_res.jpg", "imagenFallback": "images/Menu/milanesa.jpg", "badges": [] },
+      { "id": "milanesa_pollo", "categoria": "Crujir de felicidad 😍", "badge": "POLLO", "nombre": "Milanesa de pollo", "nombreEn": "Breaded chicken milanesa", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/milanesa_pollo.jpg", "imagenFallback": "images/Menu/milanesa.jpg", "badges": [] },
+      { "id": "chile_relleno", "categoria": "Crujir de felicidad 😍", "badge": "TRADICIONAL", "nombre": "Chile relleno", "nombreEn": "Stuffed poblano pepper", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/chile_relleno.jpg", "badges": [] },
+      { "id": "higado_encebollado", "categoria": "Crujir de felicidad 😍", "badge": "CASERO", "nombre": "Hígado encebollado", "nombreEn": "Liver and onions", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/higado_encebollado.jpg", "badges": [] },
+      { "id": "carne_asada", "categoria": "Crujir de felicidad 😍", "badge": "A LA PLANCHA", "nombre": "Carne asada", "nombreEn": "Grilled beef steak", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/carne_asada.jpg", "badges": [] },
+      { "id": "pollo_frito", "categoria": "Crujir de felicidad 😍", "badge": "DORADITO", "nombre": "Pollo frito", "nombreEn": "Fried chicken", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/pollo_frito.jpg", "badges": [] },
 
-      /* CATEGORÍA: PANZA LLENA CORAZÓN CONTENTO 🥰
-         (Todos incluyen el bloque: Acompañado de arroz, frijoles, consomé y agua de frutas natural del día) */
-      {
-        "id": "pollo_salsa",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "EN SALSA CASERA",
-        "nombre": "Pollo en salsa",
-        "nombreEn": "Chicken in salsa",
-        "precio": "$90",
-        "descripcion": "Rico pollo tierno bañado en salsa de la casa, incluye tortillas.",
-        "descripcionEn": "Tender chicken bathed in house salsa; includes tortillas.",
-        "imagen": "images/Menu/pollo_salsa.jpg",
-        "badges": []
-      },
-      {
-        "id": "mole_pollo",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "MOLE POBLANO",
-        "nombre": "Mole de pollo",
-        "nombreEn": "Chicken in mole sauce",
-        "precio": "$110",
-        "descripcion": "Mole poblano dulce con pieza de pollo, incluye tortillas.",
-        "descripcionEn": "Sweet Puebla-style mole with chicken; includes tortillas.",
-        "imagen": "images/Menu/mole_pollo.jpg",
-        "badges": []
-      },
-      {
-        "id": "costilla_puerco",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "EN SALSA",
-        "nombre": "Costilla de puerco",
-        "nombreEn": "Pork ribs in salsa",
-        "precio": "$90",
-        "descripcion": "Trocitos de costilla de puerco bañados en salsa casera, incluye tortillas.",
-        "descripcionEn": "Pieces of pork rib bathed in homemade salsa; includes tortillas.",
-        "imagen": "images/Menu/costilla_puerco.jpg",
-        "badges": []
-      },
-      {
-        "id": "mole_puerco",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "MOLE POBLANO",
-        "nombre": "Mole de puerco",
-        "nombreEn": "Pork in mole sauce",
-        "precio": "$110",
-        "descripcion": "Mole poblano dulce con carne de puerco, incluye tortillas.",
-        "descripcionEn": "Sweet Puebla-style mole with pork; includes tortillas.",
-        "imagen": "images/Menu/mole_puerco.jpg",
-        "badges": []
-      },
-      {
-        "id": "picadillo",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "CASERO",
-        "nombre": "Picadillo",
-        "nombreEn": "Picadillo (ground beef hash)",
-        "precio": "$110",
-        "descripcion": "Guiso tradicional de picadillo casero preparado al día.",
-        "descripcionEn": "Traditional home-style ground beef hash.",
-        "imagen": "images/Menu/picadillo.jpg",
-        "badges": []
-      },
-      {
-        "id": "chuleta_ahumada_res",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "PLATILLO COMPLETO",
-        "nombre": "Chuleta ahumada o de res",
-        "nombreEn": "Smoked pork chop or beef chop",
-        "precio": "$210",
-        "descripcion": "Jugosa chuleta servida con ensalada, nopales, cebollitas, 6 pzs de enchiladas potosinas, tostadas de chorizo o guacamole y papas fritas.",
-        "descripcionEn": "Juicy chop served with salad, nopales, grilled onions, 6 Potosina enchiladas, chorizo or guacamole tostadas, and French fries.",
-        "imagen": "images/Menu/chuleta.jpg",
-        "badges": []
-      },
-      {
-        "id": "placer_culposo",
-        "categoria": "Panza llena corazón contento 🥰",
-        "badge": "ESPECIALIDAD",
-        "nombre": "Placer culposo",
-        "nombreEn": "Placer culposo (Guilty pleasure)",
-        "precio": "$195",
-        "descripcion": "Chile relleno con rica costilla de puerco, ensalada de pico de gallo, guacamole y 3 pzs de enchiladas potosinas.",
-        "descripcionEn": "Stuffed poblano pepper with pork ribs, pico de gallo salad, guacamole, and 3 Potosina enchiladas.",
-        "imagen": "images/Menu/placer_culposo.jpg",
-        "badges": []
-      },
+      { "id": "pollo_salsa", "categoria": "Panza llena corazón contento 🥰", "badge": "EN SALSA CASERA", "nombre": "Pollo en salsa", "nombreEn": "Chicken in salsa", "precio": "$90", "descripcion": "Rico pollo tierno bañado en salsa de la casa, incluye tortillas.", "descripcionEn": "Tender chicken bathed in house salsa; includes tortillas.", "imagen": "images/Menu/pollo_salsa.jpg", "badges": [] },
+      { "id": "mole_pollo", "categoria": "Panza llena corazón contento 🥰", "badge": "MOLE POBLANO", "nombre": "Mole de pollo", "nombreEn": "Chicken in mole sauce", "precio": "$110", "descripcion": "Mole poblano dulce con pieza de pollo, incluye tortillas.", "descripcionEn": "Sweet Puebla-style mole with chicken; includes tortillas.", "imagen": "images/Menu/mole_pollo.jpg", "badges": [] },
+      { "id": "costilla_puerco", "categoria": "Panza llena corazón contento 🥰", "badge": "EN SALSA", "nombre": "Costilla de puerco", "nombreEn": "Pork ribs in salsa", "precio": "$90", "descripcion": "Trocitos de costilla de puerco bañados en salsa casera, incluye tortillas.", "descripcionEn": "Pieces of pork rib bathed in homemade salsa; includes tortillas.", "imagen": "images/Menu/costilla_puerco.jpg", "badges": [] },
+      { "id": "mole_puerco", "categoria": "Panza llena corazón contento 🥰", "badge": "MOLE POBLANO", "nombre": "Mole de puerco", "nombreEn": "Pork in mole sauce", "precio": "$110", "descripcion": "Mole poblano dulce con carne de puerco, incluye tortillas.", "descripcionEn": "Sweet Puebla-style mole with pork; includes tortillas.", "imagen": "images/Menu/mole_puerco.jpg", "badges": [] },
+      { "id": "picadillo", "categoria": "Panza llena corazón contento 🥰", "badge": "CASERO", "nombre": "Picadillo", "nombreEn": "Picadillo (ground beef hash)", "precio": "$110", "descripcion": "Guiso tradicional de picadillo casero preparado al día.", "descripcionEn": "Traditional home-style ground beef hash.", "imagen": "images/Menu/picadillo.jpg", "badges": [] },
+      { "id": "chuleta_ahumada_res", "categoria": "Panza llena corazón contento 🥰", "badge": "PLATILLO COMPLETO", "nombre": "Chuleta ahumada o de res", "nombreEn": "Smoked pork chop or beef chop", "precio": "$210", "descripcion": "Jugosa chuleta servida con ensalada, nopales, cebollitas, 6 pzs de enchiladas potosinas, tostadas de chorizo o guacamole y papas fritas.", "descripcionEn": "Juicy chop served with salad, nopales, grilled onions, 6 Potosina enchiladas, chorizo or guacamole tostadas, and French fries.", "imagen": "images/Menu/chuleta.jpg", "badges": [] },
+      { "id": "placer_culposo", "categoria": "Panza llena corazón contento 🥰", "badge": "ESPECIALIDAD", "nombre": "Placer culposo", "nombreEn": "Placer culposo (Guilty pleasure)", "precio": "$195", "descripcion": "Chile relleno con rica costilla de puerco, ensalada de pico de gallo, guacamole y 3 pzs de enchiladas potosinas.", "descripcionEn": "Stuffed poblano pepper with pork ribs, pico de gallo salad, guacamole, and 3 Potosina enchiladas.", "imagen": "images/Menu/placer_culposo.jpg", "badges": [] },
 
-      /* CATEGORÍA: BOCADO ÁGIL ⚡ */
-      {
-        "id": "filete_pescado_plancha",
-        "categoria": "Bocado ágil ⚡",
-        "badge": "A LA PLANCHA",
-        "nombre": "Filete de pescado a la plancha",
-        "nombreEn": "Grilled fish fillet",
-        "precio": "$130",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/filete_pescado_plancha.jpg",
-        "badges": []
-      },
-      {
-        "id": "pollo_plancha",
-        "categoria": "Bocado ágil ⚡",
-        "badge": "LIGERO",
-        "nombre": "Pollo a la plancha",
-        "nombreEn": "Grilled chicken breast",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/pollo_plancha.jpg",
-        "badges": []
-      },
-      {
-        "id": "fajitas_pimenteras",
-        "categoria": "Bocado ágil ⚡",
-        "badge": "POLLO Y PIMIENTO",
-        "nombre": "Fajitas pimenteras",
-        "nombreEn": "Bell pepper fajitas",
-        "precio": "$170",
-        "descripcion": "Fajitas de pollo asadas con pimiento morrón, acompañado de arroz, frijoles, papas fritas, pico de gallo, guacamole con consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/fajitas_pimenteras.jpg",
-        "badges": []
-      },
+      { "id": "filete_pescado_plancha", "categoria": "Bocado ágil ⚡", "badge": "A LA PLANCHA", "nombre": "Filete de pescado a la plancha", "nombreEn": "Grilled fish fillet", "precio": "$130", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/filete_pescado_plancha.jpg", "badges": [] },
+      { "id": "pollo_plancha", "categoria": "Bocado ágil ⚡", "badge": "LIGERO", "nombre": "Pollo a la plancha", "nombreEn": "Grilled chicken breast", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/pollo_plancha.jpg", "badges": [] },
+      { "id": "fajitas_pimenteras", "categoria": "Bocado ágil ⚡", "badge": "POLLO Y PIMIENTO", "nombre": "Fajitas pimenteras", "nombreEn": "Bell pepper fajitas", "precio": "$170", "descripcion": "Fajitas de pollo asadas con pimiento morrón, acompañado de arroz, frijoles, papas fritas, pico de gallo, guacamole con consomé y agua natural de frutas del día.", "descripcionEn": "", "imagen": "images/Menu/fajitas_pimenteras.jpg", "badges": [] },
 
-      /* CATEGORÍA: BARBACUÉRDATE DE MÍ 🔥 (SOLO FINES DE SEMANA) */
-      {
-        "id": "orden_barbacoa",
-        "categoria": "Barbacuérdate de mí 🔥",
-        "badge": "FIN DE SEMANA",
-        "nombre": "Orden de barbacoa",
-        "nombreEn": "Barbacoa plate",
-        "precio": "$120",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
-        "imagen": "images/Menu/orden_barbacoa.jpg",
-        "soloFinDeSemana": true,
-        "badges": []
-      },
-      {
-        "id": "orden_birria",
-        "categoria": "Barbacuérdate de mí 🔥",
-        "badge": "FIN DE SEMANA",
-        "nombre": "Orden de birria",
-        "nombreEn": "Birria plate",
-        "precio": "$120",
-        "descripcion": "Disponible únicamente los fines de semana.",
-        "descripcionEn": "Available on weekends only.",
-        "imagen": "images/Menu/orden_birria.jpg",
-        "soloFinDeSemana": true,
-        "badges": []
-      },
+      { "id": "orden_barbacoa", "categoria": "Barbacuérdate de mí 🔥", "badge": "FIN DE SEMANA", "nombre": "Orden de barbacoa", "nombreEn": "Barbacoa plate", "precio": "$120", "descripcion": "Disponible únicamente los fines de semana.", "descripcionEn": "Available on weekends only.", "imagen": "images/Menu/orden_barbacoa.jpg", "soloFinDeSemana": true, "badges": [] },
+      { "id": "orden_birria", "categoria": "Barbacuérdate de mí 🔥", "badge": "FIN DE SEMANA", "nombre": "Orden de birria", "nombreEn": "Birria plate", "precio": "$120", "descripcion": "Disponible únicamente los fines de semana.", "descripcionEn": "Available on weekends only.", "imagen": "images/Menu/orden_birria.jpg", "soloFinDeSemana": true, "badges": [] },
 
-      /* CATEGORÍA: BOCADOS TRAVIESOS 🍟 */
-      {
-        "id": "milanesa_kids",
-        "categoria": "Bocados traviesos 🍟",
-        "badge": "KIDS",
-        "nombre": "Milanesa Kids",
-        "nombreEn": "Kids' Milanesa",
-        "precio": "$90",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/milanesa_kids.jpg",
-        "badges": []
-      },
-      {
-        "id": "orden_nuggets",
-        "categoria": "Bocados traviesos 🍟",
-        "badge": "KIDS",
-        "nombre": "Orden de nuggets",
-        "nombreEn": "Chicken nuggets order",
-        "precio": "$90",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/orden_nuggets.jpg",
-        "badges": []
-      },
+      { "id": "milanesa_kids", "categoria": "Bocados traviesos 🍟", "badge": "KIDS", "nombre": "Milanesa Kids", "nombreEn": "Kids' Milanesa", "precio": "$90", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/milanesa_kids.jpg", "badges": [] },
+      { "id": "orden_nuggets", "categoria": "Bocados traviesos 🍟", "badge": "KIDS", "nombre": "Orden de nuggets", "nombreEn": "Chicken nuggets order", "precio": "$90", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/orden_nuggets.jpg", "badges": [] },
 
-      /* CATEGORÍA: ESENCIA DE LA CASA ⭐ */
-      {
-        "id": "tampiquena_sencilla",
-        "categoria": "Esencia de la casa ⭐",
-        "badge": "PARA 2 PERSONAS",
-        "nombre": "Tampiqueña sencilla",
-        "nombreEn": "Classic Carne a la Tampiqueña",
-        "precio": "$285",
-        "descripcion": "Porción para 2 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/tampiquena_sencilla.jpg",
-        "badges": []
-      },
-      {
-        "id": "tampiquena_especial",
-        "categoria": "Esencia de la casa ⭐",
-        "badge": "PARA 3 PERSONAS",
-        "nombre": "Tampiqueña especial",
-        "nombreEn": "Special Carne a la Tampiqueña",
-        "precio": "$390",
-        "descripcion": "Porción para 3 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/tampiquena_especial.jpg",
-        "badges": []
-      },
+      { "id": "tampiquena_sencilla", "categoria": "Esencia de la casa ⭐", "badge": "PARA 2 PERSONAS", "nombre": "Tampiqueña sencilla", "nombreEn": "Classic Carne a la Tampiqueña", "precio": "$285", "descripcion": "Porción para 2 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.", "descripcionEn": "", "imagen": "images/Menu/tampiquena_sencilla.jpg", "badges": [] },
+      { "id": "tampiquena_especial", "categoria": "Esencia de la casa ⭐", "badge": "PARA 3 PERSONAS", "nombre": "Tampiqueña especial", "nombreEn": "Special Carne a la Tampiqueña", "precio": "$390", "descripcion": "Porción para 3 personas. Acompañada de bistec de res y de bistec de pollo a la plancha, arroz, frijoles, cebollitas, ensalada de nopales, chiles güeros, 8 pzs de enchiladas potosinas, tostadas de chorizo o guacamole, papas fritas, consomé y agua natural de frutas del día.", "descripcionEn": "", "imagen": "images/Menu/tampiquena_especial.jpg", "badges": [] },
 
-      /* CATEGORÍA: SAZÓN DE LA ABUELA 👵🏻🫶 */
-      {
-        "id": "menudo",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "badge": "CALDO TRADICIONAL",
-        "nombre": "Menudo",
-        "nombreEn": "Menudo",
-        "precio": "$110",
-        "descripcion": "Rica pancita de res en caldo rojo (disponible en tamaño chico, mediano y grande), incluye guarniciones, tortillas hechas a mano y agua de frutas.",
-        "descripcionEn": "Beef tripe in red broth (available in small, medium and large); includes garnishes, handmade tortillas and fruit-flavored water.",
-        "imagen": "images/Menu/menudo.jpg",
-        "badges": []
-      },
-      {
-        "id": "pozole",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "badge": "3 TAMAÑOS",
-        "nombre": "Pozole",
-        "nombreEn": "Pozole",
-        "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/pozole.jpg",
-        "badges": []
-      },
-      {
-        "id": "espinazo_puerco",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "badge": "CON ARROZ",
-        "nombre": "Espinazo",
-        "nombreEn": "Pork backbone soup",
-        "precio": "$110",
-        "descripcion": "Rico caldo de espinazo de puerco (disponible en tamaño chico, mediano y grande), acompañado de arroz, incluye tortillas y agua de frutas.",
-        "descripcionEn": "Pork backbone broth (available in small, medium and large), served with rice; includes tortillas and fruit-flavored water.",
-        "imagen": "images/Menu/espinazo_puerco.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_res",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "badge": "COCIDO CASERO",
-        "nombre": "Caldo de res",
-        "nombreEn": "Beef and vegetable soup",
-        "precio": "$100",
-        "descripcion": "Cocido de res con verduras y arroz, incluye agua de frutas.",
-        "descripcionEn": "Beef stew with vegetables and rice; includes fruit-flavored water.",
-        "imagen": "images/Menu/caldo_res.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_pollo",
-        "categoria": "Sazón de la Abuela 👵🏻🫶",
-        "badge": "GRANDE",
-        "nombre": "Caldo de pollo",
-        "nombreEn": "Chicken soup",
-        "precio": "$120",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/caldo_pollo.jpg",
-        "badges": []
-      },
+      { "id": "menudo", "categoria": "Sazón de la Abuela 👵🏻🫶", "badge": "CALDO TRADICIONAL", "nombre": "Menudo", "nombreEn": "Menudo", "precio": "$110", "descripcion": "Rica pancita de res en caldo rojo (disponible en tamaño chico, mediano y grande), incluye guarniciones, tortillas hechas a mano y agua de frutas.", "descripcionEn": "Beef tripe in red broth (available in small, medium and large); includes garnishes, handmade tortillas and fruit-flavored water.", "imagen": "images/Menu/menudo.jpg", "badges": [] },
+      { "id": "pozole", "categoria": "Sazón de la Abuela 👵🏻🫶", "badge": "3 TAMAÑOS", "nombre": "Pozole", "nombreEn": "Pozole", "precio": "Por definir", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/pozole.jpg", "badges": [] },
+      { "id": "espinazo_puerco", "categoria": "Sazón de la Abuela 👵🏻🫶", "badge": "CON ARROZ", "nombre": "Espinazo", "nombreEn": "Pork backbone soup", "precio": "$110", "descripcion": "Rico caldo de espinazo de puerco (disponible en tamaño chico, mediano y grande), acompañado de arroz, incluye tortillas y agua de frutas.", "descripcionEn": "Pork backbone broth (available in small, medium and large), served with rice; includes tortillas and fruit-flavored water.", "imagen": "images/Menu/espinazo_puerco.jpg", "badges": [] },
+      { "id": "caldo_res", "categoria": "Sazón de la Abuela 👵🏻🫶", "badge": "COCIDO CASERO", "nombre": "Caldo de res", "nombreEn": "Beef and vegetable soup", "precio": "$100", "descripcion": "Cocido de res con verduras y arroz, incluye agua de frutas.", "descripcionEn": "Beef stew with vegetables and rice; includes fruit-flavored water.", "imagen": "images/Menu/caldo_res.jpg", "badges": [] },
+      { "id": "caldo_pollo", "categoria": "Sazón de la Abuela 👵🏻🫶", "badge": "GRANDE", "nombre": "Caldo de pollo", "nombreEn": "Chicken soup", "precio": "$120", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/caldo_pollo.jpg", "badges": [] },
 
-      /* CATEGORÍA: AVENTURA MARINA 🌊🌴 */
-      {
-        "id": "camarones_momia",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "10 PIEZAS",
-        "nombre": "Camarones a la momia",
-        "nombreEn": "Bacon-wrapped stuffed shrimp",
-        "precio": "$320",
-        "descripcion": "10 Camarones envueltos con tocino y queso fundido, arroz, frijoles, tostada de guacamole, papas fritas, ensalada, con consomé de pescado y agua de frutas.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/camarones_momia.jpg",
-        "badges": []
-      },
-      {
-        "id": "camarones_mexicana",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "A LA MEXICANA",
-        "nombre": "Camarones a la Mexicana",
-        "nombreEn": "Mexican-style shrimp",
-        "precio": "$230",
-        "descripcion": "Revueltos a la mexicana, con arroz, frijoles, ensalada, con consomé de pescado y agua de frutas.",
-        "descripcionEn": "",
-        "imagen": "images/Menu/camarones_mexicana.jpg",
-        "badges": []
-      },
-      /* PLATILLOS SEPARADOS: CAMARONES EMPANIZADOS Y CAMARONES AL COCO */
-      {
-        "id": "camarones_empanizados",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "EMPANIZADOS",
-        "nombre": "Camarones empanizados",
-        "nombreEn": "Breaded shrimp",
-        "precio": "$220",
-        "descripcion": "Ricos camarones empanizados (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.",
-        "descripcionEn": "Ten crispy breaded shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.",
-        "imagen": "images/Menu/camarones_empanizados.jpg",
-        "imagenFallback": "images/Menu/camarones_coco.jpg",
-        "badges": []
-      },
-      {
-        "id": "camarones_coco",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "AL COCO 🥥",
-        "nombre": "Camarones al coco 🥥🌴",
-        "nombreEn": "Coconut shrimp 🥥🌴",
-        "precio": "$220",
-        "descripcion": "Ricos camarones al coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.",
-        "descripcionEn": "Ten coconut shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.",
-        "imagen": "images/Menu/camarones_coco.jpg",
-        "badges": []
-      },
-      {
-        "id": "filete_pescado",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "DEL MAR",
-        "nombre": "Filete de pescado",
-        "nombreEn": "Fish fillet",
-        "precio": "$130",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/filete_pescado.jpg",
-        "badges": []
-      },
-      {
-        "id": "mojarra_frita",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "ENTERA DORADA",
-        "nombre": "Mojarra frita",
-        "nombreEn": "Whole fried tilapia",
-        "precio": "$210",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/mojarra_frita.jpg",
-        "badges": []
-      },
-      {
-        "id": "huachinango",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "ESPECIALIDAD",
-        "nombre": "Huachinango",
-        "nombreEn": "Red snapper",
-        "precio": "Por definir",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/huachinango.jpg",
-        "badges": []
-      },
-      {
-        "id": "coctel_camaron",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "2 TAMAÑOS",
-        "nombre": "Cóctel de camarones",
-        "nombreEn": "Shrimp cocktail",
-        "precio": "$150",
-        "descripcion": "Cóctel de camarones con salsas y guarniciones, incluye agua de frutas.",
-        "descripcionEn": "Shrimp cocktail served with sauces and garnishes; includes fruit-flavored water.",
-        "imagen": "images/Menu/coctel_camaron.jpg",
-        "badges": []
-      },
-      {
-        "id": "vuelve_vida",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "CAMARÓN, PULPO Y OSTIÓN",
-        "nombre": "Vuelve a la vida",
-        "nombreEn": "Vuelve a la Vida seafood cocktail",
-        "precio": "$150",
-        "descripcion": "Cóctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.",
-        "descripcionEn": "Shrimp, octopus and oyster cocktail served with sauces and garnishes; includes fruit-flavored water.",
-        "imagen": "images/Menu/vuelve_vida.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_pescado",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "CON AGUA DE FRUTAS",
-        "nombre": "Caldo de pescado",
-        "nombreEn": "Fish soup",
-        "precio": "$120",
-        "descripcion": "Caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.",
-        "descripcionEn": "Fish broth with stingray meat and garnishes; includes fruit-flavored water.",
-        "imagen": "images/Menu/caldo_pescado.jpg",
-        "badges": []
-      },
-      {
-        "id": "caldo_camaron",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "CALIENTE",
-        "nombre": "Caldo de camarón",
-        "nombreEn": "Shrimp soup",
-        "precio": "$200",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/caldo_camaron.jpg",
-        "badges": []
-      },
-      {
-        "id": "sopa_mariscos",
-        "categoria": "Aventura marina 🌊🌴",
-        "badge": "ESPECIAL",
-        "nombre": "Sopa de mariscos",
-        "nombreEn": "Seafood soup",
-        "precio": "$200",
-        "descripcion": "",
-        "descripcionEn": "",
-        "imagen": "images/Menu/sopa_mariscos.jpg",
-        "badges": []
-      },
+      { "id": "camarones_momia", "categoria": "Aventura marina 🌊🌴", "badge": "10 PIEZAS", "nombre": "Camarones a la momia", "nombreEn": "Bacon-wrapped stuffed shrimp", "precio": "$320", "descripcion": "10 Camarones envueltos con tocino y queso fundido, arroz, frijoles, tostada de guacamole, papas fritas, ensalada, con consomé de pescado y agua de frutas.", "descripcionEn": "", "imagen": "images/Menu/camarones_momia.jpg", "badges": [] },
+      { "id": "camarones_mexicana", "categoria": "Aventura marina 🌊🌴", "badge": "A LA MEXICANA", "nombre": "Camarones a la Mexicana", "nombreEn": "Mexican-style shrimp", "precio": "$230", "descripcion": "Revueltos a la mexicana, con arroz, frijoles, ensalada, con consomé de pescado y agua de frutas.", "descripcionEn": "", "imagen": "images/Menu/camarones_mexicana.jpg", "badges": [] },
+      { "id": "camarones_empanizados", "categoria": "Aventura marina 🌊🌴", "badge": "EMPANIZADOS", "nombre": "Camarones empanizados", "nombreEn": "Breaded shrimp", "precio": "$220", "descripcion": "Ricos camarones empanizados (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.", "descripcionEn": "Ten crispy breaded shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.", "imagen": "images/Menu/camarones_empanizados.jpg", "imagenFallback": "images/Menu/camarones_coco.jpg", "badges": [] },
+      { "id": "camarones_coco", "categoria": "Aventura marina 🌊🌴", "badge": "AL COCO 🥥", "nombre": "Camarones al coco 🥥🌴", "nombreEn": "Coconut shrimp 🥥🌴", "precio": "$220", "descripcion": "Ricos camarones al coco (10 pzs) acompañados con arroz, papas fritas y ensalada, incluye consomé y agua de frutas.", "descripcionEn": "Ten coconut shrimp served with rice, French fries and salad; includes consommé and fruit-flavored water.", "imagen": "images/Menu/camarones_coco.jpg", "badges": [] },
+      { "id": "filete_pescado", "categoria": "Aventura marina 🌊🌴", "badge": "DEL MAR", "nombre": "Filete de pescado", "nombreEn": "Fish fillet", "precio": "$130", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/filete_pescado.jpg", "badges": [] },
+      { "id": "mojarra_frita", "categoria": "Aventura marina 🌊🌴", "badge": "ENTERA DORADA", "nombre": "Mojarra frita", "nombreEn": "Whole fried tilapia", "precio": "$210", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/mojarra_frita.jpg", "badges": [] },
+      { "id": "huachinango", "categoria": "Aventura marina 🌊🌴", "badge": "ESPECIALIDAD", "nombre": "Huachinango", "nombreEn": "Red snapper", "precio": "Por definir", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/huachinango.jpg", "badges": [] },
+      { "id": "coctel_camaron", "categoria": "Aventura marina 🌊🌴", "badge": "2 TAMAÑOS", "nombre": "Cóctel de camarones", "nombreEn": "Shrimp cocktail", "precio": "$150", "descripcion": "Cóctel de camarones con salsas y guarniciones, incluye agua de frutas.", "descripcionEn": "Shrimp cocktail served with sauces and garnishes; includes fruit-flavored water.", "imagen": "images/Menu/coctel_camaron.jpg", "badges": [] },
+      { "id": "vuelve_vida", "categoria": "Aventura marina 🌊🌴", "badge": "CAMARÓN, PULPO Y OSTIÓN", "nombre": "Vuelve a la vida", "nombreEn": "Vuelve a la Vida seafood cocktail", "precio": "$150", "descripcion": "Cóctel de camarones, pulpo y ostión con salsas y guarniciones, incluye agua de frutas.", "descripcionEn": "Shrimp, octopus and oyster cocktail served with sauces and garnishes; includes fruit-flavored water.", "imagen": "images/Menu/vuelve_vida.jpg", "badges": [] },
+      { "id": "caldo_pescado", "categoria": "Aventura marina 🌊🌴", "badge": "CON AGUA DE FRUTAS", "nombre": "Caldo de pescado", "nombreEn": "Fish soup", "precio": "$120", "descripcion": "Caldo de pescado con carne de mantarraya, incluye guarniciones. Incluye agua de frutas.", "descripcionEn": "Fish broth with stingray meat and garnishes; includes fruit-flavored water.", "imagen": "images/Menu/caldo_pescado.jpg", "badges": [] },
+      { "id": "caldo_camaron", "categoria": "Aventura marina 🌊🌴", "badge": "CALIENTE", "nombre": "Caldo de camarón", "nombreEn": "Shrimp soup", "precio": "$200", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/caldo_camaron.jpg", "badges": [] },
+      { "id": "sopa_mariscos", "categoria": "Aventura marina 🌊🌴", "badge": "ESPECIAL", "nombre": "Sopa de mariscos", "nombreEn": "Seafood soup", "precio": "$200", "descripcion": "", "descripcionEn": "", "imagen": "images/Menu/sopa_mariscos.jpg", "badges": [] },
 
-      /* CATEGORÍA: SOUVENIRS DE LA MONITA 🛍️🎀 */
-      {
-        "id": "paliacates",
-        "categoria": "Souvenirs de La Monita 🛍️🎀",
-        "badge": "SOUVENIR",
-        "nombre": "Paliacates Los de La Monita",
-        "nombreEn": "Los de La Monita bandanas",
-        "precio": "$270",
-        "descripcion": "Paliacate, variedad de colores.",
-        "descripcionEn": "Bandana available in a variety of colors.",
-        "imagen": "images/Menu/paliacates.jpg",
-        "badges": []
-      },
-      {
-        "id": "libreta_grande",
-        "categoria": "Souvenirs de La Monita 🛍️🎀",
-        "badge": "SOUVENIR",
-        "nombre": "Libreta grande Los de La Monita",
-        "nombreEn": "Los de La Monita large notebook",
-        "precio": "$160",
-        "descripcion": "Variedad de colores.",
-        "descripcionEn": "Available in a variety of colors.",
-        "imagen": "images/Menu/libreta_grande.jpg",
-        "badges": []
-      },
-      {
-        "id": "libreta_chica",
-        "categoria": "Souvenirs de La Monita 🛍️🎀",
-        "badge": "SOUVENIR",
-        "nombre": "Libreta chica Los de La Monita",
-        "nombreEn": "Los de La Monita small notebook",
-        "precio": "$80",
-        "descripcion": "Variedad de colores.",
-        "descripcionEn": "Available in a variety of colors.",
-        "imagen": "images/Menu/libreta_chica.jpg",
-        "badges": []
-      }
+      { "id": "paliacates", "categoria": "Souvenirs de La Monita 🛍️🎀", "badge": "SOUVENIR", "nombre": "Paliacates Los de La Monita", "nombreEn": "Los de La Monita bandanas", "precio": "$270", "descripcion": "Paliacate, variedad de colores.", "descripcionEn": "Bandana available in a variety of colors.", "imagen": "images/Menu/paliacates.jpg", "badges": [] },
+      { "id": "libreta_grande", "categoria": "Souvenirs de La Monita 🛍️🎀", "badge": "SOUVENIR", "nombre": "Libreta grande Los de La Monita", "nombreEn": "Los de La Monita large notebook", "precio": "$160", "descripcion": "Variedad de colores.", "descripcionEn": "Available in a variety of colors.", "imagen": "images/Menu/libreta_grande.jpg", "badges": [] },
+      { "id": "libreta_chica", "categoria": "Souvenirs de La Monita 🛍️🎀", "badge": "SOUVENIR", "nombre": "Libreta chica Los de La Monita", "nombreEn": "Los de La Monita small notebook", "precio": "$80", "descripcion": "Variedad de colores.", "descripcionEn": "Available in a variety of colors.", "imagen": "images/Menu/libreta_chica.jpg", "badges": [] }
     ]
   };
-
-  /* ===================================================== */
-  /* FIN DE LA ZONA EDITABLE                               */
-  /* ===================================================== */
 
   const restaurante = CONFIG.restaurante;
   const platillos = CONFIG.platillos;
@@ -2148,12 +1545,13 @@
   const navMarca = document.getElementById("navMarca");
   const navInicio = document.getElementById("navInicio");
   const navMenu = document.getElementById("navMenu");
-  const navPedido = document.getElementById("navPedido");
+  const navEventos = document.getElementById("navEventos");
   const movilInicio = document.getElementById("movilInicio");
   const movilMenu = document.getElementById("movilMenu");
-  const movilMaps = document.getElementById("movilMaps");
+  const movilEventos = document.getElementById("movilEventos");
   const vistaInicio = document.getElementById("vistaInicio");
   const vistaMenu = document.getElementById("vistaMenu");
+  const vistaEventos = document.getElementById("vistaEventos");
   const inicioTitulo = document.getElementById("inicioTitulo");
   const inicioHistoria = document.getElementById("inicioHistoria");
   const inicioContactoTexto = document.getElementById("inicioContactoTexto");
@@ -2164,6 +1562,7 @@
   const contactoHorario = document.getElementById("contactoHorario");
   const botonMaps = document.getElementById("botonMaps");
   const botonPedidoInicio = document.getElementById("botonPedidoInicio");
+  const botonEventosInicio = document.getElementById("botonEventosInicio");
   const categoriasHTML = document.getElementById("categorias");
   const listaHTML = document.getElementById("listaPlatillos");
   const inputBuscador = document.getElementById("inputBuscador");
@@ -2234,7 +1633,6 @@
     window.open(restaurante.mapsUrl, "_blank", "noopener,noreferrer");
   }
 
-  /* SOPORTE DE DESPLAZAMIENTO HORIZONTAL SUAVE EN CATEGORÍAS (TÁCTIL + ARRASTRE MOUSE) */
   (function enableCategoryDragScroll(){
     let isDown = false, startX = 0, scrollLeft = 0, dragged = false;
     categoriasHTML.addEventListener("mousedown", e => {
@@ -2256,6 +1654,75 @@
       if(dragged){ e.stopPropagation(); dragged = false; }
     }, true);
   })();
+
+  /* ===================================================== */
+  /* EVENTOS Y TAQUIZAS (BOTÓN DESPLEGABLE + WHATSAPP)     */
+  /* ===================================================== */
+  const btnDesplegarCotizacion = document.getElementById("btnDesplegarCotizacion");
+  const eventoFormPanel = document.getElementById("eventoFormPanel");
+  const cerrarEventoForm = document.getElementById("cerrarEventoForm");
+  const cancelarEventoForm = document.getElementById("cancelarEventoForm");
+  const eventoFormulario = document.getElementById("eventoFormulario");
+
+  function toggleEventoForm(forzarEstado){
+    const abrir = typeof forzarEstado === "boolean" ? forzarEstado : eventoFormPanel.hidden;
+    eventoFormPanel.hidden = !abrir;
+    btnDesplegarCotizacion.setAttribute("aria-expanded", String(abrir));
+    btnDesplegarCotizacion.textContent = abrir ? t('eventsToggleBtnClose') : t('eventsToggleBtn');
+    if(abrir){
+      const inputNombre = document.getElementById("eventoNombre");
+      setTimeout(() => {
+        eventoFormPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if(inputNombre) inputNombre.focus();
+      }, 60);
+    }
+  }
+
+  btnDesplegarCotizacion.addEventListener("click", () => toggleEventoForm());
+  cerrarEventoForm.addEventListener("click", () => toggleEventoForm(false));
+  cancelarEventoForm.addEventListener("click", () => toggleEventoForm(false));
+
+  eventoFormulario.querySelectorAll("input, select, textarea").forEach(el => {
+    el.addEventListener("input", () => el.setCustomValidity(""));
+  });
+
+  eventoFormulario.addEventListener("submit", e => {
+    e.preventDefault();
+    eventoFormulario.querySelectorAll("input[required]").forEach(el => {
+      el.setCustomValidity(el.value.trim() ? "" : t('fillField'));
+    });
+    const telEv = document.getElementById("eventoTelefono");
+    if(!/^\d{10,15}$/.test(telEv.value.replace(/\D/g, ""))){
+      telEv.setCustomValidity(t('phoneInvalid'));
+    }
+    if(!eventoFormulario.reportValidity()) return;
+
+    const numero = normalizarNumeroWhatsApp();
+    if(!/^[1-9][0-9]{10,14}$/.test(numero)){
+      mostrarToast(t('waConfig'));
+      return;
+    }
+
+    const val = id => document.getElementById(id).value.trim() || "No indicado";
+    const mensaje = [
+      "🌮 *" + restaurante.nombre + " — Cotización de Taquiza para Evento*",
+      "",
+      "Cliente: " + val("eventoNombre"),
+      "Teléfono: " + val("eventoTelefono"),
+      "Fecha del evento: " + val("eventoFecha"),
+      "Hora aproximada: " + (document.getElementById("eventoHora").value.trim() || "Por definir"),
+      "Ubicación del evento: " + val("eventoUbicacion"),
+      "Número de personas: " + val("eventoPersonas"),
+      "Tipo de evento: " + val("eventoTipo"),
+      "Cantidad de guisados: " + val("eventoCantidadGuisados"),
+      "Modalidad de servicio: " + val("eventoModalidad"),
+      "Notas adicionales: " + (document.getElementById("eventoNotas").value.trim() || "Ninguna"),
+      "",
+      "Quedo atento a su cotización y disponibilidad. ¡Gracias!"
+    ].join("\n");
+
+    window.open("https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje), "_blank", "noopener,noreferrer");
+  });
 
   /* ===================================================== */
   /* CARRITO, GUISADOS, TAMAÑOS Y SISTEMA DE TARJETAS      */
@@ -2541,16 +2008,15 @@
 
   function actualizarPedidoUI(){
     const unidades = [...carrito.values()].reduce((n, r) => n + r.cantidad, 0);
-    const contador = document.getElementById('contadorPedido');
-    const contadorDesktop = document.getElementById('contadorPedidoDesktop');
-    contador.textContent = unidades;
-    contador.hidden = !unidades;
-    if(contadorDesktop){
-      contadorDesktop.textContent = unidades;
-      contadorDesktop.hidden = !unidades;
+    const contadorFlotante = document.getElementById('contadorPedidoFlotante');
+    const bolsaFlotante = document.getElementById('bolsaFlotante');
+    if(contadorFlotante){
+      contadorFlotante.textContent = unidades;
+      contadorFlotante.hidden = !unidades;
     }
-
-    document.getElementById('movilMaps').setAttribute('aria-label', t('orderTab') + ', ' + unidades + ' ' + t('orderNumber'));
+    if(bolsaFlotante){
+      bolsaFlotante.setAttribute('aria-label', t('orderTab') + ', ' + unidades + ' ' + t('orderNumber'));
+    }
 
     document.querySelectorAll('.platillo-tarjeta').forEach(tarjeta => {
       const item = platillos.find(p => p.id === tarjeta.dataset.producto);
@@ -2690,10 +2156,7 @@
     window.location.assign('https://wa.me/' + normalizarNumeroWhatsApp() + '?text=' + encodeURIComponent(construirMensajePedido()));
   });
 
-  /* ===================================================== */
-  /* MAPA Y ENVÍO (PRESERVADO PARA LA PLANTILLA)           */
-  /* ===================================================== */
-
+  /* MAPA Y ENVÍO */
   let promesaMapa;
   function cargarMapaBiblioteca(){
     if(window.L) return Promise.resolve();
@@ -2886,9 +2349,12 @@
   }
 
   botonMaps.addEventListener("click", abrirMaps);
-  movilMaps.addEventListener("click", abrirWhatsApp);
   botonPedidoInicio.addEventListener("click", abrirWhatsApp);
-  navPedido.addEventListener("click", abrirWhatsApp);
+  botonEventosInicio.addEventListener("click", () => {
+    mostrarVista("eventos");
+    toggleEventoForm(true);
+  });
+  document.getElementById("bolsaFlotante").addEventListener("click", abrirWhatsApp);
 
   function abrirChatDirectoWhatsApp(){
     const numero = normalizarNumeroWhatsApp();
@@ -2917,21 +2383,26 @@
   document.getElementById('socialFacebook').addEventListener('click', () => abrirEnlaceSocial('facebookUrl', ['facebook.com', 'www.facebook.com', 'm.facebook.com', 'fb.com', 'www.fb.com'], 'Facebook'));
   document.getElementById('socialTikTok').addEventListener('click', () => abrirEnlaceSocial('tiktokUrl', ['tiktok.com', 'www.tiktok.com'], 'TikTok'));
 
-  /* ===================================================== */
-  /* NAVEGACIÓN, CATEGORÍAS Y TARJETAS ESTILO LIMONCELLO   */
-  /* ===================================================== */
-
+  /* NAVEGACIÓN, CATEGORÍAS Y TARJETAS */
   function mostrarVista(nombre, actualizarHash = true){
     const esInicio = nombre === "inicio";
+    const esEventos = nombre === "eventos";
+    const esMenu = !esInicio && !esEventos;
+
     vistaInicio.classList.toggle("activa", esInicio);
-    vistaMenu.classList.toggle("activa", !esInicio);
+    vistaMenu.classList.toggle("activa", esMenu);
+    vistaEventos.classList.toggle("activa", esEventos);
+
     navInicio.classList.toggle("activo", esInicio);
-    navMenu.classList.toggle("activo", !esInicio);
+    navMenu.classList.toggle("activo", esMenu);
+    navEventos.classList.toggle("activo", esEventos);
+
     movilInicio.classList.toggle("activo", esInicio);
-    movilMenu.classList.toggle("activo", !esInicio);
+    movilMenu.classList.toggle("activo", esMenu);
+    movilEventos.classList.toggle("activo", esEventos);
 
     if(actualizarHash){
-      history.replaceState(null, "", esInicio ? "#inicio" : "#menu");
+      history.replaceState(null, "", esInicio ? "#inicio" : (esEventos ? "#eventos" : "#menu"));
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
     actualizarBotonVolverMenu();
@@ -2939,8 +2410,10 @@
 
   navInicio.addEventListener("click", () => mostrarVista("inicio"));
   navMenu.addEventListener("click", () => mostrarVista("menu"));
+  navEventos.addEventListener("click", () => mostrarVista("eventos"));
   movilInicio.addEventListener("click", () => mostrarVista("inicio"));
   movilMenu.addEventListener("click", () => mostrarVista("menu"));
+  movilEventos.addEventListener("click", () => mostrarVista("eventos"));
 
   function actualizarBotonVolverMenu(){
     const menuVisible = vistaMenu.classList.contains("activa");
@@ -3046,7 +2519,6 @@
     tarjeta.className = "platillo-tarjeta";
     tarjeta.dataset.producto = item.id;
 
-    // 1. Área visual con respaldo y carga limpia sin bloqueo lazy
     const visual = document.createElement("button");
     visual.type = "button";
     visual.className = "platillo-visual";
@@ -3105,7 +2577,6 @@
       visual.addEventListener('click', () => ampliarFoto(imagen, textoProducto(item, 'nombre')));
     }
 
-    // 2. Contenido de la tarjeta
     const info = document.createElement("div");
     info.className = "platillo-info";
 
@@ -3133,7 +2604,6 @@
       info.appendChild(desc);
     }
 
-    // Bloque de acompañamiento automático para "Desayunos de campeón 🏆" y "Panza llena corazón contento 🥰"
     const textoAcompanamiento = obtenerAcompanamientoCategoria(item);
     if(textoAcompanamiento){
       const boxAcomp = document.createElement("div");
@@ -3146,7 +2616,6 @@
       info.appendChild(boxAcomp);
     }
 
-    // 3. Selectores integrados en la tarjeta según el tipo de platillo
     const variantBlock = document.createElement("div");
     variantBlock.className = "variant-block";
     let tieneSelectores = false;
@@ -3341,7 +2810,6 @@
 
     if(tieneSelectores) info.appendChild(variantBlock);
 
-    // 4. Pie de tarjeta idéntico a Limoncello (Pastilla de precio + Stepper − 0 +)
     const footer = document.createElement("div");
     footer.className = "card-footer";
 
@@ -3454,6 +2922,8 @@
     const hash = window.location.hash.toLowerCase();
     if(hash === "#inicio"){
       mostrarVista("inicio", false);
+    }else if(hash === "#eventos"){
+      mostrarVista("eventos", false);
     }else{
       mostrarVista("menu", false);
     }
@@ -3471,6 +2941,8 @@
     for(const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
     for(const el of document.querySelectorAll('[data-i18n-placeholder]')) el.placeholder = t(el.dataset.i18nPlaceholder);
     for(const el of document.querySelectorAll('[data-i18n-aria]')) el.setAttribute('aria-label', t(el.dataset.i18nAria));
+
+    btnDesplegarCotizacion.textContent = eventoFormPanel.hidden ? t('eventsToggleBtn') : t('eventsToggleBtnClose');
 
     heroSubtitulo.textContent = idioma === 'en' ? restaurante.subtituloEn || restaurante.subtitulo : restaurante.subtitulo;
     inicioTitulo.textContent = idioma === 'en' ? restaurante.tituloHistoriaEn || restaurante.tituloHistoria : restaurante.tituloHistoria;
