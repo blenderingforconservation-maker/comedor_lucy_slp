@@ -46,6 +46,10 @@
       -webkit-font-smoothing:antialiased;
     }
     body.modal-abierto{overflow:hidden}
+    #fxCanvas{
+      position:fixed;inset:0;width:100%;height:100%;
+      pointer-events:none;z-index:9999;
+    }
     button,input,select,textarea{font:inherit}
     button,a,select{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
     button:focus-visible,a:focus-visible,select:focus-visible{
@@ -444,8 +448,17 @@
       width:40px;height:40px;border:1.5px solid var(--acento);border-radius:11px;
       background:#fff;color:var(--acento-oscuro);font-size:20px;font-weight:800;
       display:inline-flex;align-items:center;justify-content:center;
-      transition:all .15s;
+      transition:transform .14s cubic-bezier(.2,.9,.3,1.4),background .15s,color .15s;
     }
+    .stepper button.tap-pop,.guisado-ctrl-btn.mas.tap-pop{
+      transform:scale(1.24);background:var(--acento);color:var(--texto);
+    }
+    @keyframes bagPulse{
+      0%{transform:scale(1)}
+      45%{transform:scale(1.16)}
+      100%{transform:scale(1)}
+    }
+    .bolsa-flotante.bag-pop{animation:bagPulse .28s cubic-bezier(.2,.9,.3,1.3)}
     .stepper button:not(:disabled):hover{
       background:var(--acento-vivo);color:var(--texto);border-color:var(--acento);
     }
@@ -602,6 +615,8 @@
 </head>
 
 <body>
+
+<canvas id="fxCanvas" aria-hidden="true"></canvas>
 
 <!-- PORTADA -->
 <header class="hero" id="portada">
@@ -842,7 +857,7 @@
     <span data-i18n="navMenu">MENÚ</span>
   </button>
   <button type="button" id="movilEventos">
-    <span class="nav-icono">🌮</span>
+    <svg class="nav-icono" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"></rect><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line><circle cx="12" cy="15.5" r="1.5"></circle></svg>
     <span data-i18n="navEventos">EVENTOS</span>
   </button>
 </nav>
@@ -1654,6 +1669,194 @@
       if(dragged){ e.stopPropagation(); dragged = false; }
     }, true);
   })();
+
+  /* ===================================================== */
+  /* PARTÍCULAS 3D: JITOMATES A LA MITAD, CHILITOS Y CEBOLLITAS */
+  /* ===================================================== */
+  const SalsaBurstFX = (() => {
+    const canvas = document.getElementById("fxCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let animId = null;
+    let dpr = 1;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener("resize", resize, { passive: true });
+    resize();
+
+    function drawTomatoHalf(c, r) {
+      // Piel roja exterior
+      c.fillStyle = "#D9381E";
+      c.beginPath();
+      c.arc(0, 0, r, 0, Math.PI, false);
+      c.closePath();
+      c.fill();
+
+      // Pulpa interior
+      c.fillStyle = "#F25C43";
+      c.beginPath();
+      c.arc(0, 0, r * 0.84, 0.06, Math.PI - 0.06, false);
+      c.closePath();
+      c.fill();
+
+      // Cavidades y semillitas
+      c.fillStyle = "#FFF1A8";
+      for (let i = -1; i <= 1; i += 2) {
+        c.beginPath();
+        c.ellipse(i * r * 0.34, r * 0.36, r * 0.16, r * 0.22, i * 0.3, 0, Math.PI * 2);
+        c.fill();
+      }
+      // Borde superior
+      c.strokeStyle = "#B82912";
+      c.lineWidth = 1.1;
+      c.beginPath();
+      c.moveTo(-r, 0);
+      c.lineTo(r, 0);
+      c.stroke();
+    }
+
+    function drawChili(c, size) {
+      // Cuerpo curvo del chilito verde
+      c.fillStyle = "#2E7D32";
+      c.beginPath();
+      c.moveTo(-size * 0.85, -size * 0.15);
+      c.quadraticCurveTo(0, -size * 0.55, size * 0.95, size * 0.22);
+      c.quadraticCurveTo(size * 0.15, size * 0.45, -size * 0.85, size * 0.18);
+      c.closePath();
+      c.fill();
+
+      // Brillo sutil
+      c.strokeStyle = "#66BB6A";
+      c.lineWidth = Math.max(1, size * 0.12);
+      c.lineCap = "round";
+      c.beginPath();
+      c.moveTo(-size * 0.55, -size * 0.06);
+      c.quadraticCurveTo(0, -size * 0.24, size * 0.45, 0.04);
+      c.stroke();
+
+      // Rabito
+      c.strokeStyle = "#1B5E20";
+      c.lineWidth = Math.max(1.4, size * 0.16);
+      c.beginPath();
+      c.moveTo(-size * 0.82, 0);
+      c.lineTo(-size * 1.12, -size * 0.24);
+      c.stroke();
+    }
+
+    function drawOnion(c, r) {
+      // Cebollita / rodaja blanca con anillos suaves
+      c.fillStyle = "#FAF7F2";
+      c.strokeStyle = "#D6C4DC";
+      c.lineWidth = 1.4;
+      c.beginPath();
+      c.arc(0, 0, r * 0.85, 0, Math.PI * 2);
+      c.fill();
+      c.stroke();
+
+      c.strokeStyle = "#E8DCEB";
+      c.lineWidth = 1.1;
+      c.beginPath();
+      c.arc(0, 0, r * 0.52, 0, Math.PI * 2);
+      c.stroke();
+      c.beginPath();
+      c.arc(0, 0, r * 0.24, 0, Math.PI * 2);
+      c.stroke();
+    }
+
+    function spawn(x, y, count = 20) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const types = ["tomato", "chili", "onion"];
+      for (let i = 0; i < count; i++) {
+        const type = types[i % 3];
+        const angle = -Math.PI * 0.5 + (Math.random() - 0.5) * Math.PI * 1.65;
+        const speed = 3.2 + Math.random() * 6.8;
+        particles.push({
+          type,
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - (1.3 + Math.random() * 2.2),
+          gravity: 0.24,
+          drag: 0.968,
+          size: type === "chili" ? (10 + Math.random() * 5) : (8.5 + Math.random() * 4.5),
+          rx: Math.random() * Math.PI * 2,
+          ry: Math.random() * Math.PI * 2,
+          rz: Math.random() * Math.PI * 2,
+          vRx: (Math.random() - 0.5) * 0.26,
+          vRy: (Math.random() - 0.5) * 0.26,
+          vRz: (Math.random() - 0.5) * 0.24,
+          life: 0,
+          maxLife: 38 + Math.floor(Math.random() * 18)
+        });
+      }
+      if (!animId) animId = requestAnimationFrame(loop);
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.life++;
+        if (p.life >= p.maxLife) {
+          particles.splice(i, 1);
+          continue;
+        }
+        p.vx *= p.drag;
+        p.vy = p.vy * p.drag + p.gravity;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rx += p.vRx;
+        p.ry += p.vRy;
+        p.rz += p.vRz;
+
+        const progress = p.life / p.maxLife;
+        const alpha = progress < 0.7 ? 1 : (1 - (progress - 0.7) / 0.3);
+        const scale = progress < 0.15 ? (0.5 + (progress / 0.15) * 0.5) : (1 - progress * 0.22);
+        const sx = Math.cos(p.ry);
+        const sy = Math.cos(p.rx);
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, alpha);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rz);
+        ctx.scale(
+          scale * (sx < 0 ? -Math.max(0.25, -sx) : Math.max(0.25, sx)),
+          scale * (sy < 0 ? -Math.max(0.25, -sy) : Math.max(0.25, sy))
+        );
+
+        if (p.type === "tomato") drawTomatoHalf(ctx, p.size);
+        else if (p.type === "chili") drawChili(ctx, p.size);
+        else drawOnion(ctx, p.size);
+        ctx.restore();
+      }
+      if (particles.length > 0) animId = requestAnimationFrame(loop);
+      else animId = null;
+    }
+
+    return { spawn };
+  })();
+
+  function pulsarBotonYBolsa(btn) {
+    if (btn) {
+      const rect = btn.getBoundingClientRect();
+      SalsaBurstFX.spawn(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      btn.classList.remove("tap-pop");
+      void btn.offsetWidth;
+      btn.classList.add("tap-pop");
+      setTimeout(() => btn.classList.remove("tap-pop"), 190);
+    }
+    const bolsa = document.getElementById("bolsaFlotante");
+    if (bolsa) {
+      bolsa.classList.remove("bag-pop");
+      void bolsa.offsetWidth;
+      bolsa.classList.add("bag-pop");
+    }
+  }
 
   /* ===================================================== */
   /* EVENTOS Y TAQUIZAS (BOTÓN DESPLEGABLE + WHATSAPP)     */
@@ -2713,6 +2916,7 @@
         bMas.textContent = "+";
         bMas.onclick = e => {
           e.stopPropagation();
+          pulsarBotonYBolsa(bMas);
           cambiarCantidad(crearVarianteGuisadoIndividual(item, g), 1, true);
         };
 
@@ -2851,6 +3055,7 @@
     btnMas.onclick = e => {
       e.stopPropagation();
       if(item.presentaciones){
+        pulsarBotonYBolsa(btnMas);
         cambiarCantidad(crearVariantePedido(item, item.presentacionSeleccionada), 1, true);
         return;
       }
@@ -2881,6 +3086,7 @@
           nombre: item.nombre + " [" + nombresEs.join(", ") + "]",
           nombreEn: (item.nombreEn || item.nombre) + " [" + nombresEn.join(", ") + "]"
         };
+        pulsarBotonYBolsa(btnMas);
         cambiarCantidad(variante, 1, true);
         tarjeta.selectsGuisados.forEach(s => {
           s.value = "";
@@ -2888,6 +3094,7 @@
         });
         return;
       }
+      pulsarBotonYBolsa(btnMas);
       cambiarCantidad({ ...item, originalId: item.id }, 1, true);
     };
 
